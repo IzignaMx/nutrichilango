@@ -26,10 +26,12 @@ export const naturistStores: Store[] = [
           brand: 'Verde Vida',
           price: 95.00,
           unit: '400g',
-          pricePerUnit: 237.50
+          pricePerUnit: 237.50,
+          isCommercial: true
         },
         priceDifferencePercent: 5.7,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'almond-milk-1',
@@ -46,10 +48,12 @@ export const naturistStores: Store[] = [
           brand: 'Natura',
           price: 68.90,
           unit: '1L',
-          pricePerUnit: 68.90
+          pricePerUnit: 68.90,
+          isCommercial: true
         },
         priceDifferencePercent: 30.2,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -76,10 +80,12 @@ export const naturistStores: Store[] = [
           brand: 'Green Spot',
           price: 295.00,
           unit: '250g',
-          pricePerUnit: 1180.00
+          pricePerUnit: 1180.00,
+          isCommercial: true
         },
         priceDifferencePercent: 59.5,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   }

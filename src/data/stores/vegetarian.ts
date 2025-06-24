@@ -26,10 +26,12 @@ export const vegetarianStores: Store[] = [
           brand: 'The Jackfruit Company',
           price: 89.90,
           unit: '300g',
-          pricePerUnit: 299.67
+          pricePerUnit: 299.67,
+          isCommercial: true
         },
         priceDifferencePercent: 12.5,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'cashew-cheese-1',
@@ -46,10 +48,12 @@ export const vegetarianStores: Store[] = [
           brand: 'Artisan Vegan',
           price: 165.00,
           unit: '200g',
-          pricePerUnit: 825.00
+          pricePerUnit: 825.00,
+          isCommercial: true
         },
         priceDifferencePercent: 13.8,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   }

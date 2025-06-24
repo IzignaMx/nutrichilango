@@ -26,10 +26,12 @@ export const conventionalStores: Store[] = [
           brand: 'NotCo',
           price: 189.90,
           unit: '500g',
-          pricePerUnit: 379.80
+          pricePerUnit: 379.80,
+          isCommercial: true
         },
         priceDifferencePercent: 27.0,
-        availability: { traditional: true, plantBased: true }
+        availability: { traditional: true, plantBased: true },
+        comparisonType: 'animal-vs-commercial'
       },
       {
         id: 'milk-vs-soy-1',
@@ -46,10 +48,12 @@ export const conventionalStores: Store[] = [
           brand: 'Silk',
           price: 42.90,
           unit: '1L',
-          pricePerUnit: 42.90
+          pricePerUnit: 42.90,
+          isCommercial: true
         },
         priceDifferencePercent: 68.2,
-        availability: { traditional: true, plantBased: true }
+        availability: { traditional: true, plantBased: true },
+        comparisonType: 'animal-vs-commercial'
       }
     ]
   },
@@ -76,10 +80,12 @@ export const conventionalStores: Store[] = [
           brand: 'Lightlife',
           price: 145.00,
           unit: '500g',
-          pricePerUnit: 290.00
+          pricePerUnit: 290.00,
+          isCommercial: true
         },
         priceDifferencePercent: 61.3,
-        availability: { traditional: true, plantBased: true }
+        availability: { traditional: true, plantBased: true },
+        comparisonType: 'animal-vs-commercial'
       }
     ]
   }

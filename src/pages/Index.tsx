@@ -37,8 +37,8 @@ const Index = () => {
       filtered = filtered.map(store => ({
         ...store,
         products: store.products.filter(product => 
-          product.traditional.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.plantBased.name.toLowerCase().includes(searchTerm.toLowerCase())
+          (product.traditional?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (product.plantBased?.name || '').toLowerCase().includes(searchTerm.toLowerCase())
         )
       })).filter(store => store.products.length > 0);
     }

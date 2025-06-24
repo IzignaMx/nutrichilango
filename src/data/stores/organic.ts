@@ -25,10 +25,12 @@ export const organicStores: Store[] = [
           brand: 'Madre Tierra',
           price: 85.00,
           unit: '500g',
-          pricePerUnit: 170.00
+          pricePerUnit: 170.00,
+          isCommercial: true
         },
         priceDifferencePercent: -32.0,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'coconut-milk-1',
@@ -45,10 +47,12 @@ export const organicStores: Store[] = [
           brand: 'Natura Bio',
           price: 59.90,
           unit: '400ml',
-          pricePerUnit: 149.75
+          pricePerUnit: 149.75,
+          isCommercial: true
         },
         priceDifferencePercent: 30.5,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -76,10 +80,12 @@ export const organicStores: Store[] = [
           brand: 'Orgánico Nacional',
           price: 85.00,
           unit: '4 piezas (400g)',
-          pricePerUnit: 212.50
+          pricePerUnit: 212.50,
+          isCommercial: true
         },
         priceDifferencePercent: 88.9,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   }
