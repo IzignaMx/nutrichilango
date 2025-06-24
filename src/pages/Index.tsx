@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { TrendingUp, TrendingDown, MapPin, Search, Filter, ShoppingCart } from 'lucide-react';
-import { storeData, productCategories } from '@/data/storeData';
+import { storeData, productCategories } from '@/data';
 import ProductComparisonTable from '@/components/ProductComparisonTable';
 import StoreMap from '@/components/StoreMap';
 import PriceChart from '@/components/PriceChart';

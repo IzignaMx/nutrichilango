@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Star, TrendingUp, TrendingDown } from 'lucide-react';
-import { Store } from '@/data/storeData';
+import { Store } from '@/data';
 
 interface StoreMapProps {
   stores: Store[];

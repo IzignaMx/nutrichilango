@@ -1,9 +1,8 @@
-
 import React, { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, MapPin, Star, AlertCircle } from 'lucide-react';
-import { Store, Product } from '@/data/storeData';
+import { Store, Product } from '@/data';
 
 interface ProductComparisonTableProps {
   data: Store[];

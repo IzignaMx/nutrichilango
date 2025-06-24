@@ -5,7 +5,7 @@ import { organicStores } from './stores/organic';
 import { vegetarianStores } from './stores/vegetarian';
 import { veganStores } from './stores/vegan';
 
-export { Product, Store } from './types';
+export type { Product, Store } from './types';
 export { productCategories } from './categories';
 
 export const storeData = [

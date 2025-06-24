@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { Store } from '@/data/storeData';
+import { Store } from '@/data';
 
 interface PriceChartProps {
   data: Store[];
