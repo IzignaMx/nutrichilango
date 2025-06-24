@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TrendingUp, TrendingDown, MapPin, Search, Filter, ShoppingCart } from 'lucide-react';
+import { TrendingUp, TrendingDown, MapPin, Search, Filter, ShoppingCart, ChefHat, Store, Home } from 'lucide-react';
 import { storeData, productCategories } from '@/data';
 import ProductComparisonTable from '@/components/ProductComparisonTable';
 import StoreMap from '@/components/StoreMap';
@@ -17,6 +17,7 @@ const Index = () => {
   const [selectedStore, setSelectedStore] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('price-diff');
+  const [comparisonType, setComparisonType] = useState('all');
 
   const filteredData = useMemo(() => {
     let filtered = storeData;
@@ -61,6 +62,32 @@ const Index = () => {
       .slice(0, 5);
   }, [filteredData]);
 
+  const comparisonTypeStats = useMemo(() => {
+    const stats = {
+      'animal-vs-commercial': { count: 0, avgDiff: 0 },
+      'animal-vs-homemade': { count: 0, avgDiff: 0 },
+      'commercial-vs-homemade': { count: 0, avgDiff: 0 }
+    };
+
+    filteredData.forEach(store => {
+      store.products.forEach(product => {
+        const type = product.comparisonType;
+        if (stats[type]) {
+          stats[type].count++;
+          stats[type].avgDiff += product.priceDifferencePercent;
+        }
+      });
+    });
+
+    Object.keys(stats).forEach(key => {
+      if (stats[key].count > 0) {
+        stats[key].avgDiff = stats[key].avgDiff / stats[key].count;
+      }
+    });
+
+    return stats;
+  }, [filteredData]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-orange-50 to-red-50">
       {/* Hero Section */}
@@ -68,31 +95,42 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-              Comparador de Precios CDMX
+              Comparador Plant-Based CDMX
             </h1>
             <p className="text-xl mb-8 text-green-100">
-              Mejores Precios: Tradicionales vs Plant-Based en 21 Supermercados
+              Descubre cómo una alimentación basada en plantas puede ser más económica
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                <CardContent className="p-6 text-center">
+                  <Store className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
+                  <h3 className="text-xl font-semibold mb-2">Comercial vs Animal</h3>
+                  <p className="text-green-100 text-sm">+{comparisonTypeStats['animal-vs-commercial'].avgDiff.toFixed(1)}% promedio</p>
+                  <p className="text-xs text-green-200">{comparisonTypeStats['animal-vs-commercial'].count} productos</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                <CardContent className="p-6 text-center">
+                  <Home className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
+                  <h3 className="text-xl font-semibold mb-2">Casero vs Animal</h3>
+                  <p className="text-green-100 text-sm">{comparisonTypeStats['animal-vs-homemade'].avgDiff.toFixed(1)}% promedio</p>
+                  <p className="text-xs text-green-200">{comparisonTypeStats['animal-vs-homemade'].count} productos</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                <CardContent className="p-6 text-center">
+                  <ChefHat className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
+                  <h3 className="text-xl font-semibold mb-2">Casero vs Comercial</h3>
+                  <p className="text-green-100 text-sm">{comparisonTypeStats['commercial-vs-homemade'].avgDiff.toFixed(1)}% de ahorro</p>
+                  <p className="text-xs text-green-200">{comparisonTypeStats['commercial-vs-homemade'].count} productos</p>
+                </CardContent>
+              </Card>
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardContent className="p-6 text-center">
                   <ShoppingCart className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">21 Tiendas</h3>
-                  <p className="text-green-100">Supermercados y tiendas especializadas de la CDMX</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-                <CardContent className="p-6 text-center">
-                  <TrendingDown className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">{avgPriceDifference.toFixed(1)}%</h3>
-                  <p className="text-green-100">Diferencia promedio optimizada</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-                <CardContent className="p-6 text-center">
-                  <Filter className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">Mejores Precios</h3>
-                  <p className="text-green-100">Comparaciones inteligentes entre tiendas</p>
+                  <h3 className="text-xl font-semibold mb-2">Mercados Locales</h3>
+                  <p className="text-green-100 text-sm">Central de Abastos y mercados</p>
+                  <p className="text-xs text-green-200">Precios directos del productor</p>
                 </CardContent>
               </Card>
             </div>
@@ -104,7 +142,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Buscar Producto</label>
                 <div className="relative">
@@ -116,6 +154,20 @@ const Index = () => {
                     className="pl-10"
                   />
                 </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">Tipo de Comparación</label>
+                <Select value={comparisonType} onValueChange={setComparisonType}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Todas las comparaciones</SelectItem>
+                    <SelectItem value="animal-vs-commercial">Animal vs Comercial Plant-Based</SelectItem>
+                    <SelectItem value="animal-vs-homemade">Animal vs Casero Plant-Based</SelectItem>
+                    <SelectItem value="commercial-vs-homemade">Comercial vs Casero Plant-Based</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Categoría</label>
@@ -171,18 +223,22 @@ const Index = () => {
         <Tabs defaultValue="comparison" className="space-y-6">
           <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm">
             <TabsTrigger value="comparison" className="text-center">
-              Mejores Precios
+              Comparaciones Inteligentes
             </TabsTrigger>
             <TabsTrigger value="charts" className="text-center">
               Gráficas y Análisis
             </TabsTrigger>
             <TabsTrigger value="stores" className="text-center">
-              Mejores Tiendas
+              Mejores Lugares
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="comparison" className="space-y-6">
-            <OptimizedComparisonTable data={filteredData} sortBy={sortBy} />
+            <OptimizedComparisonTable 
+              data={filteredData} 
+              sortBy={sortBy} 
+              comparisonFilter={comparisonType}
+            />
           </TabsContent>
 
           <TabsContent value="charts" className="space-y-6">

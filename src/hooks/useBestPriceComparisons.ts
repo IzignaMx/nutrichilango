@@ -13,27 +13,34 @@ interface OptimizedComparison extends Product {
 
 // Lista de comparaciones que debemos evitar por ser absurdas o muy similares
 const INVALID_COMPARISONS = [
-  // Avena vs avena orgánica
   ['avena', 'avena orgánica'],
   ['avena tradicional', 'avena orgánica'],
-  // Semillas vs polvos del mismo ingrediente
   ['semillas de hemp', 'proteína de hemp'],
   ['semillas de chía', 'proteína de chía'],
-  // Aceites similares
   ['aceite de oliva', 'aceite de oliva extra virgen'],
-  // Productos prácticamente idénticos
   ['arroz integral', 'arroz orgánico'],
   ['quinoa', 'quinoa orgánica'],
 ];
 
-export const useBestPriceComparisons = (stores: Store[]) => {
+export const useBestPriceComparisons = (stores: Store[], comparisonFilter: string = 'all') => {
   return useMemo(() => {
-    // Agrupar todos los productos por categoría y tipo
+    // Filtrar por tipo de comparación si se especifica
+    let filteredStores = stores;
+    if (comparisonFilter !== 'all') {
+      filteredStores = stores.map(store => ({
+        ...store,
+        products: store.products.filter(product => 
+          comparisonFilter === 'all' || product.comparisonType === comparisonFilter
+        )
+      })).filter(store => store.products.length > 0);
+    }
+
+    // Agrupar productos por categoría y tipo de comparación
     const productGroups: { [key: string]: Array<Product & { store: Store }> } = {};
     
-    stores.forEach(store => {
+    filteredStores.forEach(store => {
       store.products.forEach(product => {
-        const key = `${product.category}-${product.id}`;
+        const key = `${product.category}-${product.comparisonType}-${product.traditional.name}-${product.plantBased.name}`;
         if (!productGroups[key]) {
           productGroups[key] = [];
         }
@@ -66,46 +73,39 @@ export const useBestPriceComparisons = (stores: Store[]) => {
 
       if (validVariants.length === 0) return;
 
-      // Encontrar el mejor precio tradicional y plant-based entre todas las tiendas
-      let bestTraditional = validVariants[0];
-      let bestPlantBased = validVariants[0];
+      // Para comparaciones caseras vs comerciales, priorizar el mejor precio
+      // Para comparaciones animal vs plant-based, mostrar la diferencia real
+      let bestVariant = validVariants[0];
 
       validVariants.forEach(variant => {
-        if (variant.traditional.pricePerUnit < bestTraditional.traditional.pricePerUnit) {
-          bestTraditional = variant;
+        // Priorizar siempre el menor precio en plant-based (especialmente caseros)
+        if (variant.plantBased.pricePerUnit < bestVariant.plantBased.pricePerUnit) {
+          bestVariant = variant;
         }
-        if (variant.plantBased.pricePerUnit < bestPlantBased.plantBased.pricePerUnit) {
-          bestPlantBased = variant;
+        // Si los precios plant-based son similares, priorizar el menor tradicional
+        else if (Math.abs(variant.plantBased.pricePerUnit - bestVariant.plantBased.pricePerUnit) < 5 &&
+                 variant.traditional.pricePerUnit < bestVariant.traditional.pricePerUnit) {
+          bestVariant = variant;
         }
       });
 
-      // Crear una comparación optimizada combinando los mejores precios
-      const comparisonKey = `${bestTraditional.category}-${bestTraditional.traditional.name}-${bestPlantBased.plantBased.name}`;
+      const comparisonKey = `${bestVariant.category}-${bestVariant.comparisonType}-${bestVariant.traditional.name}-${bestVariant.plantBased.name}`;
       
       if (!processedProducts.has(comparisonKey)) {
         const optimizedProduct: OptimizedComparison = {
           id: `optimized-${optimizedComparisons.length}`,
-          category: bestTraditional.category,
-          traditional: bestTraditional.traditional,
-          plantBased: bestPlantBased.plantBased,
-          priceDifferencePercent: ((bestPlantBased.plantBased.pricePerUnit - bestTraditional.traditional.pricePerUnit) / bestTraditional.traditional.pricePerUnit) * 100,
-          availability: {
-            traditional: bestTraditional.availability.traditional,
-            plantBased: bestPlantBased.availability.plantBased
-          },
-          storeName: bestTraditional.store.id === bestPlantBased.store.id ? 
-                    bestTraditional.store.name : 
-                    `${bestTraditional.store.name} / ${bestPlantBased.store.name}`,
-          storeLocation: bestTraditional.store.id === bestPlantBased.store.id ? 
-                        bestTraditional.store.location : 
-                        `${bestTraditional.store.location} / ${bestPlantBased.store.location}`,
-          hasPromotion: bestTraditional.store.hasPromotion || bestPlantBased.store.hasPromotion,
-          promotionDetails: [
-            bestTraditional.store.hasPromotion ? `${bestTraditional.store.name}: ${bestTraditional.store.promotionDetails}` : '',
-            bestPlantBased.store.hasPromotion && bestTraditional.store.id !== bestPlantBased.store.id ? `${bestPlantBased.store.name}: ${bestPlantBased.store.promotionDetails}` : ''
-          ].filter(Boolean).join(' | '),
-          bestTraditionalStore: bestTraditional.store.name,
-          bestPlantBasedStore: bestPlantBased.store.name
+          category: bestVariant.category,
+          traditional: bestVariant.traditional,
+          plantBased: bestVariant.plantBased,
+          priceDifferencePercent: bestVariant.priceDifferencePercent,
+          availability: bestVariant.availability,
+          comparisonType: bestVariant.comparisonType,
+          storeName: bestVariant.store.name,
+          storeLocation: bestVariant.store.location,
+          hasPromotion: bestVariant.store.hasPromotion,
+          promotionDetails: bestVariant.store.promotionDetails,
+          bestTraditionalStore: bestVariant.store.name,
+          bestPlantBasedStore: bestVariant.store.name
         };
 
         optimizedComparisons.push(optimizedProduct);
@@ -114,5 +114,5 @@ export const useBestPriceComparisons = (stores: Store[]) => {
     });
 
     return optimizedComparisons;
-  }, [stores]);
+  }, [stores, comparisonFilter]);
 };
