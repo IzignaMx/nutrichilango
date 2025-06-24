@@ -26,10 +26,12 @@ export const veganStores: Store[] = [
           brand: 'Por Amor Gourmet',
           price: 125.00,
           unit: '500g',
-          pricePerUnit: 250.00
+          pricePerUnit: 250.00,
+          isCommercial: true
         },
         priceDifferencePercent: 31.6,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'vegan-yogurt-1',
@@ -46,10 +48,12 @@ export const veganStores: Store[] = [
           brand: 'CocoYo',
           price: 78.90,
           unit: '500g',
-          pricePerUnit: 157.80
+          pricePerUnit: 157.80,
+          isCommercial: true
         },
         priceDifferencePercent: 61.3,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -76,10 +80,12 @@ export const veganStores: Store[] = [
           brand: 'Green Corner',
           price: 145.00,
           unit: '200g',
-          pricePerUnit: 725.00
+          pricePerUnit: 725.00,
+          isCommercial: true
         },
         priceDifferencePercent: 16.0,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -107,10 +113,12 @@ export const veganStores: Store[] = [
           brand: 'JUST',
           price: 155.00,
           unit: '355ml',
-          pricePerUnit: 436.62
+          pricePerUnit: 436.62,
+          isCommercial: true
         },
         priceDifferencePercent: 82.4,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -138,10 +146,12 @@ export const veganStores: Store[] = [
           brand: 'Mr. Tofu',
           price: 95.00,
           unit: '400g',
-          pricePerUnit: 237.50
+          pricePerUnit: 237.50,
+          isCommercial: true
         },
         priceDifferencePercent: 26.7,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'soy-chorizo-1',
@@ -158,10 +168,12 @@ export const veganStores: Store[] = [
           brand: 'Mr. Tofu Gourmet',
           price: 115.00,
           unit: '300g',
-          pricePerUnit: 383.33
+          pricePerUnit: 383.33,
+          isCommercial: true
         },
         priceDifferencePercent: 29.2,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -189,10 +201,12 @@ export const veganStores: Store[] = [
           brand: 'Abasto Premium',
           price: 175.00,
           unit: '250g',
-          pricePerUnit: 700.00
+          pricePerUnit: 700.00,
+          isCommercial: true
         },
         priceDifferencePercent: 29.6,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'plant-milk-combo-1',
@@ -209,10 +223,12 @@ export const veganStores: Store[] = [
           brand: 'Abasto Premium',
           price: 85.00,
           unit: '1L',
-          pricePerUnit: 85.00
+          pricePerUnit: 85.00,
+          isCommercial: true
         },
         priceDifferencePercent: 88.9,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'vegan-snacks-1',
@@ -229,10 +245,12 @@ export const veganStores: Store[] = [
           brand: 'Abasto Gourmet',
           price: 65.00,
           unit: '200g',
-          pricePerUnit: 325.00
+          pricePerUnit: 325.00,
+          isCommercial: true
         },
         priceDifferencePercent: 85.7,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -259,10 +277,12 @@ export const veganStores: Store[] = [
           brand: 'Impossible Foods',
           price: 225.00,
           unit: '2 piezas (227g)',
-          pricePerUnit: 991.19
+          pricePerUnit: 991.19,
+          isCommercial: true
         },
         priceDifferencePercent: 21.6,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'vegan-ice-cream-1',
@@ -279,10 +299,12 @@ export const veganStores: Store[] = [
           brand: 'Ben & Jerry\'s',
           price: 189.00,
           unit: '500ml',
-          pricePerUnit: 378.00
+          pricePerUnit: 378.00,
+          isCommercial: true
         },
         priceDifferencePercent: 51.2,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -310,10 +332,12 @@ export const veganStores: Store[] = [
           brand: 'Verde Vivo Artesanal',
           price: 125.00,
           unit: '400g',
-          pricePerUnit: 312.50
+          pricePerUnit: 312.50,
+          isCommercial: true
         },
         priceDifferencePercent: 31.6,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'agua-fresca-concentrates-1',
@@ -330,10 +354,12 @@ export const veganStores: Store[] = [
           brand: 'Verde Vivo Gourmet',
           price: 65.00,
           unit: '500ml',
-          pricePerUnit: 130.00
+          pricePerUnit: 130.00,
+          isCommercial: true
         },
         priceDifferencePercent: 44.4,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -361,10 +387,12 @@ export const veganStores: Store[] = [
           brand: 'Veggie Smiles Premium',
           price: 115.00,
           unit: '500g',
-          pricePerUnit: 230.00
+          pricePerUnit: 230.00,
+          isCommercial: true
         },
         priceDifferencePercent: 53.3,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'mexican-vegan-mayo-1',
@@ -381,10 +409,12 @@ export const veganStores: Store[] = [
           brand: 'Veggie Smiles Artesanal',
           price: 85.00,
           unit: '350g',
-          pricePerUnit: 242.86
+          pricePerUnit: 242.86,
+          isCommercial: true
         },
         priceDifferencePercent: 54.5,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   },
@@ -411,10 +441,12 @@ export const veganStores: Store[] = [
           brand: 'Plantae Gourmet',
           price: 225.00,
           unit: '200g',
-          pricePerUnit: 1125.00
+          pricePerUnit: 1125.00,
+          isCommercial: true
         },
         priceDifferencePercent: 36.4,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       },
       {
         id: 'plant-protein-powder-1',
@@ -431,10 +463,12 @@ export const veganStores: Store[] = [
           brand: 'Plantae Pro',
           price: 385.00,
           unit: '500g',
-          pricePerUnit: 770.00
+          pricePerUnit: 770.00,
+          isCommercial: true
         },
         priceDifferencePercent: 35.1,
-        availability: { traditional: false, plantBased: true }
+        availability: { traditional: false, plantBased: true },
+        comparisonType: 'commercial-vs-homemade'
       }
     ]
   }
