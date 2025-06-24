@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +10,7 @@ import { storeData, productCategories } from '@/data';
 import ProductComparisonTable from '@/components/ProductComparisonTable';
 import StoreMap from '@/components/StoreMap';
 import PriceChart from '@/components/PriceChart';
+import OptimizedComparisonTable from '@/components/OptimizedComparisonTable';
 
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -71,28 +71,28 @@ const Index = () => {
               Comparador de Precios CDMX
             </h1>
             <p className="text-xl mb-8 text-green-100">
-              Alimentos Tradicionales vs Plant-Based en 15 Supermercados
+              Mejores Precios: Tradicionales vs Plant-Based en 21 Supermercados
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardContent className="p-6 text-center">
                   <ShoppingCart className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">15 Tiendas</h3>
-                  <p className="text-green-100">Supermercados principales de la CDMX</p>
+                  <h3 className="text-xl font-semibold mb-2">21 Tiendas</h3>
+                  <p className="text-green-100">Supermercados y tiendas especializadas de la CDMX</p>
                 </CardContent>
               </Card>
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardContent className="p-6 text-center">
                   <TrendingDown className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
                   <h3 className="text-xl font-semibold mb-2">{avgPriceDifference.toFixed(1)}%</h3>
-                  <p className="text-green-100">Diferencia promedio de precios</p>
+                  <p className="text-green-100">Diferencia promedio optimizada</p>
                 </CardContent>
               </Card>
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardContent className="p-6 text-center">
                   <Filter className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">5 Categorías</h3>
-                  <p className="text-green-100">Proteínas, lácteos, huevos, snacks y despensa</p>
+                  <h3 className="text-xl font-semibold mb-2">Mejores Precios</h3>
+                  <p className="text-green-100">Comparaciones inteligentes entre tiendas</p>
                 </CardContent>
               </Card>
             </div>
@@ -171,7 +171,7 @@ const Index = () => {
         <Tabs defaultValue="comparison" className="space-y-6">
           <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm">
             <TabsTrigger value="comparison" className="text-center">
-              Comparación de Precios
+              Mejores Precios
             </TabsTrigger>
             <TabsTrigger value="charts" className="text-center">
               Gráficas y Análisis
@@ -182,7 +182,7 @@ const Index = () => {
           </TabsList>
 
           <TabsContent value="comparison" className="space-y-6">
-            <ProductComparisonTable data={filteredData} sortBy={sortBy} />
+            <OptimizedComparisonTable data={filteredData} sortBy={sortBy} />
           </TabsContent>
 
           <TabsContent value="charts" className="space-y-6">
