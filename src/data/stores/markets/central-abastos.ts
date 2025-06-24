@@ -88,7 +88,6 @@ export const centralAbastos: Store = {
       availability: { traditional: true, plantBased: true },
       comparisonType: 'animal-vs-homemade'
     },
-    // Proteínas: Comercial vs Casero
     {
       id: 'commercial-vs-homemade-tofu-1',
       category: 'proteins',
@@ -438,6 +437,545 @@ export const centralAbastos: Store = {
         }
       },
       priceDifferencePercent: -43.8,
+      availability: { traditional: true, plantBased: true },
+      comparisonType: 'animal-vs-homemade'
+    },
+    {
+      id: 'chicken-vs-homemade-mushroom-protein-1',
+      category: 'proteins',
+      traditional: {
+        name: 'Pechuga de Pollo',
+        brand: 'A granel',
+        price: 85.00,
+        unit: '500g',
+        pricePerUnit: 170.00
+      },
+      plantBased: {
+        name: 'Proteína Vegetal de Setas',
+        brand: 'Casero',
+        price: 42.50,
+        unit: '500g',
+        pricePerUnit: 85.00,
+        isCommercial: false,
+        recipe: {
+          id: 'mushroom-protein-1',
+          name: 'Proteína Vegetal de Setas y Lentejas',
+          description: 'Textura carnosa perfecta para guisos y tacos',
+          servings: 6,
+          prepTime: '45 minutos',
+          difficulty: 'medium',
+          ingredients: [
+            {
+              name: 'Setas ostra frescas',
+              amount: 250,
+              unit: 'g',
+              pricePerUnit: 80.00,
+              totalCost: 20.00,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Lentejas cocidas',
+              amount: 200,
+              unit: 'g',
+              pricePerUnit: 32.00,
+              totalCost: 6.40,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Nueces picadas',
+              amount: 80,
+              unit: 'g',
+              pricePerUnit: 120.00,
+              totalCost: 9.60,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Salsa de soya',
+              amount: 30,
+              unit: 'ml',
+              pricePerUnit: 25.00,
+              totalCost: 0.75,
+              source: 'Tienda asiática'
+            },
+            {
+              name: 'Aceite de oliva',
+              amount: 20,
+              unit: 'ml',
+              pricePerUnit: 85.00,
+              totalCost: 1.70,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Ajo y especias',
+              amount: 15,
+              unit: 'g',
+              pricePerUnit: 60.00,
+              totalCost: 0.90,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Harina de avena',
+              amount: 50,
+              unit: 'g',
+              pricePerUnit: 20.00,
+              totalCost: 1.00,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Levadura nutricional',
+              amount: 15,
+              unit: 'g',
+              pricePerUnit: 180.00,
+              totalCost: 2.70,
+              source: 'Tienda naturista'
+            }
+          ],
+          instructions: [
+            'Picar finamente las setas y sofreír hasta dorar',
+            'Mezclar lentejas cocidas con nueces trituradas',
+            'Combinar setas con mezcla de lentejas',
+            'Agregar salsa de soya, especias y levadura nutricional',
+            'Incorporar harina de avena para dar consistencia',
+            'Formar hamburguesas o desmenuzar para tacos',
+            'Cocinar a fuego medio 5-7 minutos por lado'
+          ],
+          nutritionInfo: {
+            protein: 18,
+            carbs: 12,
+            fat: 8,
+            calories: 185
+          }
+        }
+      },
+      priceDifferencePercent: -50.0,
+      availability: { traditional: true, plantBased: true },
+      comparisonType: 'animal-vs-homemade'
+    },
+    {
+      id: 'ground-beef-vs-homemade-lentil-walnut-1',
+      category: 'proteins',
+      traditional: {
+        name: 'Carne Molida de Res',
+        brand: 'A granel',
+        price: 120.00,
+        unit: '500g',
+        pricePerUnit: 240.00
+      },
+      plantBased: {
+        name: 'Carne Vegetal de Lentejas y Nuez',
+        brand: 'Casero',
+        price: 55.00,
+        unit: '500g',
+        pricePerUnit: 110.00,
+        isCommercial: false,
+        recipe: {
+          id: 'lentil-walnut-meat-1',
+          name: 'Carne Vegetal de Lentejas y Nuez',
+          description: 'Textura perfecta para bolognesa, tacos y rellenos',
+          servings: 8,
+          prepTime: '30 minutos',
+          difficulty: 'easy',
+          ingredients: [
+            {
+              name: 'Lentejas pardinas cocidas',
+              amount: 300,
+              unit: 'g',
+              pricePerUnit: 32.00,
+              totalCost: 9.60,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Nueces de Castilla',
+              amount: 120,
+              unit: 'g',
+              pricePerUnit: 150.00,
+              totalCost: 18.00,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Champiñones portobello',
+              amount: 150,
+              unit: 'g',
+              pricePerUnit: 90.00,
+              totalCost: 13.50,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Cebolla blanca',
+              amount: 100,
+              unit: 'g',
+              pricePerUnit: 18.00,
+              totalCost: 1.80,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Concentrado de tomate',
+              amount: 40,
+              unit: 'g',
+              pricePerUnit: 45.00,
+              totalCost: 1.80,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Salsa de soya',
+              amount: 25,
+              unit: 'ml',
+              pricePerUnit: 25.00,
+              totalCost: 0.63,
+              source: 'Tienda asiática'
+            },
+            {
+              name: 'Aceite de oliva',
+              amount: 25,
+              unit: 'ml',
+              pricePerUnit: 85.00,
+              totalCost: 2.13,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Especias (comino, pimentón, orégano)',
+              amount: 12,
+              unit: 'g',
+              pricePerUnit: 120.00,
+              totalCost: 1.44,
+              source: 'Mercado de especias'
+            },
+            {
+              name: 'Sal y pimienta',
+              amount: 5,
+              unit: 'g',
+              pricePerUnit: 15.00,
+              totalCost: 0.08,
+              source: 'Central de Abastos'
+            }
+          ],
+          instructions: [
+            'Picar finamente cebolla y champiñones, sofreír hasta dorar',
+            'En procesador, pulsar lentejas hasta textura granular',
+            'Triturar nueces hasta obtener trozos pequeños',
+            'Mezclar lentejas, nueces y vegetales sofritos',
+            'Agregar concentrate de tomate, salsa de soya y especias',
+            'Cocinar a fuego medio 8-10 minutos removiendo',
+            'Rectificar sazón y usar como carne molida tradicional'
+          ],
+          nutritionInfo: {
+            protein: 16,
+            carbs: 18,
+            fat: 12,
+            calories: 220
+          }
+        }
+      },
+      priceDifferencePercent: -54.2,
+      availability: { traditional: true, plantBased: true },
+      comparisonType: 'animal-vs-homemade'
+    },
+    {
+      id: 'yogurt-vs-homemade-coconut-yogurt-1',
+      category: 'dairy',
+      traditional: {
+        name: 'Yogurt Natural',
+        brand: 'A granel',
+        price: 28.00,
+        unit: '500g',
+        pricePerUnit: 56.00
+      },
+      plantBased: {
+        name: 'Yogurt Vegetal de Coco',
+        brand: 'Casero',
+        price: 18.50,
+        unit: '500g',
+        pricePerUnit: 37.00,
+        isCommercial: false,
+        recipe: {
+          id: 'coconut-yogurt-1',
+          name: 'Yogurt Probiótico de Coco',
+          description: 'Yogurt cremoso con probióticos naturales',
+          servings: 6,
+          prepTime: '24 horas (fermentación)',
+          difficulty: 'medium',
+          ingredients: [
+            {
+              name: 'Leche de coco en lata',
+              amount: 400,
+              unit: 'ml',
+              pricePerUnit: 32.00,
+              totalCost: 12.80,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Cápsulas de probióticos',
+              amount: 2,
+              unit: 'piezas',
+              pricePerUnit: 8.00,
+              totalCost: 1.60,
+              source: 'Farmacia naturista'
+            },
+            {
+              name: 'Agar agar en polvo',
+              amount: 4,
+              unit: 'g',
+              pricePerUnit: 400.00,
+              totalCost: 1.60,
+              source: 'Tienda asiática'
+            },
+            {
+              name: 'Endulzante natural (agave)',
+              amount: 20,
+              unit: 'ml',
+              pricePerUnit: 45.00,
+              totalCost: 0.90,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Extracto de vainilla',
+              amount: 5,
+              unit: 'ml',
+              pricePerUnit: 180.00,
+              totalCost: 0.90,
+              source: 'Repostería'
+            },
+            {
+              name: 'Sal marina',
+              amount: 1,
+              unit: 'pizca',
+              pricePerUnit: 8.00,
+              totalCost: 0.08,
+              source: 'Central de Abastos'
+            }
+          ],
+          instructions: [
+            'Disolver agar agar en 50ml de leche de coco caliente',
+            'Mezclar con el resto de la leche de coco a temperatura ambiente',
+            'Agregar contenido de cápsulas probióticas',
+            'Añadir endulzante, vainilla y sal',
+            'Verter en frascos esterilizados',
+            'Fermentar 12-24 horas a temperatura ambiente',
+            'Refrigerar hasta 7 días'
+          ],
+          nutritionInfo: {
+            protein: 2,
+            carbs: 6,
+            fat: 15,
+            calories: 160
+          }
+        }
+      },
+      priceDifferencePercent: -33.9,
+      availability: { traditional: true, plantBased: true },
+      comparisonType: 'animal-vs-homemade'
+    },
+    {
+      id: 'cream-cheese-vs-homemade-almond-cream-1',
+      category: 'dairy',
+      traditional: {
+        name: 'Queso Crema',
+        brand: 'Philadelphia',
+        price: 45.00,
+        unit: '200g',
+        pricePerUnit: 225.00
+      },
+      plantBased: {
+        name: 'Queso Crema Vegetal de Almendras',
+        brand: 'Casero',
+        price: 28.00,
+        unit: '200g',
+        pricePerUnit: 140.00,
+        isCommercial: false,
+        recipe: {
+          id: 'almond-cream-cheese-1',
+          name: 'Queso Crema de Almendras',
+          description: 'Cremoso y perfecto para untar o postres',
+          servings: 8,
+          prepTime: '6 horas (incluye remojo)',
+          difficulty: 'easy',
+          ingredients: [
+            {
+              name: 'Almendras crudas peladas',
+              amount: 150,
+              unit: 'g',
+              pricePerUnit: 140.00,
+              totalCost: 21.00,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Agua filtrada',
+              amount: 120,
+              unit: 'ml',
+              pricePerUnit: 2.00,
+              totalCost: 0.24,
+              source: 'Casa'
+            },
+            {
+              name: 'Jugo de limón fresco',
+              amount: 25,
+              unit: 'ml',
+              pricePerUnit: 40.00,
+              totalCost: 1.00,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Vinagre de manzana',
+              amount: 15,
+              unit: 'ml',
+              pricePerUnit: 35.00,
+              totalCost: 0.53,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Sal marina fina',
+              amount: 4,
+              unit: 'g',
+              pricePerUnit: 8.00,
+              totalCost: 0.32,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Aceite de coco neutro',
+              amount: 30,
+              unit: 'ml',
+              pricePerUnit: 95.00,
+              totalCost: 2.85,
+              source: 'Tienda naturista'
+            },
+            {
+              name: 'Goma xantana (opcional)',
+              amount: 1,
+              unit: 'g',
+              pricePerUnit: 280.00,
+              totalCost: 0.28,
+              source: 'Repostería especializada'
+            }
+          ],
+          instructions: [
+            'Remojar almendras en agua por 4-6 horas',
+            'Escurrir y licuar con agua fresca hasta textura suave',
+            'Agregar limón, vinagre y sal, mezclar bien',
+            'Incorporar aceite de coco derretido gradualmente',
+            'Si se usa, agregar goma xantana para mejor textura',
+            'Licuar hasta obtener consistencia cremosa y uniforme',
+            'Refrigerar por 2 horas antes de usar'
+          ],
+          nutritionInfo: {
+            protein: 4,
+            carbs: 3,
+            fat: 14,
+            calories: 145
+          }
+        }
+      },
+      priceDifferencePercent: -37.8,
+      availability: { traditional: true, plantBased: true },
+      comparisonType: 'animal-vs-homemade'
+    },
+    {
+      id: 'tuna-vs-homemade-chickpea-tuna-1',
+      category: 'proteins',
+      traditional: {
+        name: 'Atún en Lata',
+        brand: 'Marca comercial',
+        price: 25.00,
+        unit: '140g',
+        pricePerUnit: 178.57
+      },
+      plantBased: {
+        name: 'Atún Vegetal de Garbanzos',
+        brand: 'Casero',
+        price: 12.50,
+        unit: '140g',
+        pricePerUnit: 89.29,
+        isCommercial: false,
+        recipe: {
+          id: 'chickpea-tuna-1',
+          name: 'Atún Vegetal de Garbanzos',
+          description: 'Perfecta textura para ensaladas y sándwiches',
+          servings: 4,
+          prepTime: '15 minutos',
+          difficulty: 'easy',
+          ingredients: [
+            {
+              name: 'Garbanzos cocidos',
+              amount: 200,
+              unit: 'g',
+              pricePerUnit: 35.00,
+              totalCost: 7.00,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Alga nori en hojuelas',
+              amount: 5,
+              unit: 'g',
+              pricePerUnit: 300.00,
+              totalCost: 1.50,
+              source: 'Tienda asiática'
+            },
+            {
+              name: 'Mayonesa vegetal casera',
+              amount: 30,
+              unit: 'ml',
+              pricePerUnit: 85.00,
+              totalCost: 2.55,
+              source: 'Casera'
+            },
+            {
+              name: 'Jugo de limón',
+              amount: 15,
+              unit: 'ml',
+              pricePerUnit: 40.00,
+              totalCost: 0.60,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Mostaza Dijon',
+              amount: 8,
+              unit: 'ml',
+              pricePerUnit: 65.00,
+              totalCost: 0.52,
+              source: 'Supermercado'
+            },
+            {
+              name: 'Apio picado',
+              amount: 25,
+              unit: 'g',
+              pricePerUnit: 35.00,
+              totalCost: 0.88,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Cebolla morada',
+              amount: 20,
+              unit: 'g',
+              pricePerUnit: 25.00,
+              totalCost: 0.50,
+              source: 'Central de Abastos'
+            },
+            {
+              name: 'Sal y pimienta',
+              amount: 2,
+              unit: 'g',
+              pricePerUnit: 15.00,
+              totalCost: 0.03,
+              source: 'Central de Abastos'
+            }
+          ],
+          instructions: [
+            'Escurrir y enjuagar los garbanzos cocidos',
+            'Machacar ligeramente con tenedor dejando textura',
+            'Agregar alga nori para sabor marino',
+            'Mezclar con mayonesa, limón y mostaza',
+            'Incorporar apio y cebolla picados finamente',
+            'Sazonar con sal y pimienta al gusto',
+            'Refrigerar 30 minutos antes de servir'
+          ],
+          nutritionInfo: {
+            protein: 8,
+            carbs: 15,
+            fat: 6,
+            calories: 135
+          }
+        }
+      },
+      priceDifferencePercent: -50.0,
       availability: { traditional: true, plantBased: true },
       comparisonType: 'animal-vs-homemade'
     }
