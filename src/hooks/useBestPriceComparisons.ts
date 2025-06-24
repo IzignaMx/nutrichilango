@@ -11,15 +11,39 @@ interface OptimizedComparison extends Product {
   bestPlantBasedStore?: string;
 }
 
-// Lista de comparaciones que debemos evitar por ser absurdas o muy similares
-const INVALID_COMPARISONS = [
+// Lista de ingredientes/productos de origen animal que identifican productos tradicionales
+const ANIMAL_BASED_KEYWORDS = [
+  'pollo', 'pechuga', 'carne', 'res', 'cerdo', 'pescado', 'atún', 'salmón',
+  'huevo', 'huevos', 'leche', 'yogurt', 'queso', 'mantequilla', 'crema',
+  'jamón', 'salchicha', 'chorizo', 'bacon', 'tocino', 'pavo', 'cordero'
+];
+
+// Lista de ingredientes/productos plant-based que NO deben estar en productos "tradicionales"
+const PLANT_BASED_KEYWORDS = [
+  'tofu', 'tempeh', 'seitán', 'jackfruit', 'soya', 'almendra', 'avena',
+  'coco', 'cashew', 'nuez', 'garbanzo', 'lenteja', 'quinoa', 'hemp',
+  'chía', 'linaza', 'vegetal', 'vegano', 'plant-based'
+];
+
+// Comparaciones específicas que debemos evitar por ser absurdas
+const INVALID_COMPARISON_PAIRS = [
+  // Ambos productos plant-based comerciales
+  ['tempeh', 'jackfruit'],
+  ['tofu comercial', 'seitán comercial'],
+  ['leche de almendra', 'leche de avena'],
+  ['queso vegano', 'queso de nuez'],
+  ['yogurt de coco', 'yogurt de soya'],
+  
+  // Variaciones del mismo producto
   ['avena', 'avena orgánica'],
-  ['avena tradicional', 'avena orgánica'],
-  ['semillas de hemp', 'proteína de hemp'],
-  ['semillas de chía', 'proteína de chía'],
+  ['quinoa', 'quinoa orgánica'],
   ['aceite de oliva', 'aceite de oliva extra virgen'],
   ['arroz integral', 'arroz orgánico'],
-  ['quinoa', 'quinoa orgánica'],
+  
+  // Productos similares plant-based
+  ['proteína de hemp', 'semillas de hemp'],
+  ['proteína de chía', 'semillas de chía'],
+  ['harina de almendra', 'leche de almendra'],
 ];
 
 export const useBestPriceComparisons = (stores: Store[], comparisonFilter: string = 'all') => {
@@ -48,15 +72,70 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
       });
     });
 
-    // Función para verificar si una comparación es válida
-    const isValidComparison = (traditional: string, plantBased: string): boolean => {
-      const traditionalLower = traditional.toLowerCase();
-      const plantBasedLower = plantBased.toLowerCase();
+    // Función para verificar si un producto contiene ingredientes de origen animal
+    const isAnimalBased = (productName: string): boolean => {
+      const productLower = productName.toLowerCase();
+      return ANIMAL_BASED_KEYWORDS.some(keyword => 
+        productLower.includes(keyword.toLowerCase())
+      );
+    };
+
+    // Función para verificar si un producto es plant-based
+    const isPlantBased = (productName: string): boolean => {
+      const productLower = productName.toLowerCase();
+      return PLANT_BASED_KEYWORDS.some(keyword => 
+        productLower.includes(keyword.toLowerCase())
+      );
+    };
+
+    // Función para verificar si una comparación es válida según el tipo
+    const isValidComparison = (product: Product): boolean => {
+      const traditionalName = product.traditional.name.toLowerCase();
+      const plantBasedName = product.plantBased.name.toLowerCase();
       
-      return !INVALID_COMPARISONS.some(([invalid1, invalid2]) => {
-        return (traditionalLower.includes(invalid1.toLowerCase()) && plantBasedLower.includes(invalid2.toLowerCase())) ||
-               (traditionalLower.includes(invalid2.toLowerCase()) && plantBasedLower.includes(invalid1.toLowerCase()));
+      // Verificar pares específicos inválidos
+      const isInvalidPair = INVALID_COMPARISON_PAIRS.some(([invalid1, invalid2]) => {
+        return (traditionalName.includes(invalid1.toLowerCase()) && plantBasedName.includes(invalid2.toLowerCase())) ||
+               (traditionalName.includes(invalid2.toLowerCase()) && plantBasedName.includes(invalid1.toLowerCase()));
       });
+      
+      if (isInvalidPair) {
+        console.log(`Comparación inválida detectada: ${product.traditional.name} vs ${product.plantBased.name}`);
+        return false;
+      }
+
+      // Validar según el tipo de comparación
+      switch (product.comparisonType) {
+        case 'animal-vs-commercial':
+        case 'animal-vs-homemade':
+          // El producto tradicional DEBE ser de origen animal
+          // El producto plant-based DEBE ser vegetal
+          if (!isAnimalBased(traditionalName)) {
+            console.log(`Producto tradicional no es de origen animal: ${product.traditional.name}`);
+            return false;
+          }
+          if (!isPlantBased(plantBasedName) && !product.plantBased.name.toLowerCase().includes('casero')) {
+            console.log(`Producto plant-based no es vegetal: ${product.plantBased.name}`);
+            return false;
+          }
+          return true;
+
+        case 'commercial-vs-homemade':
+          // Ambos productos deben ser plant-based, pero uno comercial y otro casero
+          if (!product.plantBased.isCommercial === false) {
+            console.log(`Comparación comercial vs casero mal configurada: ${product.plantBased.name}`);
+            return false;
+          }
+          // Verificar que ambos sean efectivamente plant-based
+          if (!isPlantBased(traditionalName) && !isPlantBased(plantBasedName)) {
+            console.log(`Ambos productos deberían ser plant-based: ${product.traditional.name} vs ${product.plantBased.name}`);
+            return false;
+          }
+          return true;
+
+        default:
+          return true;
+      }
     };
 
     // Crear comparaciones optimizadas
@@ -68,10 +147,13 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
 
       // Filtrar comparaciones válidas
       const validVariants = productVariants.filter(variant => 
-        isValidComparison(variant.traditional.name, variant.plantBased.name)
+        isValidComparison(variant)
       );
 
-      if (validVariants.length === 0) return;
+      if (validVariants.length === 0) {
+        console.log(`No se encontraron variantes válidas para el grupo`);
+        return;
+      }
 
       // Para comparaciones caseras vs comerciales, priorizar el mejor precio
       // Para comparaciones animal vs plant-based, mostrar la diferencia real
@@ -113,6 +195,8 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
       }
     });
 
+    console.log(`Comparaciones válidas encontradas: ${optimizedComparisons.length}`);
+    
     return optimizedComparisons;
   }, [stores, comparisonFilter]);
 };
