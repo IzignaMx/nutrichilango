@@ -2,10 +2,11 @@ import React, { useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { TrendingUp, TrendingDown, MapPin, Star, AlertCircle, Trophy, ChefHat, BookOpen } from 'lucide-react';
+import { TrendingUp, TrendingDown, MapPin, Star, AlertCircle, Trophy, ChefHat, BookOpen, BarChart3 } from 'lucide-react';
 import { Store } from '@/data';
 import { useBestPriceComparisons } from '@/hooks/useBestPriceComparisons';
 import RecipeModal from './RecipeModal';
+import NutritionComparisonChart from './NutritionComparisonChart';
 
 interface OptimizedComparisonTableProps {
   data: Store[];
@@ -20,6 +21,7 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
 }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [isRecipeModalOpen, setIsRecipeModalOpen] = useState(false);
+  const [expandedNutrition, setExpandedNutrition] = useState<string | null>(null);
   
   const optimizedComparisons = useBestPriceComparisons(data, comparisonFilter);
 
@@ -83,6 +85,10 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
   const handleRecipeClick = (recipe: any) => {
     setSelectedRecipe(recipe);
     setIsRecipeModalOpen(true);
+  };
+
+  const toggleNutritionChart = (productId: string) => {
+    setExpandedNutrition(expandedNutrition === productId ? null : productId);
   };
 
   return (
@@ -268,6 +274,30 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
                 </div>
               </div>
             </div>
+
+            {/* Nueva sección de comparación nutricional */}
+            {(product.traditional.nutritionInfo && product.plantBased.nutritionInfo) && (
+              <div className="mt-6 border-t pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h4 className="font-semibold text-gray-700 flex items-center">
+                    <BarChart3 className="w-5 h-5 mr-2 text-blue-600" />
+                    Comparación Nutricional
+                  </h4>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => toggleNutritionChart(product.id)}
+                    className="text-blue-600 border-blue-600 hover:bg-blue-50"
+                  >
+                    {expandedNutrition === product.id ? 'Ocultar' : 'Ver'} Análisis Nutricional
+                  </Button>
+                </div>
+                
+                {expandedNutrition === product.id && (
+                  <NutritionComparisonChart product={product} />
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
       ))}

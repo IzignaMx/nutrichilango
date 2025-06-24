@@ -25,6 +25,16 @@ export interface RecipeIngredient {
   source: string; // Donde se compra (mercado, central de abastos, etc.)
 }
 
+export interface NutritionInfo {
+  protein: number;
+  carbs: number;
+  fat: number;
+  calories: number;
+  calcium?: number;
+  iron?: number;
+  fiber?: number;
+}
+
 export interface Product {
   id: string;
   category: string;
@@ -34,6 +44,7 @@ export interface Product {
     price: number;
     unit: string;
     pricePerUnit: number;
+    nutritionInfo?: NutritionInfo;
   };
   plantBased: {
     name: string;
@@ -43,6 +54,7 @@ export interface Product {
     pricePerUnit: number;
     isCommercial: boolean; // true para comercial, false para casero
     recipe?: Recipe; // Solo si es casero
+    nutritionInfo?: NutritionInfo;
   };
   priceDifferencePercent: number;
   availability: {
