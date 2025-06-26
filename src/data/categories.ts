@@ -1,5 +1,7 @@
-export const productCategories = {
-  proteins: {
+
+export const productCategories = [
+  {
+    id: 'proteins',
     name: 'Proteínas',
     description: 'Fuentes de proteína animal y vegetal',
     icon: '💪',
@@ -11,7 +13,8 @@ export const productCategories = {
       nuts: 'Nueces y Semillas'
     }
   },
-  dairy: {
+  {
+    id: 'dairy',
     name: 'Lácteos',
     description: 'Productos lácteos y alternativas vegetales',
     icon: '🥛',
@@ -23,7 +26,8 @@ export const productCategories = {
       yogurt: 'Yogurt'
     }
   },
-  eggs: {
+  {
+    id: 'eggs',
     name: 'Huevos',
     description: 'Huevos de gallina y alternativas',
     icon: '🥚',
@@ -33,7 +37,8 @@ export const productCategories = {
       alternatives: 'Alternativas Veganas'
     }
   },
-  snacks: {
+  {
+    id: 'snacks',
     name: 'Snacks',
     description: 'Opciones de snacks saludables',
     icon: '🍿',
@@ -44,7 +49,8 @@ export const productCategories = {
       healthy: 'Saludables'
     }
   },
-  pantry: {
+  {
+    id: 'pantry',
     name: 'Despensa',
     description: 'Alimentos básicos para el hogar',
     icon: '🥫',
@@ -55,7 +61,8 @@ export const productCategories = {
       spices: 'Especias'
     }
   },
-  'prepared-dishes': {
+  {
+    id: 'prepared-dishes',
     name: 'Platillos Preparados',
     description: 'Comidas completas y platillos caseros vs comerciales',
     icon: '🍽️',
@@ -67,4 +74,4 @@ export const productCategories = {
       salads: 'Ensaladas Completas'
     }
   }
-};
+];
