@@ -1,4 +1,3 @@
-
 export interface Recipe {
   id: string;
   name: string;
@@ -74,3 +73,6 @@ export interface Store {
   storeType: 'conventional' | 'naturist' | 'vegetarian' | 'vegan' | 'organic' | 'market' | 'wholesale';
   products: Product[];
 }
+
+// Agregar nueva categoría
+export type ProductCategory = 'proteins' | 'dairy' | 'eggs' | 'snacks' | 'pantry' | 'prepared-dishes';

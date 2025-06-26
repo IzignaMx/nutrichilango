@@ -7,6 +7,7 @@ import { Store } from '@/data';
 import { useBestPriceComparisons } from '@/hooks/useBestPriceComparisons';
 import RecipeModal from './RecipeModal';
 import NutritionComparisonChart from './NutritionComparisonChart';
+import NutritionalReferenceInfo from './NutritionalReferenceInfo';
 
 interface OptimizedComparisonTableProps {
   data: Store[];
@@ -93,6 +94,11 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
 
   return (
     <div className="space-y-4">
+      {/* Información de marco de referencia nutricional */}
+      {sortedProducts.length > 0 && (
+        <NutritionalReferenceInfo category={sortedProducts[0].category} />
+      )}
+
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
         <div className="flex items-center mb-2">
           <Trophy className="w-5 h-5 text-blue-600 mr-2" />
