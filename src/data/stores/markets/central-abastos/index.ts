@@ -1,6 +1,6 @@
 
 import { Store } from '../../../types';
-import { dairyProducts } from './dairy-products';
+import { dairyProducts } from './dairy';
 import { expandedDairyProducts } from './expanded-dairy';
 import { proteinProducts } from './protein-products';
 import { eggProducts } from './egg-products';
