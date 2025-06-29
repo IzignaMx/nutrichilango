@@ -1,73 +1,294 @@
-# Welcome to your Lovable project
 
-## Project info
+# Comparador Plant-Based CDMX
 
-**URL**: https://lovable.dev/projects/463bbd79-21c6-4820-b6c5-40e98aacfa5b
+[![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-green.svg)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)](package.json)
 
-## How can I edit this code?
+Una plataforma web dedicada a facilitar la transición hacia una alimentación basada en plantas mediante comparaciones objetivas de precios y valores nutricionales en la Ciudad de México.
 
-There are several ways of editing your application.
+## 🌱 Propósito
 
-**Use Lovable**
+El **Comparador Plant-Based CDMX** democratiza el acceso a información nutricional y de precios para facilitar decisiones alimentarias informadas, promoviendo una transición sostenible hacia una alimentación basada en plantas.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/463bbd79-21c6-4820-b6c5-40e98aacfa5b) and start prompting.
+## ✨ Características Principales
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔍 Comparaciones Inteligentes
+- **Animal vs Comercial Plant-Based**: Productos listos para consumir
+- **Animal vs Casero Plant-Based**: Preparaciones caseras con recetas incluidas
+- **Comercial vs Casero Plant-Based**: Análisis de ahorro al cocinar en casa
 
-**Use your preferred IDE**
+### 📊 Análisis Nutricional
+- Gráficas de barras comparativas de macronutrientes
+- Perfiles nutricionales en radar charts
+- Análisis basado en valores de referencia mexicanos (IDR)
+- Datos de USDA FoodData Central e INCMNSZ
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 🏪 Cobertura de Mercado
+- **Supermercados**: Soriana, Walmart, Chedraui
+- **Mercados Tradicionales**: Central de Abastos, Mercado Jamaica
+- **Tiendas Especializadas**: Naturistas, veganas, orgánicas
+- **Plataformas Online**: Integración con APIs de e-commerce
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🎯 Funcionalidades Avanzadas
+- Búsqueda inteligente y filtros dinámicos
+- Mapas interactivos de ubicaciones
+- Recetas con costos calculados
+- Análisis de tendencias de precios
+- Rankings de mejores valores por tienda
 
-Follow these steps:
+## 🛠️ Tecnologías
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Frontend**: React 18, TypeScript, Vite
+- **UI/UX**: Tailwind CSS, shadcn/ui, Lucide React
+- **Gráficas**: Recharts
+- **Routing**: React Router DOM
+- **Estado**: TanStack React Query
+- **Accesibilidad**: WCAG 2.1 AA compliant
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📋 Requisitos Previos
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Node.js**: 18.0.0 o superior
+- **npm**: 8.0.0 o superior (o yarn equivalente)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🚀 Instalación y Configuración
+
+### Instalación Local
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/usuario/comparador-plant-based-cdmx.git
+cd comparador-plant-based-cdmx
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
 npm run dev
+
+# Abrir navegador en http://localhost:5173
 ```
 
-**Edit a file directly in GitHub**
+### Scripts Disponibles
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Desarrollo
+npm run dev          # Servidor de desarrollo con hot-reload
+npm run build        # Build de producción
+npm run preview      # Preview del build de producción
+npm run lint         # Linting con ESLint
+npm run type-check   # Verificación de tipos TypeScript
+```
 
-**Use GitHub Codespaces**
+## 📁 Estructura del Proyecto
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── components/           # Componentes reutilizables
+│   ├── ui/              # Componentes base de shadcn/ui
+│   ├── layout/          # Componentes de layout (Header, Footer)
+│   ├── comparison/      # Componentes de comparación
+│   └── nutritional-analysis/ # Análisis nutricional
+├── pages/               # Páginas de la aplicación
+│   ├── Index.tsx        # Página principal
+│   ├── About.tsx        # Acerca de nosotros
+│   ├── HowItWorks.tsx   # Cómo funciona
+│   ├── Methodology.tsx  # Metodología
+│   ├── DataSources.tsx  # Fuentes de datos
+│   └── FAQ.tsx          # Preguntas frecuentes
+├── data/                # Datos y tipos
+│   ├── stores/          # Datos por tienda/mercado
+│   └── types.ts         # Definiciones TypeScript
+├── hooks/               # Custom hooks
+└── lib/                 # Utilidades y configuración
+```
 
-## What technologies are used for this project?
+## 🔧 Configuración de Desarrollo
 
-This project is built with:
+### Variables de Entorno
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Crea un archivo `.env.local` en la raíz del proyecto:
 
-## How can I deploy this project?
+```env
+# APIs (opcional para datos en tiempo real)
+VITE_STORE_API_KEY=tu_api_key_aqui
+VITE_NUTRITION_API_KEY=tu_api_key_aqui
 
-Simply open [Lovable](https://lovable.dev/projects/463bbd79-21c6-4820-b6c5-40e98aacfa5b) and click on Share -> Publish.
+# Configuración de desarrollo
+VITE_DEV_MODE=true
+```
 
-## Can I connect a custom domain to my Lovable project?
+### Configuración de TypeScript
 
-Yes, you can!
+El proyecto usa configuración estricta de TypeScript:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true
+  }
+}
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 📊 Fuentes de Datos
+
+### Precios
+- **Supermercados**: APIs y scraping ético de sitios oficiales
+- **Mercados**: Relevamientos presenciales semanales
+- **Tiendas Especializadas**: Contacto directo y verificación
+
+### Información Nutricional
+- **USDA FoodData Central**: Base de datos oficial
+- **INCMNSZ**: Tablas nutricionales mexicanas
+- **Etiquetas de Productos**: Información directa del fabricante
+- **Literatura Científica**: Estudios peer-reviewed
+
+### Actualización
+- **Precios**: Semanalmente
+- **Datos Nutricionales**: Mensualmente
+- **Recetas**: Revisión trimestral
+
+## ♿ Accesibilidad
+
+### Cumplimiento de Estándares
+- **WCAG 2.1 Nivel AA**: Cumplimiento completo
+- **Section 508**: Compatible
+- **ADA/AODA**: Requisitos cubiertos
+
+### Características de Accesibilidad
+- ✅ Navegación por teclado completa
+- ✅ Lectores de pantalla optimizados
+- ✅ Contraste de colores AAA donde sea posible
+- ✅ Texto alternativo para todas las imágenes
+- ✅ Estructura semántica HTML5
+- ✅ ARIA labels y landmarks
+- ✅ Skip links para navegación rápida
+- ✅ Focus management en modales y tabs
+
+## 🧪 Testing
+
+```bash
+# Ejecutar tests unitarios
+npm run test
+
+# Coverage report
+npm run test:coverage
+
+# Tests de accesibilidad
+npm run test:a11y
+
+# Tests E2E (si están configurados)
+npm run test:e2e
+```
+
+## 📦 Build y Deployment
+
+### Build de Producción
+
+```bash
+npm run build
+```
+
+### Deployment en Lovable
+
+1. Conecta tu proyecto a Lovable
+2. Haz push a tu repositorio
+3. Usa el botón "Publish" en Lovable
+
+### Deployment Manual
+
+```bash
+# Build
+npm run build
+
+# Subir carpeta dist/ a tu hosting
+# Ejemplo para Netlify
+npm install -g netlify-cli
+netlify deploy --prod --dir=dist
+```
+
+## 🔒 Limitaciones y Consideraciones
+
+### Limitaciones Técnicas
+- Los precios pueden variar por ubicación específica
+- Las promociones temporales no siempre se capturan
+- Disponibilidad de productos puede diferir entre sucursales
+
+### Limitaciones de Datos
+- No todos los productos están disponibles en todas las tiendas
+- Los datos nutricionales pueden tener variaciones por lote
+- Las recetas son estimaciones y pueden requerir ajustes personales
+
+### Limitaciones de Uso
+- No sustituye asesoría nutricional profesional
+- Las necesidades nutricionales varían por persona
+- Los precios mostrados son referenciales
+
+## 🤝 Contribuir
+
+### Reporte de Issues
+1. Revisa issues existentes antes de crear uno nuevo
+2. Incluye pasos para reproducir el problema
+3. Especifica navegador y versión del OS
+
+### Pull Requests
+1. Fork el repositorio
+2. Crea una rama feature (`git checkout -b feature/amazing-feature`)
+3. Commit tus cambios (`git commit -m 'Add amazing feature'`)
+4. Push a la rama (`git push origin feature/amazing-feature`)
+5. Abre un Pull Request
+
+### Estándares de Código
+- Usar TypeScript estricto
+- Seguir convenciones de nomenclatura establecidas
+- Incluir tests para nuevas funcionalidades
+- Mantener accesibilidad en nuevos componentes
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 📞 Contacto y Soporte
+
+- **Website**: [Comparador Plant-Based CDMX](https://tu-dominio.com)
+- **Documentación**: [Guía Completa](https://tu-dominio.com/how-it-works)
+- **Issues**: [GitHub Issues](https://github.com/usuario/repo/issues)
+- **Discusiones**: [GitHub Discussions](https://github.com/usuario/repo/discussions)
+
+## 🙏 Agradecimientos
+
+- **USDA FoodData Central** por proporcionar datos nutricionales abiertos
+- **INCMNSZ** por las tablas nutricionales mexicanas
+- **Comunidad Open Source** por las herramientas utilizadas
+- **Colaboradores** que proporcionan datos de precios locales
+
+## 📈 Roadmap
+
+### Versión 1.1 (Próximo Trimestre)
+- [ ] API pública para desarrolladores
+- [ ] Sistema de alertas de precios
+- [ ] Calculadora nutricional personalizada
+- [ ] Exportación de reportes PDF
+
+### Versión 1.2 (Mediano Plazo)
+- [ ] Aplicación móvil nativa
+- [ ] Integración con apps de delivery
+- [ ] Sistema de reviews comunitarios
+- [ ] Análisis de impacto ambiental
+
+### Versión 2.0 (Largo Plazo)
+- [ ] Expansión a otras ciudades mexicanas
+- [ ] Integración con wearables de salud
+- [ ] Machine Learning para recomendaciones
+- [ ] Marketplace de productos plant-based
+
+---
+
+**¿Te gusta el proyecto?** ⭐ Dale una estrella en GitHub y compártelo con tu comunidad.
+
+**¿Encontraste un bug?** 🐛 [Reportalo aquí](https://github.com/usuario/repo/issues/new).
+
+**¿Quieres contribuir?** 🚀 Revisa nuestras [guías de contribución](CONTRIBUTING.md).

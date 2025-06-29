@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -5,7 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TrendingUp, TrendingDown, MapPin, Search, Filter, ShoppingCart, ChefHat, Store, Home } from 'lucide-react';
+import { TrendingUp, TrendingDown, MapPin, Search, Filter, ShoppingCart, ChefHat, Store, Home, Info, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { storeData, productCategories } from '@/data';
 import ProductComparisonTable from '@/components/ProductComparisonTable';
 import StoreMap from '@/components/StoreMap';
@@ -90,150 +92,210 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-orange-50 to-red-50">
+      {/* Skip to main content link for screen readers */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-green-800 text-white px-4 py-2 rounded-md z-50"
+      >
+        Saltar al contenido principal
+      </a>
+
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-green-600 via-green-700 to-green-800 text-white py-16">
+      <header className="bg-gradient-to-r from-green-600 via-green-700 to-green-800 text-white py-16" role="banner">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
               Comparador Plant-Based CDMX
             </h1>
-            <p className="text-xl mb-8 text-green-100">
-              Descubre cómo una alimentación basada en plantas puede ser más económica
+            <p className="text-xl mb-8 text-green-100 leading-relaxed">
+              Descubre cómo una alimentación basada en plantas puede ser más económica y nutritiva
             </p>
+            
+            {/* Quick Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              <Button asChild className="bg-yellow-500 hover:bg-yellow-600 text-green-900 font-semibold">
+                <Link to="/how-it-works">
+                  <Info className="w-4 h-4 mr-2" aria-hidden="true" />
+                  Cómo Funciona
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="border-green-200 text-green-100 hover:bg-green-700">
+                <a href="#main-content">
+                  <ArrowRight className="w-4 h-4 mr-2" aria-hidden="true" />
+                  Ver Comparaciones
+                </a>
+              </Button>
+            </div>
+
+            {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300">
                 <CardContent className="p-6 text-center">
-                  <Store className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">Comercial vs Animal</h3>
-                  <p className="text-green-100 text-sm">+{comparisonTypeStats['animal-vs-commercial'].avgDiff.toFixed(1)}% promedio</p>
+                  <Store className="w-12 h-12 mx-auto mb-4 text-yellow-300" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold mb-2" id="commercial-vs-animal-stat">Comercial vs Animal</h3>
+                  <p className="text-green-100 text-sm" aria-describedby="commercial-vs-animal-stat">
+                    +{comparisonTypeStats['animal-vs-commercial'].avgDiff.toFixed(1)}% promedio
+                  </p>
                   <p className="text-xs text-green-200">{comparisonTypeStats['animal-vs-commercial'].count} productos</p>
                 </CardContent>
               </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300">
                 <CardContent className="p-6 text-center">
-                  <Home className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">Casero vs Animal</h3>
-                  <p className="text-green-100 text-sm">{comparisonTypeStats['animal-vs-homemade'].avgDiff.toFixed(1)}% promedio</p>
+                  <Home className="w-12 h-12 mx-auto mb-4 text-yellow-300" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold mb-2" id="homemade-vs-animal-stat">Casero vs Animal</h3>
+                  <p className="text-green-100 text-sm" aria-describedby="homemade-vs-animal-stat">
+                    {comparisonTypeStats['animal-vs-homemade'].avgDiff.toFixed(1)}% promedio
+                  </p>
                   <p className="text-xs text-green-200">{comparisonTypeStats['animal-vs-homemade'].count} productos</p>
                 </CardContent>
               </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300">
                 <CardContent className="p-6 text-center">
-                  <ChefHat className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">Casero vs Comercial</h3>
-                  <p className="text-green-100 text-sm">{comparisonTypeStats['commercial-vs-homemade'].avgDiff.toFixed(1)}% de ahorro</p>
+                  <ChefHat className="w-12 h-12 mx-auto mb-4 text-yellow-300" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold mb-2" id="homemade-vs-commercial-stat">Casero vs Comercial</h3>
+                  <p className="text-green-100 text-sm" aria-describedby="homemade-vs-commercial-stat">
+                    {comparisonTypeStats['commercial-vs-homemade'].avgDiff.toFixed(1)}% de ahorro
+                  </p>
                   <p className="text-xs text-green-200">{comparisonTypeStats['commercial-vs-homemade'].count} productos</p>
                 </CardContent>
               </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+              
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all duration-300">
                 <CardContent className="p-6 text-center">
-                  <ShoppingCart className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <h3 className="text-xl font-semibold mb-2">Mercados Locales</h3>
-                  <p className="text-green-100 text-sm">Central de Abastos y mercados</p>
+                  <ShoppingCart className="w-12 h-12 mx-auto mb-4 text-yellow-300" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold mb-2" id="local-markets-stat">Mercados Locales</h3>
+                  <p className="text-green-100 text-sm" aria-describedby="local-markets-stat">
+                    Central de Abastos y mercados
+                  </p>
                   <p className="text-xs text-green-200">Precios directos del productor</p>
                 </CardContent>
               </Card>
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Filters Section */}
-      <div className="container mx-auto px-4 py-8">
-        <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Buscar Producto</label>
-                <div className="relative">
-                  <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                  <Input
-                    placeholder="Buscar alimentos..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10"
-                  />
+      {/* Main Content */}
+      <main id="main-content" className="container mx-auto px-4 py-8">
+        {/* Filters Section */}
+        <section className="mb-8" aria-labelledby="filters-heading">
+          <h2 id="filters-heading" className="sr-only">Filtros de búsqueda</h2>
+          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <div className="space-y-2">
+                  <label htmlFor="search-input" className="text-sm font-medium text-gray-700">
+                    Buscar Producto
+                  </label>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-3 w-4 h-4 text-gray-400" aria-hidden="true" />
+                    <Input
+                      id="search-input"
+                      placeholder="Buscar alimentos..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
+                      aria-describedby="search-help"
+                    />
+                    <div id="search-help" className="sr-only">
+                      Busca productos por nombre, incluye tanto tradicionales como plant-based
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="comparison-type-select" className="text-sm font-medium text-gray-700">
+                    Tipo de Comparación
+                  </label>
+                  <Select value={comparisonType} onValueChange={setComparisonType}>
+                    <SelectTrigger id="comparison-type-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todas las comparaciones</SelectItem>
+                      <SelectItem value="animal-vs-commercial">Animal vs Comercial Plant-Based</SelectItem>
+                      <SelectItem value="animal-vs-homemade">Animal vs Casero Plant-Based</SelectItem>
+                      <SelectItem value="commercial-vs-homemade">Comercial vs Casero Plant-Based</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="category-select" className="text-sm font-medium text-gray-700">
+                    Categoría
+                  </label>
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <SelectTrigger id="category-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todas las categorías</SelectItem>
+                      {productCategories.map(category => (
+                        <SelectItem key={category.id} value={category.id}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="store-select" className="text-sm font-medium text-gray-700">
+                    Tienda
+                  </label>
+                  <Select value={selectedStore} onValueChange={setSelectedStore}>
+                    <SelectTrigger id="store-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Todas las tiendas</SelectItem>
+                      {storeData.map(store => (
+                        <SelectItem key={store.id} value={store.id}>
+                          {store.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="sort-select" className="text-sm font-medium text-gray-700">
+                    Ordenar por
+                  </label>
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger id="sort-select">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="price-diff">Diferencia de precio</SelectItem>
+                      <SelectItem value="traditional-price">Precio tradicional</SelectItem>
+                      <SelectItem value="plant-price">Precio plant-based</SelectItem>
+                      <SelectItem value="store-name">Nombre de tienda</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Tipo de Comparación</label>
-                <Select value={comparisonType} onValueChange={setComparisonType}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Todas las comparaciones</SelectItem>
-                    <SelectItem value="animal-vs-commercial">Animal vs Comercial Plant-Based</SelectItem>
-                    <SelectItem value="animal-vs-homemade">Animal vs Casero Plant-Based</SelectItem>
-                    <SelectItem value="commercial-vs-homemade">Comercial vs Casero Plant-Based</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Categoría</label>
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Todas las categorías</SelectItem>
-                    {productCategories.map(category => (
-                      <SelectItem key={category.id} value={category.id}>
-                        {category.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Tienda</label>
-                <Select value={selectedStore} onValueChange={setSelectedStore}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Todas las tiendas</SelectItem>
-                    {storeData.map(store => (
-                      <SelectItem key={store.id} value={store.id}>
-                        {store.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-700">Ordenar por</label>
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="price-diff">Diferencia de precio</SelectItem>
-                    <SelectItem value="traditional-price">Precio tradicional</SelectItem>
-                    <SelectItem value="plant-price">Precio plant-based</SelectItem>
-                    <SelectItem value="store-name">Nombre de tienda</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </section>
 
         {/* Main Content Tabs */}
         <Tabs defaultValue="comparison" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm">
-            <TabsTrigger value="comparison" className="text-center">
+          <TabsList className="grid w-full grid-cols-3 bg-white/80 backdrop-blur-sm" role="tablist" aria-label="Secciones principales">
+            <TabsTrigger value="comparison" className="text-center" role="tab" aria-controls="comparison-panel">
               Comparaciones Inteligentes
             </TabsTrigger>
-            <TabsTrigger value="charts" className="text-center">
+            <TabsTrigger value="charts" className="text-center" role="tab" aria-controls="charts-panel">
               Gráficas y Análisis
             </TabsTrigger>
-            <TabsTrigger value="stores" className="text-center">
+            <TabsTrigger value="stores" className="text-center" role="tab" aria-controls="stores-panel">
               Mejores Lugares
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="comparison" className="space-y-6">
+          <TabsContent value="comparison" className="space-y-6" role="tabpanel" id="comparison-panel" aria-labelledby="comparison-tab">
             <OptimizedComparisonTable 
               data={filteredData} 
               sortBy={sortBy} 
@@ -241,14 +303,14 @@ const Index = () => {
             />
           </TabsContent>
 
-          <TabsContent value="charts" className="space-y-6">
+          <TabsContent value="charts" className="space-y-6" role="tabpanel" id="charts-panel" aria-labelledby="charts-tab">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <PriceChart data={filteredData} />
               <StoreMap stores={filteredData} />
             </div>
           </TabsContent>
 
-          <TabsContent value="stores" className="space-y-6">
+          <TabsContent value="stores" className="space-y-6" role="tabpanel" id="stores-panel" aria-labelledby="stores-tab">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {bestValueStores.map((store, index) => (
                 <Card key={store.id} className="shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
@@ -262,7 +324,7 @@ const Index = () => {
                       )}
                     </div>
                     <div className="flex items-center text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 mr-1" />
+                      <MapPin className="w-4 h-4 mr-1" aria-hidden="true" />
                       {store.location}
                     </div>
                   </CardHeader>
@@ -272,9 +334,9 @@ const Index = () => {
                         <span className="text-sm text-gray-600">Diferencia promedio:</span>
                         <div className="flex items-center">
                           {store.avgDifference > 0 ? (
-                            <TrendingUp className="w-4 h-4 text-red-500 mr-1" />
+                            <TrendingUp className="w-4 h-4 text-red-500 mr-1" aria-hidden="true" />
                           ) : (
-                            <TrendingDown className="w-4 h-4 text-green-500 mr-1" />
+                            <TrendingDown className="w-4 h-4 text-green-500 mr-1" aria-hidden="true" />
                           )}
                           <span className={`font-bold ${
                             store.avgDifference > 0 ? 'text-red-600' : 'text-green-600'
@@ -298,7 +360,7 @@ const Index = () => {
             </div>
           </TabsContent>
         </Tabs>
-      </div>
+      </main>
     </div>
   );
 };
