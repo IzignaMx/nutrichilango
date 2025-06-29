@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Beaker, Database, Calculator, Shield, AlertTriangle } from 'lucide-react';
+import { Beaker, Database, Calculator, Shield, AlertTriangle, BarChart3 } from 'lucide-react';
 
 const Methodology: React.FC = () => {
   return (
