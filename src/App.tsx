@@ -11,6 +11,12 @@ import HowItWorks from "./pages/HowItWorks";
 import Methodology from "./pages/Methodology";
 import DataSources from "./pages/DataSources";
 import FAQ from "./pages/FAQ";
+import Guide from "./pages/Guide";
+import Limitations from "./pages/Limitations";
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Accessibility from "./pages/Accessibility";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +36,12 @@ const App = () => (
               <Route path="/methodology" element={<Methodology />} />
               <Route path="/data-sources" element={<DataSources />} />
               <Route path="/faq" element={<FAQ />} />
+              <Route path="/guide" element={<Guide />} />
+              <Route path="/limitations" element={<Limitations />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/accessibility" element={<Accessibility />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

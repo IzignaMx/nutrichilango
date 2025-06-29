@@ -95,7 +95,13 @@ src/
 │   ├── HowItWorks.tsx   # Cómo funciona
 │   ├── Methodology.tsx  # Metodología
 │   ├── DataSources.tsx  # Fuentes de datos
-│   └── FAQ.tsx          # Preguntas frecuentes
+│   ├── FAQ.tsx          # Preguntas frecuentes
+│   ├── Guide.tsx        # Guía de uso
+│   ├── Limitations.tsx  # Limitaciones
+│   ├── Contact.tsx      # Contacto
+│   ├── Privacy.tsx      # Política de privacidad
+│   ├── Terms.tsx        # Términos de uso
+│   └── Accessibility.tsx # Accesibilidad
 ├── data/                # Datos y tipos
 │   ├── stores/          # Datos por tienda/mercado
 │   └── types.ts         # Definiciones TypeScript
@@ -157,16 +163,19 @@ El proyecto usa configuración estricta de TypeScript:
 - **WCAG 2.1 Nivel AA**: Cumplimiento completo
 - **Section 508**: Compatible
 - **ADA/AODA**: Requisitos cubiertos
+- **EN 301 549**: Estándar europeo
 
 ### Características de Accesibilidad
 - ✅ Navegación por teclado completa
-- ✅ Lectores de pantalla optimizados
+- ✅ Lectores de pantalla optimizados (NVDA, JAWS, VoiceOver, TalkBack)
 - ✅ Contraste de colores AAA donde sea posible
 - ✅ Texto alternativo para todas las imágenes
 - ✅ Estructura semántica HTML5
 - ✅ ARIA labels y landmarks
 - ✅ Skip links para navegación rápida
 - ✅ Focus management en modales y tabs
+- ✅ Botones de tamaño apropiado (mínimo 44x44px)
+- ✅ Zoom hasta 200% sin pérdida de funcionalidad
 
 ## 🧪 Testing
 
@@ -253,8 +262,10 @@ Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 ## 📞 Contacto y Soporte
 
+- **Email**: [dev@izignamx.com](mailto:dev@izignamx.com)
+- **Facebook**: [@omni.veg](https://www.facebook.com/omni.veg)
 - **Website**: [Comparador Plant-Based CDMX](https://tu-dominio.com)
-- **Documentación**: [Guía Completa](https://tu-dominio.com/how-it-works)
+- **Documentación**: [Guía Completa](https://tu-dominio.com/guide)
 - **Issues**: [GitHub Issues](https://github.com/usuario/repo/issues)
 - **Discusiones**: [GitHub Discussions](https://github.com/usuario/repo/discussions)
 
@@ -292,3 +303,5 @@ Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 **¿Encontraste un bug?** 🐛 [Reportalo aquí](https://github.com/usuario/repo/issues/new).
 
 **¿Quieres contribuir?** 🚀 Revisa nuestras [guías de contribución](CONTRIBUTING.md).
+
+**¿Problemas de accesibilidad?** ♿ [Contáctanos](mailto:dev@izignamx.com?subject=Reporte%20de%20Accesibilidad).

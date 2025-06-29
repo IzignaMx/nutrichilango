@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Mail, Phone, MapPin } from 'lucide-react';
+import { ExternalLink, Mail, Facebook } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -20,8 +20,26 @@ const Footer: React.FC = () => {
               comparando precios y valores nutricionales en la Ciudad de México.
             </p>
             <div className="flex items-center space-x-2 text-green-200">
-              <MapPin className="w-4 h-4" aria-hidden="true" />
-              <span className="text-sm">Ciudad de México, México</span>
+              <Mail className="w-4 h-4" aria-hidden="true" />
+              <a 
+                href="mailto:dev@izignamx.com" 
+                className="text-sm hover:text-yellow-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                aria-label="Enviar correo electrónico"
+              >
+                dev@izignamx.com
+              </a>
+            </div>
+            <div className="flex items-center space-x-2 text-green-200">
+              <Facebook className="w-4 h-4" aria-hidden="true" />
+              <a 
+                href="https://www.facebook.com/omni.veg" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sm hover:text-yellow-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                aria-label="Visitar nuestra página de Facebook (se abre en nueva ventana)"
+              >
+                @omni.veg
+              </a>
             </div>
           </div>
 
@@ -155,12 +173,12 @@ const Footer: React.FC = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="text-green-100 hover:text-yellow-300 hover:bg-green-700/50"
+              className="text-green-100 hover:text-yellow-300 hover:bg-green-700/50 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800"
               asChild
             >
               <a 
                 href="#top" 
-                className="focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                className="focus:outline-none rounded"
                 aria-label="Volver al inicio de la página"
               >
                 ↑ Inicio
