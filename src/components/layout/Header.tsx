@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
@@ -6,7 +7,7 @@ import { useTheme } from "@/components/theme-provider"
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const mainNavItems = [
     { name: 'Inicio', href: '/' },
@@ -29,6 +30,10 @@ const Header: React.FC = () => {
     { name: 'Política de Privacidad', href: '/privacy' },
     { name: 'Accesibilidad', href: '/accessibility' },
   ];
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const NavItems: React.FC<{ items: { name: string; href: string; }[] }> = ({ items }) => (
     <ul className="md:flex space-x-6">
@@ -58,7 +63,7 @@ const Header: React.FC = () => {
 
         
         <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="icon" onClick={() => setTheme(theme => theme === "light" ? "dark" : "light")}>
+          <Button variant="ghost" size="icon" onClick={toggleTheme}>
             <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
             <span className="sr-only">Toggle theme</span>
