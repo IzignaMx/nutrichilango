@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Index from "./pages/Index";
+import DishesComparison from "./pages/DishesComparison";
 import About from "./pages/About";
 import HowItWorks from "./pages/HowItWorks";
 import Methodology from "./pages/Methodology";
@@ -33,6 +34,7 @@ const App = () => (
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/dishes-comparison" element={<DishesComparison />} />
               <Route path="/about" element={<About />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/methodology" element={<Methodology />} />
