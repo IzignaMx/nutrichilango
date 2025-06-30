@@ -9,15 +9,10 @@ import SearchAndFilters from '@/components/SearchAndFilters';
 import { storeData } from '@/data';
 import { Link } from 'react-router-dom';
 import { 
-  Leaf, 
   TrendingDown, 
   BarChart3, 
   MapPin, 
-  Clock, 
-  Users, 
-  Award,
   ArrowRight,
-  CheckCircle,
   Info
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -76,12 +71,6 @@ const Index: React.FC = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-green-600 to-green-800 text-white py-16 px-4" role="banner">
         <div className="container mx-auto text-center max-w-4xl">
-          <div className="flex justify-center mb-6">
-            <div className="p-4 bg-white/10 rounded-full">
-              <Leaf className="w-12 h-12" aria-hidden="true" />
-            </div>
-          </div>
-          
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Comparador Plant-Based CDMX
           </h1>
