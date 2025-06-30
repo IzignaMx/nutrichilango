@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import OptimizedComparisonTable from '@/components/OptimizedComparisonTable';
 import SearchAndFilters from '@/components/SearchAndFilters';
-import { allStores } from '@/data';
+import { storeData } from '@/data';
 import { Link } from 'react-router-dom';
 import { 
   Leaf, 
@@ -37,7 +37,7 @@ const Index: React.FC = () => {
 
   // Filter and search logic
   const filteredData = useMemo(() => {
-    let filtered = allStores;
+    let filtered = storeData;
 
     // Apply search filter
     if (searchQuery.trim()) {
@@ -46,8 +46,10 @@ const Index: React.FC = () => {
         store.name.toLowerCase().includes(query) ||
         store.location.toLowerCase().includes(query) ||
         store.products.some(product => 
-          product.name.toLowerCase().includes(query) ||
-          product.brand?.toLowerCase().includes(query)
+          product.traditional.name.toLowerCase().includes(query) ||
+          product.plantBased.name.toLowerCase().includes(query) ||
+          product.traditional.brand?.toLowerCase().includes(query) ||
+          product.plantBased.brand?.toLowerCase().includes(query)
         )
       );
     }
