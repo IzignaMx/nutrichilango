@@ -14,7 +14,14 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Platform Information */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-yellow-300">Comparador Plant-Based CDMX</h3>
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/lovable-uploads/426e756a-fc13-4011-a25a-c9e8e5f5bce3.png" 
+                alt="NutriChilango Logo" 
+                className="w-8 h-8 object-contain filter brightness-0 invert"
+              />
+              <h3 className="text-xl font-bold text-yellow-300">NutriChilango</h3>
+            </div>
             <p className="text-green-100 text-sm leading-relaxed">
               Plataforma dedicada a facilitar la transición hacia una alimentación basada en plantas, 
               comparando precios y valores nutricionales en la Ciudad de México.
@@ -65,14 +72,6 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link 
-                  to="/methodology" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
-                >
-                  Metodología
-                </Link>
-              </li>
-              <li>
-                <Link 
                   to="/data-sources" 
                   className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
                 >
@@ -88,34 +87,10 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               <li>
                 <Link 
-                  to="/faq" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
-                >
-                  Preguntas Frecuentes
-                </Link>
-              </li>
-              <li>
-                <Link 
                   to="/guide" 
                   className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
                 >
                   Guía de Uso
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/limitations" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
-                >
-                  Limitaciones
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/contact" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
-                >
-                  Contacto
                 </Link>
               </li>
             </ul>
@@ -163,7 +138,7 @@ const Footer: React.FC = () => {
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-green-200">
-            <p>© {currentYear} Comparador Plant-Based CDMX. Todos los derechos reservados.</p>
+            <p>© {currentYear} NutriChilango. Todos los derechos reservados.</p>
             <p className="mt-1">
               Datos actualizados semanalmente. Última actualización: {new Date().toLocaleDateString('es-MX')}
             </p>

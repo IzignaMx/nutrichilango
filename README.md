@@ -1,5 +1,5 @@
 
-# Comparador Plant-Based CDMX
+# NutriChilango
 
 [![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-green.svg)](https://www.w3.org/WAI/WCAG21/quickref/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -9,7 +9,7 @@ Una plataforma web dedicada a facilitar la transición hacia una alimentación b
 
 ## 🌱 Propósito
 
-El **Comparador Plant-Based CDMX** democratiza el acceso a información nutricional y de precios para facilitar decisiones alimentarias informadas, promoviendo una transición sostenible hacia una alimentación basada en plantas.
+**NutriChilango** democratiza el acceso a información nutricional y de precios para facilitar decisiones alimentarias informadas, promoviendo una transición sostenible hacia una alimentación basada en plantas.
 
 ## ✨ Características Principales
 
@@ -57,8 +57,8 @@ El **Comparador Plant-Based CDMX** democratiza el acceso a información nutricio
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/usuario/comparador-plant-based-cdmx.git
-cd comparador-plant-based-cdmx
+git clone https://github.com/usuario/nutrichilango.git
+cd nutrichilango
 
 # Instalar dependencias
 npm install
@@ -93,12 +93,8 @@ src/
 │   ├── Index.tsx        # Página principal
 │   ├── About.tsx        # Acerca de nosotros
 │   ├── HowItWorks.tsx   # Cómo funciona
-│   ├── Methodology.tsx  # Metodología
 │   ├── DataSources.tsx  # Fuentes de datos
-│   ├── FAQ.tsx          # Preguntas frecuentes
 │   ├── Guide.tsx        # Guía de uso
-│   ├── Limitations.tsx  # Limitaciones
-│   ├── Contact.tsx      # Contacto
 │   ├── Privacy.tsx      # Política de privacidad
 │   ├── Terms.tsx        # Términos de uso
 │   └── Accessibility.tsx # Accesibilidad
@@ -219,23 +215,6 @@ npm install -g netlify-cli
 netlify deploy --prod --dir=dist
 ```
 
-## 🔒 Limitaciones y Consideraciones
-
-### Limitaciones Técnicas
-- Los precios pueden variar por ubicación específica
-- Las promociones temporales no siempre se capturan
-- Disponibilidad de productos puede diferir entre sucursales
-
-### Limitaciones de Datos
-- No todos los productos están disponibles en todas las tiendas
-- Los datos nutricionales pueden tener variaciones por lote
-- Las recetas son estimaciones y pueden requerir ajustes personales
-
-### Limitaciones de Uso
-- No sustituye asesoría nutricional profesional
-- Las necesidades nutricionales varían por persona
-- Los precios mostrados son referenciales
-
 ## 🤝 Contribuir
 
 ### Reporte de Issues
@@ -264,7 +243,7 @@ Este proyecto está bajo la licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 - **Email**: [dev@izignamx.com](mailto:dev@izignamx.com)
 - **Facebook**: [@omni.veg](https://www.facebook.com/omni.veg)
-- **Website**: [Comparador Plant-Based CDMX](https://tu-dominio.com)
+- **Website**: [NutriChilango](https://tu-dominio.com)
 - **Documentación**: [Guía Completa](https://tu-dominio.com/guide)
 - **Issues**: [GitHub Issues](https://github.com/usuario/repo/issues)
 - **Discusiones**: [GitHub Discussions](https://github.com/usuario/repo/discussions)
