@@ -15,8 +15,15 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* NutriChilango Brand Colors */
+    --brand-primary: 142 76% 36%;      /* Green-700 equivalent */
+    --brand-primary-light: 142 69% 48%; /* Green-600 equivalent */
+    --brand-primary-lighter: 142 52% 96%; /* Green-50 equivalent */
+    --brand-accent: 45 93% 58%;        /* Yellow-400 for highlights */
+    --brand-success: 142 76% 36%;      /* Same as primary for consistency */
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -63,8 +70,15 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 142 76% 36%;
+    
+    /* Dark mode brand colors */
+    --brand-primary: 142 69% 48%;      /* Lighter green for dark mode */
+    --brand-primary-light: 142 52% 56%; /* Even lighter green */
+    --brand-primary-lighter: 142 25% 8%; /* Very dark green for backgrounds */
+    --brand-accent: 45 93% 68%;        /* Brighter yellow for dark mode */
+    --brand-success: 142 69% 48%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;

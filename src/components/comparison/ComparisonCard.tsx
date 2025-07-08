@@ -29,7 +29,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
       dairy: 'bg-blue-100 text-blue-800',
       eggs: 'bg-yellow-100 text-yellow-800',
       snacks: 'bg-purple-100 text-purple-800',
-      pantry: 'bg-green-100 text-green-800',
+      pantry: 'bg-brand-primary-lighter text-brand-primary',
       'prepared-dishes': 'bg-orange-100 text-orange-800'
     };
     return colors[category as keyof typeof colors] || 'bg-gray-100 text-gray-800';
@@ -50,7 +50,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
   const getComparisonTypeColor = (type: string) => {
     const colors = {
       'animal-vs-commercial': 'bg-orange-100 text-orange-800',
-      'animal-vs-homemade': 'bg-green-100 text-green-800',
+      'animal-vs-homemade': 'bg-brand-primary-lighter text-brand-primary',
       'commercial-vs-homemade': 'bg-blue-100 text-blue-800'
     };
     return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';
@@ -79,7 +79,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                 <span className="font-medium">{product.storeName}</span>
               </div>
               {product.hasPromotion && (
-                <Badge variant="outline" className="text-green-600 border-green-600">
+                <Badge variant="outline" className="text-brand-success border-brand-success">
                   🎯 Promoción
                 </Badge>
               )}
@@ -112,7 +112,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
           <ProductSection
             product={product.traditional}
             title={product.comparisonType.includes('commercial-vs') ? 'Producto Comercial' : 'Producto Tradicional'}
-            priceColor="text-green-600"
+            priceColor="text-brand-success"
             comparisonType={product.comparisonType}
           />
           

@@ -20,11 +20,11 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
 
   const getDifficultyColor = (difficulty: string) => {
     const colors = {
-      easy: 'bg-green-100 text-green-800',
-      medium: 'bg-yellow-100 text-yellow-800',
-      hard: 'bg-red-100 text-red-800'
+      easy: 'bg-brand-primary-lighter text-brand-primary',
+      medium: 'bg-yellow-50 text-yellow-700',
+      hard: 'bg-red-50 text-red-700'
     };
-    return colors[difficulty as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    return colors[difficulty as keyof typeof colors] || 'bg-muted text-muted-foreground';
   };
 
   const getDifficultyText = (difficulty: string) => {
@@ -40,7 +40,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-green-800 mb-2">
+          <DialogTitle className="text-2xl font-bold text-brand-primary mb-2">
             {recipe.name}
           </DialogTitle>
           <p className="text-gray-600">{recipe.description}</p>
@@ -64,8 +64,8 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
               </Badge>
             </div>
             <div className="flex items-center space-x-2">
-              <DollarSign className="w-5 h-5 text-green-600" />
-              <span className="font-bold text-green-700">${costPerServing.toFixed(2)} por porción</span>
+              <DollarSign className="w-5 h-5 text-brand-success" />
+              <span className="font-bold text-brand-primary">${costPerServing.toFixed(2)} por porción</span>
             </div>
           </div>
 
@@ -89,7 +89,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-green-600">${ingredient.totalCost.toFixed(2)}</p>
+                      <p className="font-bold text-brand-success">${ingredient.totalCost.toFixed(2)}</p>
                       <p className="text-xs text-gray-500">${ingredient.pricePerUnit.toFixed(2)}/kg</p>
                     </div>
                   </div>
@@ -97,7 +97,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
                 <div className="border-t pt-3 mt-4">
                   <div className="flex justify-between items-center font-bold text-lg">
                     <span>Costo Total:</span>
-                    <span className="text-green-700">${totalCost.toFixed(2)}</span>
+                    <span className="text-brand-primary">${totalCost.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center text-sm text-gray-600">
                     <span>Costo por porción:</span>
@@ -117,7 +117,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
               <ol className="space-y-3">
                 {recipe.instructions.map((step, index) => (
                   <li key={index} className="flex space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-green-100 text-green-800 rounded-full flex items-center justify-center font-bold text-sm">
+                    <div className="flex-shrink-0 w-8 h-8 bg-brand-primary-lighter text-brand-primary rounded-full flex items-center justify-center font-bold text-sm">
                       {index + 1}
                     </div>
                     <p className="text-gray-700 pt-1">{step}</p>
@@ -148,7 +148,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
                     <p className="text-sm text-gray-600">Carbohidratos</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-green-600">{recipe.nutritionInfo.fat}g</p>
+                    <p className="text-2xl font-bold text-brand-success">{recipe.nutritionInfo.fat}g</p>
                     <p className="text-sm text-gray-600">Grasas</p>
                   </div>
                 </div>

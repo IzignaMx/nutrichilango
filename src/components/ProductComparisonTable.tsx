@@ -39,13 +39,13 @@ const ProductComparisonTable: React.FC<ProductComparisonTableProps> = ({ data, s
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      proteins: 'bg-red-100 text-red-800',
-      dairy: 'bg-blue-100 text-blue-800',
-      eggs: 'bg-yellow-100 text-yellow-800',
-      snacks: 'bg-purple-100 text-purple-800',
-      pantry: 'bg-green-100 text-green-800'
+      proteins: 'bg-red-50 text-red-700 border-red-200',
+      dairy: 'bg-blue-50 text-blue-700 border-blue-200',
+      eggs: 'bg-yellow-50 text-yellow-700 border-yellow-200',
+      snacks: 'bg-purple-50 text-purple-700 border-purple-200',
+      pantry: 'bg-brand-primary-lighter text-brand-primary border-brand-primary/20'
     };
-    return colors[category as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    return colors[category as keyof typeof colors] || 'bg-muted text-muted-foreground border-border';
   };
 
   const getCategoryName = (category: string) => {
@@ -77,7 +77,7 @@ const ProductComparisonTable: React.FC<ProductComparisonTableProps> = ({ data, s
                     <span>{product.storeLocation}</span>
                   </div>
                   {product.hasPromotion && (
-                    <Badge variant="outline" className="text-green-600 border-green-600">
+                    <Badge variant="outline" className="text-brand-success border-brand-success">
                       🎯 Promoción
                     </Badge>
                   )}
@@ -113,18 +113,18 @@ const ProductComparisonTable: React.FC<ProductComparisonTableProps> = ({ data, s
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <span className="text-sm text-gray-600">Precio:</span>
-                      <p className="text-lg font-bold text-green-600">${product.traditional.price.toFixed(2)}</p>
+                      <p className="text-lg font-bold text-brand-success">${product.traditional.price.toFixed(2)}</p>
                       <p className="text-xs text-gray-500">{product.traditional.unit}</p>
                     </div>
                     <div>
                       <span className="text-sm text-gray-600">Por kg/L:</span>
-                      <p className="text-lg font-bold text-green-600">${product.traditional.pricePerUnit.toFixed(2)}</p>
+                      <p className="text-lg font-bold text-brand-success">${product.traditional.pricePerUnit.toFixed(2)}</p>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-sm text-gray-600 mr-2">Disponible:</span>
                     {product.availability.traditional ? (
-                      <Badge variant="outline" className="text-green-600 border-green-600">✓ Sí</Badge>
+                      <Badge variant="outline" className="text-brand-success border-brand-success">✓ Sí</Badge>
                     ) : (
                       <Badge variant="outline" className="text-red-600 border-red-600">✗ No</Badge>
                     )}
@@ -158,7 +158,7 @@ const ProductComparisonTable: React.FC<ProductComparisonTableProps> = ({ data, s
                   <div className="flex items-center">
                     <span className="text-sm text-gray-600 mr-2">Disponible:</span>
                     {product.availability.plantBased ? (
-                      <Badge variant="outline" className="text-green-600 border-green-600">✓ Sí</Badge>
+                      <Badge variant="outline" className="text-brand-success border-brand-success">✓ Sí</Badge>
                     ) : (
                       <Badge variant="outline" className="text-red-600 border-red-600">
                         <AlertCircle className="w-3 h-3 mr-1" />
@@ -178,12 +178,12 @@ const ProductComparisonTable: React.FC<ProductComparisonTableProps> = ({ data, s
                       {product.priceDifferencePercent > 0 ? (
                         <TrendingUp className="w-6 h-6 text-red-500 mr-2" />
                       ) : (
-                        <TrendingDown className="w-6 h-6 text-green-500 mr-2" />
+                        <TrendingDown className="w-6 h-6 text-brand-success mr-2" />
                       )}
                       <span className="text-sm text-gray-600">Diferencia de precio:</span>
                     </div>
                     <p className={`text-2xl font-bold ${
-                      product.priceDifferencePercent > 0 ? 'text-red-600' : 'text-green-600'
+                       product.priceDifferencePercent > 0 ? 'text-destructive' : 'text-brand-success'
                     }`}>
                       {product.priceDifferencePercent > 0 ? '+' : ''}{product.priceDifferencePercent.toFixed(1)}%
                     </p>
@@ -196,17 +196,17 @@ const ProductComparisonTable: React.FC<ProductComparisonTableProps> = ({ data, s
                     <div>
                       <span className="text-sm text-gray-600">Ahorro/Costo extra:</span>
                       <p className={`font-bold ${
-                        product.priceDifferencePercent > 0 ? 'text-red-600' : 'text-green-600'
+                        product.priceDifferencePercent > 0 ? 'text-destructive' : 'text-brand-success'
                       }`}>
                         ${Math.abs(product.plantBased.price - product.traditional.price).toFixed(2)} MXN
                       </p>
                     </div>
                     
                     {product.hasPromotion && product.promotionDetails && (
-                      <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                        <p className="text-sm text-green-800 font-medium">🎯 Promoción activa:</p>
-                        <p className="text-sm text-green-700">{product.promotionDetails}</p>
-                      </div>
+                       <div className="p-3 bg-brand-primary-lighter border border-brand-primary/20 rounded-lg">
+                         <p className="text-sm text-brand-primary font-medium">🎯 Promoción activa:</p>
+                         <p className="text-sm text-brand-primary/80">{product.promotionDetails}</p>
+                       </div>
                     )}
                   </div>
                 </div>

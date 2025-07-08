@@ -34,7 +34,7 @@ const Header: React.FC = () => {
     <ul className="md:flex space-x-6">
       {items.map((item) => (
         <li key={item.name}>
-          <Link to={item.href} className="hover:text-green-300 transition-colors duration-200">
+          <Link to={item.href} className="hover:text-brand-accent transition-colors duration-200">
             {item.name}
           </Link>
         </li>
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
   );
 
   return (
-    <header className="bg-green-700 text-white py-4 shadow-md sticky top-0 z-50">
+    <header className="bg-brand-primary text-primary-foreground py-4 shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 flex items-center justify-between">
         
         <Link to="/" className="flex items-center space-x-3 flex-grow-0">
@@ -80,25 +80,25 @@ const Header: React.FC = () => {
 
       
       {isMobileMenuOpen && (
-        <div className="bg-green-700 px-4 py-2">
+        <div className="bg-brand-primary px-4 py-2">
           <ul className="flex flex-col space-y-4">
             {mainNavItems.map((item) => (
               <li key={item.name}>
-                <Link to={item.href} className="block py-2 hover:text-green-300 transition-colors duration-200">
+                <Link to={item.href} className="block py-2 hover:text-brand-accent transition-colors duration-200">
                   {item.name}
                 </Link>
               </li>
             ))}
             {resourcesItems.map((item) => (
               <li key={item.name}>
-                <Link to={item.href} className="block py-2 hover:text-green-300 transition-colors duration-200">
+                <Link to={item.href} className="block py-2 hover:text-brand-accent transition-colors duration-200">
                   {item.name}
                 </Link>
               </li>
             ))}
             {legalItems.map((item) => (
               <li key={item.name}>
-                <Link to={item.href} className="block py-2 hover:text-green-300 transition-colors duration-200">
+                <Link to={item.href} className="block py-2 hover:text-brand-accent transition-colors duration-200">
                   {item.name}
                 </Link>
               </li>

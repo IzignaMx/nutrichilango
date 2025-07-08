@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-r from-green-800 to-green-900 text-white mt-16" role="contentinfo">
+    <footer className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground mt-16" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Platform Information */}
@@ -20,29 +20,29 @@ const Footer: React.FC = () => {
                 alt="NutriChilango Logo" 
                 className="w-8 h-8 object-contain filter brightness-0 invert"
               />
-              <h3 className="text-xl font-bold text-yellow-300">NutriChilango</h3>
+              <h3 className="text-xl font-bold text-brand-accent">NutriChilango</h3>
             </div>
-            <p className="text-green-100 text-sm leading-relaxed">
+            <p className="text-primary-foreground/80 text-sm leading-relaxed">
               Plataforma dedicada a facilitar la transición hacia una alimentación basada en plantas, 
               comparando precios y valores nutricionales en la Ciudad de México.
             </p>
-            <div className="flex items-center space-x-2 text-green-200">
+            <div className="flex items-center space-x-2 text-primary-foreground/70">
               <Mail className="w-4 h-4" aria-hidden="true" />
               <a 
                 href="mailto:dev@izignamx.com" 
-                className="text-sm hover:text-yellow-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                className="text-sm hover:text-brand-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 aria-label="Enviar correo electrónico"
               >
                 dev@izignamx.com
               </a>
             </div>
-            <div className="flex items-center space-x-2 text-green-200">
+            <div className="flex items-center space-x-2 text-primary-foreground/70">
               <Facebook className="w-4 h-4" aria-hidden="true" />
               <a 
                 href="https://www.facebook.com/omni.veg" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm hover:text-yellow-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                className="text-sm hover:text-brand-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 aria-label="Visitar nuestra página de Facebook (se abre en nueva ventana)"
               >
                 @omni.veg
@@ -52,12 +52,12 @@ const Footer: React.FC = () => {
 
           {/* Navigation Links */}
           <nav className="space-y-4" aria-label="Enlaces principales">
-            <h4 className="text-lg font-semibold text-yellow-300">Navegación</h4>
+            <h4 className="text-lg font-semibold text-brand-accent">Navegación</h4>
             <ul className="space-y-2">
               <li>
                 <Link 
                   to="/about" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Acerca de Nosotros
                 </Link>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link 
                   to="/how-it-works" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Cómo Funciona
                 </Link>
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link 
                   to="/data-sources" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Fuentes de Datos
                 </Link>
@@ -83,12 +83,12 @@ const Footer: React.FC = () => {
 
           {/* Help & Support */}
           <nav className="space-y-4" aria-label="Ayuda y soporte">
-            <h4 className="text-lg font-semibold text-yellow-300">Ayuda</h4>
+            <h4 className="text-lg font-semibold text-brand-accent">Ayuda</h4>
             <ul className="space-y-2">
               <li>
                 <Link 
                   to="/guide" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Guía de Uso
                 </Link>
@@ -98,12 +98,12 @@ const Footer: React.FC = () => {
 
           {/* Legal & Accessibility */}
           <nav className="space-y-4" aria-label="Información legal">
-            <h4 className="text-lg font-semibold text-yellow-300">Legal</h4>
+            <h4 className="text-lg font-semibold text-brand-accent">Legal</h4>
             <ul className="space-y-2">
               <li>
                 <Link 
                   to="/privacy" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Privacidad
                 </Link>
@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link 
                   to="/terms" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Términos de Uso
                 </Link>
@@ -119,25 +119,25 @@ const Footer: React.FC = () => {
               <li>
                 <Link 
                   to="/accessibility" 
-                  className="text-green-100 hover:text-yellow-300 transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800 rounded"
+                  className="text-primary-foreground/80 hover:text-brand-accent transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary rounded"
                 >
                   Accesibilidad
                 </Link>
               </li>
             </ul>
             <div className="pt-2">
-              <p className="text-xs text-green-200 leading-relaxed">
+              <p className="text-xs text-primary-foreground/60 leading-relaxed">
                 Cumplimos con WCAG 2.1 AA, ADA, AODA y Section 508
               </p>
             </div>
           </nav>
         </div>
 
-        <Separator className="my-8 bg-green-600" />
+        <Separator className="my-8 bg-primary-foreground/20" />
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-sm text-green-200">
+          <div className="text-sm text-primary-foreground/70">
             <p>© {currentYear} NutriChilango. Todos los derechos reservados.</p>
             <p className="mt-1">
               Datos actualizados semanalmente. Última actualización: {new Date().toLocaleDateString('es-MX')}
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="text-green-100 hover:text-yellow-300 hover:bg-green-700/50 focus:ring-2 focus:ring-yellow-300 focus:ring-offset-2 focus:ring-offset-green-800"
+              className="text-primary-foreground/80 hover:text-brand-accent hover:bg-primary-foreground/10 focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 focus:ring-offset-brand-primary"
               asChild
             >
               <a 

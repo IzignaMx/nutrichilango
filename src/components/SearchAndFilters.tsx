@@ -47,7 +47,7 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="flex items-center gap-2">
-            <Search className="w-5 h-5 text-green-600" />
+            <Search className="w-5 h-5 text-brand-primary" />
             Buscar y Filtrar Productos
           </CardTitle>
           <Badge variant="secondary" className="text-sm">
