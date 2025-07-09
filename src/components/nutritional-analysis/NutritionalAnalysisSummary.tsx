@@ -22,34 +22,34 @@ const NutritionalAnalysisSummary: React.FC<NutritionalAnalysisSummaryProps> = ({
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-3">
-            <h4 className="font-semibold text-gray-700">Ventajas Plant-Based:</h4>
+            <h4 className="font-semibold text-muted-foreground">Ventajas Plant-Based:</h4>
             <ul className="space-y-1 text-sm">
               {plantBasedNutrition.fiber && plantBasedNutrition.fiber > (traditionalNutrition.fiber || 0) && (
-                <li className="flex items-center text-green-700">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <li className="flex items-center text-brand-primary">
+                  <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                   Mayor contenido de fibra (+{(plantBasedNutrition.fiber - (traditionalNutrition.fiber || 0)).toFixed(1)}g)
                 </li>
               )}
               {plantBasedNutrition.iron && plantBasedNutrition.iron > (traditionalNutrition.iron || 0) && (
-                <li className="flex items-center text-green-700">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <li className="flex items-center text-brand-primary">
+                  <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                   Mayor contenido de hierro (+{(plantBasedNutrition.iron - (traditionalNutrition.iron || 0)).toFixed(1)}mg)
                 </li>
               )}
               {plantBasedNutrition.calories < traditionalNutrition.calories && (
-                <li className="flex items-center text-green-700">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <li className="flex items-center text-brand-primary">
+                  <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                   Menor contenido calórico (-{(traditionalNutrition.calories - plantBasedNutrition.calories)} kcal)
                 </li>
               )}
-              <li className="flex items-center text-green-700">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+              <li className="flex items-center text-brand-primary">
+                <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                 Libre de colesterol y lactosa
               </li>
             </ul>
           </div>
           <div className="space-y-3">
-            <h4 className="font-semibold text-gray-700">Consideraciones:</h4>
+            <h4 className="font-semibold text-muted-foreground">Consideraciones:</h4>
             <ul className="space-y-1 text-sm">
               {traditionalNutrition.protein > plantBasedNutrition.protein && (
                 <li className="flex items-center text-amber-700">

@@ -60,22 +60,22 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
     <Card className="shadow-lg border-0 bg-white/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-xl text-gray-800 flex items-center">
-          <MapPin className="w-6 h-6 mr-2 text-green-600" />
+          <MapPin className="w-6 h-6 mr-2 text-brand-primary" />
           Mapa de Tiendas por Zona
         </CardTitle>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           Comparación de precios por ubicación geográfica en la Ciudad de México
         </p>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           {Object.entries(zoneGroups).map(([zone, storesInZone]) => (
-            <div key={zone} className="border-l-4 border-green-500 pl-4">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-md text-sm mr-2">
+            <div key={zone} className="border-l-4 border-brand-primary pl-4">
+              <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center">
+                <span className="bg-brand-primary-lighter text-brand-primary px-2 py-1 rounded-md text-sm mr-2">
                   {zone}
                 </span>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">
                   ({storesInZone.length} tienda{storesInZone.length > 1 ? 's' : ''})
                 </span>
               </h3>
@@ -84,17 +84,17 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
                 {storesInZone.map((store, index) => (
                   <div 
                     key={store.id} 
-                    className="p-4 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 border border-gray-200 hover:shadow-md transition-all duration-300"
+                    className="p-4 rounded-lg bg-gradient-to-r from-muted/20 to-muted/40 border border-border hover:shadow-md transition-all duration-300"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1">
-                        <h4 className="font-semibold text-gray-800 flex items-center">
+                        <h4 className="font-semibold text-foreground flex items-center">
                           {store.name}
                           {index === 0 && (
-                            <Star className="w-4 h-4 ml-2 text-yellow-500" />
+                            <Star className="w-4 h-4 ml-2 text-brand-accent" />
                           )}
                         </h4>
-                        <p className="text-sm text-gray-600 flex items-center mt-1">
+                        <p className="text-sm text-muted-foreground flex items-center mt-1">
                           <MapPin className="w-3 h-3 mr-1" />
                           {store.location}
                         </p>
@@ -102,12 +102,12 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
                       <div className="text-right">
                         <div className="flex items-center">
                           {store.avgDifference > 0 ? (
-                            <TrendingUp className="w-4 h-4 text-red-500 mr-1" />
+                            <TrendingUp className="w-4 h-4 text-destructive mr-1" />
                           ) : (
-                            <TrendingDown className="w-4 h-4 text-green-500 mr-1" />
+                            <TrendingDown className="w-4 h-4 text-brand-success mr-1" />
                           )}
                           <span className={`font-bold text-sm ${
-                            store.avgDifference > 0 ? 'text-red-600' : 'text-green-600'
+                            store.avgDifference > 0 ? 'text-destructive' : 'text-brand-success'
                           }`}>
                             {store.avgDifference > 0 ? '+' : ''}{store.avgDifference.toFixed(1)}%
                           </span>
@@ -117,7 +117,7 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
                     
                     <div className="flex flex-wrap gap-2 mb-3">
                       {store.hasPromotion && (
-                        <Badge variant="outline" className="text-green-600 border-green-600 text-xs">
+                        <Badge variant="outline" className="text-brand-success border-brand-success text-xs">
                           🎯 Promoción
                         </Badge>
                       )}
@@ -127,21 +127,21 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
                     </div>
 
                     {store.hasPromotion && store.promotionDetails && (
-                      <div className="text-xs text-green-700 bg-green-50 p-2 rounded border border-green-200">
+                      <div className="text-xs text-brand-success bg-brand-primary-lighter p-2 rounded border border-brand-primary/20">
                         {store.promotionDetails}
                       </div>
                     )}
 
-                    <div className="mt-3 pt-3 border-t border-gray-200">
+                    <div className="mt-3 pt-3 border-t border-border">
                       <div className="grid grid-cols-2 gap-4 text-xs">
                         <div>
-                          <span className="text-gray-500">Precio más bajo:</span>
-                          <p className="font-medium text-green-600">
+                          <span className="text-muted-foreground">Precio más bajo:</span>
+                          <p className="font-medium text-brand-success">
                             ${Math.min(...store.products.map(p => p.traditional.price)).toFixed(2)}
                           </p>
                         </div>
                         <div>
-                          <span className="text-gray-500">Precio más alto:</span>
+                          <span className="text-muted-foreground">Precio más alto:</span>
                           <p className="font-medium text-blue-600">
                             ${Math.max(...store.products.map(p => p.plantBased.price)).toFixed(2)}
                           </p>
@@ -169,26 +169,26 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
         </div>
 
         {/* Overall Statistics */}
-        <div className="mt-8 p-4 bg-gradient-to-r from-green-50 to-blue-50 border border-gray-200 rounded-lg">
-          <h4 className="font-semibold text-gray-800 mb-3">Estadísticas Generales</h4>
+        <div className="mt-8 p-4 bg-gradient-to-r from-brand-primary-lighter to-blue-50 border border-border rounded-lg">
+          <h4 className="font-semibold text-foreground mb-3">Estadísticas Generales</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="text-center">
-              <p className="text-2xl font-bold text-green-600">
+              <p className="text-2xl font-bold text-brand-primary">
                 {sortedStores.length}
               </p>
-              <p className="text-gray-600">Tiendas analizadas</p>
+              <p className="text-muted-foreground">Tiendas analizadas</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold text-blue-600">
                 {sortedStores.reduce((sum, store) => sum + store.products.length, 0)}
               </p>
-              <p className="text-gray-600">Productos comparados</p>
+              <p className="text-muted-foreground">Productos comparados</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold text-purple-600">
                 {Object.keys(zoneGroups).length}
               </p>
-              <p className="text-gray-600">Zonas cubiertas</p>
+              <p className="text-muted-foreground">Zonas cubiertas</p>
             </div>
           </div>
         </div>

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 
 const CallToActionSection: React.FC = () => {
   return (
-    <section className="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-2xl p-8 text-center">
+    <section className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground rounded-2xl p-8 text-center">
       <h2 className="text-2xl font-bold mb-4">
         ¿Quieres saber más sobre alimentación plant-based?
       </h2>
-      <p className="text-green-100 mb-6 max-w-2xl mx-auto">
+      <p className="text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
         Descubre nuestra metodología, fuentes de datos y guías completas 
         para hacer la transición hacia una alimentación más sostenible.
       </p>
@@ -18,15 +18,15 @@ const CallToActionSection: React.FC = () => {
           asChild
           variant="secondary"
           size="lg"
-          className="bg-white text-green-700 hover:bg-green-50"
+          className="bg-background text-brand-primary hover:bg-background/90"
         >
-          <Link to="/methodology">Ver Metodología</Link>
+          <Link to="/how-it-works">¿Cómo Funciona?</Link>
         </Button>
         <Button 
           asChild
           variant="outline"
           size="lg"
-          className="border-white text-white hover:bg-white hover:text-green-700"
+          className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-brand-primary"
         >
           <Link to="/guide">Guía Completa</Link>
         </Button>

@@ -160,23 +160,23 @@ const DishNutritionChart: React.FC<DishNutritionChartProps> = ({ dish }) => {
               <h4 className="font-semibold text-gray-700">Ventajas Plant-Based:</h4>
               <ul className="space-y-1 text-sm">
                 {dish.veganVersion.nutritionInfo.fiber && dish.veganVersion.nutritionInfo.fiber > (dish.traditional.nutritionInfo.fiber || 0) && (
-                  <li className="flex items-center text-green-700">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                  <li className="flex items-center text-brand-primary">
+                    <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                     Mayor contenido de fibra (+{(dish.veganVersion.nutritionInfo.fiber - (dish.traditional.nutritionInfo.fiber || 0)).toFixed(1)}g)
                   </li>
                 )}
                 {dish.veganVersion.nutritionInfo.calories < dish.traditional.nutritionInfo.calories && (
-                  <li className="flex items-center text-green-700">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                  <li className="flex items-center text-brand-primary">
+                    <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                     Menor contenido calórico (-{(dish.traditional.nutritionInfo.calories - dish.veganVersion.nutritionInfo.calories)} kcal)
                   </li>
                 )}
-                <li className="flex items-center text-green-700">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <li className="flex items-center text-brand-primary">
+                  <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                   Libre de colesterol y lactosa
                 </li>
-                <li className="flex items-center text-green-700">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                <li className="flex items-center text-brand-primary">
+                  <span className="w-2 h-2 bg-brand-success rounded-full mr-2"></span>
                   Mayor contenido de antioxidantes
                 </li>
               </ul>

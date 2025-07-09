@@ -71,7 +71,7 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center space-y-4">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto text-green-600" />
+          <Loader2 className="w-8 h-8 animate-spin mx-auto text-brand-primary" />
           <p className="text-gray-600">Cargando comparaciones...</p>
         </div>
       </div>

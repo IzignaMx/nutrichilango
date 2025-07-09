@@ -28,17 +28,17 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
 
   const getDifficultyColor = (difficulty: string) => {
     const colors = {
-      easy: 'bg-green-100 text-green-800',
+      easy: 'bg-brand-primary-lighter text-brand-primary',
       medium: 'bg-yellow-100 text-yellow-800',
       hard: 'bg-red-100 text-red-800'
     };
-    return colors[difficulty as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    return colors[difficulty as keyof typeof colors] || 'bg-muted text-muted-foreground';
   };
 
   const getHealthScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-600';
+    if (score >= 80) return 'text-brand-success';
     if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
+    return 'text-destructive';
   };
 
   return (
@@ -131,25 +131,25 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
 
                 {/* Vegan Version */}
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-700 border-b pb-2 flex items-center">
-                    <ChefHat className="w-4 h-4 mr-2 text-green-600" />
+                  <h4 className="font-semibold text-muted-foreground border-b pb-2 flex items-center">
+                    <ChefHat className="w-4 h-4 mr-2 text-brand-primary" />
                     Versión Plant-Based
                   </h4>
                   <div className="space-y-2">
                     <div>
-                      <span className="text-sm text-gray-600">Platillo:</span>
+                      <span className="text-sm text-muted-foreground">Platillo:</span>
                       <p className="font-medium">{dish.veganVersion.name}</p>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <span className="text-sm text-gray-600">Precio estimado:</span>
-                        <p className="text-lg font-bold text-green-600">
+                        <span className="text-sm text-muted-foreground">Precio estimado:</span>
+                        <p className="text-lg font-bold text-brand-success">
                           ${dish.veganVersion.estimatedPrice.toFixed(2)}
                         </p>
                       </div>
                       <div>
-                        <span className="text-sm text-gray-600">Por porción:</span>
-                        <p className="text-lg font-bold text-green-600">
+                        <span className="text-sm text-muted-foreground">Por porción:</span>
+                        <p className="text-lg font-bold text-brand-success">
                           ${(dish.veganVersion.estimatedPrice / dish.veganVersion.servings).toFixed(2)}
                         </p>
                       </div>
@@ -173,7 +173,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                     <Button
                       variant="outline"
                       onClick={() => setShowRecipe(true)}
-                      className="w-full mt-3 text-green-600 border-green-600 hover:bg-green-50"
+                      className="w-full mt-3 text-brand-primary border-brand-primary hover:bg-brand-primary-lighter"
                     >
                       <BookOpen className="w-4 h-4 mr-2" />
                       Ver Receta Completa
@@ -187,14 +187,14 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
               <div className="text-center p-6 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100">
                 <div className="flex items-center justify-center mb-4">
                   {dish.priceDifferencePercent > 0 ? (
-                    <TrendingUp className="w-8 h-8 text-red-500 mr-3" />
+                    <TrendingUp className="w-8 h-8 text-destructive mr-3" />
                   ) : (
-                    <TrendingDown className="w-8 h-8 text-green-500 mr-3" />
+                    <TrendingDown className="w-8 h-8 text-brand-success mr-3" />
                   )}
                   <div>
-                    <span className="text-sm text-gray-600">Diferencia de precio:</span>
+                    <span className="text-sm text-muted-foreground">Diferencia de precio:</span>
                     <p className={`text-3xl font-bold ${
-                      dish.priceDifferencePercent > 0 ? 'text-red-600' : 'text-green-600'
+                      dish.priceDifferencePercent > 0 ? 'text-destructive' : 'text-brand-success'
                     }`}>
                       {dish.priceDifferencePercent > 0 ? '+' : ''}{dish.priceDifferencePercent.toFixed(1)}%
                     </p>
@@ -202,18 +202,18 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                  <div className="p-4 bg-white rounded-lg">
-                    <h5 className="text-sm font-medium text-gray-600 mb-2">Ahorro/Costo extra total:</h5>
+                  <div className="p-4 bg-background rounded-lg">
+                    <h5 className="text-sm font-medium text-muted-foreground mb-2">Ahorro/Costo extra total:</h5>
                     <p className={`text-xl font-bold ${
-                      dish.priceDifferencePercent > 0 ? 'text-red-600' : 'text-green-600'
+                      dish.priceDifferencePercent > 0 ? 'text-destructive' : 'text-brand-success'
                     }`}>
                       ${Math.abs(dish.veganVersion.estimatedPrice - dish.traditional.estimatedPrice).toFixed(2)} MXN
                     </p>
                   </div>
-                  <div className="p-4 bg-white rounded-lg">
-                    <h5 className="text-sm font-medium text-gray-600 mb-2">Por porción:</h5>
+                  <div className="p-4 bg-background rounded-lg">
+                    <h5 className="text-sm font-medium text-muted-foreground mb-2">Por porción:</h5>
                     <p className={`text-xl font-bold ${
-                      dish.priceDifferencePercent > 0 ? 'text-red-600' : 'text-green-600'
+                      dish.priceDifferencePercent > 0 ? 'text-destructive' : 'text-brand-success'
                     }`}>
                       ${Math.abs((dish.veganVersion.estimatedPrice / dish.veganVersion.servings) - 
                         (dish.traditional.estimatedPrice / dish.traditional.servings)).toFixed(2)} MXN
@@ -230,33 +230,33 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
             <TabsContent value="health" className="space-y-4 mt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-700 flex items-center">
-                    <Heart className="w-5 h-5 mr-2 text-green-600" />
+                  <h4 className="font-semibold text-muted-foreground flex items-center">
+                    <Heart className="w-5 h-5 mr-2 text-brand-primary" />
                     Beneficios Plant-Based
                   </h4>
                   <ul className="space-y-2">
                     {dish.healthBenefits.map((benefit, index) => (
                       <li key={index} className="flex items-start text-sm">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                        <span className="w-2 h-2 bg-brand-success rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
                         {benefit}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-700">Impacto Ambiental</h4>
+                  <h4 className="font-semibold text-muted-foreground">Impacto Ambiental</h4>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Reducción CO2:</span>
-                      <span className="font-medium text-green-600">-{dish.environmentalImpact.co2Reduction}%</span>
+                      <span className="text-sm text-muted-foreground">Reducción CO2:</span>
+                      <span className="font-medium text-brand-success">-{dish.environmentalImpact.co2Reduction}%</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Agua ahorrada:</span>
-                      <span className="font-medium text-green-600">-{dish.environmentalImpact.waterSaving}%</span>
+                      <span className="text-sm text-muted-foreground">Agua ahorrada:</span>
+                      <span className="font-medium text-brand-success">-{dish.environmentalImpact.waterSaving}%</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Tierra ahorrada:</span>
-                      <span className="font-medium text-green-600">-{dish.environmentalImpact.landSaving}%</span>
+                      <span className="text-sm text-muted-foreground">Tierra ahorrada:</span>
+                      <span className="font-medium text-brand-success">-{dish.environmentalImpact.landSaving}%</span>
                     </div>
                   </div>
                 </div>

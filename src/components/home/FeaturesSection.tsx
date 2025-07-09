@@ -14,8 +14,8 @@ const FeaturesSection: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="text-center h-full shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader>
-              <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <TrendingDown className="w-8 h-8 text-green-600" />
+              <div className="mx-auto w-16 h-16 bg-brand-primary-lighter rounded-full flex items-center justify-center mb-4">
+                <TrendingDown className="w-8 h-8 text-brand-primary" />
               </div>
               <CardTitle className="text-xl">Ahorra Dinero</CardTitle>
             </CardHeader>

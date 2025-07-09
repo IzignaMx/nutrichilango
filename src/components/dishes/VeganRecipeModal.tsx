@@ -20,8 +20,8 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-gray-800 flex items-center">
-            <ChefHat className="w-6 h-6 mr-2 text-green-600" />
+          <DialogTitle className="text-2xl font-bold text-foreground flex items-center">
+            <ChefHat className="w-6 h-6 mr-2 text-brand-primary" />
             {recipe.name} - Receta Plant-Based
           </DialogTitle>
         </DialogHeader>
@@ -52,7 +52,7 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
             </div>
             <div className="flex items-center space-x-2">
               <Badge className={
-                recipe.difficulty === 'easy' ? 'bg-green-100 text-green-800' :
+                recipe.difficulty === 'easy' ? 'bg-brand-primary-lighter text-brand-primary' :
                 recipe.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-800' :
                 'bg-red-100 text-red-800'
               }>
@@ -69,8 +69,8 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Ingredientes</CardTitle>
-                <p className="text-sm text-gray-600">
-                  Costo por porción: <span className="font-medium text-green-600">${costPerServing.toFixed(2)}</span>
+                <p className="text-sm text-muted-foreground">
+                  Costo por porción: <span className="font-medium text-brand-success">${costPerServing.toFixed(2)}</span>
                 </p>
               </CardHeader>
               <CardContent>
@@ -85,8 +85,8 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
                         <p className="text-xs text-gray-500">{ingredient.source}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium text-green-600">${ingredient.totalCost.toFixed(2)}</p>
-                        <p className="text-xs text-gray-500">${ingredient.pricePerUnit.toFixed(2)}/{ingredient.unit}</p>
+                        <p className="font-medium text-brand-success">${ingredient.totalCost.toFixed(2)}</p>
+                        <p className="text-xs text-muted-foreground">${ingredient.pricePerUnit.toFixed(2)}/{ingredient.unit}</p>
                       </div>
                     </div>
                   ))}
@@ -103,7 +103,7 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
                 <div className="space-y-4">
                   {recipe.instructions.map((instruction, index) => (
                     <div key={index} className="flex space-x-3">
-                      <div className="flex-shrink-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-medium">
+                      <div className="flex-shrink-0 w-6 h-6 bg-brand-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-medium">
                         {index + 1}
                       </div>
                       <p className="text-gray-700 leading-relaxed">{instruction}</p>
