@@ -8,15 +8,15 @@ import { Eye, Keyboard, Volume2, MousePointer, Smartphone, Globe } from 'lucide-
 
 const Accessibility: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen bg-gradient-to-br from-background via-brand-primary-lighter to-accent/20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-700 text-white py-16">
+      <div className="bg-gradient-to-r from-brand-primary via-brand-primary to-brand-primary-light text-primary-foreground py-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-200 to-pink-200 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-brand-accent to-brand-accent bg-clip-text text-transparent">
               Accesibilidad
             </h1>
-            <p className="text-xl text-indigo-100 leading-relaxed">
+            <p className="text-xl text-primary-foreground/90 leading-relaxed">
               Comprometidos con hacer nuestra plataforma accesible para todos los usuarios
             </p>
           </div>
@@ -26,16 +26,16 @@ const Accessibility: React.FC = () => {
       <div className="container mx-auto px-4 py-12">
         {/* Commitment */}
         <section className="mb-16" aria-labelledby="commitment-heading">
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+          <Card className="shadow-lg border-0 bg-card/80 backdrop-blur-sm">
             <CardHeader>
-              <CardTitle id="commitment-heading" className="text-3xl text-center text-indigo-800 flex items-center justify-center">
-                <Globe className="w-8 h-8 mr-3 text-indigo-600" aria-hidden="true" />
+              <CardTitle id="commitment-heading" className="text-3xl text-center text-brand-primary flex items-center justify-center">
+                <Globe className="w-8 h-8 mr-3 text-primary" aria-hidden="true" />
                 Nuestro Compromiso con la Accesibilidad
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center mb-8">
-                <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
+                <p className="text-lg text-foreground leading-relaxed max-w-4xl mx-auto">
                   Creemos que el acceso a información nutricional y de precios debe estar 
                   disponible para <strong>todos los usuarios</strong>, independientemente de 
                   sus capacidades físicas, cognitivas o tecnológicas.
@@ -65,12 +65,12 @@ const Accessibility: React.FC = () => {
 
         {/* Features */}
         <section className="mb-16" aria-labelledby="features-heading">
-          <h2 id="features-heading" className="text-3xl font-bold text-center mb-12 text-indigo-800">
+          <h2 id="features-heading" className="text-3xl font-bold text-center mb-12 text-brand-primary">
             Características de Accesibilidad
           </h2>
 
           <Tabs defaultValue="visual" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 bg-white/80 backdrop-blur-sm">
+            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 bg-card/80 backdrop-blur-sm">
               <TabsTrigger value="visual">Visual</TabsTrigger>
               <TabsTrigger value="keyboard">Teclado</TabsTrigger>
               <TabsTrigger value="screen-reader">Lectores</TabsTrigger>
@@ -80,9 +80,9 @@ const Accessibility: React.FC = () => {
             </TabsList>
 
             <TabsContent value="visual" className="space-y-6">
-              <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+              <Card className="shadow-lg border-0 bg-card/80 backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-blue-700">
+                  <CardTitle className="flex items-center text-primary">
                     <Eye className="w-6 h-6 mr-3" aria-hidden="true" />
                     Accesibilidad Visual
                   </CardTitle>
@@ -90,8 +90,8 @@ const Accessibility: React.FC = () => {
                 <CardContent className="space-y-6">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-blue-600 mb-3">Contraste y Colores</h4>
-                      <ul className="space-y-2 text-gray-600" role="list">
+                      <h4 className="font-semibold text-brand-primary mb-3">Contraste y Colores</h4>
+                      <ul className="space-y-2 text-muted-foreground" role="list">
                         <li>• Ratio de contraste mínimo 4.5:1 para texto normal</li>
                         <li>• Ratio de contraste mínimo 3:1 para elementos grandes</li>
                         <li>• AAA donde es posible (7:1)</li>
