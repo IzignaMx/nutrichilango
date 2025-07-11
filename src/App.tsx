@@ -27,9 +27,9 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen flex flex-col" id="top">
+          <div className="min-h-screen flex flex-col w-full" id="top">
             <Header />
-            <main className="flex-1">
+            <main className="flex-1 w-full">
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/dishes-comparison" element={<DishesComparison />} />

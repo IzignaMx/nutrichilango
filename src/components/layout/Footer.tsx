@@ -9,9 +9,9 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground mt-16" role="contentinfo">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground mt-8 md:mt-16" role="contentinfo">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Platform Information */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
         <Separator className="my-8 bg-primary-foreground/20" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center md:text-left">
           <div className="text-sm text-primary-foreground/70">
             <p>© {currentYear} NutriChilango. Todos los derechos reservados.</p>
             <p className="mt-1">
