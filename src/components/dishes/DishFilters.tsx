@@ -24,16 +24,16 @@ const DishFilters: React.FC<DishFiltersProps> = ({
   totalResults
 }) => {
   return (
-    <Card className="bg-white/90 backdrop-blur-sm">
-      <CardContent className="p-6">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div className="flex flex-col sm:flex-row gap-4 flex-1">
+    <Card className="bg-white/90 backdrop-blur-sm overflow-hidden">
+      <CardContent className="p-4 sm:p-6">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1">
             <div className="space-y-2">
               <label htmlFor="category-select" className="text-sm font-medium text-gray-700">
                 Categoría
               </label>
               <Select value={selectedCategory} onValueChange={onCategoryChange}>
-                <SelectTrigger id="category-select" className="w-full sm:w-[180px]">
+                <SelectTrigger id="category-select" className="w-full">
                   <SelectValue placeholder="Seleccionar categoría" />
                 </SelectTrigger>
                 <SelectContent>
@@ -49,7 +49,7 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                 Dificultad
               </label>
               <Select value={selectedDifficulty} onValueChange={onDifficultyChange}>
-                <SelectTrigger id="difficulty-select" className="w-full sm:w-[180px]">
+                <SelectTrigger id="difficulty-select" className="w-full">
                   <SelectValue placeholder="Seleccionar dificultad" />
                 </SelectTrigger>
                 <SelectContent>
@@ -66,7 +66,7 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                 Ordenar por
               </label>
               <Select value={sortBy} onValueChange={onSortChange}>
-                <SelectTrigger id="sort-select" className="w-full sm:w-[180px]">
+                <SelectTrigger id="sort-select" className="w-full">
                   <SelectValue placeholder="Ordenar por" />
                 </SelectTrigger>
                 <SelectContent>
@@ -78,8 +78,8 @@ const DishFilters: React.FC<DishFiltersProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Badge variant="secondary" className="text-sm">
+          <div className="flex items-center justify-center lg:justify-end">
+            <Badge variant="secondary" className="text-xs sm:text-sm whitespace-nowrap">
               {totalResults} platillos encontrados
             </Badge>
           </div>

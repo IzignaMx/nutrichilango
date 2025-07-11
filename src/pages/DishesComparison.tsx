@@ -42,38 +42,38 @@ const DishesComparison: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-600 to-green-800 text-white py-16 px-4">
+      <section className="bg-gradient-to-r from-green-600 to-green-800 text-white py-12 md:py-16 lg:py-20 px-4 sm:px-6">
         <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">
             Comparador de Platillos Plant-Based
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-green-100">
+          <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-green-100">
             Compara tus platillos favoritos tradicionales vs versiones veganas
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="space-y-2">
-              <div className="text-2xl font-bold">20+</div>
-              <div className="text-sm text-green-200">Platillos</div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center max-w-3xl mx-auto">
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-xl sm:text-2xl font-bold">20+</div>
+              <div className="text-xs sm:text-sm text-green-200">Platillos</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-2xl font-bold">100%</div>
-              <div className="text-sm text-green-200">Plant-Based</div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-xl sm:text-2xl font-bold">100%</div>
+              <div className="text-xs sm:text-sm text-green-200">Plant-Based</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-2xl font-bold">En Tiempo Real</div>
-              <div className="text-sm text-green-200">Precios</div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold">En Tiempo Real</div>
+              <div className="text-xs sm:text-sm text-green-200">Precios</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-2xl font-bold">CDMX</div>
-              <div className="text-sm text-green-200">Mercados</div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-xl sm:text-2xl font-bold">CDMX</div>
+              <div className="text-xs sm:text-sm text-green-200">Mercados</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <main className="py-12 px-4" role="main">
-        <div className="container mx-auto max-w-7xl space-y-8">
+      <main className="py-8 md:py-12 lg:py-16 px-4 sm:px-6" role="main">
+        <div className="container mx-auto max-w-7xl space-y-6 md:space-y-8">
           
           {/* Information Alert */}
           <Alert className="border-blue-200 bg-blue-50">

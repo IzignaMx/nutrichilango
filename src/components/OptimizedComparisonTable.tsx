@@ -69,10 +69,10 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
   // Loading state
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-12">
+      <div className="flex items-center justify-center py-8 md:py-12">
         <div className="text-center space-y-4">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto text-brand-primary" />
-          <p className="text-gray-600">Cargando comparaciones...</p>
+          <Loader2 className="w-6 h-6 md:w-8 md:h-8 animate-spin mx-auto text-brand-primary" />
+          <p className="text-sm md:text-base text-gray-600">Cargando comparaciones...</p>
         </div>
       </div>
     );
@@ -93,9 +93,9 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
   // Empty state
   if (!sortedProducts || sortedProducts.length === 0) {
     return (
-      <Card className="my-8">
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl text-gray-700">
+      <Card className="my-6 md:my-8">
+        <CardHeader className="text-center py-8 md:py-12">
+          <CardTitle className="text-lg md:text-xl text-gray-700">
             No se encontraron comparaciones
           </CardTitle>
           <CardDescription>

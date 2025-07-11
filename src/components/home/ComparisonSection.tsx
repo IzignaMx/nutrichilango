@@ -32,8 +32,8 @@ const ComparisonSection: React.FC<ComparisonSectionProps> = ({
   isLoading
 }) => {
   return (
-    <main className="py-12 px-4" role="main">
-      <div className="container mx-auto max-w-7xl space-y-8">
+    <main className="py-8 md:py-12 lg:py-16 px-4 sm:px-6" role="main">
+      <div className="container mx-auto max-w-7xl space-y-6 md:space-y-8">
         
         {/* Search and Filters */}
         <SearchAndFilters
@@ -59,11 +59,11 @@ const ComparisonSection: React.FC<ComparisonSectionProps> = ({
 
         {/* Comparisons Table */}
         <section id="comparisons" role="region" aria-labelledby="comparisons-heading">
-          <div className="mb-6">
-            <h2 id="comparisons-heading" className="text-2xl font-bold text-gray-900 mb-2">
+          <div className="mb-4 md:mb-6">
+            <h2 id="comparisons-heading" className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
               Comparaciones de Productos
             </h2>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Explora las comparaciones detalladas entre productos tradicionales y alternativas plant-based
             </p>
           </div>

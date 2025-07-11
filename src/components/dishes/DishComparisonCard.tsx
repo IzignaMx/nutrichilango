@@ -43,11 +43,11 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
 
   return (
     <>
-      <Card className="shadow-lg border-0 bg-white/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300">
-        <CardHeader className="pb-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-            <div className="flex-1">
-              <CardTitle className="text-xl mb-2 text-gray-800">
+      <Card className="shadow-lg border-0 bg-white/90 backdrop-blur-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <CardHeader className="pb-3 md:pb-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-3 sm:gap-4">
+            <div className="flex-1 min-w-0">
+              <CardTitle className="text-lg sm:text-xl mb-2 text-gray-800 break-words">
                 {dish.traditional.name} vs {dish.veganVersion.name}
               </CardTitle>
               <div className="flex flex-wrap items-center gap-2">
@@ -76,15 +76,15 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
 
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
-              <TabsTrigger value="overview">General</TabsTrigger>
-              <TabsTrigger value="price">Precio</TabsTrigger>
-              <TabsTrigger value="nutrition">Nutrición</TabsTrigger>
-              <TabsTrigger value="health">Salud</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+              <TabsTrigger value="overview" className="text-xs sm:text-sm">General</TabsTrigger>
+              <TabsTrigger value="price" className="text-xs sm:text-sm">Precio</TabsTrigger>
+              <TabsTrigger value="nutrition" className="text-xs sm:text-sm">Nutrición</TabsTrigger>
+              <TabsTrigger value="health" className="text-xs sm:text-sm">Salud</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="overview" className="space-y-4 mt-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <TabsContent value="overview" className="space-y-4 mt-4 sm:mt-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
                 {/* Traditional Dish */}
                 <div className="space-y-3">
                   <h4 className="font-semibold text-gray-700 border-b pb-2 flex items-center">
@@ -96,7 +96,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                       <span className="text-sm text-gray-600">Platillo:</span>
                       <p className="font-medium">{dish.traditional.name}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <span className="text-sm text-gray-600">Precio estimado:</span>
                         <p className="text-lg font-bold text-red-600">
@@ -110,7 +110,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                         </p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <span className="text-sm text-gray-600 flex items-center">
                           <Users className="w-3 h-3 mr-1" />
@@ -140,7 +140,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                       <span className="text-sm text-muted-foreground">Platillo:</span>
                       <p className="font-medium">{dish.veganVersion.name}</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <span className="text-sm text-muted-foreground">Precio estimado:</span>
                         <p className="text-lg font-bold text-brand-success">
@@ -154,7 +154,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                         </p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <span className="text-sm text-gray-600 flex items-center">
                           <Users className="w-3 h-3 mr-1" />
@@ -183,7 +183,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
               </div>
             </TabsContent>
 
-            <TabsContent value="price" className="space-y-4 mt-6">
+            <TabsContent value="price" className="space-y-4 mt-4 sm:mt-6">
               <div className="text-center p-6 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100">
                 <div className="flex items-center justify-center mb-4">
                   {dish.priceDifferencePercent > 0 ? (
@@ -201,7 +201,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-4">
                   <div className="p-4 bg-background rounded-lg">
                     <h5 className="text-sm font-medium text-muted-foreground mb-2">Ahorro/Costo extra total:</h5>
                     <p className={`text-xl font-bold ${
@@ -223,12 +223,12 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
               </div>
             </TabsContent>
 
-            <TabsContent value="nutrition" className="space-y-4 mt-6">
+            <TabsContent value="nutrition" className="space-y-4 mt-4 sm:mt-6">
               <DishNutritionChart dish={dish} />
             </TabsContent>
 
-            <TabsContent value="health" className="space-y-4 mt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <TabsContent value="health" className="space-y-4 mt-4 sm:mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-4">
                   <h4 className="font-semibold text-muted-foreground flex items-center">
                     <Heart className="w-5 h-5 mr-2 text-brand-primary" />

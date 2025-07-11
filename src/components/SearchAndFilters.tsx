@@ -43,12 +43,13 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
   const hasActiveFilters = searchQuery || comparisonFilter !== 'all' || selectedCategory !== 'all';
 
   return (
-    <Card className="w-full" id="search">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Search className="w-5 h-5 text-brand-primary" />
-            Buscar y Filtrar Productos
+    <Card className="w-full overflow-hidden" id="search">
+      <CardHeader className="pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+            <Search className="w-4 h-4 sm:w-5 sm:h-5 text-brand-primary" />
+            <span className="hidden sm:inline">Buscar y Filtrar Productos</span>
+            <span className="sm:hidden">Buscar</span>
           </CardTitle>
           <Badge variant="secondary" className="text-sm">
             {totalResults} resultados
@@ -56,7 +57,7 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
         </div>
       </CardHeader>
       
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 pt-0">
         {/* Search Input */}
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -84,14 +85,15 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
         {/* Advanced Filters Toggle */}
         <Collapsible open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
           <CollapsibleTrigger asChild>
-            <Button variant="outline" className="w-full gap-2">
+            <Button variant="outline" className="w-full gap-2 text-sm sm:text-base">
               <SlidersHorizontal className="w-4 h-4" />
-              {isFiltersOpen ? 'Ocultar Filtros' : 'Mostrar Filtros Avanzados'}
+              <span className="hidden sm:inline">{isFiltersOpen ? 'Ocultar Filtros' : 'Mostrar Filtros Avanzados'}</span>
+              <span className="sm:hidden">{isFiltersOpen ? 'Ocultar' : 'Filtros'}</span>
             </Button>
           </CollapsibleTrigger>
           
           <CollapsibleContent className="space-y-4 pt-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Sort By */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -169,8 +171,8 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
 
         {/* Active Filters Display */}
         {hasActiveFilters && (
-          <div className="flex flex-wrap gap-2">
-            <span className="text-sm text-gray-600">Filtros activos:</span>
+          <div className="flex flex-wrap gap-2 text-sm">
+            <span className="text-xs sm:text-sm text-gray-600">Filtros activos:</span>
             {searchQuery && (
               <Badge variant="secondary" className="gap-1">
                 Búsqueda: {searchQuery}
