@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { storeData } from '@/data';
 import HeroSection from '@/components/home/HeroSection';
 import FeaturesSection from '@/components/home/FeaturesSection';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
 import ComparisonSection from '@/components/home/ComparisonSection';
 import CallToActionSection from '@/components/home/CallToActionSection';
 
@@ -60,6 +61,8 @@ const Index: React.FC = () => {
       <HeroSection onScrollToComparisons={handleScrollToComparisons} />
       
       <FeaturesSection />
+
+      <TestimonialsSection />
 
       <ComparisonSection
         filteredData={filteredData}

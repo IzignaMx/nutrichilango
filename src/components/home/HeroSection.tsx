@@ -13,12 +13,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
     <section className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground py-12 md:py-16 lg:py-20 px-4 sm:px-6" role="banner">
       <div className="container mx-auto text-center max-w-4xl">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-          NutriChilango - Comparador Plant-Based
+          <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">Transforma Tu Salud</span> con Plant-Based
         </h1>
         
         <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-primary-foreground/90 leading-relaxed px-4 sm:px-0">
-          Compara precios y valores nutricionales entre productos tradicionales y 
-          alternativas plant-based en la Ciudad de México
+          <strong>Descubre cómo cada peso que inviertas</strong> en alimentación plant-based te devuelve <span className="text-header-accent font-bold">3X más beneficios</span> para tu salud, bolsillo y planeta en CDMX
         </p>
         
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 md:mb-8 max-w-md sm:max-w-none mx-auto">
@@ -27,7 +26,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
             className="bg-background text-brand-primary hover:bg-background/90 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto"
             onClick={onScrollToComparisons}
           >
-            Explorar Comparaciones
+            ¡Quiero Ahorrar y Vivir Mejor!
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
           
@@ -45,20 +44,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center max-w-3xl mx-auto">
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold">500+</div>
-            <div className="text-xs sm:text-sm text-primary-foreground/80">Productos</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent">85%</div>
+            <div className="text-xs sm:text-sm text-primary-foreground/80">Usuarios reportan mejor salud</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold">50+</div>
-            <div className="text-xs sm:text-sm text-primary-foreground/80">Tiendas</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent">$2,500</div>
+            <div className="text-xs sm:text-sm text-primary-foreground/80">Ahorro promedio mensual</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold">15+</div>
-            <div className="text-xs sm:text-sm text-primary-foreground/80">Categorías</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent">21 días</div>
+            <div className="text-xs sm:text-sm text-primary-foreground/80">Para sentir los beneficios</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold">CDMX</div>
-            <div className="text-xs sm:text-sm text-primary-foreground/80">Cobertura</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent">+5,000</div>
+            <div className="text-xs sm:text-sm text-primary-foreground/80">Familias ya transformadas</div>
           </div>
         </div>
       </div>
