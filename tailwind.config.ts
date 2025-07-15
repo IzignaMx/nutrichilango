@@ -68,6 +68,11 @@ export default {
 					'primary-lighter': 'hsl(var(--brand-primary-lighter))',
 					accent: 'hsl(var(--brand-accent))',
 					success: 'hsl(var(--brand-success))'
+				},
+				header: {
+					DEFAULT: 'hsl(var(--header-background))',
+					foreground: 'hsl(var(--header-foreground))',
+					accent: 'hsl(var(--header-accent))'
 				}
 			},
 			borderRadius: {

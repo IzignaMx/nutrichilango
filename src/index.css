@@ -24,6 +24,11 @@
     --brand-primary-lighter: 142 52% 96%; /* Green-50 equivalent */
     --brand-accent: 45 93% 58%;        /* Yellow-400 for highlights */
     --brand-success: 142 76% 36%;      /* Same as primary for consistency */
+    
+    /* Header specific colors for better contrast */
+    --header-background: 142 85% 25%;   /* Darker green for header */
+    --header-foreground: 0 0% 100%;     /* Pure white text */
+    --header-accent: 45 98% 65%;        /* Brighter yellow for header accents */
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -79,6 +84,11 @@
     --brand-primary-lighter: 142 25% 8%; /* Very dark green for backgrounds */
     --brand-accent: 45 93% 68%;        /* Brighter yellow for dark mode */
     --brand-success: 142 69% 48%;
+    
+    /* Header colors for dark mode */
+    --header-background: 142 45% 15%;   /* Even darker green for dark mode header */
+    --header-foreground: 0 0% 100%;     /* Pure white text */
+    --header-accent: 45 98% 75%;        /* Very bright yellow for dark mode */
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;

@@ -15,8 +15,6 @@ const Header: React.FC = () => {
   ];
 
   const resourcesItems = [
-    { name: 'Fuentes de Datos', href: '/data-sources' },
-    { name: '¿Cómo Funciona?', href: '/how-it-works' },
     { name: 'Guía Completa', href: '/guide' },
   ];
 
@@ -34,7 +32,7 @@ const Header: React.FC = () => {
     <ul className="md:flex md:space-x-6 space-y-0">
       {items.map((item) => (
         <li key={item.name}>
-          <Link to={item.href} className="hover:text-brand-accent transition-colors duration-200 text-sm md:text-base">
+          <Link to={item.href} className="hover:text-header-accent transition-colors duration-300 text-sm md:text-base font-medium hover:scale-105 transform transition-transform">
             {item.name}
           </Link>
         </li>
@@ -43,7 +41,7 @@ const Header: React.FC = () => {
   );
 
   return (
-    <header className="bg-brand-primary text-primary-foreground py-3 md:py-4 shadow-md sticky top-0 z-50">
+    <header className="bg-header text-header-foreground py-3 md:py-4 shadow-lg border-b border-white/10 sticky top-0 z-50 backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[60px]">
         
         <Link to="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
@@ -85,16 +83,16 @@ const Header: React.FC = () => {
 
       
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-t border-primary-foreground/20">
+        <div className="lg:hidden border-t border-white/20 bg-header/95 backdrop-blur-md">
           <div className="container mx-auto px-4 sm:px-6 py-4">
             <nav className="space-y-1">
               <div className="space-y-1">
-                <p className="text-xs font-semibold text-brand-accent uppercase tracking-wider mb-2">Principal</p>
+                <p className="text-xs font-semibold text-header-accent uppercase tracking-wider mb-2">Principal</p>
                 {mainNavItems.map((item) => (
                   <Link 
                     key={item.name}
                     to={item.href} 
-                    className="block py-2 px-3 rounded-md hover:bg-primary-foreground/10 hover:text-brand-accent transition-colors duration-200 text-sm"
+                    className="block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-header-accent transition-all duration-300 text-sm font-medium transform hover:translate-x-1"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -102,12 +100,12 @@ const Header: React.FC = () => {
                 ))}
               </div>
               <div className="space-y-1 pt-3">
-                <p className="text-xs font-semibold text-brand-accent uppercase tracking-wider mb-2">Recursos</p>
+                <p className="text-xs font-semibold text-header-accent uppercase tracking-wider mb-2">Recursos</p>
                 {resourcesItems.map((item) => (
                   <Link 
                     key={item.name}
                     to={item.href} 
-                    className="block py-2 px-3 rounded-md hover:bg-primary-foreground/10 hover:text-brand-accent transition-colors duration-200 text-sm"
+                    className="block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-header-accent transition-all duration-300 text-sm font-medium transform hover:translate-x-1"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -115,12 +113,12 @@ const Header: React.FC = () => {
                 ))}
               </div>
               <div className="space-y-1 pt-3">
-                <p className="text-xs font-semibold text-brand-accent uppercase tracking-wider mb-2">Legal</p>
+                <p className="text-xs font-semibold text-header-accent uppercase tracking-wider mb-2">Legal</p>
                 {legalItems.map((item) => (
                   <Link 
                     key={item.name}
                     to={item.href} 
-                    className="block py-2 px-3 rounded-md hover:bg-primary-foreground/10 hover:text-brand-accent transition-colors duration-200 text-sm"
+                    className="block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-header-accent transition-all duration-300 text-sm font-medium transform hover:translate-x-1"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
