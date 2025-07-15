@@ -804,5 +804,328 @@ export const dishesData: DishComparison[] = [
       waterSaving: 90,
       landSaving: 88
     }
+  },
+  {
+    id: 'picadillo-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Picadillo Tradicional con Carne',
+      estimatedPrice: 85.00,
+      servings: 4,
+      prepTime: '40 min',
+      nutritionInfo: {
+        calories: 420,
+        protein: 22,
+        carbs: 18,
+        fat: 28,
+        fiber: 3,
+        calcium: 60,
+        iron: 3.8
+      }
+    },
+    veganVersion: {
+      name: 'Picadillo de Soya Texturizada Tradicional',
+      description: 'Picadillo casero con soya texturizada gruesa, papas, zanahoria y chícharos en salsa de tomate con especias tradicionales mexicanas. Mayor proteína que la carne.',
+      estimatedPrice: 52.80,
+      servings: 4,
+      prepTime: '35 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Soya texturizada gruesa', amount: 180, unit: 'g', pricePerUnit: 0.06, totalCost: 10.80, source: 'A granel Central de Abastos' },
+        { name: 'Papas criollas', amount: 3, unit: 'piezas medianas', pricePerUnit: 2.50, totalCost: 7.50, source: 'Central de Abastos' },
+        { name: 'Zanahoria', amount: 2, unit: 'piezas', pricePerUnit: 2.00, totalCost: 4.00, source: 'Central de Abastos' },
+        { name: 'Chícharos verdes', amount: 100, unit: 'g', pricePerUnit: 0.08, totalCost: 8.00, source: 'Central de Abastos' },
+        { name: 'Tomates guaje', amount: 4, unit: 'piezas', pricePerUnit: 2.50, totalCost: 10.00, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca', amount: 1, unit: 'pieza', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 3, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Caldo de verduras concentrado', amount: 300, unit: 'ml', pricePerUnit: 0.015, totalCost: 4.50, source: 'Preparación casera' },
+        { name: 'Aceite vegetal', amount: 2, unit: 'cucharadas', pricePerUnit: 0.80, totalCost: 1.60, source: 'Mercado local' },
+        { name: 'Comino molido', amount: 1, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Sal y pimienta', amount: 1, unit: 'porción', pricePerUnit: 0.50, totalCost: 0.50, source: 'Despensa' }
+      ],
+      instructions: [
+        'Hidrata la soya texturizada con caldo vegetal caliente por 20 minutos.',
+        'Corta las papas y zanahoria en cubos pequeños, iguales.',
+        'Blanquea los tomates, pélalos y pícalos finamente.',
+        'Sofríe cebolla y ajo picados en aceite hasta cristalinos.',
+        'Agrega la soya escurrida y sofríe 5 minutos hasta dorar ligeramente.',
+        'Incorpora tomate picado, cocina hasta que se reduzca.',
+        'Añade papas, zanahoria y sazona con sal, pimienta y comino.',
+        'Agrega un poco de caldo, tapa y cocina 15 minutos a fuego medio.',
+        'Incorpora los chícharos en los últimos 5 minutos de cocción.',
+        'Sirve caliente acompañado de tortillas de maíz o arroz blanco.'
+      ],
+      nutritionInfo: {
+        calories: 310,
+        protein: 28,
+        carbs: 32,
+        fat: 8,
+        fiber: 12,
+        calcium: 95,
+        iron: 6.2
+      }
+    },
+    priceDifferencePercent: -37.9,
+    healthScore: 88,
+    healthBenefits: [
+      'Proteína superior a la carne (28g vs 22g) con menos grasa',
+      'Rica en fibra que mejora la digestión y saciedad',
+      'Alto contenido de hierro de fácil absorción',
+      'Libre de colesterol y grasas saturadas',
+      'Carbohidratos complejos de las papas para energía sostenida',
+      'Vitaminas del complejo B de la soya texturizada'
+    ],
+    environmentalImpact: {
+      co2Reduction: 72,
+      waterSaving: 68,
+      landSaving: 75
+    }
+  },
+  {
+    id: 'chiles-rellenos-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Chiles Rellenos de Queso',
+      estimatedPrice: 110.00,
+      servings: 4,
+      prepTime: '60 min',
+      nutritionInfo: {
+        calories: 485,
+        protein: 18,
+        carbs: 22,
+        fat: 36,
+        fiber: 4,
+        calcium: 320,
+        iron: 2.5
+      }
+    },
+    veganVersion: {
+      name: 'Chiles Poblanos Rellenos de Soya y Queso Vegano',
+      description: 'Chiles poblanos rellenos de mezcla proteica de soya texturizada, verduras y queso vegano casero, capeados en harina de garbanzo y servidos en caldillo de tomate.',
+      estimatedPrice: 78.90,
+      servings: 4,
+      prepTime: '55 min',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Chiles poblanos grandes', amount: 4, unit: 'piezas', pricePerUnit: 4.50, totalCost: 18.00, source: 'Central de Abastos' },
+        { name: 'Soya texturizada fina', amount: 120, unit: 'g', pricePerUnit: 0.06, totalCost: 7.20, source: 'A granel Central de Abastos' },
+        { name: 'Queso vegano rallado casero', amount: 150, unit: 'g', pricePerUnit: 0.08, totalCost: 12.00, source: 'Preparación casera' },
+        { name: 'Cebolla blanca', amount: 0.5, unit: 'pieza', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Zanahoria', amount: 1, unit: 'pieza pequeña', pricePerUnit: 1.50, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Calabacita', amount: 1, unit: 'pieza pequeña', pricePerUnit: 2.50, totalCost: 2.50, source: 'Central de Abastos' },
+        { name: 'Tomates guaje', amount: 4, unit: 'piezas', pricePerUnit: 2.50, totalCost: 10.00, source: 'Central de Abastos' },
+        { name: 'Harina de garbanzo', amount: 100, unit: 'g', pricePerUnit: 0.055, totalCost: 5.50, source: 'A granel Central de Abastos' },
+        { name: 'Caldo de verduras', amount: 400, unit: 'ml', pricePerUnit: 0.015, totalCost: 6.00, source: 'Preparación casera' },
+        { name: 'Ajo', amount: 3, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Aceite vegetal para freír', amount: 200, unit: 'ml', pricePerUnit: 0.035, totalCost: 7.00, source: 'Mercado local' },
+        { name: 'Sal, pimienta y especias', amount: 1, unit: 'porción', pricePerUnit: 1.50, totalCost: 1.50, source: 'Despensa' },
+        { name: 'Aquafaba (agua de garbanzos)', amount: 3, unit: 'cucharadas', pricePerUnit: 0.50, totalCost: 1.50, source: 'Conserva casera' },
+        { name: 'Polvo para hornear', amount: 1, unit: 'cucharadita', pricePerUnit: 2.00, totalCost: 2.00, source: 'Mercado local' },
+        { name: 'Cilantro fresco', amount: 2, unit: 'cucharadas', pricePerUnit: 1.00, totalCost: 2.00, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Asa los chiles poblanos sobre flama directa hasta que la piel se ampolle.',
+        'Colócalos en bolsa de plástico 10 minutos, pela cuidadosamente.',
+        'Haz un corte lateral y retira semillas y venas sin romper.',
+        'Hidrata la soya texturizada con caldo caliente por 20 minutos.',
+        'Sofríe cebolla, ajo y verduras picadas hasta tiernas.',
+        'Agrega soya escurrida, cocina 5 minutos y sazona bien.',
+        'Incorpora la mitad del queso vegano a la mezcla, enfría.',
+        'Rellena cada chile con la mezcla y cierra con palillos.',
+        'Prepara caldillo: licúa tomates asados con ajo, cuela y cocina.',
+        'Para capear: bate aquafaba hasta espumar, mezcla con harina de garbanzo y polvo para hornear.',
+        'Pasa chiles por la mezcla y fríe en aceite caliente hasta dorar.',
+        'Sirve en caldillo caliente, espolvorea queso vegano restante y cilantro.'
+      ],
+      nutritionInfo: {
+        calories: 385,
+        protein: 26,
+        carbs: 28,
+        fat: 20,
+        fiber: 11,
+        calcium: 180,
+        iron: 5.8
+      }
+    },
+    priceDifferencePercent: -28.3,
+    healthScore: 86,
+    healthBenefits: [
+      'Mayor proteína que la versión tradicional (26g vs 18g)',
+      'Rico en fibra de verduras y chiles poblanos',
+      'Libre de colesterol y menor contenido de grasa saturada',
+      'Vitamina C abundante de los chiles poblanos',
+      'Hierro biodisponible de la soya texturizada',
+      'Antioxidantes naturales de chiles y tomates'
+    ],
+    environmentalImpact: {
+      co2Reduction: 68,
+      waterSaving: 55,
+      landSaving: 62
+    }
+  },
+  {
+    id: 'tacos-pastor-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Tacos al Pastor (5 piezas)',
+      estimatedPrice: 75.00,
+      servings: 2,
+      prepTime: '20 min',
+      nutritionInfo: {
+        calories: 520,
+        protein: 24,
+        carbs: 35,
+        fat: 32,
+        fiber: 3,
+        calcium: 85,
+        iron: 3.2
+      }
+    },
+    veganVersion: {
+      name: 'Tacos de Soya al Pastor Tradicional',
+      description: 'Tacos con soya texturizada marinada en achiote y chiles, cocida al estilo pastor con piña asada. Más proteína que el cerdo tradicional.',
+      estimatedPrice: 48.70,
+      servings: 2,
+      prepTime: '45 min + marinado',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Soya texturizada gruesa', amount: 150, unit: 'g', pricePerUnit: 0.06, totalCost: 9.00, source: 'A granel Central de Abastos' },
+        { name: 'Tortillas de maíz pequeñas', amount: 10, unit: 'piezas', pricePerUnit: 0.80, totalCost: 8.00, source: 'Tortillería local' },
+        { name: 'Chiles guajillo', amount: 4, unit: 'piezas', pricePerUnit: 1.50, totalCost: 6.00, source: 'Central de Abastos' },
+        { name: 'Chile chipotle', amount: 2, unit: 'piezas', pricePerUnit: 2.00, totalCost: 4.00, source: 'Central de Abastos' },
+        { name: 'Achiote en pasta', amount: 15, unit: 'g', pricePerUnit: 0.18, totalCost: 2.70, source: 'Central de Abastos' },
+        { name: 'Piña madura', amount: 2, unit: 'rebanadas', pricePerUnit: 3.00, totalCost: 6.00, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca', amount: 0.5, unit: 'pieza', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 4, unit: 'dientes', pricePerUnit: 0.25, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Vinagre de manzana', amount: 2, unit: 'cucharadas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Mercado local' },
+        { name: 'Caldo vegetal concentrado', amount: 200, unit: 'ml', pricePerUnit: 0.015, totalCost: 3.00, source: 'Preparación casera' },
+        { name: 'Aceite vegetal', amount: 2, unit: 'cucharadas', pricePerUnit: 0.80, totalCost: 1.60, source: 'Mercado local' },
+        { name: 'Sal y pimienta', amount: 1, unit: 'porción', pricePerUnit: 0.50, totalCost: 0.50, source: 'Despensa' },
+        { name: 'Cilantro y cebolla para servir', amount: 1, unit: 'porción', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Salsa verde', amount: 50, unit: 'ml', pricePerUnit: 0.02, totalCost: 1.00, source: 'Preparación casera' },
+        { name: 'Limones', amount: 2, unit: 'piezas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Desvenena los chiles, ásalos en comal seco hasta aromatizar.',
+        'Remoja los chiles en agua caliente por 20 minutos hasta suavizar.',
+        'Licúa chiles escurridos con ajo, achiote, vinagre y un poco de agua.',
+        'Hidrata la soya texturizada con caldo vegetal caliente por 30 minutos.',
+        'Marina la soya escurrida con la salsa de chiles por 2 horas mínimo.',
+        'Asa las rebanadas de piña en comal hasta caramelizar, reserva.',
+        'En sartén con aceite, sofríe la soya marinada a fuego medio-alto.',
+        'Cocina moviendo frecuentemente hasta que se dore y concentre, 15 minutos.',
+        'Agrega la piña picada en cubitos en los últimos 3 minutos.',
+        'Calienta las tortillas en comal hasta suaves y aromáticas.',
+        'Sirve la soya al pastor en tortillas calientes.',
+        'Acompaña con cebolla picada, cilantro, salsa verde y limón.'
+      ],
+      nutritionInfo: {
+        calories: 420,
+        protein: 32,
+        carbs: 48,
+        fat: 12,
+        fiber: 14,
+        calcium: 110,
+        iron: 6.8
+      }
+    },
+    priceDifferencePercent: -35.1,
+    healthScore: 90,
+    healthBenefits: [
+      'Proteína superior al cerdo (32g vs 24g) con menos grasa',
+      'Alto contenido de fibra que mejora la digestión',
+      'Rico en hierro biodisponible de la soya',
+      'Libre de colesterol y grasas saturadas',
+      'Vitamina C de la piña que mejora absorción de hierro',
+      'Antioxidantes potentes de chiles tradicionales'
+    ],
+    environmentalImpact: {
+      co2Reduction: 80,
+      waterSaving: 75,
+      landSaving: 78
+    }
+  },
+  {
+    id: 'sopes-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Sopes con Carne Molida (3 piezas)',
+      estimatedPrice: 65.00,
+      servings: 2,
+      prepTime: '35 min',
+      nutritionInfo: {
+        calories: 445,
+        protein: 20,
+        carbs: 28,
+        fat: 26,
+        fiber: 4,
+        calcium: 140,
+        iron: 2.8
+      }
+    },
+    veganVersion: {
+      name: 'Sopes de Soya Texturizada Tradicionales',
+      description: 'Sopes caseros de masa de maíz con soya texturizada sazonada, frijoles refritos, lechuga, crema vegetal y queso rallado vegano. Rica en proteína.',
+      estimatedPrice: 42.80,
+      servings: 2,
+      prepTime: '40 min',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Masa de maíz para tortillas', amount: 300, unit: 'g', pricePerUnit: 0.012, totalCost: 3.60, source: 'Tortillería local' },
+        { name: 'Soya texturizada fina', amount: 100, unit: 'g', pricePerUnit: 0.06, totalCost: 6.00, source: 'A granel Central de Abastos' },
+        { name: 'Frijoles negros cocidos', amount: 150, unit: 'g', pricePerUnit: 0.025, totalCost: 3.75, source: 'Cocción casera' },
+        { name: 'Lechuga orejona', amount: 6, unit: 'hojas', pricePerUnit: 0.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Tomate rojo', amount: 1, unit: 'pieza', pricePerUnit: 2.50, totalCost: 2.50, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca', amount: 0.3, unit: 'pieza', pricePerUnit: 3.00, totalCost: 0.90, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 2, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.50, source: 'Central de Abastos' },
+        { name: 'Caldo vegetal', amount: 150, unit: 'ml', pricePerUnit: 0.015, totalCost: 2.25, source: 'Preparación casera' },
+        { name: 'Crema vegetal casera', amount: 3, unit: 'cucharadas', pricePerUnit: 0.60, totalCost: 1.80, source: 'Preparación casera' },
+        { name: 'Queso vegano rallado', amount: 60, unit: 'g', pricePerUnit: 0.08, totalCost: 4.80, source: 'Preparación casera' },
+        { name: 'Aceite vegetal', amount: 3, unit: 'cucharadas', pricePerUnit: 0.80, totalCost: 2.40, source: 'Mercado local' },
+        { name: 'Comino molido', amount: 1, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Pimentón dulce', amount: 1, unit: 'cucharadita', pricePerUnit: 2.50, totalCost: 2.50, source: 'Central de Abastos' },
+        { name: 'Sal, pimienta y orégano', amount: 1, unit: 'porción', pricePerUnit: 1.00, totalCost: 1.00, source: 'Despensa' },
+        { name: 'Salsa roja casera', amount: 3, unit: 'cucharadas', pricePerUnit: 0.50, totalCost: 1.50, source: 'Preparación casera' },
+        { name: 'Rábanos', amount: 3, unit: 'piezas', pricePerUnit: 0.50, totalCost: 1.50, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Forma pequeñas tortillas gruesas con la masa de maíz.',
+        'Cuece en comal caliente 3 minutos por lado hasta formar costra.',
+        'Pellizca los bordes para formar muros alrededor de cada sope.',
+        'Hidrata la soya texturizada con caldo vegetal caliente por 20 minutos.',
+        'Sofríe cebolla y ajo picados en aceite hasta cristalinos.',
+        'Agrega la soya escurrida, comino, pimentón y sazona bien.',
+        'Cocina la soya moviendo frecuentemente hasta dorar, 8 minutos.',
+        'Calienta los frijoles y machaca ligeramente para cremosidad.',
+        'Fríe ligeramente los sopes en aceite hasta dorar por fuera.',
+        'Unta cada sope con frijoles refritos calientes.',
+        'Cubre con la soya sazonada y verduras frescas.',
+        'Corona con crema vegetal, queso rallado vegano y salsa al gusto.'
+      ],
+      nutritionInfo: {
+        calories: 385,
+        protein: 26,
+        carbs: 42,
+        fat: 14,
+        fiber: 12,
+        calcium: 165,
+        iron: 5.5
+      }
+    },
+    priceDifferencePercent: -34.2,
+    healthScore: 87,
+    healthBenefits: [
+      'Mayor proteína que la carne molida (26g vs 20g)',
+      'Rica en fibra de frijoles y verduras frescas',
+      'Hierro de fácil absorción de la soya texturizada',
+      'Libre de colesterol y menor en grasas saturadas',
+      'Carbohidratos complejos del maíz para energía sostenida',
+      'Probióticos naturales de los frijoles fermentados'
+    ],
+    environmentalImpact: {
+      co2Reduction: 76,
+      waterSaving: 70,
+      landSaving: 72
+    }
   }
 ];
