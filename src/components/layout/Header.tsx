@@ -29,10 +29,10 @@ const Header: React.FC = () => {
   };
 
   const NavItems: React.FC<{ items: { name: string; href: string; }[] }> = ({ items }) => (
-    <ul className="md:flex md:space-x-6 space-y-0">
+    <ul className="flex space-x-6 lg:space-x-8">
       {items.map((item) => (
         <li key={item.name}>
-          <Link to={item.href} className="hover:text-header-accent transition-colors duration-300 text-sm md:text-base font-medium hover:scale-105 transform transition-transform">
+          <Link to={item.href} className="hover:text-header-accent transition-colors duration-300 text-sm md:text-base font-medium hover:scale-105 transform transition-transform px-2 py-1 rounded-md">
             {item.name}
           </Link>
         </li>
@@ -54,9 +54,13 @@ const Header: React.FC = () => {
         </Link>
 
         
-        <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-grow justify-center">
-          <NavItems items={mainNavItems} />
-          <NavItems items={resourcesItems} />
+        <div className="hidden lg:flex items-center space-x-8 xl:space-x-10 flex-grow justify-center">
+          <div className="flex items-center space-x-8">
+            <NavItems items={mainNavItems} />
+          </div>
+          <div className="flex items-center space-x-8">
+            <NavItems items={resourcesItems} />
+          </div>
         </div>
 
         
