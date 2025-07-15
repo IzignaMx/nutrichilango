@@ -81,8 +81,8 @@ const DishNutritionChart: React.FC<DishNutritionChartProps> = ({ dish }) => {
               />
               <YAxis tick={{ fontSize: 12 }} />
               <Tooltip 
-                formatter={(value, name) => [
-                  `${value}${name === 'Calorías' ? ' kcal' : ''}`,
+                formatter={(value, name, props) => [
+                  `${value}${props.payload.nutrient === 'Calorías' ? ' kcal' : ''}`,
                   name === 'tradicional' ? 'Versión Tradicional' : 'Versión Plant-Based'
                 ]}
                 labelStyle={{ color: '#374151' }}
