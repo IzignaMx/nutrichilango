@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { SkipLink } from '@/components/ui/skip-link';
 
 interface HeroSectionProps {
   onScrollToComparisons: () => void;
@@ -10,9 +11,13 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
   return (
-    <section className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground py-12 md:py-16 lg:py-20 px-4 sm:px-6" role="banner">
-      <div className="container mx-auto text-center max-w-4xl">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+    <>
+      <SkipLink targetId="main-content">
+        Saltar al contenido principal
+      </SkipLink>
+      <section className="bg-gradient-to-r from-brand-primary to-brand-primary-light text-primary-foreground py-12 md:py-16 lg:py-20 px-4 sm:px-6" role="banner" aria-labelledby="hero-heading">
+        <div className="container mx-auto text-center max-w-4xl">
+        <h1 id="hero-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
           <span className="bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">Transforma Tu Salud</span> con Plant-Based
         </h1>
         
@@ -25,10 +30,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
             size="lg" 
             className="bg-background text-brand-primary hover:bg-background/90 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto"
             onClick={onScrollToComparisons}
+            aria-describedby="hero-cta-description"
           >
             ¡Quiero Ahorrar y Vivir Mejor!
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
           </Button>
+          <span id="hero-cta-description" className="sr-only">
+            Ver comparaciones de precios y productos plant-based
+          </span>
           
           <Button 
             variant="outline" 
@@ -36,32 +45,41 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
             asChild
             className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-brand-primary px-8 py-3 text-lg font-semibold"
           >
-            <Link to="/how-it-works">
+            <Link to="/how-it-works" aria-describedby="how-it-works-description">
               ¿Cómo Funciona?
             </Link>
           </Button>
+          <span id="how-it-works-description" className="sr-only">
+            Aprende cómo funciona nuestra plataforma de comparación
+          </span>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center max-w-3xl mx-auto">
+        <div 
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center max-w-3xl mx-auto" 
+          role="region" 
+          aria-labelledby="statistics-heading"
+        >
+          <h2 id="statistics-heading" className="sr-only">Estadísticas de éxito</h2>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent">85%</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="85 por ciento">85%</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Usuarios reportan mejor salud</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent">$2,500</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="2500 pesos">$2,500</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Ahorro promedio mensual</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent">21 días</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="21 días">21 días</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Para sentir los beneficios</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent">+5,000</div>
+            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="más de 5000">+5,000</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Familias ya transformadas</div>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 

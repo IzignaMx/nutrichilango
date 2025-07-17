@@ -57,14 +57,15 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-brand-primary-lighter to-background">
       <HeroSection onScrollToComparisons={handleScrollToComparisons} />
       
       <FeaturesSection />
 
       <TestimonialsSection />
 
-      <ComparisonSection
+      <main id="main-content">
+        <ComparisonSection
         filteredData={filteredData}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -75,11 +76,12 @@ const Index: React.FC = () => {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
         isLoading={isLoading}
-      />
-
-      <div className="container mx-auto max-w-7xl px-4 pb-12">
-        <CallToActionSection />
-      </div>
+        />
+        
+        <div className="container mx-auto max-w-7xl px-4 pb-12">
+          <CallToActionSection />
+        </div>
+      </main>
     </div>
   );
 };

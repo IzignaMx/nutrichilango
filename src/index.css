@@ -18,17 +18,23 @@
     --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
     
-    /* NutriChilango Brand Colors */
-    --brand-primary: 142 76% 36%;      /* Green-700 equivalent */
-    --brand-primary-light: 142 69% 48%; /* Green-600 equivalent */
-    --brand-primary-lighter: 142 52% 96%; /* Green-50 equivalent */
-    --brand-accent: 45 93% 58%;        /* Yellow-400 for highlights */
-    --brand-success: 142 76% 36%;      /* Same as primary for consistency */
+    /* NutriChilango Brand Colors - Improved accessibility */
+    --brand-primary: 142 85% 25%;      /* Darker for better contrast */
+    --brand-primary-light: 142 70% 40%; /* Adjusted for accessibility */
+    --brand-primary-lighter: 142 45% 95%; /* Light background variant */
+    --brand-accent: 45 90% 50%;        /* Adjusted yellow for better contrast */
+    --brand-success: 142 85% 30%;      /* Success green with better contrast */
     
-    /* Header specific colors for better contrast */
-    --header-background: 142 90% 20%;   /* Much darker green for better logo contrast */
+    /* Header specific colors with enhanced contrast */
+    --header-background: 142 95% 18%;   /* Very dark green for optimal logo contrast */
     --header-foreground: 0 0% 100%;     /* Pure white text */
-    --header-accent: 45 100% 70%;       /* Bright yellow for header accents */
+    --header-accent: 45 100% 75%;       /* Accessible yellow accent */
+    
+    /* Semantic colors for accessibility */
+    --success: var(--brand-success);
+    --info: 210 100% 45%;
+    --warning: 45 100% 45%;
+    --error: 0 85% 50%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -48,21 +54,15 @@
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar colors with brand consistency and improved contrast */
+    --sidebar-background: 142 20% 97%;
+    --sidebar-foreground: 142 15% 20%;
+    --sidebar-primary: var(--brand-primary);
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 142 25% 90%;
+    --sidebar-accent-foreground: 142 20% 15%;
+    --sidebar-border: 142 20% 85%;
+    --sidebar-ring: var(--brand-primary);
   }
 
   .dark {
