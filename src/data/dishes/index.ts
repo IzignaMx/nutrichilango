@@ -1127,5 +1127,422 @@ export const dishesData: DishComparison[] = [
       waterSaving: 70,
       landSaving: 72
     }
+  },
+  {
+    id: 'milanesas-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Milanesas de Res Empanizadas',
+      estimatedPrice: 125.00,
+      servings: 4,
+      prepTime: '30 min',
+      nutritionInfo: {
+        calories: 520,
+        protein: 28,
+        carbs: 22,
+        fat: 35,
+        fiber: 2,
+        calcium: 85,
+        iron: 3.5
+      }
+    },
+    veganVersion: {
+      name: 'Milanesas de Soya Texturizada Empanizadas',
+      description: 'Milanesas plant-based hechas con soya texturizada gruesa, empanizadas con pan molido casero y especias. Más proteína que las tradicionales.',
+      estimatedPrice: 78.40,
+      servings: 4,
+      prepTime: '35 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Soya texturizada gruesa', amount: 200, unit: 'g', pricePerUnit: 0.06, totalCost: 12.00, source: 'A granel Central de Abastos' },
+        { name: 'Harina de trigo integral', amount: 100, unit: 'g', pricePerUnit: 0.018, totalCost: 1.80, source: 'A granel Central de Abastos' },
+        { name: 'Pan tostado molido', amount: 150, unit: 'g', pricePerUnit: 0.025, totalCost: 3.75, source: 'Preparación casera' },
+        { name: 'Aquafaba (agua de garbanzos)', amount: 100, unit: 'ml', pricePerUnit: 0.008, totalCost: 0.80, source: 'Conserva casera' },
+        { name: 'Caldo vegetal concentrado', amount: 400, unit: 'ml', pricePerUnit: 0.015, totalCost: 6.00, source: 'Preparación casera' },
+        { name: 'Proteína de chícharo', amount: 30, unit: 'g', pricePerUnit: 0.12, totalCost: 3.60, source: 'Tienda naturista' },
+        { name: 'Gluten vital', amount: 40, unit: 'g', pricePerUnit: 0.085, totalCost: 3.40, source: 'Tienda naturista' },
+        { name: 'Cebolla en polvo', amount: 2, unit: 'cucharaditas', pricePerUnit: 1.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Ajo en polvo', amount: 1, unit: 'cucharadita', pricePerUnit: 2.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Paprika ahumada', amount: 1, unit: 'cucharadita', pricePerUnit: 3.50, totalCost: 3.50, source: 'Central de Abastos' },
+        { name: 'Comino molido', amount: 0.5, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Sal marina', amount: 2, unit: 'cucharaditas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Pimienta negra', amount: 1, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Aceite vegetal para freír', amount: 200, unit: 'ml', pricePerUnit: 0.035, totalCost: 7.00, source: 'Mercado local' },
+        { name: 'Limones', amount: 2, unit: 'piezas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Perejil fresco', amount: 1, unit: 'manojo', pricePerUnit: 2.00, totalCost: 2.00, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Hidrata la soya texturizada con caldo vegetal caliente especiado por 30 minutos.',
+        'Mezcla proteína de chícharo y gluten vital con un poco de caldo hasta formar pasta.',
+        'Escurre la soya y mézcla con la pasta proteica, ajo, cebolla en polvo y especias.',
+        'Amasa la mezcla hasta conseguir consistencia firme y maleable.',
+        'Forma 8 milanesas ovaladas de 1 cm de grosor, compacta bien.',
+        'Refrigera las milanesas 20 minutos para que mantengan la forma.',
+        'Prepara estación de empanizado: harina, aquafaba batida, pan molido con especias.',
+        'Pasa cada milanesa por harina, aquafaba y pan molido, presiona bien.',
+        'Calienta aceite a 180°C, fríe milanesas 4-5 minutos por lado hasta dorar.',
+        'Escurre sobre papel absorbente para eliminar exceso de aceite.',
+        'Sirve calientes con limón, perejil picado y guarnición al gusto.'
+      ],
+      nutritionInfo: {
+        calories: 415,
+        protein: 35,
+        carbs: 38,
+        fat: 18,
+        fiber: 10,
+        calcium: 120,
+        iron: 7.2
+      }
+    },
+    priceDifferencePercent: -37.3,
+    healthScore: 89,
+    healthBenefits: [
+      'Proteína superior a la carne (35g vs 28g) con menos grasas saturadas',
+      'Rico en hierro biodisponible de la soya texturizada',
+      'Alto contenido de fibra que mejora la digestión',
+      'Libre de colesterol y antibióticos',
+      'Proteína completa con todos los aminoácidos esenciales',
+      'Menor contenido calórico con mayor saciedad'
+    ],
+    environmentalImpact: {
+      co2Reduction: 78,
+      waterSaving: 82,
+      landSaving: 80
+    }
+  },
+  {
+    id: 'albondigas-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Albóndigas en Salsa Roja',
+      estimatedPrice: 95.00,
+      servings: 5,
+      prepTime: '50 min',
+      nutritionInfo: {
+        calories: 445,
+        protein: 24,
+        carbs: 18,
+        fat: 30,
+        fiber: 3,
+        calcium: 95,
+        iron: 3.8
+      }
+    },
+    veganVersion: {
+      name: 'Albóndigas de Soya Texturizada en Salsa de Jitomate',
+      description: 'Albóndigas plant-based con soya texturizada, avena y verduras, cocidas en salsa roja tradicional. Mayor proteína y fibra que las tradicionales.',
+      estimatedPrice: 62.80,
+      servings: 5,
+      prepTime: '45 min',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Soya texturizada fina', amount: 150, unit: 'g', pricePerUnit: 0.06, totalCost: 9.00, source: 'A granel Central de Abastos' },
+        { name: 'Avena en hojuelas', amount: 80, unit: 'g', pricePerUnit: 0.025, totalCost: 2.00, source: 'A granel Central de Abastos' },
+        { name: 'Zanahoria rallada', amount: 100, unit: 'g', pricePerUnit: 0.02, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca picada', amount: 80, unit: 'g', pricePerUnit: 0.03, totalCost: 2.40, source: 'Central de Abastos' },
+        { name: 'Tomates guaje', amount: 6, unit: 'piezas', pricePerUnit: 2.50, totalCost: 15.00, source: 'Central de Abastos' },
+        { name: 'Chile guajillo', amount: 3, unit: 'piezas', pricePerUnit: 1.50, totalCost: 4.50, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 4, unit: 'dientes', pricePerUnit: 0.25, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Caldo vegetal concentrado', amount: 500, unit: 'ml', pricePerUnit: 0.015, totalCost: 7.50, source: 'Preparación casera' },
+        { name: 'Harina de garbanzo', amount: 40, unit: 'g', pricePerUnit: 0.055, totalCost: 2.20, source: 'A granel Central de Abastos' },
+        { name: 'Perejil fresco picado', amount: 3, unit: 'cucharadas', pricePerUnit: 0.50, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Comino molido', amount: 1, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Orégano seco', amount: 1, unit: 'cucharadita', pricePerUnit: 1.50, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Aceite vegetal', amount: 3, unit: 'cucharadas', pricePerUnit: 0.80, totalCost: 2.40, source: 'Mercado local' },
+        { name: 'Sal marina', amount: 2, unit: 'cucharaditas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Pimienta negra', amount: 0.5, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Papa cambray', amount: 300, unit: 'g', pricePerUnit: 0.018, totalCost: 5.40, source: 'Central de Abastos' },
+        { name: 'Chícharos verdes', amount: 100, unit: 'g', pricePerUnit: 0.08, totalCost: 8.00, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Hidrata la soya texturizada con 300ml de caldo caliente por 25 minutos.',
+        'Remoja la avena en 100ml de caldo hasta suavizar.',
+        'Sofríe cebolla y zanahoria rallada hasta tiernas, enfría.',
+        'Asa tomates y chile guajillo, licúa con ajo y sal, cuela.',
+        'Mezcla soya escurrida, avena, verduras sofríadas, harina de garbanzo y especias.',
+        'Agrega perejil, amasa hasta conseguir masa compacta que se moldee.',
+        'Forma albóndigas del tamaño de una nuez, compacta bien.',
+        'Dora las albóndigas en aceite caliente por todos lados.',
+        'En la misma olla, sofríe la salsa de tomate 10 minutos.',
+        'Agrega caldo restante, papas cortadas en cuartos y albóndigas.',
+        'Hierve tapado 20 minutos, agrega chícharos últimos 5 minutos.',
+        'Sirve caliente con tortillas de maíz y arroz blanco.'
+      ],
+      nutritionInfo: {
+        calories: 325,
+        protein: 28,
+        carbs: 35,
+        fat: 12,
+        fiber: 11,
+        calcium: 110,
+        iron: 6.5
+      }
+    },
+    priceDifferencePercent: -33.9,
+    healthScore: 87,
+    healthBenefits: [
+      'Proteína superior a la carne (28g vs 24g) con menos grasa',
+      'Rica en fibra de avena que reduce el colesterol',
+      'Alto contenido de hierro biodisponible',
+      'Libre de colesterol y grasas saturadas',
+      'Carbohidratos complejos para energía sostenida',
+      'Vitaminas del complejo B de la soya'
+    ],
+    environmentalImpact: {
+      co2Reduction: 74,
+      waterSaving: 70,
+      landSaving: 75
+    }
+  },
+  {
+    id: 'tinga-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Tinga de Pollo',
+      estimatedPrice: 88.00,
+      servings: 4,
+      prepTime: '35 min',
+      nutritionInfo: {
+        calories: 385,
+        protein: 26,
+        carbs: 12,
+        fat: 25,
+        fiber: 3,
+        calcium: 75,
+        iron: 2.8
+      }
+    },
+    veganVersion: {
+      name: 'Tinga de Soya Texturizada Tradicional',
+      description: 'Tinga plant-based con soya texturizada en salsa de tomate, chipotle y cebolla. Perfecta para tacos, tostadas o tortas. Mayor proteína que el pollo.',
+      estimatedPrice: 54.60,
+      servings: 4,
+      prepTime: '30 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Soya texturizada gruesa', amount: 160, unit: 'g', pricePerUnit: 0.06, totalCost: 9.60, source: 'A granel Central de Abastos' },
+        { name: 'Tomates guaje', amount: 5, unit: 'piezas', pricePerUnit: 2.50, totalCost: 12.50, source: 'Central de Abastos' },
+        { name: 'Chiles chipotle adobados', amount: 3, unit: 'piezas', pricePerUnit: 1.80, totalCost: 5.40, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca grande', amount: 1, unit: 'pieza', pricePerUnit: 4.50, totalCost: 4.50, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 3, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Caldo vegetal concentrado', amount: 350, unit: 'ml', pricePerUnit: 0.015, totalCost: 5.25, source: 'Preparación casera' },
+        { name: 'Laurel seco', amount: 2, unit: 'hojas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Tomillo seco', amount: 1, unit: 'cucharadita', pricePerUnit: 2.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Vinagre blanco', amount: 1, unit: 'cucharada', pricePerUnit: 1.50, totalCost: 1.50, source: 'Mercado local' },
+        { name: 'Aceite vegetal', amount: 2, unit: 'cucharadas', pricePerUnit: 0.80, totalCost: 1.60, source: 'Mercado local' },
+        { name: 'Sal marina', amount: 1.5, unit: 'cucharaditas', pricePerUnit: 0.50, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Pimienta negra', amount: 0.5, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Azúcar morena', amount: 1, unit: 'cucharadita', pricePerUnit: 2.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Cebolla morada para servir', amount: 0.5, unit: 'pieza', pricePerUnit: 4.50, totalCost: 2.25, source: 'Central de Abastos' },
+        { name: 'Cilantro fresco', amount: 1, unit: 'manojo', pricePerUnit: 2.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Aguacate', amount: 1, unit: 'pieza', pricePerUnit: 6.00, totalCost: 6.00, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Hidrata la soya texturizada con caldo vegetal caliente por 25 minutos.',
+        'Asa tomates en comal hasta suavizar y charrar ligeramente.',
+        'Licúa tomates asados con chiles chipotle, ajo y poco caldo.',
+        'Cuela la salsa para obtener consistencia tersa.',
+        'Corta la cebolla blanca en medias lunas delgadas.',
+        'Sofríe la cebolla en aceite hasta cristalina y dorada.',
+        'Agrega la soya escurrida, sofríe 5 minutos hasta dorar.',
+        'Incorpora la salsa de tomate y chipotle, mezcla bien.',
+        'Agrega laurel, tomillo, vinagre, sal, pimienta y azúcar.',
+        'Cocina a fuego medio 15 minutos hasta espesar, moviendo ocasionalmente.',
+        'Ajusta sazón y retira las hojas de laurel.',
+        'Sirve caliente con tortillas, cebolla morada, cilantro y aguacate.'
+      ],
+      nutritionInfo: {
+        calories: 295,
+        protein: 32,
+        carbs: 22,
+        fat: 10,
+        fiber: 8,
+        calcium: 95,
+        iron: 5.8
+      }
+    },
+    priceDifferencePercent: -37.9,
+    healthScore: 91,
+    healthBenefits: [
+      'Proteína superior al pollo (32g vs 26g) con menos grasa',
+      'Rica en capsaicina del chipotle que acelera el metabolismo',
+      'Alto contenido de licopeno del tomate cocido',
+      'Libre de colesterol y antibióticos',
+      'Fibra que mejora la digestión y saciedad',
+      'Antioxidantes potentes de chiles y especias'
+    ],
+    environmentalImpact: {
+      co2Reduction: 82,
+      waterSaving: 78,
+      landSaving: 80
+    }
+  },
+  {
+    id: 'machaca-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Machaca con Huevos',
+      estimatedPrice: 78.00,
+      servings: 3,
+      prepTime: '25 min',
+      nutritionInfo: {
+        calories: 420,
+        protein: 24,
+        carbs: 8,
+        fat: 32,
+        fiber: 2,
+        calcium: 180,
+        iron: 3.2
+      }
+    },
+    veganVersion: {
+      name: 'Machaca de Soya con Revuelto Plant-Based',
+      description: 'Machaca tradicional con soya texturizada deshidratada y revuelto de tofu especiado. Desayuno proteico mexicano completamente vegetal.',
+      estimatedPrice: 51.70,
+      servings: 3,
+      prepTime: '20 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Soya texturizada gruesa', amount: 120, unit: 'g', pricePerUnit: 0.06, totalCost: 7.20, source: 'A granel Central de Abastos' },
+        { name: 'Tofu firme natural', amount: 200, unit: 'g', pricePerUnit: 0.065, totalCost: 13.00, source: 'Tienda asiática' },
+        { name: 'Chile serrano', amount: 2, unit: 'piezas', pricePerUnit: 0.80, totalCost: 1.60, source: 'Central de Abastos' },
+        { name: 'Tomate rojo', amount: 2, unit: 'piezas medianas', pricePerUnit: 2.50, totalCost: 5.00, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca', amount: 0.5, unit: 'pieza', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 2, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.50, source: 'Central de Abastos' },
+        { name: 'Caldo vegetal concentrado', amount: 250, unit: 'ml', pricePerUnit: 0.015, totalCost: 3.75, source: 'Preparación casera' },
+        { name: 'Levadura nutricional', amount: 2, unit: 'cucharadas', pricePerUnit: 1.00, totalCost: 2.00, source: 'Tienda naturista' },
+        { name: 'Cúrcuma en polvo', amount: 0.5, unit: 'cucharadita', pricePerUnit: 4.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Comino molido', amount: 0.5, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Aceite vegetal', amount: 2, unit: 'cucharadas', pricePerUnit: 0.80, totalCost: 1.60, source: 'Mercado local' },
+        { name: 'Sal marina', amount: 1.5, unit: 'cucharaditas', pricePerUnit: 0.50, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Pimienta negra', amount: 0.5, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Cilantro fresco', amount: 2, unit: 'cucharadas', pricePerUnit: 1.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Tortillas de harina', amount: 6, unit: 'piezas', pricePerUnit: 1.50, totalCost: 9.00, source: 'Tortillería local' },
+        { name: 'Salsa verde', amount: 4, unit: 'cucharadas', pricePerUnit: 0.50, totalCost: 2.00, source: 'Preparación casera' }
+      ],
+      instructions: [
+        'Hidrata la soya texturizada con caldo vegetal caliente especiado por 20 minutos.',
+        'Desmenuza el tofu con tenedor hasta conseguir textura de huevo revuelto.',
+        'Pica fino: cebolla, tomate, chile serrano y ajo.',
+        'Escurre bien la soya hidratada y deshébrala más si es necesario.',
+        'Sofríe cebolla y ajo en aceite hasta cristalinos.',
+        'Agrega chile serrano, cocina 1 minuto hasta aromatizar.',
+        'Incorpora la soya deshebrada, sofríe 5 minutos hasta dorar.',
+        'Agrega tomate picado, cocina hasta suavizar y reducir.',
+        'En otra sección de la sartén, sofríe tofu desmenuzado con cúrcuma.',
+        'Sazona el tofu con levadura nutricional, comino, sal y pimienta.',
+        'Mezcla la machaca de soya con el revuelto de tofu.',
+        'Cocina junto 3 minutos más, ajusta sazón y espolvorea cilantro.',
+        'Sirve caliente con tortillas de harina y salsa verde.'
+      ],
+      nutritionInfo: {
+        calories: 355,
+        protein: 30,
+        carbs: 28,
+        fat: 16,
+        fiber: 9,
+        calcium: 220,
+        iron: 6.8
+      }
+    },
+    priceDifferencePercent: -33.7,
+    healthScore: 88,
+    healthBenefits: [
+      'Proteína superior a huevos con carne (30g vs 24g)',
+      'Rico en calcio del tofu para huesos fuertes',
+      'Alto contenido de hierro biodisponible',
+      'Libre de colesterol y grasas saturadas',
+      'Vitamina B12 de la levadura nutricional',
+      'Antioxidantes de la cúrcuma y especias'
+    ],
+    environmentalImpact: {
+      co2Reduction: 76,
+      waterSaving: 85,
+      landSaving: 78
+    }
+  },
+  {
+    id: 'flautas-soya',
+    category: 'mexican',
+    traditional: {
+      name: 'Flautas de Pollo (4 piezas)',
+      estimatedPrice: 72.00,
+      servings: 2,
+      prepTime: '30 min',
+      nutritionInfo: {
+        calories: 485,
+        protein: 22,
+        carbs: 32,
+        fat: 28,
+        fiber: 3,
+        calcium: 120,
+        iron: 2.5
+      }
+    },
+    veganVersion: {
+      name: 'Flautas de Soya Texturizada Doradas',
+      description: 'Flautas crujientes rellenas de soya texturizada sazonada con especias mexicanas. Servidas con guacamole, crema vegetal y salsa verde.',
+      estimatedPrice: 48.90,
+      servings: 2,
+      prepTime: '25 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Tortillas de maíz flexibles', amount: 8, unit: 'piezas', pricePerUnit: 1.00, totalCost: 8.00, source: 'Tortillería local' },
+        { name: 'Soya texturizada fina', amount: 100, unit: 'g', pricePerUnit: 0.06, totalCost: 6.00, source: 'A granel Central de Abastos' },
+        { name: 'Cebolla blanca', amount: 0.5, unit: 'pieza', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 2, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.50, source: 'Central de Abastos' },
+        { name: 'Caldo vegetal', amount: 200, unit: 'ml', pricePerUnit: 0.015, totalCost: 3.00, source: 'Preparación casera' },
+        { name: 'Comino molido', amount: 1, unit: 'cucharadita', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Pimentón dulce', amount: 1, unit: 'cucharadita', pricePerUnit: 2.50, totalCost: 2.50, source: 'Central de Abastos' },
+        { name: 'Orégano seco', amount: 0.5, unit: 'cucharadita', pricePerUnit: 1.50, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Aceite vegetal para freír', amount: 300, unit: 'ml', pricePerUnit: 0.035, totalCost: 10.50, source: 'Mercado local' },
+        { name: 'Aguacate maduro', amount: 1, unit: 'pieza', pricePerUnit: 6.00, totalCost: 6.00, source: 'Central de Abastos' },
+        { name: 'Limón verde', amount: 1, unit: 'pieza', pricePerUnit: 0.50, totalCost: 0.50, source: 'Central de Abastos' },
+        { name: 'Lechuga orejona', amount: 4, unit: 'hojas', pricePerUnit: 0.50, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Crema vegetal casera', amount: 4, unit: 'cucharadas', pricePerUnit: 0.60, totalCost: 2.40, source: 'Preparación casera' },
+        { name: 'Salsa verde', amount: 50, unit: 'ml', pricePerUnit: 0.02, totalCost: 1.00, source: 'Preparación casera' },
+        { name: 'Sal y pimienta', amount: 1, unit: 'porción', pricePerUnit: 0.75, totalCost: 0.75, source: 'Despensa' },
+        { name: 'Palillos para cerrar', amount: 8, unit: 'piezas', pricePerUnit: 0.05, totalCost: 0.40, source: 'Mercado local' }
+      ],
+      instructions: [
+        'Hidrata la soya texturizada con caldo vegetal caliente por 20 minutos.',
+        'Sofríe cebolla y ajo picados fino hasta cristalinos.',
+        'Agrega soya escurrida, comino, pimentón, orégano, sal y pimienta.',
+        'Sofríe moviendo frecuentemente hasta que se dore, 8 minutos.',
+        'Deja enfriar el relleno para facilitar el armado.',
+        'Calienta tortillas en comal para suavizar sin dorar.',
+        'Coloca 2 cucharadas de relleno en cada tortilla, enrolla firmemente.',
+        'Asegura con palillo en la unión para evitar que se abran.',
+        'Calienta aceite a 180°C en sartén profundo.',
+        'Fríe flautas hasta dorar uniformemente, volteando cuidadosamente.',
+        'Escurre sobre papel absorbente y retira palillos.',
+        'Prepara guacamole machacando aguacate con limón y sal.',
+        'Sirve flautas calientes sobre lechuga con guacamole, crema y salsa.'
+      ],
+      nutritionInfo: {
+        calories: 420,
+        protein: 28,
+        carbs: 45,
+        fat: 18,
+        fiber: 12,
+        calcium: 95,
+        iron: 5.2
+      }
+    },
+    priceDifferencePercent: -32.1,
+    healthScore: 85,
+    healthBenefits: [
+      'Proteína superior al pollo (28g vs 22g) con menos grasa',
+      'Rica en fibra de soya y tortillas de maíz',
+      'Grasas saludables del aguacate',
+      'Libre de colesterol y antibióticos',
+      'Hierro de alta biodisponibilidad',
+      'Vitaminas del complejo B de la soya'
+    ],
+    environmentalImpact: {
+      co2Reduction: 74,
+      waterSaving: 72,
+      landSaving: 70
+    }
   }
 ];
