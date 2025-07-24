@@ -26,9 +26,9 @@
     --brand-success: 142 85% 30%;      /* Success green with better contrast */
     
     /* Header specific colors with enhanced contrast */
-    --header-background: 142 95% 18%;   /* Very dark green for optimal logo contrast */
-    --header-foreground: 0 0% 100%;     /* Pure white text */
-    --header-accent: 45 100% 75%;       /* Accessible yellow accent */
+    --header-background: 0 0% 98%;      /* Almost white background for better logo visibility */
+    --header-foreground: 222 47% 11%;   /* Dark text for contrast on light background */
+    --header-accent: 142 85% 30%;       /* Dark green accent for contrast */
     
     /* Semantic colors for accessibility */
     --success: var(--brand-success);
