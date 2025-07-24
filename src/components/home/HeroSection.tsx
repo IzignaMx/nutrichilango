@@ -43,7 +43,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
             variant="outline" 
             size="lg" 
             asChild
-            className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-brand-primary px-8 py-3 text-lg font-semibold"
+            className="border-background/20 bg-background/10 text-background hover:bg-background hover:text-brand-primary px-8 py-3 text-lg font-semibold"
           >
             <Link to="/how-it-works" aria-describedby="how-it-works-description">
               ¿Cómo Funciona?
