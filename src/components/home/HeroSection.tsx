@@ -61,19 +61,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
         >
           <h2 id="statistics-heading" className="sr-only">Estadísticas de éxito</h2>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="85 por ciento">85%</div>
+            <div className="text-xl sm:text-2xl font-bold text-background" aria-label="85 por ciento">85%</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Usuarios reportan mejor salud</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="2500 pesos">$2,500</div>
+            <div className="text-xl sm:text-2xl font-bold text-background" aria-label="2500 pesos">$2,500</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Ahorro promedio mensual</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="21 días">21 días</div>
+            <div className="text-xl sm:text-2xl font-bold text-background" aria-label="21 días">21 días</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Para sentir los beneficios</div>
           </div>
           <div className="space-y-1 md:space-y-2">
-            <div className="text-xl sm:text-2xl font-bold text-header-accent" aria-label="más de 5000">+5,000</div>
+            <div className="text-xl sm:text-2xl font-bold text-background" aria-label="más de 5000">+5,000</div>
             <div className="text-xs sm:text-sm text-primary-foreground/80">Familias ya transformadas</div>
           </div>
         </div>
