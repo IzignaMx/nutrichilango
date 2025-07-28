@@ -4,9 +4,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 
+import { DishCategory } from '@/data/dishes/types';
+
 interface DishFiltersProps {
-  selectedCategory: 'mexican' | 'popular' | 'all';
-  onCategoryChange: (category: 'mexican' | 'popular' | 'all') => void;
+  selectedCategory: DishCategory;
+  onCategoryChange: (category: DishCategory) => void;
   selectedDifficulty: 'easy' | 'medium' | 'hard' | 'all';
   onDifficultyChange: (difficulty: 'easy' | 'medium' | 'hard' | 'all') => void;
   sortBy: 'price' | 'health' | 'prep-time';
@@ -36,10 +38,18 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                 <SelectTrigger id="category-select" className="w-full">
                   <SelectValue placeholder="Seleccionar categoría" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Todas las categorías</SelectItem>
-                  <SelectItem value="mexican">Platillos Mexicanos</SelectItem>
-                  <SelectItem value="popular">Platillos Populares</SelectItem>
+                <SelectContent className="bg-background border border-border shadow-lg z-50">
+                  <SelectItem value="all">🍽️ Todas las categorías</SelectItem>
+                  <SelectItem value="mexican">🌮 Platillos Mexicanos</SelectItem>
+                  <SelectItem value="popular">⭐ Platillos Populares</SelectItem>
+                  <SelectItem value="pastas">🍝 Pastas</SelectItem>
+                  <SelectItem value="plato-fuerte">🍖 Plato Fuerte</SelectItem>
+                  <SelectItem value="ensaladas">🥗 Ensaladas</SelectItem>
+                  <SelectItem value="postres">🍰 Postres</SelectItem>
+                  <SelectItem value="cremas">🥛 Cremas y Lácteos</SelectItem>
+                  <SelectItem value="salsas">🌶️ Salsas y Aderezos</SelectItem>
+                  <SelectItem value="aperitivos">🍿 Aperitivos</SelectItem>
+                  <SelectItem value="bebidas">🥤 Bebidas</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -52,11 +62,11 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                 <SelectTrigger id="difficulty-select" className="w-full">
                   <SelectValue placeholder="Seleccionar dificultad" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Todas las dificultades</SelectItem>
-                  <SelectItem value="easy">Fácil</SelectItem>
-                  <SelectItem value="medium">Medio</SelectItem>
-                  <SelectItem value="hard">Difícil</SelectItem>
+                <SelectContent className="bg-background border border-border shadow-lg z-50">
+                  <SelectItem value="all">🎯 Todas las dificultades</SelectItem>
+                  <SelectItem value="easy">🟢 Fácil</SelectItem>
+                  <SelectItem value="medium">🟡 Medio</SelectItem>
+                  <SelectItem value="hard">🔴 Difícil</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -69,10 +79,10 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                 <SelectTrigger id="sort-select" className="w-full">
                   <SelectValue placeholder="Ordenar por" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="price">Diferencia de precio</SelectItem>
-                  <SelectItem value="health">Puntuación de salud</SelectItem>
-                  <SelectItem value="prep-time">Tiempo de preparación</SelectItem>
+                <SelectContent className="bg-background border border-border shadow-lg z-50">
+                  <SelectItem value="price">💰 Diferencia de precio</SelectItem>
+                  <SelectItem value="health">❤️ Puntuación de salud</SelectItem>
+                  <SelectItem value="prep-time">⏱️ Tiempo de preparación</SelectItem>
                 </SelectContent>
               </Select>
             </div>

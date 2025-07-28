@@ -38,9 +38,22 @@ export interface VeganDish {
   nutritionInfo: NutritionInfo;
 }
 
+export type DishCategory = 
+  | 'mexican' 
+  | 'popular' 
+  | 'pastas' 
+  | 'plato-fuerte' 
+  | 'ensaladas' 
+  | 'postres' 
+  | 'cremas' 
+  | 'salsas' 
+  | 'aperitivos' 
+  | 'bebidas'
+  | 'all';
+
 export interface DishComparison {
   id: string;
-  category: 'mexican' | 'popular';
+  category: Exclude<DishCategory, 'all'>;
   traditional: TraditionalDish;
   veganVersion: VeganDish;
   priceDifferencePercent: number;

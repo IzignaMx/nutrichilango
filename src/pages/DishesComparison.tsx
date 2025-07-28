@@ -9,9 +9,10 @@ import { ChefHat, Leaf, DollarSign, Heart, Clock, Users, Info } from 'lucide-rea
 import DishComparisonCard from '@/components/dishes/DishComparisonCard';
 import DishFilters from '@/components/dishes/DishFilters';
 import { dishesData } from '@/data/dishes';
+import { DishCategory } from '@/data/dishes/types';
 
 const DishesComparison: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<'mexican' | 'popular' | 'all'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<DishCategory>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'easy' | 'medium' | 'hard' | 'all'>('all');
   const [sortBy, setSortBy] = useState<'price' | 'health' | 'prep-time'>('price');
   const [isLoading, setIsLoading] = useState(true);

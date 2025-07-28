@@ -1544,5 +1544,298 @@ export const dishesData: DishComparison[] = [
       waterSaving: 72,
       landSaving: 70
     }
+  },
+  {
+    id: 'crema-acida-tradicional',
+    category: 'cremas',
+    traditional: {
+      name: 'Crema Ácida (200ml)',
+      estimatedPrice: 45.00,
+      servings: 4,
+      prepTime: '0 min',
+      nutritionInfo: {
+        calories: 320,
+        protein: 4,
+        carbs: 6,
+        fat: 30,
+        fiber: 0,
+        calcium: 140,
+        iron: 0.2
+      }
+    },
+    veganVersion: {
+      name: 'Crema Ácida de Anacardos',
+      description: 'Crema ácida vegetal fermentada con probióticos naturales, más cremosa y nutritiva que la tradicional.',
+      estimatedPrice: 32.50,
+      servings: 4,
+      prepTime: '15 min + fermentado',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Anacardos crudos', amount: 150, unit: 'g', pricePerUnit: 0.12, totalCost: 18.00, source: 'Tienda naturista' },
+        { name: 'Jugo de limón fresco', amount: 2, unit: 'cucharadas', pricePerUnit: 1.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Vinagre de manzana orgánico', amount: 1, unit: 'cucharada', pricePerUnit: 2.00, totalCost: 2.00, source: 'Tienda naturista' },
+        { name: 'Probióticos en cápsula', amount: 1, unit: 'pieza', pricePerUnit: 4.50, totalCost: 4.50, source: 'Farmacia naturista' },
+        { name: 'Sal marina fina', amount: 0.5, unit: 'cucharadita', pricePerUnit: 0.10, totalCost: 0.05, source: 'Cualquier tienda' },
+        { name: 'Agua filtrada', amount: 100, unit: 'ml', pricePerUnit: 0.002, totalCost: 0.20, source: 'Casa' },
+        { name: 'Agar en polvo', amount: 1, unit: 'g', pricePerUnit: 0.75, totalCost: 0.75, source: 'Tienda asiática' }
+      ],
+      instructions: [
+        'Remoja los anacardos en agua caliente por 2 horas hasta que estén suaves.',
+        'Escurre y enjuaga los anacardos remojados.',
+        'Licúa anacardos con agua filtrada hasta obtener consistencia cremosa.',
+        'Agrega jugo de limón, vinagre de manzana y sal marina.',
+        'Abre la cápsula de probióticos y mezcla el contenido.',
+        'Bate hasta integrar completamente todos los ingredientes.',
+        'Transfiere a frasco de vidrio esterilizado.',
+        'Deja fermentar a temperatura ambiente por 12-24 horas.',
+        'Refrigera una vez que alcance acidez deseada.',
+        'Disuelve agar en 2 cucharadas de agua caliente y mezcla para espesar si es necesario.'
+      ],
+      nutritionInfo: {
+        calories: 195,
+        protein: 7,
+        carbs: 8,
+        fat: 16,
+        fiber: 2,
+        calcium: 28,
+        iron: 2.1
+      }
+    },
+    priceDifferencePercent: -27.8,
+    healthScore: 88,
+    healthBenefits: [
+      'Probióticos naturales que mejoran la flora intestinal',
+      '75% menos grasas saturadas que la crema tradicional',
+      'Rico en magnesio y cobre de los anacardos',
+      'Libre de colesterol y hormonas lácteas',
+      'Proteína vegetal de alta calidad',
+      'Enzimas digestivas naturales del fermentado'
+    ],
+    environmentalImpact: {
+      co2Reduction: 82,
+      waterSaving: 89,
+      landSaving: 76
+    }
+  },
+  {
+    id: 'mayonesa-tradicional',
+    category: 'salsas',
+    traditional: {
+      name: 'Mayonesa Comercial (250ml)',
+      estimatedPrice: 38.00,
+      servings: 8,
+      prepTime: '0 min',
+      nutritionInfo: {
+        calories: 680,
+        protein: 2,
+        carbs: 4,
+        fat: 72,
+        fiber: 0,
+        calcium: 12,
+        iron: 0.3
+      }
+    },
+    veganVersion: {
+      name: 'Mayonesa de Aquafaba Artesanal',
+      description: 'Mayonesa vegetal cremosa hecha con agua de garbanzos, más ligera y con mejor perfil nutricional.',
+      estimatedPrice: 24.50,
+      servings: 8,
+      prepTime: '10 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Aquafaba (agua de garbanzo)', amount: 60, unit: 'ml', pricePerUnit: 0.02, totalCost: 1.20, source: 'Conserva casera' },
+        { name: 'Aceite de girasol prensado en frío', amount: 180, unit: 'ml', pricePerUnit: 0.08, totalCost: 14.40, source: 'Tienda naturista' },
+        { name: 'Mostaza dijon', amount: 1, unit: 'cucharadita', pricePerUnit: 1.50, totalCost: 1.50, source: 'Supermercado' },
+        { name: 'Vinagre de sidra de manzana', amount: 1, unit: 'cucharada', pricePerUnit: 2.00, totalCost: 2.00, source: 'Tienda naturista' },
+        { name: 'Jugo de limón recién exprimido', amount: 1, unit: 'cucharada', pricePerUnit: 1.50, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Sal marina fina', amount: 0.5, unit: 'cucharadita', pricePerUnit: 0.10, totalCost: 0.05, source: 'Cualquier tienda' },
+        { name: 'Azúcar de coco', amount: 0.5, unit: 'cucharadita', pricePerUnit: 0.50, totalCost: 0.25, source: 'Tienda naturista' },
+        { name: 'Goma xantana', amount: 0.2, unit: 'g', pricePerUnit: 1.50, totalCost: 0.30, source: 'Tienda especializada' }
+      ],
+      instructions: [
+        'Asegúrate de que todos los ingredientes estén a temperatura ambiente.',
+        'En un recipiente alto, combina aquafaba, mostaza, vinagre y jugo de limón.',
+        'Agrega sal marina y azúcar de coco.',
+        'Con batidora de inmersión, comienza a batir lentamente.',
+        'Sin dejar de batir, agrega aceite en hilo muy fino y constante.',
+        'Continúa batiendo hasta que espese y tome consistencia de mayonesa.',
+        'Si queda muy líquida, espolvorea goma xantana y bate nuevamente.',
+        'Ajusta sazón con sal y limón al gusto.',
+        'Transfiere a frasco hermético y refrigera.',
+        'Consumir en máximo 5 días refrigerada.'
+      ],
+      nutritionInfo: {
+        calories: 485,
+        protein: 1.5,
+        carbs: 3,
+        fat: 52,
+        fiber: 0.5,
+        calcium: 8,
+        iron: 0.2
+      }
+    },
+    priceDifferencePercent: -35.5,
+    healthScore: 79,
+    healthBenefits: [
+      'Libre de colesterol y grasas trans',
+      '28% menos calorías que la mayonesa tradicional',
+      'Sin conservadores artificiales ni aditivos',
+      'Proteínas vegetales del aquafaba',
+      'Grasas más saludables del aceite prensado en frío',
+      'Libre de huevo y productos animales'
+    ],
+    environmentalImpact: {
+      co2Reduction: 68,
+      waterSaving: 75,
+      landSaving: 62
+    }
+  },
+  {
+    id: 'crema-para-batir',
+    category: 'cremas',
+    traditional: {
+      name: 'Crema para Batir (200ml)',
+      estimatedPrice: 52.00,
+      servings: 4,
+      prepTime: '0 min',
+      nutritionInfo: {
+        calories: 580,
+        protein: 4,
+        carbs: 8,
+        fat: 58,
+        fiber: 0,
+        calcium: 120,
+        iron: 0.1
+      }
+    },
+    veganVersion: {
+      name: 'Crema Batida de Coco Premium',
+      description: 'Crema batida vegetal espumosa y deliciosa, perfecta para postres y bebidas calientes.',
+      estimatedPrice: 41.00,
+      servings: 4,
+      prepTime: '20 min + refrigerado',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Leche de coco espesa (lata)', amount: 400, unit: 'ml', pricePerUnit: 0.065, totalCost: 26.00, source: 'Supermercado asiático' },
+        { name: 'Azúcar glass orgánica', amount: 30, unit: 'g', pricePerUnit: 0.12, totalCost: 3.60, source: 'Tienda naturista' },
+        { name: 'Extracto puro de vainilla', amount: 1, unit: 'cucharadita', pricePerUnit: 8.00, totalCost: 8.00, source: 'Tienda gourmet' },
+        { name: 'Cremor tártaro', amount: 0.5, unit: 'cucharadita', pricePerUnit: 2.00, totalCost: 1.00, source: 'Tienda repostería' },
+        { name: 'Lecitina de girasol', amount: 1, unit: 'cucharadita', pricePerUnit: 1.50, totalCost: 1.50, source: 'Tienda naturista' },
+        { name: 'Pizca de sal marina', amount: 0.1, unit: 'g', pricePerUnit: 0.10, totalCost: 0.01, source: 'Cualquier tienda' }
+      ],
+      instructions: [
+        'Refrigera la lata de leche de coco por al menos 4 horas.',
+        'Enfría también el bowl y batidores en el congelador por 15 minutos.',
+        'Abre la lata y separa cuidadosamente la parte espesa.',
+        'Reserva el agua de coco para otro uso.',
+        'En el bowl frío, bate la crema espesa de coco.',
+        'Agrega azúcar glass gradualmente mientras bates.',
+        'Incorpora extracto de vainilla y cremor tártaro.',
+        'Espolvorea lecitina de girasol para mayor estabilidad.',
+        'Bate hasta formar picos firmes (5-8 minutos).',
+        'Usa inmediatamente o refrigera hasta por 2 días.'
+      ],
+      nutritionInfo: {
+        calories: 420,
+        protein: 4,
+        carbs: 12,
+        fat: 42,
+        fiber: 2,
+        calcium: 18,
+        iron: 1.8
+      }
+    },
+    priceDifferencePercent: -21.2,
+    healthScore: 81,
+    healthBenefits: [
+      'Triglicéridos de cadena media del coco que aceleran el metabolismo',
+      'Libre de lactosa y caseína',
+      '27% menos calorías que la crema láctea',
+      'Rico en hierro y manganeso',
+      'Sin conservadores ni estabilizantes artificiales',
+      'Grasas vegetales más fáciles de digerir'
+    ],
+    environmentalImpact: {
+      co2Reduction: 71,
+      waterSaving: 78,
+      landSaving: 69
+    }
+  },
+  {
+    id: 'queso-crema-philadelphia',
+    category: 'cremas',
+    traditional: {
+      name: 'Queso Crema Philadelphia (200g)',
+      estimatedPrice: 85.00,
+      servings: 6,
+      prepTime: '0 min',
+      nutritionInfo: {
+        calories: 696,
+        protein: 14,
+        carbs: 8,
+        fat: 68,
+        fiber: 0,
+        calcium: 196,
+        iron: 0.4
+      }
+    },
+    veganVersion: {
+      name: 'Queso Crema de Anacardos Fermentado',
+      description: 'Queso crema vegetal fermentado con cultivos probióticos, cremoso y untable, perfecto para bagels y postres.',
+      estimatedPrice: 58.50,
+      servings: 6,
+      prepTime: '25 min + fermentado',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Anacardos crudos premium', amount: 200, unit: 'g', pricePerUnit: 0.14, totalCost: 28.00, source: 'Tienda naturista' },
+        { name: 'Rejuvelac (agua fermentada)', amount: 60, unit: 'ml', pricePerUnit: 0.15, totalCost: 9.00, source: 'Preparación casera' },
+        { name: 'Aceite de coco refinado', amount: 2, unit: 'cucharadas', pricePerUnit: 0.85, totalCost: 1.70, source: 'Tienda naturista' },
+        { name: 'Jugo de limón orgánico', amount: 3, unit: 'cucharadas', pricePerUnit: 1.50, totalCost: 4.50, source: 'Central de Abastos' },
+        { name: 'Levadura nutricional', amount: 2, unit: 'cucharadas', pricePerUnit: 1.20, totalCost: 2.40, source: 'Tienda naturista' },
+        { name: 'Sal marina del Himalaya', amount: 1, unit: 'cucharadita', pricePerUnit: 0.15, totalCost: 0.15, source: 'Tienda gourmet' },
+        { name: 'Agar en polvo', amount: 1.5, unit: 'g', pricePerUnit: 0.75, totalCost: 1.12, source: 'Tienda asiática' },
+        { name: 'Probióticos veganos', amount: 1, unit: 'cápsula', pricePerUnit: 5.50, totalCost: 5.50, source: 'Farmacia naturista' },
+        { name: 'Goma xantana', amount: 0.5, unit: 'g', pricePerUnit: 1.50, totalCost: 0.75, source: 'Tienda especializada' }
+      ],
+      instructions: [
+        'Remoja anacardos en agua caliente por 3 horas hasta suavizar.',
+        'Prepara rejuvelac fermentando quinoa en agua por 3 días.',
+        'Escurre anacardos y enjuaga muy bien.',
+        'Licúa anacardos con rejuvelac hasta consistencia sedosa.',
+        'Agrega aceite de coco, jugo de limón y levadura nutricional.',
+        'Incorpora sal marina y probióticos de la cápsula abierta.',
+        'Bate hasta integrar completamente.',
+        'Disuelve agar en 3 cucharadas de agua caliente.',
+        'Mezcla agar disuelto con la preparación.',
+        'Transfiere a molde forrado con papel encerado.',
+        'Refrigera 4 horas hasta que tome consistencia firme.',
+        'Deja fermentar a temperatura ambiente 12-24 horas.',
+        'Refrigera nuevamente antes de consumir.'
+      ],
+      nutritionInfo: {
+        calories: 485,
+        protein: 16,
+        carbs: 18,
+        fat: 42,
+        fiber: 4,
+        calcium: 45,
+        iron: 3.2
+      }
+    },
+    priceDifferencePercent: -31.2,
+    healthScore: 85,
+    healthBenefits: [
+      'Probióticos vivos que mejoran la digestión',
+      '30% menos grasas saturadas que el queso lácteo',
+      'Vitaminas del complejo B de la levadura nutricional',
+      'Proteína vegetal completa de los anacardos',
+      'Rico en magnesio, zinc y cobre',
+      'Libre de colesterol y hormonas lácteas'
+    ],
+    environmentalImpact: {
+      co2Reduction: 79,
+      waterSaving: 84,
+      landSaving: 73
+    }
   }
 ];
