@@ -125,11 +125,6 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
             </ul>
-            <div className="pt-2">
-              <p className="text-xs text-primary-foreground/60 leading-relaxed">
-                Cumplimos con WCAG 2.1 AA, ADA, AODA y Section 508
-              </p>
-            </div>
           </nav>
         </div>
 
