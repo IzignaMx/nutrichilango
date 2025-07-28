@@ -48,7 +48,7 @@ const DishesComparison: React.FC = () => {
             🌮 ¡Revoluciona Tu Cocina Mexicana!
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-green-100">
-            <strong>Mantén todo el sabor, duplica los beneficios.</strong> Descubre cómo hacer tus platillos mexicanos favoritos 
+            <strong>Mantén todo el sabor, duplica los beneficios.</strong> Descubre cómo hacer tus platillos mexicanos favoritos  
             <span className="text-yellow-300 font-bold">más nutritivos, más baratos y más deliciosos</span> que nunca
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center max-w-3xl mx-auto">
