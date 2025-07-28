@@ -26,7 +26,7 @@ const CallToActionSection: React.FC = () => {
           asChild
           variant="outline"
           size="lg"
-          className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-brand-primary w-full sm:w-auto"
+          className="border-background text-background hover:bg-background hover:text-brand-primary w-full sm:w-auto"
         >
           <Link to="/guide">📚 Descargar Guía GRATIS</Link>
         </Button>
