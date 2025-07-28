@@ -28,7 +28,7 @@ const CallToActionSection: React.FC = () => {
           size="lg"
           className="bg-transparent text-background border border-background/30 hover:bg-background/10 hover:text-background w-full sm:w-auto"
         >
-          <Link to="/guide">📚 Descargar Guía GRATIS</Link>
+          <Link to="/guide">📚 Guía de uso</Link>
         </Button>
       </div>
     </section>
