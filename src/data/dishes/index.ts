@@ -2135,8 +2135,172 @@ export const dishesData: DishComparison[] = [
       landSaving: 72
     }
   },
+  // PLATOS FUERTES ADICIONALES
   {
-    id: 'chiles-rellenos',
+    id: 'mole-pollo',
+    category: 'plato-fuerte',
+    traditional: {
+      name: 'Mole Poblano con Pollo',
+      estimatedPrice: 165.00,
+      servings: 4,
+      prepTime: '3 horas',
+      nutritionInfo: {
+        calories: 485,
+        protein: 28,
+        carbs: 35,
+        fat: 28,
+        fiber: 6,
+        calcium: 95,
+        iron: 3.2
+      }
+    },
+    veganVersion: {
+      name: 'Mole Poblano con Seitán y Calabaza',
+      description: 'Mole poblano tradicional con seitán casero y calabaza asada, respetando la receta ancestral pero sin ingredientes animales.',
+      estimatedPrice: 142.50,
+      servings: 4,
+      prepTime: '2.5 horas',
+      difficulty: 'hard',
+      ingredients: [
+        { name: 'Seitán casero', amount: 400, unit: 'g', pricePerUnit: 0.08, totalCost: 32.00, source: 'Preparación casera' },
+        { name: 'Calabaza de castilla', amount: 300, unit: 'g', pricePerUnit: 0.08, totalCost: 24.00, source: 'Central de Abastos' },
+        { name: 'Chiles mulato', amount: 6, unit: 'piezas', pricePerUnit: 2.20, totalCost: 13.20, source: 'Central de Abastos' },
+        { name: 'Chiles ancho', amount: 4, unit: 'piezas', pricePerUnit: 1.80, totalCost: 7.20, source: 'Central de Abastos' },
+        { name: 'Chiles pasilla', amount: 3, unit: 'piezas', pricePerUnit: 2.50, totalCost: 7.50, source: 'Central de Abastos' },
+        { name: 'Chocolate de mesa', amount: 80, unit: 'g', pricePerUnit: 0.25, totalCost: 20.00, source: 'Central de Abastos' },
+        { name: 'Almendras', amount: 60, unit: 'g', pricePerUnit: 0.18, totalCost: 10.80, source: 'Central de Abastos' },
+        { name: 'Cacahuates', amount: 40, unit: 'g', pricePerUnit: 0.05, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Ajonjolí', amount: 30, unit: 'g', pricePerUnit: 0.12, totalCost: 3.60, source: 'Central de Abastos' },
+        { name: 'Pasas', amount: 25, unit: 'g', pricePerUnit: 0.15, totalCost: 3.75, source: 'Central de Abastos' },
+        { name: 'Tortilla frita', amount: 1, unit: 'pieza', pricePerUnit: 3.00, totalCost: 3.00, source: 'Tortillería' },
+        { name: 'Pan de dulce duro', amount: 30, unit: 'g', pricePerUnit: 0.08, totalCost: 2.40, source: 'Panadería' },
+        { name: 'Jitomate', amount: 2, unit: 'piezas', pricePerUnit: 2.50, totalCost: 5.00, source: 'Central de Abastos' },
+        { name: 'Cebolla', amount: 0.5, unit: 'pieza', pricePerUnit: 3.00, totalCost: 1.50, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 4, unit: 'dientes', pricePerUnit: 0.25, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Canela', amount: 1, unit: 'raja', pricePerUnit: 2.50, totalCost: 2.50, source: 'Central de Abastos' },
+        { name: 'Clavo de olor', amount: 3, unit: 'piezas', pricePerUnit: 0.30, totalCost: 0.90, source: 'Central de Abastos' },
+        { name: 'Pimienta gorda', amount: 4, unit: 'piezas', pricePerUnit: 0.25, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Anís estrella', amount: 1, unit: 'pieza', pricePerUnit: 1.50, totalCost: 1.50, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Asa todos los chiles en comal hasta aromatic sin quemar.',
+        'Remoja chiles en agua caliente 30 minutos.',
+        'Tuesta por separado: almendras, cacahuates, ajonjolí.',
+        'Fríe tortilla y pan hasta dorar, reserva.',
+        'Asa jitomate, cebolla y ajo hasta suavizar.',
+        'Licúa chiles escurridos con poca agua de remojo.',
+        'Licúa por separado jitomates con cebolla y ajo.',
+        'Licúa frutos secos con especias y pan frito.',
+        'Fríe cada salsa por separado 15 minutos c/u.',
+        'Combina todas las salsas, agrega chocolate.',
+        'Cocina 45 min moviendo constantemente.',
+        'Agrega seitán y calabaza, cocina 20 min más.',
+        'Sirve con arroz rojo y tortillas calientes.'
+      ],
+      nutritionInfo: {
+        calories: 445,
+        protein: 32,
+        carbs: 42,
+        fat: 22,
+        fiber: 12,
+        calcium: 185,
+        iron: 6.8
+      }
+    },
+    priceDifferencePercent: -13.6,
+    healthScore: 88,
+    healthBenefits: [
+      'Proteína vegetal superior al pollo (32g vs 28g)',
+      'Antioxidantes poderosos del chocolate y chiles',
+      'Grasas saludables de frutos secos',
+      'Fibra de calabaza y chiles',
+      'Minerales de semillas y especias',
+      'Libre de colesterol y grasas saturadas'
+    ],
+    environmentalImpact: {
+      co2Reduction: 72,
+      waterSaving: 78,
+      landSaving: 70
+    }
+  },
+  {
+    id: 'pescado-veracruzana',
+    category: 'plato-fuerte',
+    traditional: {
+      name: 'Pescado a la Veracruzana',
+      estimatedPrice: 145.00,
+      servings: 2,
+      prepTime: '35 min',
+      nutritionInfo: {
+        calories: 385,
+        protein: 28,
+        carbs: 15,
+        fat: 22,
+        fiber: 4,
+        calcium: 85,
+        iron: 2.2
+      }
+    },
+    veganVersion: {
+      name: 'King Oyster a la Veracruzana',
+      description: 'Setas king oyster en salsa veracruzana tradicional con jitomate, aceitunas y alcaparras. Textura similar al pescado.',
+      estimatedPrice: 98.50,
+      servings: 2,
+      prepTime: '30 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Setas king oyster', amount: 300, unit: 'g', pricePerUnit: 0.15, totalCost: 45.00, source: 'Mercado de Jamaica' },
+        { name: 'Jitomates maduros', amount: 4, unit: 'piezas', pricePerUnit: 2.50, totalCost: 10.00, source: 'Central de Abastos' },
+        { name: 'Cebolla blanca', amount: 1, unit: 'pieza', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 4, unit: 'dientes', pricePerUnit: 0.25, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Aceitunas verdes', amount: 80, unit: 'g', pricePerUnit: 0.12, totalCost: 9.60, source: 'Supermercado' },
+        { name: 'Alcaparras', amount: 2, unit: 'cucharadas', pricePerUnit: 3.50, totalCost: 7.00, source: 'Supermercado' },
+        { name: 'Hojas de laurel', amount: 2, unit: 'piezas', pricePerUnit: 0.50, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Chile jalapeño', amount: 2, unit: 'piezas', pricePerUnit: 1.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Perejil fresco', amount: 1, unit: 'manojo', pricePerUnit: 2.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Aceite de oliva', amount: 3, unit: 'cucharadas', pricePerUnit: 1.20, totalCost: 3.60, source: 'Supermercado' },
+        { name: 'Orégano seco', amount: 1, unit: 'cucharadita', pricePerUnit: 1.50, totalCost: 1.50, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Corta setas king oyster en filetes gruesos.',
+        'Marca las setas en sartén caliente hasta dorar.',
+        'Blanquea jitomates, pela y pica en cubos.',
+        'Sofríe cebolla y ajo hasta transparentar.',
+        'Agrega jitomate picado y cocina 10 minutos.',
+        'Incorpora aceitunas, alcaparras y chiles.',
+        'Agrega laurel, orégano y sal al gusto.',
+        'Coloca setas en la salsa, cocina 8 minutos.',
+        'Espolvorea perejil fresco antes de servir.',
+        'Acompaña con arroz blanco y frijoles.'
+      ],
+      nutritionInfo: {
+        calories: 285,
+        protein: 18,
+        carbs: 22,
+        fat: 15,
+        fiber: 8,
+        calcium: 125,
+        iron: 3.8
+      }
+    },
+    priceDifferencePercent: -32.1,
+    healthScore: 85,
+    healthBenefits: [
+      'Rica en proteína vegetal de setas',
+      '26% menos calorías que pescado',
+      'Antioxidantes del jitomate y aceitunas',
+      'Fibra para digestión saludable',
+      'Potasio de setas para presión arterial',
+      'Libre de mercurio y metales pesados'
+    ],
+    environmentalImpact: {
+      co2Reduction: 85,
+      waterSaving: 92,
+      landSaving: 78
+    }
+  },
+  {
+    id: 'chiles-quinoa-plato-fuerte',
     category: 'plato-fuerte',
     traditional: {
       name: 'Chiles Rellenos de Queso (2 piezas)',
