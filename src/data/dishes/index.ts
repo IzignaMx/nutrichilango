@@ -1837,5 +1837,740 @@ export const dishesData: DishComparison[] = [
       waterSaving: 84,
       landSaving: 73
     }
+  },
+  // PASTAS
+  {
+    id: 'espagueti-bolonesa',
+    category: 'pastas',
+    traditional: {
+      name: 'Espagueti a la Boloñesa (porción)',
+      estimatedPrice: 85.00,
+      servings: 2,
+      prepTime: '45 min',
+      nutritionInfo: {
+        calories: 650,
+        protein: 28,
+        carbs: 75,
+        fat: 22,
+        fiber: 4,
+        calcium: 85,
+        iron: 3.2
+      }
+    },
+    veganVersion: {
+      name: 'Espagueti con Boloñesa de Lentejas',
+      description: 'Boloñesa rica en proteína vegetal con lentejas rojas, champiñones y verduras, más nutritiva que la versión tradicional.',
+      estimatedPrice: 52.00,
+      servings: 2,
+      prepTime: '40 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Espagueti integral', amount: 200, unit: 'g', pricePerUnit: 0.045, totalCost: 9.00, source: 'Supermercado' },
+        { name: 'Lentejas rojas', amount: 100, unit: 'g', pricePerUnit: 0.055, totalCost: 5.50, source: 'Central de Abastos' },
+        { name: 'Champiñones frescos', amount: 150, unit: 'g', pricePerUnit: 0.08, totalCost: 12.00, source: 'Central de Abastos' },
+        { name: 'Tomates roma', amount: 400, unit: 'g', pricePerUnit: 0.025, totalCost: 10.00, source: 'Central de Abastos' },
+        { name: 'Cebolla morada', amount: 1, unit: 'pieza', pricePerUnit: 4.00, totalCost: 4.00, source: 'Central de Abastos' },
+        { name: 'Zanahoria', amount: 1, unit: 'pieza', pricePerUnit: 2.50, totalCost: 2.50, source: 'Central de Abastos' },
+        { name: 'Apio', amount: 2, unit: 'tallos', pricePerUnit: 1.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Ajo', amount: 3, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.75, source: 'Central de Abastos' },
+        { name: 'Vino tinto para cocinar', amount: 50, unit: 'ml', pricePerUnit: 0.15, totalCost: 7.50, source: 'Licorería' },
+        { name: 'Aceite de oliva extra virgen', amount: 3, unit: 'cucharadas', pricePerUnit: 0.35, totalCost: 1.05, source: 'Supermercado' }
+      ],
+      instructions: [
+        'Remoja las lentejas rojas en agua caliente por 15 minutos.',
+        'Pica finamente cebolla, zanahoria, apio y ajo (sofrito).',
+        'Lamina los champiñones en trozos pequeños.',
+        'Calienta aceite de oliva en sartén grande.',
+        'Sofríe las verduras picadas hasta que estén translúcidas.',
+        'Agrega champiñones y cocina hasta dorar.',
+        'Incorpora las lentejas escurridas y tomates picados.',
+        'Vierte el vino tinto y deja evaporar el alcohol.',
+        'Cocina a fuego lento 25 minutos hasta espesar.',
+        'Sirve sobre espagueti al dente con albahaca fresca.'
+      ],
+      nutritionInfo: {
+        calories: 520,
+        protein: 24,
+        carbs: 78,
+        fat: 12,
+        fiber: 14,
+        calcium: 65,
+        iron: 5.8
+      }
+    },
+    priceDifferencePercent: -38.8,
+    healthScore: 89,
+    healthBenefits: [
+      'Proteína vegetal completa de lentejas (24g)',
+      '3x más fibra que la versión tradicional',
+      'Rico en hierro de absorción mejorada',
+      'Libre de grasas saturadas y colesterol',
+      'Antioxidantes de tomates y champiñones',
+      'Carbohidratos complejos del pasta integral'
+    ],
+    environmentalImpact: {
+      co2Reduction: 73,
+      waterSaving: 81,
+      landSaving: 69
+    }
+  },
+  {
+    id: 'lasana-carne',
+    category: 'pastas',
+    traditional: {
+      name: 'Lasaña de Carne (porción)',
+      estimatedPrice: 120.00,
+      servings: 4,
+      prepTime: '90 min',
+      nutritionInfo: {
+        calories: 580,
+        protein: 32,
+        carbs: 45,
+        fat: 28,
+        fiber: 3,
+        calcium: 350,
+        iron: 3.5
+      }
+    },
+    veganVersion: {
+      name: 'Lasaña de Verduras con Ricotta de Tofu',
+      description: 'Lasaña multicapa con verduras asadas, ricotta de tofu casera y bechamel de anacardos, cremosa y nutritiva.',
+      estimatedPrice: 78.00,
+      servings: 4,
+      prepTime: '85 min',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Pasta para lasaña integral', amount: 200, unit: 'g', pricePerUnit: 0.065, totalCost: 13.00, source: 'Supermercado' },
+        { name: 'Tofu firme', amount: 400, unit: 'g', pricePerUnit: 0.045, totalCost: 18.00, source: 'Tienda asiática' },
+        { name: 'Berenjenas', amount: 2, unit: 'piezas', pricePerUnit: 8.00, totalCost: 16.00, source: 'Central de Abastos' },
+        { name: 'Calabacines', amount: 2, unit: 'piezas', pricePerUnit: 6.00, totalCost: 12.00, source: 'Central de Abastos' },
+        { name: 'Pimientos rojos', amount: 2, unit: 'piezas', pricePerUnit: 5.50, totalCost: 11.00, source: 'Central de Abastos' },
+        { name: 'Espinacas frescas', amount: 200, unit: 'g', pricePerUnit: 0.035, totalCost: 7.00, source: 'Central de Abastos' },
+        { name: 'Anacardos para bechamel', amount: 100, unit: 'g', pricePerUnit: 0.12, totalCost: 12.00, source: 'Tienda naturista' },
+        { name: 'Levadura nutricional', amount: 3, unit: 'cucharadas', pricePerUnit: 1.20, totalCost: 3.60, source: 'Tienda naturista' },
+        { name: 'Salsa de tomate casera', amount: 300, unit: 'ml', pricePerUnit: 0.025, totalCost: 7.50, source: 'Preparación propia' }
+      ],
+      instructions: [
+        'Precalienta horno a 190°C.',
+        'Corta berenjenas, calabacines y pimientos en rodajas.',
+        'Asa las verduras con un poco de aceite hasta dorar.',
+        'Desmorona el tofu y mezcla con levadura nutricional.',
+        'Saltea espinacas hasta que se reduzcan.',
+        'Prepara bechamel licuando anacardos remojados con agua.',
+        'Cocina pasta hasta al dente según instrucciones.',
+        'Arma capas: pasta, verduras, ricotta de tofu, bechamel.',
+        'Repite capas y termina con bechamel.',
+        'Hornea 45 minutos hasta dorar la superficie.'
+      ],
+      nutritionInfo: {
+        calories: 445,
+        protein: 22,
+        carbs: 52,
+        fat: 18,
+        fiber: 12,
+        calcium: 285,
+        iron: 4.8
+      }
+    },
+    priceDifferencePercent: -35.0,
+    healthScore: 91,
+    healthBenefits: [
+      'Proteína vegetal completa del tofu',
+      '4x más fibra por las verduras',
+      'Rico en calcio de espinacas y tofu',
+      'Antioxidantes de verduras coloridas',
+      'Libre de colesterol y grasas saturadas',
+      'Vitaminas A, C y K de las verduras'
+    ],
+    environmentalImpact: {
+      co2Reduction: 76,
+      waterSaving: 85,
+      landSaving: 72
+    }
+  },
+  {
+    id: 'fettuccine-alfredo',
+    category: 'pastas',
+    traditional: {
+      name: 'Fettuccine Alfredo (porción)',
+      estimatedPrice: 95.00,
+      servings: 2,
+      prepTime: '25 min',
+      nutritionInfo: {
+        calories: 720,
+        protein: 18,
+        carbs: 65,
+        fat: 42,
+        fiber: 3,
+        calcium: 285,
+        iron: 2.1
+      }
+    },
+    veganVersion: {
+      name: 'Fettuccine con Salsa Alfredo de Anacardos',
+      description: 'Cremosa salsa alfredo vegetal con anacardos y levadura nutricional, más ligera y nutritiva que la original.',
+      estimatedPrice: 68.50,
+      servings: 2,
+      prepTime: '20 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Fettuccine integral', amount: 200, unit: 'g', pricePerUnit: 0.055, totalCost: 11.00, source: 'Supermercado' },
+        { name: 'Anacardos crudos', amount: 120, unit: 'g', pricePerUnit: 0.12, totalCost: 14.40, source: 'Tienda naturista' },
+        { name: 'Levadura nutricional', amount: 4, unit: 'cucharadas', pricePerUnit: 1.20, totalCost: 4.80, source: 'Tienda naturista' },
+        { name: 'Ajo fresco', amount: 2, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.50, source: 'Central de Abastos' },
+        { name: 'Jugo de limón', amount: 2, unit: 'cucharadas', pricePerUnit: 1.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Aceite de oliva', amount: 2, unit: 'cucharadas', pricePerUnit: 0.35, totalCost: 0.70, source: 'Supermercado' },
+        { name: 'Sal marina', amount: 1, unit: 'cucharadita', pricePerUnit: 0.10, totalCost: 0.10, source: 'Cualquier tienda' },
+        { name: 'Pimienta negra', amount: 0.5, unit: 'cucharadita', pricePerUnit: 0.20, totalCost: 0.10, source: 'Central de Abastos' },
+        { name: 'Perejil fresco', amount: 2, unit: 'cucharadas', pricePerUnit: 1.00, totalCost: 2.00, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Remoja anacardos en agua caliente por 30 minutos.',
+        'Cocina fettuccine según instrucciones del paquete.',
+        'Escurre anacardos y licúa con 1 taza de agua.',
+        'Agrega levadura nutricional, ajo, limón y sal.',
+        'Licúa hasta obtener consistencia cremosa.',
+        'Calienta aceite de oliva en sartén grande.',
+        'Vierte la salsa de anacardos y cocina 3 minutos.',
+        'Agrega pasta escurrida y mezcla bien.',
+        'Sazona con sal y pimienta al gusto.',
+        'Sirve con perejil fresco picado.'
+      ],
+      nutritionInfo: {
+        calories: 520,
+        protein: 18,
+        carbs: 68,
+        fat: 22,
+        fiber: 8,
+        calcium: 85,
+        iron: 3.8
+      }
+    },
+    priceDifferencePercent: -27.9,
+    healthScore: 84,
+    healthBenefits: [
+      'Proteína vegetal de alta calidad',
+      '28% menos calorías que la versión tradicional',
+      'Rico en vitaminas del complejo B',
+      'Grasas saludables de anacardos',
+      'Libre de lactosa y colesterol',
+      'Mayor contenido de fibra'
+    ],
+    environmentalImpact: {
+      co2Reduction: 68,
+      waterSaving: 75,
+      landSaving: 63
+    }
+  },
+  // PLATOS FUERTES
+  {
+    id: 'milanesa-pollo',
+    category: 'plato-fuerte',
+    traditional: {
+      name: 'Milanesa de Pollo (pieza)',
+      estimatedPrice: 75.00,
+      servings: 1,
+      prepTime: '30 min',
+      nutritionInfo: {
+        calories: 485,
+        protein: 32,
+        carbs: 25,
+        fat: 28,
+        fiber: 2,
+        calcium: 45,
+        iron: 2.8
+      }
+    },
+    veganVersion: {
+      name: 'Milanesa de Berenjena Empanizada',
+      description: 'Berenjena gruesa empanizada con pan integral, crujiente por fuera y cremosa por dentro, rica en antioxidantes.',
+      estimatedPrice: 42.00,
+      servings: 1,
+      prepTime: '25 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Berenjena grande', amount: 1, unit: 'pieza', pricePerUnit: 12.00, totalCost: 12.00, source: 'Central de Abastos' },
+        { name: 'Pan integral molido', amount: 80, unit: 'g', pricePerUnit: 0.15, totalCost: 12.00, source: 'Panadería' },
+        { name: 'Harina integral', amount: 40, unit: 'g', pricePerUnit: 0.025, totalCost: 1.00, source: 'Central de Abastos' },
+        { name: 'Leche vegetal', amount: 100, unit: 'ml', pricePerUnit: 0.045, totalCost: 4.50, source: 'Supermercado' },
+        { name: 'Huevo de linaza', amount: 1, unit: 'equivalente', pricePerUnit: 2.50, totalCost: 2.50, source: 'Preparación casera' },
+        { name: 'Aceite para freír', amount: 100, unit: 'ml', pricePerUnit: 0.08, totalCost: 8.00, source: 'Supermercado' },
+        { name: 'Sal y especias', amount: 1, unit: 'cucharadita', pricePerUnit: 0.20, totalCost: 0.20, source: 'Despensa' }
+      ],
+      instructions: [
+        'Corta berenjena en rodajas de 1.5 cm de grosor.',
+        'Sala las berenjenas y deja reposar 20 minutos.',
+        'Enjuaga y seca las berenjenas con papel absorbente.',
+        'Prepara estaciones: harina, leche vegetal, pan molido.',
+        'Pasa cada rodaja por harina, luego leche, luego pan.',
+        'Calienta aceite a temperatura media-alta.',
+        'Fríe las milanesas hasta dorar por ambos lados.',
+        'Escurre en papel absorbente.',
+        'Sirve caliente con limón y ensalada.',
+        'Opcional: hornear en lugar de freír para menos grasa.'
+      ],
+      nutritionInfo: {
+        calories: 320,
+        protein: 12,
+        carbs: 35,
+        fat: 15,
+        fiber: 8,
+        calcium: 85,
+        iron: 2.2
+      }
+    },
+    priceDifferencePercent: -44.0,
+    healthScore: 82,
+    healthBenefits: [
+      'Rico en antioxidantes y fibra de berenjena',
+      '34% menos calorías que milanesa de pollo',
+      'Libre de colesterol y grasas saturadas',
+      'Carbohidratos complejos del empanizado integral',
+      'Potasio para salud cardiovascular',
+      'Digestión más ligera que la carne'
+    ],
+    environmentalImpact: {
+      co2Reduction: 78,
+      waterSaving: 85,
+      landSaving: 72
+    }
+  },
+  {
+    id: 'chiles-rellenos',
+    category: 'plato-fuerte',
+    traditional: {
+      name: 'Chiles Rellenos de Queso (2 piezas)',
+      estimatedPrice: 85.00,
+      servings: 2,
+      prepTime: '45 min',
+      nutritionInfo: {
+        calories: 520,
+        protein: 18,
+        carbs: 32,
+        fat: 35,
+        fiber: 4,
+        calcium: 285,
+        iron: 2.5
+      }
+    },
+    veganVersion: {
+      name: 'Chiles Rellenos de Quinoa y Verduras',
+      description: 'Chiles poblanos rellenos de quinoa, verduras y queso vegetal, horneados en salsa de tomate casera.',
+      estimatedPrice: 58.50,
+      servings: 2,
+      prepTime: '50 min',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Chiles poblanos', amount: 4, unit: 'piezas', pricePerUnit: 8.00, totalCost: 32.00, source: 'Central de Abastos' },
+        { name: 'Quinoa cocida', amount: 150, unit: 'g', pricePerUnit: 0.08, totalCost: 12.00, source: 'Tienda naturista' },
+        { name: 'Queso vegetal rallado', amount: 80, unit: 'g', pricePerUnit: 0.18, totalCost: 14.40, source: 'Tienda naturista' },
+        { name: 'Cebolla blanca', amount: 1, unit: 'pieza', pricePerUnit: 3.00, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Jitomates', amount: 3, unit: 'piezas', pricePerUnit: 2.50, totalCost: 7.50, source: 'Central de Abastos' },
+        { name: 'Calabaza italiana', amount: 1, unit: 'pieza', pricePerUnit: 6.00, totalCost: 6.00, source: 'Central de Abastos' },
+        { name: 'Harina para capeado', amount: 60, unit: 'g', pricePerUnit: 0.025, totalCost: 1.50, source: 'Central de Abastos' }
+      ],
+      instructions: [
+        'Asa los chiles poblanos hasta que la piel se ampolle.',
+        'Coloca en bolsa plástica para sudar 15 minutos.',
+        'Pela cuidadosamente y haz corte lateral para desvenar.',
+        'Saltea cebolla, calabaza picada hasta suavizar.',
+        'Mezcla quinoa cocida con verduras y queso vegetal.',
+        'Rellena chiles con la mezcla y cierra con palillo.',
+        'Prepara capeado con harina y agua con gas.',
+        'Capea los chiles y fríe hasta dorar.',
+        'Sirve con salsa de tomate casera.',
+        'Acompaña con frijoles y arroz integral.'
+      ],
+      nutritionInfo: {
+        calories: 385,
+        protein: 16,
+        carbs: 48,
+        fat: 18,
+        fiber: 12,
+        calcium: 185,
+        iron: 4.2
+      }
+    },
+    priceDifferencePercent: -31.2,
+    healthScore: 87,
+    healthBenefits: [
+      'Proteína completa de la quinoa',
+      '3x más fibra que la versión tradicional',
+      'Rico en vitamina C de chiles poblanos',
+      'Hierro biodisponible de la quinoa',
+      'Antioxidantes de verduras coloridas',
+      'Digestión más liviana sin lácteos'
+    ],
+    environmentalImpact: {
+      co2Reduction: 71,
+      waterSaving: 78,
+      landSaving: 65
+    }
+  },
+  // ENSALADAS
+  {
+    id: 'ensalada-cesar',
+    category: 'ensaladas',
+    traditional: {
+      name: 'Ensalada César con Pollo',
+      estimatedPrice: 120.00,
+      servings: 2,
+      prepTime: '20 min',
+      nutritionInfo: {
+        calories: 485,
+        protein: 32,
+        carbs: 18,
+        fat: 32,
+        fiber: 4,
+        calcium: 185,
+        iron: 2.8
+      }
+    },
+    veganVersion: {
+      name: 'Ensalada César con Tofu Ahumado',
+      description: 'Clásica ensalada César con tofu ahumado casero, crutones integrales y aderezo vegano cremoso.',
+      estimatedPrice: 78.00,
+      servings: 2,
+      prepTime: '25 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Lechuga romana', amount: 2, unit: 'cabezas', pricePerUnit: 12.00, totalCost: 24.00, source: 'Central de Abastos' },
+        { name: 'Tofu firme', amount: 200, unit: 'g', pricePerUnit: 0.045, totalCost: 9.00, source: 'Tienda asiática' },
+        { name: 'Pan integral', amount: 4, unit: 'rebanadas', pricePerUnit: 2.50, totalCost: 10.00, source: 'Panadería' },
+        { name: 'Anacardos para aderezo', amount: 80, unit: 'g', pricePerUnit: 0.12, totalCost: 9.60, source: 'Tienda naturista' },
+        { name: 'Levadura nutricional', amount: 3, unit: 'cucharadas', pricePerUnit: 1.20, totalCost: 3.60, source: 'Tienda naturista' },
+        { name: 'Mostaza dijon', amount: 1, unit: 'cucharada', pricePerUnit: 1.50, totalCost: 1.50, source: 'Supermercado' },
+        { name: 'Ajo', amount: 2, unit: 'dientes', pricePerUnit: 0.25, totalCost: 0.50, source: 'Central de Abastos' },
+        { name: 'Jugo de limón', amount: 3, unit: 'cucharadas', pricePerUnit: 1.50, totalCost: 4.50, source: 'Central de Abastos' },
+        { name: 'Salsa de soya', amount: 1, unit: 'cucharada', pricePerUnit: 0.80, totalCost: 0.80, source: 'Supermercado' }
+      ],
+      instructions: [
+        'Marina tofu en cubos con salsa de soya y especias.',
+        'Asa tofu hasta dorar y obtener sabor ahumado.',
+        'Corta pan integral en cubos y tuesta hasta crujiente.',
+        'Licúa anacardos remojados con ajo, mostaza y limón.',
+        'Agrega levadura nutricional para sabor a queso.',
+        'Lava y corta lechuga romana en trozos grandes.',
+        'Mezcla lechuga con aderezo cremoso.',
+        'Agrega cubos de tofu ahumado y crutones.',
+        'Sirve inmediatamente con pimienta negra.',
+        'Opcional: agregar alcaparras para más sabor.'
+      ],
+      nutritionInfo: {
+        calories: 365,
+        protein: 18,
+        carbs: 28,
+        fat: 22,
+        fiber: 8,
+        calcium: 285,
+        iron: 3.8
+      }
+    },
+    priceDifferencePercent: -35.0,
+    healthScore: 85,
+    healthBenefits: [
+      'Proteína vegetal completa del tofu',
+      '25% menos calorías que la versión tradicional',
+      'Rico en calcio y hierro',
+      'Vitaminas del complejo B de levadura nutricional',
+      'Fibra de lechuga y pan integral',
+      'Libre de colesterol y grasas saturadas'
+    ],
+    environmentalImpact: {
+      co2Reduction: 74,
+      waterSaving: 82,
+      landSaving: 69
+    }
+  },
+  // POSTRES
+  {
+    id: 'tiramisu-tradicional',
+    category: 'postres',
+    traditional: {
+      name: 'Tiramisú (porción)',
+      estimatedPrice: 95.00,
+      servings: 4,
+      prepTime: '30 min + reposo',
+      nutritionInfo: {
+        calories: 520,
+        protein: 8,
+        carbs: 45,
+        fat: 32,
+        fiber: 1,
+        calcium: 165,
+        iron: 1.2
+      }
+    },
+    veganVersion: {
+      name: 'Tiramisú Vegano de Anacardos',
+      description: 'Tiramisú cremoso con crema de anacardos, café orgánico y galletas veganas, sin perder el sabor auténtico.',
+      estimatedPrice: 68.50,
+      servings: 4,
+      prepTime: '35 min + reposo',
+      difficulty: 'medium',
+      ingredients: [
+        { name: 'Anacardos crudos', amount: 200, unit: 'g', pricePerUnit: 0.12, totalCost: 24.00, source: 'Tienda naturista' },
+        { name: 'Galletas veganas tipo savoiardi', amount: 150, unit: 'g', pricePerUnit: 0.18, totalCost: 27.00, source: 'Tienda especializada' },
+        { name: 'Café espresso fuerte', amount: 200, unit: 'ml', pricePerUnit: 0.08, totalCost: 16.00, source: 'Cafetería' },
+        { name: 'Sirope de agave', amount: 80, unit: 'ml', pricePerUnit: 0.15, totalCost: 12.00, source: 'Tienda naturista' },
+        { name: 'Cacao en polvo', amount: 3, unit: 'cucharadas', pricePerUnit: 1.20, totalCost: 3.60, source: 'Supermercado' },
+        { name: 'Extracto de vainilla', amount: 1, unit: 'cucharadita', pricePerUnit: 8.00, totalCost: 8.00, source: 'Tienda gourmet' }
+      ],
+      instructions: [
+        'Remoja anacardos en agua caliente por 2 horas.',
+        'Prepara café espresso fuerte y deja enfriar.',
+        'Escurre anacardos y licúa con sirope de agave.',
+        'Agrega extracto de vainilla a la crema.',
+        'Bate hasta obtener consistencia de mascarpone.',
+        'Sumerge galletas rápidamente en café.',
+        'Arma capas: galletas con café, crema de anacardos.',
+        'Repite capas hasta terminar ingredientes.',
+        'Refrigera mínimo 4 horas para que asiente.',
+        'Espolvorea cacao antes de servir.'
+      ],
+      nutritionInfo: {
+        calories: 385,
+        protein: 12,
+        carbs: 38,
+        fat: 22,
+        fiber: 4,
+        calcium: 45,
+        iron: 2.8
+      }
+    },
+    priceDifferencePercent: -27.9,
+    healthScore: 78,
+    healthBenefits: [
+      'Proteína vegetal de anacardos',
+      '26% menos calorías que tiramisú tradicional',
+      'Rico en magnesio y cobre',
+      'Antioxidantes del cacao',
+      'Libre de colesterol y lactosa',
+      'Energía sostenida del agave'
+    ],
+    environmentalImpact: {
+      co2Reduction: 69,
+      waterSaving: 76,
+      landSaving: 64
+    }
+  },
+  // SALSAS Y ADEREZOS
+  {
+    id: 'salsa-ranch',
+    category: 'salsas',
+    traditional: {
+      name: 'Aderezo Ranch (250ml)',
+      estimatedPrice: 55.00,
+      servings: 8,
+      prepTime: '5 min',
+      nutritionInfo: {
+        calories: 580,
+        protein: 2,
+        carbs: 8,
+        fat: 58,
+        fiber: 0,
+        calcium: 45,
+        iron: 0.2
+      }
+    },
+    veganVersion: {
+      name: 'Ranch Vegano de Anacardos',
+      description: 'Aderezo ranch cremoso con anacardos, hierbas frescas y yogurt vegetal, perfecto para ensaladas.',
+      estimatedPrice: 38.50,
+      servings: 8,
+      prepTime: '10 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Anacardos crudos', amount: 100, unit: 'g', pricePerUnit: 0.12, totalCost: 12.00, source: 'Tienda naturista' },
+        { name: 'Yogurt vegetal natural', amount: 150, unit: 'ml', pricePerUnit: 0.08, totalCost: 12.00, source: 'Supermercado' },
+        { name: 'Eneldo fresco', amount: 2, unit: 'cucharadas', pricePerUnit: 1.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Cebollín', amount: 2, unit: 'cucharadas', pricePerUnit: 1.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Perejil', amount: 2, unit: 'cucharadas', pricePerUnit: 1.00, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Ajo en polvo', amount: 1, unit: 'cucharadita', pricePerUnit: 0.50, totalCost: 0.50, source: 'Especiero' },
+        { name: 'Jugo de limón', amount: 2, unit: 'cucharadas', pricePerUnit: 1.50, totalCost: 3.00, source: 'Central de Abastos' },
+        { name: 'Sal marina', amount: 0.5, unit: 'cucharadita', pricePerUnit: 0.10, totalCost: 0.05, source: 'Cualquier tienda' }
+      ],
+      instructions: [
+        'Remoja anacardos en agua caliente 30 minutos.',
+        'Escurre y licúa anacardos con poca agua hasta cremoso.',
+        'Agrega yogurt vegetal y mezcla suavemente.',
+        'Incorpora hierbas frescas picadas finamente.',
+        'Agrega ajo en polvo, sal y jugo de limón.',
+        'Bate hasta integrar todos los ingredientes.',
+        'Ajusta consistencia con agua si es necesario.',
+        'Refrigera 30 minutos para que asienten sabores.',
+        'Sirve frío con vegetales o ensaladas.',
+        'Conservar refrigerado máximo 5 días.'
+      ],
+      nutritionInfo: {
+        calories: 320,
+        protein: 8,
+        carbs: 12,
+        fat: 28,
+        fiber: 2,
+        calcium: 65,
+        iron: 1.8
+      }
+    },
+    priceDifferencePercent: -30.0,
+    healthScore: 82,
+    healthBenefits: [
+      'Probióticos del yogurt vegetal',
+      '45% menos calorías que ranch tradicional',
+      'Proteína vegetal de anacardos',
+      'Antioxidantes de hierbas frescas',
+      'Libre de conservadores artificiales',
+      'Rico en vitaminas K y C'
+    ],
+    environmentalImpact: {
+      co2Reduction: 65,
+      waterSaving: 72,
+      landSaving: 58
+    }
+  },
+  // APERITIVOS
+  {
+    id: 'alitas-buffalo',
+    category: 'aperitivos',
+    traditional: {
+      name: 'Alitas Buffalo (8 piezas)',
+      estimatedPrice: 85.00,
+      servings: 2,
+      prepTime: '35 min',
+      nutritionInfo: {
+        calories: 520,
+        protein: 28,
+        carbs: 8,
+        fat: 42,
+        fiber: 0,
+        calcium: 25,
+        iron: 1.8
+      }
+    },
+    veganVersion: {
+      name: 'Coliflor Buffalo Crujiente',
+      description: 'Floretes de coliflor empanizados y bañados en salsa buffalo picante, crujientes y sabrosos.',
+      estimatedPrice: 48.00,
+      servings: 2,
+      prepTime: '30 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Coliflor grande', amount: 1, unit: 'cabeza', pricePerUnit: 18.00, totalCost: 18.00, source: 'Central de Abastos' },
+        { name: 'Harina integral', amount: 80, unit: 'g', pricePerUnit: 0.025, totalCost: 2.00, source: 'Central de Abastos' },
+        { name: 'Leche vegetal', amount: 120, unit: 'ml', pricePerUnit: 0.045, totalCost: 5.40, source: 'Supermercado' },
+        { name: 'Salsa buffalo vegana', amount: 60, unit: 'ml', pricePerUnit: 0.15, totalCost: 9.00, source: 'Tienda especializada' },
+        { name: 'Aceite para hornear', amount: 2, unit: 'cucharadas', pricePerUnit: 0.35, totalCost: 0.70, source: 'Supermercado' },
+        { name: 'Polvo de ajo', amount: 1, unit: 'cucharadita', pricePerUnit: 0.50, totalCost: 0.50, source: 'Especiero' },
+        { name: 'Paprika', amount: 1, unit: 'cucharadita', pricePerUnit: 0.60, totalCost: 0.60, source: 'Especiero' }
+      ],
+      instructions: [
+        'Precalienta horno a 200°C.',
+        'Corta coliflor en floretes del tamaño de alitas.',
+        'Mezcla harina con especias en un bowl.',
+        'Agrega leche vegetal para hacer pasta espesa.',
+        'Sumerge floretes en la mezcla para empanizar.',
+        'Coloca en charola con papel encerado.',
+        'Rocía con aceite y hornea 20 minutos.',
+        'Voltea y hornea 10 minutos más hasta dorar.',
+        'Baña con salsa buffalo mientras están calientes.',
+        'Sirve inmediatamente con aderezo ranch vegano.'
+      ],
+      nutritionInfo: {
+        calories: 285,
+        protein: 12,
+        carbs: 32,
+        fat: 14,
+        fiber: 8,
+        calcium: 85,
+        iron: 2.2
+      }
+    },
+    priceDifferencePercent: -43.5,
+    healthScore: 88,
+    healthBenefits: [
+      'Rico en vitamina C y antioxidantes',
+      '45% menos calorías que alitas de pollo',
+      'Alto contenido de fibra y folato',
+      'Libre de colesterol y grasas saturadas',
+      'Compuestos sulfurados anticancerígenos',
+      'Horneado en lugar de frito'
+    ],
+    environmentalImpact: {
+      co2Reduction: 82,
+      waterSaving: 89,
+      landSaving: 76
+    }
+  },
+  // BEBIDAS
+  {
+    id: 'licuado-platano',
+    category: 'bebidas',
+    traditional: {
+      name: 'Licuado de Plátano con Leche (vaso grande)',
+      estimatedPrice: 35.00,
+      servings: 1,
+      prepTime: '5 min',
+      nutritionInfo: {
+        calories: 320,
+        protein: 12,
+        carbs: 48,
+        fat: 8,
+        fiber: 3,
+        calcium: 285,
+        iron: 0.8
+      }
+    },
+    veganVersion: {
+      name: 'Licuado de Plátano con Leche de Avena',
+      description: 'Licuado cremoso con leche de avena casera, endulzado naturalmente y enriquecido con semillas.',
+      estimatedPrice: 24.50,
+      servings: 1,
+      prepTime: '7 min',
+      difficulty: 'easy',
+      ingredients: [
+        { name: 'Plátanos maduros', amount: 2, unit: 'piezas', pricePerUnit: 3.50, totalCost: 7.00, source: 'Central de Abastos' },
+        { name: 'Leche de avena casera', amount: 250, unit: 'ml', pricePerUnit: 0.025, totalCost: 6.25, source: 'Preparación propia' },
+        { name: 'Semillas de chía', amount: 1, unit: 'cucharada', pricePerUnit: 2.00, totalCost: 2.00, source: 'Tienda naturista' },
+        { name: 'Extracto de vainilla', amount: 0.5, unit: 'cucharadita', pricePerUnit: 8.00, totalCost: 4.00, source: 'Tienda gourmet' },
+        { name: 'Canela en polvo', amount: 0.5, unit: 'cucharadita', pricePerUnit: 1.00, totalCost: 0.50, source: 'Especiero' },
+        { name: 'Hielo', amount: 100, unit: 'g', pricePerUnit: 0.02, totalCost: 2.00, source: 'Casa' }
+      ],
+      instructions: [
+        'Pela plátanos y córtalos en rodajas.',
+        'Agrega todos los ingredientes a la licuadora.',
+        'Licúa a velocidad alta por 60 segundos.',
+        'Verifica consistencia y ajusta con más leche si necesario.',
+        'Licúa 30 segundos más para incorporar chía.',
+        'Prueba y ajusta dulzor si es necesario.',
+        'Sirve inmediatamente en vaso frío.',
+        'Decora con rodaja de plátano y canela.',
+        'Opcional: agregar granola encima.',
+        'Beber inmediatamente para mejor textura.'
+      ],
+      nutritionInfo: {
+        calories: 285,
+        protein: 8,
+        carbs: 52,
+        fat: 6,
+        fiber: 8,
+        calcium: 185,
+        iron: 2.2
+      }
+    },
+    priceDifferencePercent: -30.0,
+    healthScore: 89,
+    healthBenefits: [
+      'Rico en potasio para función muscular',
+      'Omega-3 de semillas de chía',
+      'Fibra soluble de avena y plátano',
+      'Libre de lactosa y más digestible',
+      'Antioxidantes de canela',
+      'Energía sostenida sin azúcar refinada'
+    ],
+    environmentalImpact: {
+      co2Reduction: 58,
+      waterSaving: 65,
+      landSaving: 52
+    }
   }
 ];
