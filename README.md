@@ -3,7 +3,7 @@
 
 [![Accessibility](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-green.svg)](ACCESSIBILITY.md)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.0.0-orange.svg)](package.json)
+[![Version](https://img.shields.io/badge/Version-2.0.0-orange.svg)](docs/CHANGELOG.md)
 
 Una plataforma web dedicada a facilitar la transición hacia una alimentación basada en plantas mediante comparaciones objetivas de precios y valores nutricionales en la Ciudad de México.
 

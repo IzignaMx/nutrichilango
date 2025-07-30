@@ -36,20 +36,20 @@ const DataSources: React.FC = () => {
                 <div>
                   <h3 className="text-xl font-semibold text-brand-primary mb-4">Supermercados y Cadenas</h3>
                   <div className="space-y-4">
-                    <div className="p-4 bg-blue-50 rounded-lg">
-                      <h4 className="font-semibold text-blue-700">Soriana</h4>
-                      <p className="text-sm text-gray-600 mb-2">Sitio web oficial y aplicación móvil</p>
-                      <Badge className="bg-blue-100 text-blue-800">Actualización automática</Badge>
+                    <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                      <h4 className="font-semibold text-primary">Soriana</h4>
+                      <p className="text-sm text-muted-foreground mb-2">Sitio web oficial y aplicación móvil</p>
+                      <Badge className="bg-primary/10 text-primary">Actualización automática</Badge>
                     </div>
-                    <div className="p-4 bg-green-50 rounded-lg">
-                      <h4 className="font-semibold text-green-700">Walmart</h4>
-                      <p className="text-sm text-gray-600 mb-2">API pública y sitio web</p>
-                      <Badge className="bg-green-100 text-green-800">Actualización diaria</Badge>
+                    <div className="p-4 bg-brand-success/5 rounded-lg border border-brand-success/20">
+                      <h4 className="font-semibold text-brand-success">Walmart</h4>
+                      <p className="text-sm text-muted-foreground mb-2">API pública y sitio web</p>
+                      <Badge className="bg-brand-success/10 text-brand-success">Actualización diaria</Badge>
                     </div>
-                    <div className="p-4 bg-yellow-50 rounded-lg">
-                      <h4 className="font-semibold text-yellow-700">Chedraui</h4>
-                      <p className="text-sm text-gray-600 mb-2">Catálogo en línea</p>
-                      <Badge className="bg-yellow-100 text-yellow-800">Actualización semanal</Badge>
+                    <div className="p-4 bg-brand-accent/5 rounded-lg border border-brand-accent/20">
+                      <h4 className="font-semibold text-brand-accent">Chedraui</h4>
+                      <p className="text-sm text-muted-foreground mb-2">Catálogo en línea</p>
+                      <Badge className="bg-brand-accent/10 text-brand-accent">Actualización semanal</Badge>
                     </div>
                   </div>
                 </div>
@@ -57,20 +57,20 @@ const DataSources: React.FC = () => {
                 <div>
                   <h3 className="text-xl font-semibold text-brand-primary mb-4">Mercados y Tianguis</h3>
                   <div className="space-y-4">
-                    <div className="p-4 bg-red-50 rounded-lg">
-                      <h4 className="font-semibold text-red-700">Central de Abastos</h4>
-                      <p className="text-sm text-gray-600 mb-2">Relevamiento presencial semanal</p>
-                      <Badge className="bg-red-100 text-red-800">Verificación manual</Badge>
+                    <div className="p-4 bg-destructive/5 rounded-lg border border-destructive/20">
+                      <h4 className="font-semibold text-destructive">Central de Abastos</h4>
+                      <p className="text-sm text-muted-foreground mb-2">Relevamiento presencial semanal</p>
+                      <Badge className="bg-destructive/10 text-destructive">Verificación manual</Badge>
                     </div>
-                    <div className="p-4 bg-purple-50 rounded-lg">
-                      <h4 className="font-semibold text-purple-700">Mercado Jamaica</h4>
-                      <p className="text-sm text-gray-600 mb-2">Contacto directo con comerciantes</p>
-                      <Badge className="bg-purple-100 text-purple-800">Actualización semanal</Badge>
+                    <div className="p-4 bg-secondary/20 rounded-lg border border-secondary/40">
+                      <h4 className="font-semibold text-secondary-foreground">Mercado Jamaica</h4>
+                      <p className="text-sm text-muted-foreground mb-2">Contacto directo con comerciantes</p>
+                      <Badge className="bg-secondary/30 text-secondary-foreground">Actualización semanal</Badge>
                     </div>
-                    <div className="p-4 bg-orange-50 rounded-lg">
-                      <h4 className="font-semibold text-orange-700">Tianguis Locales</h4>
-                      <p className="text-sm text-gray-600 mb-2">Red de colaboradores</p>
-                      <Badge className="bg-orange-100 text-orange-800">Datos comunitarios</Badge>
+                    <div className="p-4 bg-brand-primary-light/20 rounded-lg border border-brand-primary-light/40">
+                      <h4 className="font-semibold text-brand-primary">Tianguis Locales</h4>
+                      <p className="text-sm text-muted-foreground mb-2">Red de colaboradores</p>
+                      <Badge className="bg-brand-primary-light/30 text-brand-primary">Datos comunitarios</Badge>
                     </div>
                   </div>
                 </div>
@@ -91,27 +91,27 @@ const DataSources: React.FC = () => {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <h4 className="font-semibold text-blue-700 flex items-center mb-2">
+                  <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                    <h4 className="font-semibold text-primary flex items-center mb-2">
                       USDA FoodData Central
                       <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
                     </h4>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-muted-foreground mb-2">
                       Base de datos oficial del Departamento de Agricultura de Estados Unidos
                     </p>
-                    <ul className="text-xs text-gray-500 space-y-1" role="list">
+                    <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                       <li>• Más de 300,000 alimentos catalogados</li>
                       <li>• Datos verificados científicamente</li>
                       <li>• Actualización continua</li>
                     </ul>
                   </div>
 
-                  <div className="p-4 bg-green-50 rounded-lg">
-                    <h4 className="font-semibold text-green-700">Tablas INCMNSZ</h4>
-                    <p className="text-sm text-gray-600 mb-2">
+                  <div className="p-4 bg-brand-success/5 rounded-lg border border-brand-success/20">
+                    <h4 className="font-semibold text-brand-success">Tablas INCMNSZ</h4>
+                    <p className="text-sm text-muted-foreground mb-2">
                       Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán
                     </p>
-                    <ul className="text-xs text-gray-500 space-y-1" role="list">
+                    <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                       <li>• Alimentos específicos de México</li>
                       <li>• Análisis de laboratorio local</li>
                       <li>• Enfoque en productos tradicionales</li>
@@ -120,24 +120,24 @@ const DataSources: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="p-4 bg-yellow-50 rounded-lg">
-                    <h4 className="font-semibold text-yellow-700">Etiquetas de Productos</h4>
-                    <p className="text-sm text-gray-600 mb-2">
+                  <div className="p-4 bg-brand-accent/5 rounded-lg border border-brand-accent/20">
+                    <h4 className="font-semibold text-brand-accent">Etiquetas de Productos</h4>
+                    <p className="text-sm text-muted-foreground mb-2">
                       Información nutricional directa del fabricante
                     </p>
-                    <ul className="text-xs text-gray-500 space-y-1" role="list">
+                    <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                       <li>• Productos plant-based comerciales</li>
                       <li>• Cumplimiento NOM-051-SCFI/SSA1-2010</li>
                       <li>• Verificación cruzada con laboratorios</li>
                     </ul>
                   </div>
 
-                  <div className="p-4 bg-purple-50 rounded-lg">
-                    <h4 className="font-semibold text-purple-700">Literatura Científica</h4>
-                    <p className="text-sm text-gray-600 mb-2">
+                  <div className="p-4 bg-secondary/20 rounded-lg border border-secondary/40">
+                    <h4 className="font-semibold text-secondary-foreground">Literatura Científica</h4>
+                    <p className="text-sm text-muted-foreground mb-2">
                       Estudios peer-reviewed y bases de datos académicas
                     </p>
-                    <ul className="text-xs text-gray-500 space-y-1" role="list">
+                    <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                       <li>• PubMed y bases científicas</li>
                       <li>• Estudios de bioavailabilidad</li>
                       <li>• Investigación en nutrición plant-based</li>
@@ -160,36 +160,36 @@ const DataSources: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="p-4 bg-red-50 rounded-lg">
-                  <h4 className="font-semibold text-red-700 mb-2">Chefs Profesionales</h4>
-                  <p className="text-sm text-gray-600 mb-3">
+                <div className="p-4 bg-destructive/5 rounded-lg border border-destructive/20">
+                  <h4 className="font-semibold text-destructive mb-2">Chefs Profesionales</h4>
+                  <p className="text-sm text-muted-foreground mb-3">
                     Colaboración con chefs especializados en cocina plant-based
                   </p>
-                  <ul className="text-xs text-gray-500 space-y-1" role="list">
+                  <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                     <li>• Recetas probadas profesionalmente</li>
                     <li>• Técnicas de optimización nutricional</li>
                     <li>• Adaptaciones mexicanas</li>
                   </ul>
                 </div>
 
-                <div className="p-4 bg-green-50 rounded-lg">
-                  <h4 className="font-semibold text-green-700 mb-2">Comunidad</h4>
-                  <p className="text-sm text-gray-600 mb-3">
+                <div className="p-4 bg-brand-success/5 rounded-lg border border-brand-success/20">
+                  <h4 className="font-semibold text-brand-success mb-2">Comunidad</h4>
+                  <p className="text-sm text-muted-foreground mb-3">
                     Recetas validadas por la comunidad de usuarios
                   </p>
-                  <ul className="text-xs text-gray-500 space-y-1" role="list">
+                  <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                     <li>• Experiencias reales de preparación</li>
                     <li>• Adaptaciones económicas</li>
                     <li>• Feedback de sabor y textura</li>
                   </ul>
                 </div>
 
-                <div className="p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-700 mb-2">Literatura Culinaria</h4>
-                  <p className="text-sm text-gray-600 mb-3">
+                <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <h4 className="font-semibold text-primary mb-2">Literatura Culinaria</h4>
+                  <p className="text-sm text-muted-foreground mb-3">
                     Libros de cocina y recursos académicos
                   </p>
-                  <ul className="text-xs text-gray-500 space-y-1" role="list">
+                  <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                     <li>• Técnicas tradicionales adaptadas</li>
                     <li>• Fundamentos científicos de cocción</li>
                     <li>• Métodos de conservación</li>

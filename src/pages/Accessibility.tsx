@@ -43,20 +43,20 @@ const Accessibility: React.FC = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="text-center">
-                  <Badge className="bg-blue-100 text-blue-800 text-lg px-4 py-2 mb-3">WCAG 2.1 AA</Badge>
-                  <p className="text-gray-600 text-sm">Cumplimiento completo</p>
+                  <Badge className="bg-primary/10 text-primary text-lg px-4 py-2 mb-3">WCAG 2.1 AA</Badge>
+                  <p className="text-muted-foreground text-sm">Cumplimiento completo</p>
                 </div>
                 <div className="text-center">
-                  <Badge className="bg-green-100 text-green-800 text-lg px-4 py-2 mb-3">Section 508</Badge>
-                  <p className="text-gray-600 text-sm">Compatible</p>
+                  <Badge className="bg-brand-success/10 text-brand-success text-lg px-4 py-2 mb-3">Section 508</Badge>
+                  <p className="text-muted-foreground text-sm">Compatible</p>
                 </div>
                 <div className="text-center">
-                  <Badge className="bg-purple-100 text-purple-800 text-lg px-4 py-2 mb-3">ADA/AODA</Badge>
-                  <p className="text-gray-600 text-sm">Requisitos cubiertos</p>
+                  <Badge className="bg-secondary/30 text-secondary-foreground text-lg px-4 py-2 mb-3">ADA/AODA</Badge>
+                  <p className="text-muted-foreground text-sm">Requisitos cubiertos</p>
                 </div>
                 <div className="text-center">
-                  <Badge className="bg-yellow-100 text-yellow-800 text-lg px-4 py-2 mb-3">EN 301 549</Badge>
-                  <p className="text-gray-600 text-sm">Estándar europeo</p>
+                  <Badge className="bg-brand-accent/10 text-brand-accent text-lg px-4 py-2 mb-3">EN 301 549</Badge>
+                  <p className="text-muted-foreground text-sm">Estándar europeo</p>
                 </div>
               </div>
             </CardContent>
@@ -100,8 +100,8 @@ const Accessibility: React.FC = () => {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-blue-600 mb-3">Tipografía y Zoom</h4>
-                      <ul className="space-y-2 text-gray-600" role="list">
+                      <h4 className="font-semibold text-primary mb-3">Tipografía y Zoom</h4>
+                      <ul className="space-y-2 text-muted-foreground" role="list">
                         <li>• Fuentes legibles y de buen tamaño</li>
                         <li>• Zoom hasta 200% sin pérdida de funcionalidad</li>
                         <li>• Espaciado adecuado entre líneas y párrafos</li>
@@ -111,9 +111,9 @@ const Accessibility: React.FC = () => {
                     </div>
                   </div>
                   
-                  <Alert className="border-blue-200 bg-blue-50">
-                    <Eye className="h-4 w-4 text-blue-600" />
-                    <AlertDescription className="text-blue-800">
+                  <Alert className="border-primary/20 bg-primary/5">
+                    <Eye className="h-4 w-4 text-primary" />
+                    <AlertDescription className="text-primary">
                       <strong>Tip para usuarios con baja visión:</strong> Puedes usar Ctrl + Plus para 
                       aumentar el zoom, o ajustar el tamaño de fuente en la configuración de tu navegador.
                     </AlertDescription>
