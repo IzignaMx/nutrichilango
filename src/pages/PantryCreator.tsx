@@ -283,19 +283,30 @@ const PantryCreator: React.FC = () => {
 
             {state.step === 4 && (
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                  <Button onClick={copyList} variant="outline" className="flex items-center gap-2">
-                    <Copy className="h-4 w-4" />
-                    Copiar lista
+                <div className="flex justify-between items-start mb-6">
+                  <Button 
+                    onClick={() => dispatch({ type: 'SET_STEP', payload: 1 })}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                  >
+                    Nueva lista
                   </Button>
-                  <Button onClick={downloadPDF} variant="outline" className="flex items-center gap-2">
-                    <Download className="h-4 w-4" />
-                    Descargar PDF
-                  </Button>
-                  <Button onClick={shareList} variant="outline" className="flex items-center gap-2">
-                    <Share className="h-4 w-4" />
-                    Compartir enlace
-                  </Button>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <Button onClick={copyList} variant="outline" size="sm" className="flex items-center gap-2">
+                      <Copy className="h-4 w-4" />
+                      Copiar lista
+                    </Button>
+                    <Button onClick={downloadPDF} variant="outline" size="sm" className="flex items-center gap-2">
+                      <Download className="h-4 w-4" />
+                      Descargar PDF
+                    </Button>
+                    <Button onClick={shareList} variant="outline" size="sm" className="flex items-center gap-2">
+                      <Share className="h-4 w-4" />
+                      Compartir enlace
+                    </Button>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
