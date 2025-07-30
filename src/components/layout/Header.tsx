@@ -12,6 +12,8 @@ const Header: React.FC = () => {
   const mainNavItems = [
     { name: 'Comparador Productos', href: '/' },
     { name: 'Comparador Platillos', href: '/dishes-comparison' },
+    { name: 'Crea tu despensa', href: '/despensa' },
+    { name: 'Emprendimientos', href: '/emprendimientos' },
   ];
 
   const resourcesItems = [

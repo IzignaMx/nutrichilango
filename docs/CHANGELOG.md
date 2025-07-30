@@ -8,6 +8,9 @@
 - 🐛 Botón flotante para reportar bugs con modal de formulario integrado
 - ✨ Componentes UI reutilizables: PriceDateBanner, FloatingActionButton, BugReportModal
 - 📋 Documentación técnica para formulario de feedback futuro
+- 🥬 **Creador de Despensa Vegana** (`/despensa`): Wizard interactivo de 3 pasos para listas personalizadas
+- 🏪 **Directorio de Emprendimientos** (`/emprendimientos`): Landing "Próximamente" con registro vía mailto
+- 📇 Componente reutilizable `BusinessCard` para futuras implementaciones del directorio
 
 ### Improved
 - 🎨 Mejoras en accesibilidad con aria-labels y navegación por teclado
