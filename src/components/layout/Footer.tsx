@@ -135,7 +135,7 @@ const Footer: React.FC = () => {
           <div className="text-sm text-primary-foreground/70">
             <p>© {currentYear} NutriChilango. Todos los derechos reservados.</p>
             <p className="mt-1">
-              Datos actualizados semanalmente. Última actualización: {new Date().toLocaleDateString('es-MX')}
+              Datos actualizados periodicamente. Última actualización: 12-Julio-2025
             </p>
           </div>
           
