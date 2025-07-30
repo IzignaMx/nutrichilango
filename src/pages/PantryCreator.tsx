@@ -1,10 +1,15 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, lazy, Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Users, ChefHat, Calendar, Download, Copy, Share } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { pdf } from '@react-pdf/renderer';
+import { generateBalancedPantryList, type PantryItem } from '@/data/pantry/products';
+
+// Lazy load del componente PDF para mejor performance
+const PantryPDFDocument = lazy(() => import('@/components/pantry/PantryPDFDocument'));
 
 type PantryState = {
   step: number;
@@ -14,14 +19,7 @@ type PantryState = {
   generatedList: PantryItem[];
 };
 
-type PantryItem = {
-  id: string;
-  name: string;
-  category: string;
-  quantity: string;
-  price: number;
-  unit: string;
-};
+// Tipo importado desde el archivo de productos
 
 type PantryAction = 
   | { type: 'SET_STEP'; payload: number }
@@ -99,28 +97,11 @@ const PantryCreator: React.FC = () => {
   ] as const;
 
   const generatePantryList = (): PantryItem[] => {
-    const baseItems: PantryItem[] = [
-      { id: '1', name: 'Lentejas', category: 'Leguminosas', quantity: '2', price: 45, unit: 'kg' },
-      { id: '2', name: 'Garbanzos', category: 'Leguminosas', quantity: '1.5', price: 38, unit: 'kg' },
-      { id: '3', name: 'Frijoles negros', category: 'Leguminosas', quantity: '2', price: 42, unit: 'kg' },
-      { id: '4', name: 'Quinoa', category: 'Granos', quantity: '1', price: 85, unit: 'kg' },
-      { id: '5', name: 'Avena', category: 'Granos', quantity: '1', price: 35, unit: 'kg' },
-      { id: '6', name: 'Arroz integral', category: 'Granos', quantity: '2', price: 48, unit: 'kg' },
-      { id: '7', name: 'Espinacas', category: 'Vegetales', quantity: '500', price: 25, unit: 'g' },
-      { id: '8', name: 'Brócoli', category: 'Vegetales', quantity: '3', price: 45, unit: 'piezas' },
-      { id: '9', name: 'Cúrcuma', category: 'Especias', quantity: '50', price: 15, unit: 'g' },
-      { id: '10', name: 'Comino', category: 'Especias', quantity: '30', price: 12, unit: 'g' }
-    ];
-
-    // Adjust quantities based on household size and frequency
-    const multiplier = state.householdSize / 2; // Base for 2 people
-    const frequencyMultiplier = state.frequency === 'weekly' ? 1 : state.frequency === 'biweekly' ? 2 : 4;
-
-    return baseItems.map(item => ({
-      ...item,
-      quantity: (parseFloat(item.quantity) * multiplier * frequencyMultiplier).toFixed(item.unit === 'kg' ? 1 : 0),
-      price: item.price * multiplier * frequencyMultiplier
-    }));
+    return generateBalancedPantryList(
+      state.householdSize,
+      state.frequency as 'weekly' | 'biweekly' | 'monthly',
+      state.preferences
+    );
   };
 
   const handleNext = () => {
@@ -149,14 +130,51 @@ const PantryCreator: React.FC = () => {
       freq: state.frequency
     });
     
-    const url = `${window.location.origin}/despensa?${params.toString()}`;
+    const url = `https://nutrichilango.izignamx.com/despensa?${params.toString()}`;
     navigator.clipboard.writeText(url);
     toast({ title: "Enlace copiado", description: "El enlace se copió al portapapeles" });
   };
 
   const downloadPDF = async () => {
-    toast({ title: "Descarga iniciada", description: "Generando PDF..." });
-    // PDF generation would be implemented here with @react-pdf/renderer
+    try {
+      toast({ title: "Generando PDF", description: "Preparando tu lista personalizada..." });
+      
+      // Importar dinámicamente el componente PDF
+      const PantryPDFDocument = (await import('@/components/pantry/PantryPDFDocument')).default;
+      
+      // Generar el blob del PDF
+      const blob = await pdf(
+        <PantryPDFDocument
+          items={state.generatedList}
+          householdSize={state.householdSize}
+          frequency={state.frequency}
+          preferences={state.preferences}
+          totalPrice={totalPrice}
+        />
+      ).toBlob();
+
+      // Crear enlace de descarga
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `despensa-vegana-${state.householdSize}personas-${state.frequency}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toast({ 
+        title: "¡PDF generado!", 
+        description: "Tu lista de despensa se ha descargado correctamente" 
+      });
+    } catch (error) {
+      console.error('Error generando PDF:', error);
+      toast({ 
+        title: "Error", 
+        description: "No se pudo generar el PDF. Intenta de nuevo.",
+        variant: "destructive"
+      });
+    }
   };
 
   const totalPrice = state.generatedList.reduce((sum, item) => sum + item.price, 0);
@@ -281,7 +299,7 @@ const PantryCreator: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  {['Leguminosas', 'Granos', 'Vegetales', 'Especias'].map(category => (
+                  {[...new Set(state.generatedList.map(item => item.category))].map(category => (
                     <Card key={category}>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg">{category}</CardTitle>
