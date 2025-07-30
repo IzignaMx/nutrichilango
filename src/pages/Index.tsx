@@ -87,8 +87,12 @@ const Index: React.FC = () => {
           <CallToActionSection />
         </div>
       </main>
-      
-      <FloatingActionButton
+    </div>
+  );
+};
+
+/*
+<FloatingActionButton
         onClick={() => setIsBugReportOpen(true)}
         icon={<Bug className="w-6 h-6" />}
         label="Reportar un problema"
@@ -98,8 +102,5 @@ const Index: React.FC = () => {
         isOpen={isBugReportOpen}
         onClose={() => setIsBugReportOpen(false)}
       />
-    </div>
-  );
-};
-
+*/
 export default Index;
