@@ -24,13 +24,12 @@ const BusinessDirectory: React.FC = () => {
   ];
 
   const handleContactClick = () => {
-    const subject = encodeURIComponent('Alta Directorio NutriChilango');
-    const body = encodeURIComponent(`Nombre del proyecto:
-Categoría:
-Sitio o Redes:
-Descripción breve:
-Ubicación:
-Contacto:`);
+    const subject = encodeURIComponent('Nutrichilango - registro emprendimiento');
+    const body = encodeURIComponent(`Nombre del emprendimiento:
+
+Enlace / redes sociales:
+
+Idea de colaboración (ej. receta patrocinada, cupón, contenido educativo):`);
     
     window.location.href = `mailto:edgar@izignamx.com?subject=${subject}&body=${body}`;
   };
