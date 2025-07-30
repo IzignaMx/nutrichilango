@@ -63,8 +63,6 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-primary-lighter to-background">
-      <PriceDateBanner lastUpdated={new Date('2024-01-30')} />
-      
       <HeroSection onScrollToComparisons={handleScrollToComparisons} />
       
       <FeaturesSection />
