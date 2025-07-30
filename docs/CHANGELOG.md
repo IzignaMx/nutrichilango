@@ -1,5 +1,26 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- 🎯 CTA principal mejorado en hero section con mejor texto y call-to-action
+- 📅 Banner de fecha de precios que muestra cuándo fueron actualizados los datos
+- 🐛 Botón flotante para reportar bugs con modal de formulario integrado
+- ✨ Componentes UI reutilizables: PriceDateBanner, FloatingActionButton, BugReportModal
+- 📋 Documentación técnica para formulario de feedback futuro
+
+### Improved
+- 🎨 Mejoras en accesibilidad con aria-labels y navegación por teclado
+- 📱 Diseño responsive optimizado para todos los breakpoints
+- 🎭 Animaciones suaves en botones y transiciones
+- 🔧 Arquitectura de componentes más modular y reutilizable
+
+### Technical
+- Nuevos componentes siguiendo patrones atómicos del design system
+- Integración completa con tokens semánticos de color
+- Navegación por teclado y compatibilidad con screen readers
+- Estructura preparada para integración con Supabase para reportes
+
 ## [2.0.0] - 2025-01-30
 
 ### ✅ MAJOR RELEASE - Complete Development Cycle

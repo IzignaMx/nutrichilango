@@ -39,15 +39,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToComparisons }) => {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 md:mb-8 max-w-md sm:max-w-none mx-auto">
           <Button
             size="lg" 
-            className="bg-white text-green-700 hover:bg-white/90 hover:text-green-800 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto transition-colors duration-200"
+            className="bg-white text-green-700 hover:bg-white/90 hover:text-green-800 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto transition-all duration-300 hover:scale-105"
             onClick={onScrollToComparisons}
             aria-describedby="hero-cta-description"
           >
-            ¡Quiero Ahorrar y Vivir Mejor!
+            🛒 Compara Precios Ahora
             <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
           </Button>
           <span id="hero-cta-description" className="sr-only">
-            Ver comparaciones de precios y productos plant-based
+            Ver comparaciones de precios y productos plant-based en CDMX
           </span>
           
           <Button 

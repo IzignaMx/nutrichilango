@@ -6,6 +6,10 @@ import FeaturesSection from '@/components/home/FeaturesSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import ComparisonSection from '@/components/home/ComparisonSection';
 import CallToActionSection from '@/components/home/CallToActionSection';
+import PriceDateBanner from '@/components/ui/price-date-banner';
+import FloatingActionButton from '@/components/ui/floating-action-button';
+import BugReportModal from '@/components/ui/bug-report-modal';
+import { Bug } from 'lucide-react';
 
 const Index: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,6 +17,7 @@ const Index: React.FC = () => {
   const [comparisonFilter, setComparisonFilter] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
+  const [isBugReportOpen, setIsBugReportOpen] = useState(false);
 
   // Simulate data loading
   useEffect(() => {
@@ -58,6 +63,8 @@ const Index: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-primary-lighter to-background">
+      <PriceDateBanner lastUpdated={new Date('2024-01-30')} />
+      
       <HeroSection onScrollToComparisons={handleScrollToComparisons} />
       
       <FeaturesSection />
@@ -82,6 +89,17 @@ const Index: React.FC = () => {
           <CallToActionSection />
         </div>
       </main>
+      
+      <FloatingActionButton
+        onClick={() => setIsBugReportOpen(true)}
+        icon={<Bug className="w-6 h-6" />}
+        label="Reportar un problema"
+      />
+      
+      <BugReportModal
+        isOpen={isBugReportOpen}
+        onClose={() => setIsBugReportOpen(false)}
+      />
     </div>
   );
 };
