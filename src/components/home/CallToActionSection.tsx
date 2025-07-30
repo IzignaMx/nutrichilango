@@ -11,7 +11,7 @@ const CallToActionSection: React.FC = () => {
       </h2>
       <p className="text-primary-foreground/80 mb-4 md:mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-4 sm:px-0">
         <strong>¡ATENCIÓN!</strong> Más de 5,000 familias chilanguelas ya están viviendo más sanos, ahorrando más dinero y protegiendo el planeta. 
-        <span className="text-header-accent font-bold"> ¿Vas a quedarte atrás?</span> Únete al movimiento que está cambiando vidas en la CDMX.
+        <span className="text-background font-bold"> ¿Vas a quedarte atrás?</span> Únete al movimiento que está cambiando vidas en la CDMX.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
         <Button 
