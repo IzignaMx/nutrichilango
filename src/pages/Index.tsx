@@ -1,6 +1,8 @@
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useProductComparison } from '@/hooks/useProductComparison';
 import { storeData } from '@/data';
+import { useNutriStore } from '@/store/useNutriStore';
 import HeroSection from '@/components/home/HeroSection';
 import FeaturesSection from '@/components/home/FeaturesSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
@@ -12,12 +14,26 @@ import BugReportModal from '@/components/ui/bug-report-modal';
 import { Bug } from 'lucide-react';
 
 const Index: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('price-diff');
-  const [comparisonFilter, setComparisonFilter] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const { 
+    searchQuery, 
+    setSearchQuery, 
+    selectedCategory, 
+    setSelectedCategory, 
+    comparisonFilter, 
+    setComparisonFilter,
+    sortBy,
+    setSortBy,
+    resetFilters
+  } = useNutriStore();
+
   const [isLoading, setIsLoading] = useState(true);
+  const [hasHydrated, setHasHydrated] = useState(false);
   const [isBugReportOpen, setIsBugReportOpen] = useState(false);
+
+  // Zustand Hydration Guard
+  useEffect(() => {
+    setHasHydrated(true);
+  }, []);
 
   // Simulate data loading
   useEffect(() => {
@@ -25,34 +41,8 @@ const Index: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Filter and search logic
-  const filteredData = useMemo(() => {
-    let filtered = storeData;
-
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(store => 
-        store.name.toLowerCase().includes(query) ||
-        store.location.toLowerCase().includes(query) ||
-        store.products.some(product => 
-          product.traditional.name.toLowerCase().includes(query) ||
-          product.plantBased.name.toLowerCase().includes(query) ||
-          product.traditional.brand?.toLowerCase().includes(query) ||
-          product.plantBased.brand?.toLowerCase().includes(query)
-        )
-      );
-    }
-
-    // Apply category filter
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(store =>
-        store.products.some(product => product.category === selectedCategory)
-      );
-    }
-
-    return filtered;
-  }, [searchQuery, selectedCategory]);
+  // Filter and search logic using custom hook
+  const { filteredData } = useProductComparison(storeData);
 
   const handleScrollToComparisons = () => {
     const element = document.getElementById('comparisons');
@@ -71,28 +61,25 @@ const Index: React.FC = () => {
 
       <main id="main-content">
         <ComparisonSection
-        filteredData={filteredData}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        comparisonFilter={comparisonFilter}
-        setComparisonFilter={setComparisonFilter}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        isLoading={isLoading}
+          filteredData={filteredData}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          comparisonFilter={comparisonFilter}
+          setComparisonFilter={setComparisonFilter}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          onResetFilters={resetFilters}
+          isLoading={isLoading}
         />
         
         <div className="container mx-auto max-w-7xl px-4 pb-12">
           <CallToActionSection />
         </div>
       </main>
-    </div>
-  );
-};
 
-/*
-<FloatingActionButton
+      <FloatingActionButton
         onClick={() => setIsBugReportOpen(true)}
         icon={<Bug className="w-6 h-6" />}
         label="Reportar un problema"
@@ -102,5 +89,8 @@ const Index: React.FC = () => {
         isOpen={isBugReportOpen}
         onClose={() => setIsBugReportOpen(false)}
       />
-*/
+    </div>
+  );
+};
+
 export default Index;
