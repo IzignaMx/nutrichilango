@@ -29,32 +29,30 @@ export interface NutritionInfo {
   carbs: number;
   fat: number;
   calories: number;
+  sugar: number;
   calcium?: number;
   iron?: number;
   fiber?: number;
 }
 
+export interface ProductVariant {
+  name: string;
+  brand: string;
+  price: number;
+  unit: string;
+  pricePerUnit: number;
+  nutritionInfo?: NutritionInfo;
+  isCommercial?: boolean;
+  recipe?: Recipe;
+  url?: string; // Add url if it's used in ProductSection
+  tags?: string[]; // Add tags if used
+}
+
 export interface Product {
   id: string;
   category: string;
-  traditional: {
-    name: string;
-    brand: string;
-    price: number;
-    unit: string;
-    pricePerUnit: number;
-    nutritionInfo?: NutritionInfo;
-  };
-  plantBased: {
-    name: string;
-    brand: string;
-    price: number;
-    unit: string;
-    pricePerUnit: number;
-    isCommercial: boolean; // true para comercial, false para casero
-    recipe?: Recipe; // Solo si es casero
-    nutritionInfo?: NutritionInfo;
-  };
+  traditional: ProductVariant;
+  plantBased: ProductVariant;
   priceDifferencePercent: number;
   availability: {
     traditional: boolean;
@@ -76,3 +74,12 @@ export interface Store {
 
 // Agregar nueva categoría
 export type ProductCategory = 'proteins' | 'dairy' | 'eggs' | 'snacks' | 'pantry' | 'prepared-dishes';
+
+export interface OptimizedComparison extends Product {
+  storeName: string;
+  storeLocation: string;
+  hasPromotion: boolean;
+  promotionDetails?: string;
+  bestTraditionalStore?: string;
+  bestPlantBasedStore?: string;
+}
