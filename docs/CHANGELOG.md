@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [2.1.0] - 2026-02-19
 
 ### Added
 - 🎯 CTA principal mejorado en hero section con mejor texto y call-to-action
