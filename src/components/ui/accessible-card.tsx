@@ -43,7 +43,7 @@ const AccessibleCardHeader = React.forwardRef<
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child) && child.type === AccessibleCardTitle) {
-          return React.cloneElement(child as React.ReactElement<any>, {
+          return React.cloneElement(child as React.ReactElement<{ as?: React.ElementType }>, {
             as: HeadingComponent
           })
         }
@@ -60,7 +60,7 @@ const AccessibleCardTitle = React.forwardRef<
     as?: keyof JSX.IntrinsicElements
   }
 >(({ className, as: Component = "h3", ...props }, ref) => {
-  const HeadingComponent = Component as any
+  const HeadingComponent = Component as React.ElementType
   return (
     <HeadingComponent
       ref={ref}

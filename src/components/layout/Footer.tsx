@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Mail, Facebook } from 'lucide-react';
+import { siteMetadata } from '@/data/metadata';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -16,7 +17,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <img 
-                src="/lovable-uploads/426e756a-fc13-4011-a25a-c9e8e5f5bce3.png" 
+                src="/assets/logo-nutrichilango.png" 
                 alt="NutriChilango Logo" 
                 className="w-8 h-8 object-contain filter brightness-0 invert"
               />
@@ -135,7 +136,7 @@ const Footer: React.FC = () => {
           <div className="text-sm text-primary-foreground/70">
             <p>© {currentYear} NutriChilango. Todos los derechos reservados.</p>
             <p className="mt-1">
-              Datos actualizados periodicamente. Última actualización: 12-Julio-2025
+              Datos actualizados semanalmente. Última actualización: {new Date(siteMetadata.lastUpdated).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </div>
           

@@ -1,10 +1,12 @@
 
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
+import { useTheme } from "@/components/theme-context";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Index from "./pages/Index";
@@ -27,7 +29,7 @@ const App = () => (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <TooltipProvider>
         <Toaster />
-        <Sonner />
+        <SonnerToaster />
         <BrowserRouter>
           <div className="min-h-screen flex flex-col w-full" id="top">
             <Header />
