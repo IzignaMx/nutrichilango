@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { IDR } from '@/lib/nutricore';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, Tooltip } from 'recharts';
 

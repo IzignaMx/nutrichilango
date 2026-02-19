@@ -1,6 +1,6 @@
 
 import React, { useMemo, useState } from 'react';
-import { Store } from '@/data';
+import { Store, Recipe } from '@/data/types';
 import { useBestPriceComparisons } from '@/hooks/useBestPriceComparisons';
 import RecipeModal from './RecipeModal';
 import NutritionalReferenceInfo from './NutritionalReferenceInfo';
@@ -25,7 +25,7 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
   isLoading = false,
   error = null
 }) => {
-  const [selectedRecipe, setSelectedRecipe] = useState<any>(null);
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [isRecipeModalOpen, setIsRecipeModalOpen] = useState(false);
   const [expandedNutrition, setExpandedNutrition] = useState<string | null>(null);
   
@@ -52,7 +52,7 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
     });
   }, [optimizedComparisons, sortBy]);
 
-  const handleRecipeClick = (recipe: any) => {
+  const handleRecipeClick = (recipe: Recipe) => {
     setSelectedRecipe(recipe);
     setIsRecipeModalOpen(true);
   };

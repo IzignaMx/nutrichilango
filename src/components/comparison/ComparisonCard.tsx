@@ -7,14 +7,57 @@ import { MapPin, Star, ChefHat, BarChart3 } from 'lucide-react';
 import ProductSection from './ProductSection';
 import ComparisonAnalysis from './ComparisonAnalysis';
 import NutritionComparisonChart from '../NutritionComparisonChart';
+import { OptimizedComparison, Recipe } from '@/data/types';
 
 interface ComparisonCardProps {
-  product: any;
+  product: OptimizedComparison;
   index: number;
-  onRecipeClick: (recipe: any) => void;
+  onRecipeClick: (recipe: Recipe) => void;
   expandedNutrition: string | null;
   onToggleNutrition: (productId: string) => void;
 }
+
+const getCategoryColor = (category: string) => {
+  const colors = {
+    proteins: 'bg-red-50 text-red-700 border border-red-200',
+    dairy: 'bg-blue-50 text-blue-700 border border-blue-200',
+    eggs: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
+    snacks: 'bg-purple-50 text-purple-700 border border-purple-200',
+    pantry: 'bg-brand-primary-lighter text-brand-primary border border-brand-primary/20',
+    'prepared-dishes': 'bg-orange-50 text-orange-700 border border-orange-200'
+  };
+  return colors[category as keyof typeof colors] || 'bg-muted text-muted-foreground border border-border';
+};
+
+const getCategoryName = (category: string) => {
+  const names = {
+    proteins: 'Proteínas',
+    dairy: 'Lácteos',
+    eggs: 'Huevos',
+    snacks: 'Snacks',
+    pantry: 'Despensa',
+    'prepared-dishes': 'Platillos Preparados'
+  };
+  return names[category as keyof typeof names] || category;
+};
+
+const getComparisonTypeColor = (type: string) => {
+  const colors = {
+    'animal-vs-commercial': 'bg-orange-50 text-orange-700 border border-orange-200',
+    'animal-vs-homemade': 'bg-brand-primary-lighter text-brand-primary border border-brand-primary/20',
+    'commercial-vs-homemade': 'bg-blue-50 text-blue-700 border border-blue-200'
+  };
+  return colors[type as keyof typeof colors] || 'bg-muted text-muted-foreground border border-border';
+};
+
+const getComparisonTypeName = (type: string) => {
+  const names = {
+    'animal-vs-commercial': 'Animal vs Comercial',
+    'animal-vs-homemade': 'Animal vs Casero',
+    'commercial-vs-homemade': 'Comercial vs Casero'
+  };
+  return names[type as keyof typeof names] || type;
+};
 
 const ComparisonCard: React.FC<ComparisonCardProps> = ({
   product,
@@ -23,50 +66,9 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
   expandedNutrition,
   onToggleNutrition
 }) => {
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      proteins: 'bg-red-50 text-red-700 border border-red-200',
-      dairy: 'bg-blue-50 text-blue-700 border border-blue-200',
-      eggs: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
-      snacks: 'bg-purple-50 text-purple-700 border border-purple-200',
-      pantry: 'bg-brand-primary-lighter text-brand-primary border border-brand-primary/20',
-      'prepared-dishes': 'bg-orange-50 text-orange-700 border border-orange-200'
-    };
-    return colors[category as keyof typeof colors] || 'bg-muted text-muted-foreground border border-border';
-  };
-
-  const getCategoryName = (category: string) => {
-    const names = {
-      proteins: 'Proteínas',
-      dairy: 'Lácteos',
-      eggs: 'Huevos',
-      snacks: 'Snacks',
-      pantry: 'Despensa',
-      'prepared-dishes': 'Platillos Preparados'
-    };
-    return names[category as keyof typeof names] || category;
-  };
-
-  const getComparisonTypeColor = (type: string) => {
-    const colors = {
-      'animal-vs-commercial': 'bg-orange-50 text-orange-700 border border-orange-200',
-      'animal-vs-homemade': 'bg-brand-primary-lighter text-brand-primary border border-brand-primary/20',
-      'commercial-vs-homemade': 'bg-blue-50 text-blue-700 border border-blue-200'
-    };
-    return colors[type as keyof typeof colors] || 'bg-muted text-muted-foreground border border-border';
-  };
-
-  const getComparisonTypeName = (type: string) => {
-    const names = {
-      'animal-vs-commercial': 'Animal vs Comercial',
-      'animal-vs-homemade': 'Animal vs Casero',
-      'commercial-vs-homemade': 'Comercial vs Casero'
-    };
-    return names[type as keyof typeof names] || type;
-  };
 
   return (
-    <Card className="shadow-lg border bg-border/50 bg-card/95 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:bg-card focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+    <Card className="shadow-lg border bg-card/95 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:bg-card focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
       <CardHeader className="pb-3">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
           <div className="flex-1">

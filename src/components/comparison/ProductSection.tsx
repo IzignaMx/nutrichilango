@@ -1,23 +1,16 @@
-
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ChefHat, BookOpen } from 'lucide-react';
+import { ExternalLink, Tag } from 'lucide-react';
+import { ProductVariant, Recipe } from '@/data/types';
+import DataConfidenceIndicator from '@/components/ui/DataConfidenceIndicator';
 
 interface ProductSectionProps {
-  product: {
-    name: string;
-    brand: string;
-    price: number;
-    unit: string;
-    pricePerUnit: number;
-    isCommercial?: boolean;
-    recipe?: any;
-  };
+  product: ProductVariant;
   title: string;
   priceColor: string;
   comparisonType: string;
-  onRecipeClick?: (recipe: any) => void;
+  onRecipeClick?: (recipe: Recipe) => void;
 }
 
 const ProductSection: React.FC<ProductSectionProps> = ({
@@ -28,47 +21,86 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   onRecipeClick
 }) => {
   return (
-    <div className="space-y-3">
-      <h4 className="font-semibold text-gray-700 border-b pb-1 flex items-center">
-        {title}
-        {product.isCommercial === false && (
-          <Badge variant="outline" className="ml-2 text-xs text-purple-600 border-purple-600">
-            <ChefHat className="w-3 h-3 mr-1" />
-            Casero
-          </Badge>
+    <div className="flex flex-col h-full bg-white/50 rounded-lg p-4 transition-colors hover:bg-white/80">
+      <div className="flex items-center justify-between mb-3">
+        <h4 className="font-semibold text-gray-700 uppercase tracking-wide text-xs">
+          {title}
+        </h4>
+        {product.nutritionInfo && (
+          <DataConfidenceIndicator nutrition={product.nutritionInfo} />
         )}
-      </h4>
-      <div className="space-y-2">
+      </div>
+      
+      <div className="flex items-start justify-between gap-4 mb-4">
         <div>
-          <span className="text-sm text-gray-600">Producto:</span>
-          <p className="font-medium">{product.name}</p>
+          <h3 className="font-bold text-gray-900 leading-tight mb-1">
+            {product.name}
+          </h3>
+          {product.brand && (
+            <p className="text-sm text-gray-500 font-medium">
+              {product.brand}
+            </p>
+          )}
         </div>
-        <div>
-          <span className="text-sm text-gray-600">
-            {title.includes('Comercial') ? 'Marca:' : 'Tipo:'}
-          </span>
-          <p className="font-medium">{product.brand}</p>
+        <div className="text-right">
+          <p className={`text-xl font-bold ${priceColor}`}>
+            ${product.price ? product.price.toFixed(2) : 'N/A'}
+          </p>
+          <p className="text-xs text-gray-500">
+            {product.unit || 'por unidad'}
+          </p>
         </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <span className="text-sm text-gray-600">Precio:</span>
-            <p className={`text-lg font-bold ${priceColor}`}>${product.price.toFixed(2)}</p>
-            <p className="text-xs text-gray-500">{product.unit}</p>
+      </div>
+
+      <div className="space-y-3 flex-grow">
+        {/* Ingredients/Tags */}
+        {(product.tags && product.tags.length > 0) && (
+          <div className="flex flex-wrap gap-1.5">
+            {product.tags.map((tag) => (
+              <Badge 
+                key={tag} 
+                variant="secondary" 
+                className="text-[10px] px-2 h-5 bg-gray-100 text-gray-600 hover:bg-gray-200"
+              >
+                <Tag className="w-2.5 h-2.5 mr-1" />
+                {tag}
+              </Badge>
+            ))}
           </div>
-          <div>
-            <span className="text-sm text-gray-600">Por kg/L:</span>
-            <p className={`text-lg font-bold ${priceColor}`}>${product.pricePerUnit.toFixed(2)}</p>
-          </div>
-        </div>
-        {product.recipe && onRecipeClick && (
+        )}
+
+        {/* Recipe Link (if applicable) */}
+        {(!product.isCommercial && product.recipe) && onRecipeClick && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => onRecipeClick(product.recipe!)}
+            className="w-full mt-2 text-purple-700 hover:text-purple-800 hover:bg-purple-50 group"
+          >
+            <span className="flex items-center">
+              Ver Receta y Preparación
+              <ExternalLink className="w-3 h-3 ml-2 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </Button>
+        )}
+        
+        {/* Buy Link (if applicable) */}
+        {(product.isCommercial && product.url) && (
           <Button
             variant="outline"
             size="sm"
-            onClick={() => onRecipeClick(product.recipe)}
-            className="w-full mt-2 text-purple-600 border-purple-600 hover:bg-purple-50"
+            asChild
+            className="w-full mt-2 border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 hover:text-brand-primary-dark"
           >
-            <BookOpen className="w-4 h-4 mr-2" />
-            Ver Receta y Costos
+            <a 
+              href={product.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center justify-center"
+            >
+              Ver en Tienda
+              <ExternalLink className="w-3 h-3 ml-2" />
+            </a>
           </Button>
         )}
       </div>

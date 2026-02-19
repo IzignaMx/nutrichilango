@@ -1,87 +1,38 @@
-import React, { useReducer, useEffect, lazy, Suspense } from 'react';
+
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Users, ChefHat, Calendar, Download, Copy, Share } from 'lucide-react';
+import { Users, ChefHat, Calendar, Download, Copy, Share, Eye } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { pdf } from '@react-pdf/renderer';
 import { generateBalancedPantryList, type PantryItem } from '@/data/pantry/products';
+import { useNutriStore } from '@/store/useNutriStore';
+import { calculatePriceDiff } from '@/lib/nutricore';
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { PDFViewer } from '@react-pdf/renderer';
 
 // Lazy load del componente PDF para mejor performance
-const PantryPDFDocument = lazy(() => import('@/components/pantry/PantryPDFDocument'));
-
-type PantryState = {
-  step: number;
-  householdSize: number;
-  preferences: string[];
-  frequency: 'weekly' | 'biweekly' | 'monthly' | '';
-  generatedList: PantryItem[];
-};
-
-// Tipo importado desde el archivo de productos
-
-type PantryAction = 
-  | { type: 'SET_STEP'; payload: number }
-  | { type: 'SET_HOUSEHOLD_SIZE'; payload: number }
-  | { type: 'TOGGLE_PREFERENCE'; payload: string }
-  | { type: 'SET_FREQUENCY'; payload: 'weekly' | 'biweekly' | 'monthly' }
-  | { type: 'GENERATE_LIST'; payload: PantryItem[] }
-  | { type: 'LOAD_STATE'; payload: Partial<PantryState> };
-
-const initialState: PantryState = {
-  step: 1,
-  householdSize: 2,
-  preferences: [],
-  frequency: '',
-  generatedList: []
-};
-
-const pantryReducer = (state: PantryState, action: PantryAction): PantryState => {
-  switch (action.type) {
-    case 'SET_STEP':
-      return { ...state, step: action.payload };
-    case 'SET_HOUSEHOLD_SIZE':
-      return { ...state, householdSize: action.payload };
-    case 'TOGGLE_PREFERENCE':
-      const newPreferences = state.preferences.includes(action.payload)
-        ? state.preferences.filter(p => p !== action.payload)
-        : [...state.preferences, action.payload];
-      return { ...state, preferences: newPreferences };
-    case 'SET_FREQUENCY':
-      return { ...state, frequency: action.payload };
-    case 'GENERATE_LIST':
-      return { ...state, generatedList: action.payload };
-    case 'LOAD_STATE':
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-};
+const PantryPDFContent = lazy(() => import('@/components/pantry/PantryPDFDocument'));
 
 const PantryCreator: React.FC = () => {
-  const [state, dispatch] = useReducer(pantryReducer, initialState);
+  const { 
+    householdSize, 
+    preferences: selectedPreferences, 
+    frequency, 
+    generatedPantry: generatedList,
+    setPantryParams,
+    setGeneratedPantry,
+    resetPantry
+  } = useNutriStore();
+
+  const [step, setStep] = useState(1);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const { toast } = useToast();
 
-  // Load state from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('pantry-creator-state');
-    if (saved) {
-      try {
-        const parsedState = JSON.parse(saved);
-        dispatch({ type: 'LOAD_STATE', payload: parsedState });
-      } catch (error) {
-        console.error('Error loading saved state:', error);
-      }
-    }
-  }, []);
-
-  // Save state to localStorage
-  useEffect(() => {
-    localStorage.setItem('pantry-creator-state', JSON.stringify(state));
-  }, [state]);
-
-  const preferences = [
+  const preferencesList = [
     'Alto en proteína',
     'Económico',
     'Sin gluten',
@@ -96,26 +47,26 @@ const PantryCreator: React.FC = () => {
     { value: 'monthly', label: 'Mensual', description: 'Compras una vez al mes' }
   ] as const;
 
-  const generatePantryList = (): PantryItem[] => {
-    return generateBalancedPantryList(
-      state.householdSize,
-      state.frequency as 'weekly' | 'biweekly' | 'monthly',
-      state.preferences
-    );
-  };
-
   const handleNext = () => {
-    if (state.step === 3) {
-      const list = generatePantryList();
-      dispatch({ type: 'GENERATE_LIST', payload: list });
-      dispatch({ type: 'SET_STEP', payload: 4 });
+    if (step === 3) {
+      if (!frequency) {
+        toast({ title: "Frecuencia requerida", description: "Selecciona una frecuencia de compra", variant: "destructive" });
+        return;
+      }
+      const list = generateBalancedPantryList(
+        householdSize,
+        frequency as 'weekly' | 'biweekly' | 'monthly',
+        selectedPreferences
+      );
+      setGeneratedPantry(list);
+      setStep(4);
     } else {
-      dispatch({ type: 'SET_STEP', payload: state.step + 1 });
+      setStep(step + 1);
     }
   };
 
   const copyList = () => {
-    const listText = state.generatedList
+    const listText = generatedList
       .map(item => `${item.name}: ${item.quantity} ${item.unit} - $${item.price.toFixed(2)}`)
       .join('\n');
     
@@ -125,12 +76,12 @@ const PantryCreator: React.FC = () => {
 
   const shareList = () => {
     const params = new URLSearchParams({
-      size: state.householdSize.toString(),
-      prefs: state.preferences.join(','),
-      freq: state.frequency
+      size: householdSize.toString(),
+      prefs: selectedPreferences.join(','),
+      freq: frequency
     });
     
-    const url = `https://nutrichilango.izignamx.com/despensa?${params.toString()}`;
+    const url = `${window.location.origin}/despensa?${params.toString()}`;
     navigator.clipboard.writeText(url);
     toast({ title: "Enlace copiado", description: "El enlace se copió al portapapeles" });
   };
@@ -139,25 +90,23 @@ const PantryCreator: React.FC = () => {
     try {
       toast({ title: "Generando PDF", description: "Preparando tu lista personalizada..." });
       
-      // Importar dinámicamente el componente PDF
-      const PantryPDFDocument = (await import('@/components/pantry/PantryPDFDocument')).default;
       
-      // Generar el blob del PDF
+      const PantryPDF = (await import('@/components/pantry/PantryPDFDocument')).default;
+      
       const blob = await pdf(
-        <PantryPDFDocument
-          items={state.generatedList}
-          householdSize={state.householdSize}
-          frequency={state.frequency}
-          preferences={state.preferences}
+        <PantryPDF
+          items={generatedList}
+          householdSize={householdSize}
+          frequency={frequency}
+          preferences={selectedPreferences}
           totalPrice={totalPrice}
         />
       ).toBlob();
 
-      // Crear enlace de descarga
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `despensa-vegana-${state.householdSize}personas-${state.frequency}.pdf`;
+      link.download = `despensa-vegana-${householdSize}personas-${frequency}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -177,7 +126,7 @@ const PantryCreator: React.FC = () => {
     }
   };
 
-  const totalPrice = state.generatedList.reduce((sum, item) => sum + item.price, 0);
+  const totalPrice = generatedList.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-8 px-4">
@@ -191,11 +140,11 @@ const PantryCreator: React.FC = () => {
           </p>
         </div>
 
-        {state.step <= 3 && (
+        {step <= 3 && (
           <div className="mb-8">
-            <Progress value={(state.step / 3) * 100} className="h-2" />
+            <Progress value={(step / 3) * 100} className="h-2" />
             <p className="text-sm text-muted-foreground mt-2 text-center">
-              Paso {state.step} de 3
+              Paso {step} de 3
             </p>
           </div>
         )}
@@ -203,33 +152,33 @@ const PantryCreator: React.FC = () => {
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              {state.step === 1 && <Users className="h-5 w-5" />}
-              {state.step === 2 && <ChefHat className="h-5 w-5" />}
-              {state.step === 3 && <Calendar className="h-5 w-5" />}
-              {state.step === 4 && <Download className="h-5 w-5" />}
+              {step === 1 && <Users className="h-5 w-5" />}
+              {step === 2 && <ChefHat className="h-5 w-5" />}
+              {step === 3 && <Calendar className="h-5 w-5" />}
+              {step === 4 && <Download className="h-5 w-5" />}
               
-              {state.step === 1 && "Tamaño del hogar"}
-              {state.step === 2 && "Preferencias alimentarias"}
-              {state.step === 3 && "Frecuencia de compras"}
-              {state.step === 4 && "Tu despensa personalizada"}
+              {step === 1 && "Tamaño del hogar"}
+              {step === 2 && "Preferencias alimentarias"}
+              {step === 3 && "Frecuencia de compras"}
+              {step === 4 && "Tu despensa personalizada"}
             </CardTitle>
             <CardDescription>
-              {state.step === 1 && "¿Para cuántas personas cocinas regularmente?"}
-              {state.step === 2 && "Selecciona tus preferencias para personalizar la lista"}
-              {state.step === 3 && "¿Con qué frecuencia realizas las compras?"}
-              {state.step === 4 && "Lista generada según tus preferencias"}
+              {step === 1 && "¿Para cuántas personas cocinas regularmente?"}
+              {step === 2 && "Selecciona tus preferencias para personalizar la lista"}
+              {step === 3 && "¿Con qué frecuencia realizas las compras?"}
+              {step === 4 && "Lista generada según tus preferencias"}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {state.step === 1 && (
+            {step === 1 && (
               <div className="space-y-6">
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
                   {[1, 2, 3, 4, 5, 6].map(size => (
                     <Button
                       key={size}
-                      variant={state.householdSize === size ? "default" : "outline"}
+                      variant={householdSize === size ? "default" : "outline"}
                       className="h-16"
-                      onClick={() => dispatch({ type: 'SET_HOUSEHOLD_SIZE', payload: size })}
+                      onClick={() => setPantryParams(size, frequency, selectedPreferences)}
                     >
                       {size === 6 ? "6+" : size}
                     </Button>
@@ -238,15 +187,20 @@ const PantryCreator: React.FC = () => {
               </div>
             )}
 
-            {state.step === 2 && (
+            {step === 2 && (
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {preferences.map(pref => (
+                  {preferencesList.map(pref => (
                     <Button
                       key={pref}
-                      variant={state.preferences.includes(pref) ? "default" : "outline"}
+                      variant={selectedPreferences.includes(pref) ? "default" : "outline"}
                       className="justify-start"
-                      onClick={() => dispatch({ type: 'TOGGLE_PREFERENCE', payload: pref })}
+                      onClick={() => {
+                        const newPrefs = selectedPreferences.includes(pref)
+                          ? selectedPreferences.filter(p => p !== pref)
+                          : [...selectedPreferences, pref];
+                        setPantryParams(householdSize, frequency, newPrefs);
+                      }}
                     >
                       {pref}
                     </Button>
@@ -255,15 +209,15 @@ const PantryCreator: React.FC = () => {
               </div>
             )}
 
-            {state.step === 3 && (
+            {step === 3 && (
               <div className="space-y-4">
                 {frequencies.map(freq => (
                   <Card 
                     key={freq.value}
                     className={`cursor-pointer transition-colors ${
-                      state.frequency === freq.value ? 'border-primary bg-primary/5' : 'hover:border-primary/50'
+                      frequency === freq.value ? 'border-primary bg-primary/5' : 'hover:border-primary/50'
                     }`}
-                    onClick={() => dispatch({ type: 'SET_FREQUENCY', payload: freq.value })}
+                    onClick={() => setPantryParams(householdSize, freq.value, selectedPreferences)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
@@ -272,7 +226,7 @@ const PantryCreator: React.FC = () => {
                           <p className="text-sm text-muted-foreground">{freq.description}</p>
                         </div>
                         <div className={`w-4 h-4 rounded-full border-2 ${
-                          state.frequency === freq.value ? 'bg-primary border-primary' : 'border-muted-foreground'
+                          frequency === freq.value ? 'bg-primary border-primary' : 'border-muted-foreground'
                         }`} />
                       </div>
                     </CardContent>
@@ -281,11 +235,14 @@ const PantryCreator: React.FC = () => {
               </div>
             )}
 
-            {state.step === 4 && (
+            {step === 4 && (
               <div className="space-y-6">
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
                   <Button 
-                    onClick={() => dispatch({ type: 'SET_STEP', payload: 1 })}
+                    onClick={() => {
+                      resetPantry();
+                      setStep(1);
+                    }}
                     variant="outline"
                     size="sm"
                     className="flex items-center gap-2"
@@ -293,31 +250,56 @@ const PantryCreator: React.FC = () => {
                     Nueva lista
                   </Button>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 w-full md:w-auto">
+                    <Button onClick={() => setIsPreviewOpen(true)} variant="outline" size="sm" className="flex items-center gap-2">
+                      <Eye className="h-4 w-4" />
+                      Vista Previa
+                    </Button>
                     <Button onClick={copyList} variant="outline" size="sm" className="flex items-center gap-2">
                       <Copy className="h-4 w-4" />
-                      Copiar lista
+                      Copiar
                     </Button>
                     <Button onClick={downloadPDF} variant="outline" size="sm" className="flex items-center gap-2">
                       <Download className="h-4 w-4" />
-                      Descargar PDF
+                      PDF
                     </Button>
                     <Button onClick={shareList} variant="outline" size="sm" className="flex items-center gap-2">
                       <Share className="h-4 w-4" />
-                      Compartir enlace
+                      Compartir
                     </Button>
                   </div>
                 </div>
 
+                <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
+                  <DialogContent className="max-w-4xl h-[80vh]">
+                    <DialogHeader>
+                      <DialogTitle>Vista Previa de tu Despensa</DialogTitle>
+                    </DialogHeader>
+                    <div className="w-full h-full min-h-[500px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden">
+                      <Suspense fallback={<div className="text-center p-4">Cargando vista previa...</div>}>
+                        <PDFViewer width="100%" height="100%" className="border-0">
+                          <PantryPDFContent 
+                            items={generatedList}
+                            householdSize={householdSize}
+                            frequency={frequency || 'weekly'}
+                            preferences={selectedPreferences}
+                            totalPrice={totalPrice}
+                          />
+                        </PDFViewer>
+                      </Suspense>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
                 <div className="space-y-4">
-                  {[...new Set(state.generatedList.map(item => item.category))].map(category => (
+                  {[...new Set(generatedList.map(item => item.category))].map(category => (
                     <Card key={category}>
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg">{category}</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {state.generatedList
+                          {generatedList
                             .filter(item => item.category === category)
                             .map(item => (
                               <div key={item.id} className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
@@ -343,32 +325,23 @@ const PantryCreator: React.FC = () => {
                     Total estimado: <span className="text-primary">${totalPrice.toFixed(2)}</span>
                   </p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Para {state.householdSize} persona{state.householdSize > 1 ? 's' : ''} • {
-                      state.frequency === 'weekly' ? 'Semanal' : 
-                      state.frequency === 'biweekly' ? 'Quincenal' : 'Mensual'
+                    Para {householdSize} persona{householdSize > 1 ? 's' : ''} • {
+                      frequency === 'weekly' ? 'Semanal' : 
+                      frequency === 'biweekly' ? 'Quincenal' : 'Mensual'
                     }
                   </p>
-                </div>
-
-                <div className="text-center">
-                  <Button 
-                    onClick={() => dispatch({ type: 'SET_STEP', payload: 1 })}
-                    variant="outline"
-                  >
-                    Crear nueva lista
-                  </Button>
                 </div>
               </div>
             )}
           </CardContent>
         </Card>
 
-        {state.step < 4 && (
+        {step < 4 && (
           <div className="flex justify-center gap-4">
-            {state.step > 1 && (
+            {step > 1 && (
               <Button 
                 variant="outline" 
-                onClick={() => dispatch({ type: 'SET_STEP', payload: state.step - 1 })}
+                onClick={() => setStep(step - 1)}
               >
                 Anterior
               </Button>
@@ -376,11 +349,11 @@ const PantryCreator: React.FC = () => {
             <Button 
               onClick={handleNext}
               disabled={
-                (state.step === 1 && !state.householdSize) ||
-                (state.step === 3 && !state.frequency)
+                (step === 1 && !householdSize) ||
+                (step === 3 && !frequency)
               }
             >
-              {state.step === 3 ? 'Generar lista' : 'Siguiente'}
+              {step === 3 ? 'Generar lista' : 'Siguiente'}
             </Button>
           </div>
         )}

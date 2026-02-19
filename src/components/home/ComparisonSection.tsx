@@ -16,6 +16,7 @@ interface ComparisonSectionProps {
   setComparisonFilter: (filter: string) => void;
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
+  onResetFilters: () => void;
   isLoading: boolean;
 }
 
@@ -29,6 +30,7 @@ const ComparisonSection: React.FC<ComparisonSectionProps> = ({
   setComparisonFilter,
   selectedCategory,
   setSelectedCategory,
+  onResetFilters,
   isLoading
 }) => {
   return (
@@ -41,6 +43,7 @@ const ComparisonSection: React.FC<ComparisonSectionProps> = ({
           onSortChange={setSortBy}
           onComparisonFilterChange={setComparisonFilter}
           onCategoryFilter={setSelectedCategory}
+          onResetFilters={onResetFilters}
           searchQuery={searchQuery}
           sortBy={sortBy}
           comparisonFilter={comparisonFilter}

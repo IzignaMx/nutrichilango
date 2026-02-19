@@ -7,12 +7,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Search, Filter, X, SlidersHorizontal } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { productCategories } from '@/data';
 
 interface SearchAndFiltersProps {
   onSearchChange: (query: string) => void;
   onSortChange: (sortBy: string) => void;
   onComparisonFilterChange: (filter: string) => void;
   onCategoryFilter: (category: string) => void;
+  onResetFilters: () => void;
   searchQuery: string;
   sortBy: string;
   comparisonFilter: string;
@@ -25,6 +27,7 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
   onSortChange,
   onComparisonFilterChange,
   onCategoryFilter,
+  onResetFilters,
   searchQuery,
   sortBy,
   comparisonFilter,
@@ -32,13 +35,6 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
   totalResults
 }) => {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
-
-  const clearAllFilters = () => {
-    onSearchChange('');
-    onSortChange('price-diff');
-    onComparisonFilterChange('all');
-    onCategoryFilter('all');
-  };
 
   const hasActiveFilters = searchQuery || comparisonFilter !== 'all' || selectedCategory !== 'all';
 
@@ -141,77 +137,76 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Todas las Categorías</SelectItem>
-                    <SelectItem value="dairy">Lácteos</SelectItem>
-                    <SelectItem value="meat">Carnes</SelectItem>
-                    <SelectItem value="protein">Proteínas</SelectItem>
-                    <SelectItem value="prepared">Platos Preparados</SelectItem>
-                    <SelectItem value="beverages">Bebidas</SelectItem>
-                    <SelectItem value="snacks">Snacks</SelectItem>
+                    {productCategories.map(cat => (
+                      <SelectItem key={cat.id} value={cat.id}>
+                        {cat.icon} {cat.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
             </div>
-
-            {/* Clear Filters */}
-            {hasActiveFilters && (
-              <div className="flex justify-end">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={clearAllFilters}
-                  className="gap-2"
-                >
-                  <X className="w-4 h-4" />
-                  Limpiar Filtros
-                </Button>
-              </div>
-            )}
           </CollapsibleContent>
         </Collapsible>
 
-        {/* Active Filters Display */}
+        {/* Active Filters Display & Reset */}
         {hasActiveFilters && (
-          <div className="flex flex-wrap gap-2 text-sm">
-            <span className="text-xs sm:text-sm text-gray-600">Filtros activos:</span>
-            {searchQuery && (
-              <Badge variant="secondary" className="gap-1">
-                Búsqueda: {searchQuery}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => onSearchChange('')}
-                  className="h-4 w-4 p-0 hover:bg-transparent"
-                >
-                  <X className="w-3 h-3" />
-                </Button>
-              </Badge>
-            )}
-            {comparisonFilter !== 'all' && (
-              <Badge variant="secondary" className="gap-1">
-                {comparisonFilter}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => onComparisonFilterChange('all')}
-                  className="h-4 w-4 p-0 hover:bg-transparent"
-                >
-                  <X className="w-3 h-3" />
-                </Button>
-              </Badge>
-            )}
-            {selectedCategory !== 'all' && (
-              <Badge variant="secondary" className="gap-1">
-                {selectedCategory}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => onCategoryFilter('all')}
-                  className="h-4 w-4 p-0 hover:bg-transparent"
-                >
-                  <X className="w-3 h-3" />
-                </Button>
-              </Badge>
-            )}
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mt-4">
+            <div className="flex flex-wrap gap-2 text-sm items-center">
+              <span className="text-xs sm:text-sm text-gray-600 font-medium mr-1">Filtros:</span>
+              
+              {searchQuery && (
+                <Badge variant="secondary" className="gap-1 pl-2 pr-1 py-1">
+                  "{searchQuery}"
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onSearchChange('')}
+                    className="h-4 w-4 p-0 ml-1 hover:bg-transparent text-gray-500 hover:text-gray-900"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </Badge>
+              )}
+              
+              {comparisonFilter !== 'all' && (
+                <Badge variant="secondary" className="gap-1 pl-2 pr-1 py-1">
+                  {comparisonFilter}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onComparisonFilterChange('all')}
+                    className="h-4 w-4 p-0 ml-1 hover:bg-transparent text-gray-500 hover:text-gray-900"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </Badge>
+              )}
+              
+              {selectedCategory !== 'all' && (
+                <Badge variant="secondary" className="gap-1 pl-2 pr-1 py-1">
+                  {productCategories.find(c => c.id === selectedCategory)?.name || selectedCategory}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => onCategoryFilter('all')}
+                    className="h-4 w-4 p-0 ml-1 hover:bg-transparent text-gray-500 hover:text-gray-900"
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </Badge>
+              )}
+            </div>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onResetFilters}
+              className="text-red-600 hover:text-red-700 hover:bg-red-50 gap-2 ml-auto sm:ml-0 whitespace-nowrap"
+            >
+              <X className="w-4 h-4" />
+              Limpiar Todo
+            </Button>
           </div>
         )}
       </CardContent>
