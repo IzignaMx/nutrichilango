@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Security and sensitive files
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.cert
+secrets.json
+scan-secrets.mjs
+tsc_output.txt
+lint_output.txt

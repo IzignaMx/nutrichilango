@@ -8,7 +8,7 @@ Disallow: /*.json$
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://nutrichilango.lovable.app/sitemap.xml
+Sitemap: /sitemap.xml
 
 # Major search engines
 User-agent: Googlebot
