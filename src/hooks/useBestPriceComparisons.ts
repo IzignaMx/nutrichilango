@@ -1,43 +1,9 @@
-
 import { useMemo } from 'react';
-import { Store, Product } from '@/data/types';
-
-interface OptimizedComparison extends Product {
-  storeName: string;
-  storeLocation: string;
-  hasPromotion: boolean;
-  promotionDetails?: string;
-  bestTraditionalStore?: string;
-  bestPlantBasedStore?: string;
-}
-
-// Lista de ingredientes/productos de origen animal que identifican productos tradicionales
-const ANIMAL_BASED_KEYWORDS = [
-  'pollo', 'pechuga', 'carne', 'res', 'cerdo', 'pescado', 'atún', 'salmón',
-  'huevo', 'huevos', 'leche', 'yogurt', 'queso', 'mantequilla', 'crema',
-  'jamón', 'salchicha', 'chorizo', 'bacon', 'tocino', 'pavo', 'cordero'
-];
-
-// Lista de ingredientes/productos plant-based
-const PLANT_BASED_KEYWORDS = [
-  'tofu', 'tempeh', 'seitán', 'jackfruit', 'soya', 'almendra', 'avena',
-  'coco', 'cashew', 'nuez', 'garbanzo', 'lenteja', 'quinoa', 'hemp',
-  'chía', 'linaza', 'vegetal', 'vegano', 'plant-based', 'casero'
-];
-
-// Comparaciones específicas que debemos evitar por ser absurdas
-const INVALID_COMPARISON_PAIRS = [
-  // Ambos productos plant-based comerciales
-  ['tempeh', 'jackfruit'],
-  ['tofu', 'seitán'],
-  ['leche de almendra', 'leche de avena'],
-  ['queso vegano', 'queso de nuez'],
-  ['yogurt de coco', 'yogurt de soya'],
-];
+import { Store, Product, OptimizedComparison } from '@/data/types';
+import { ANIMAL_BASED_KEYWORDS, PLANT_BASED_KEYWORDS, INVALID_COMPARISON_PAIRS } from '@/data/constants';
 
 export const useBestPriceComparisons = (stores: Store[], comparisonFilter: string = 'all') => {
   return useMemo(() => {
-    console.log('Processing stores:', stores.length);
     
     // Filtrar por tipo de comparación si se especifica
     let filteredStores = stores;
@@ -49,8 +15,6 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
         )
       })).filter(store => store.products.length > 0);
     }
-
-    console.log('Filtered stores:', filteredStores.length);
 
     // Agrupar productos por categoría y tipo de comparación
     const productGroups: { [key: string]: Array<Product & { store: Store }> } = {};
@@ -64,8 +28,6 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
         productGroups[key].push({ ...product, store });
       });
     });
-
-    console.log('Product groups:', Object.keys(productGroups).length);
 
     // Función para verificar si un producto contiene ingredientes de origen animal
     const isAnimalBased = (productName: string): boolean => {
@@ -140,7 +102,6 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
       );
 
       if (validVariants.length === 0) {
-        console.log(`No se encontraron variantes válidas para el grupo, usando todas las variantes`);
         // Si no hay variantes válidas, usar todas para evitar página en blanco
         validVariants.push(...productVariants);
       }
@@ -183,8 +144,6 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
         processedProducts.add(comparisonKey);
       }
     });
-
-    console.log(`Comparaciones finales encontradas: ${optimizedComparisons.length}`);
     
     return optimizedComparisons;
   }, [stores, comparisonFilter]);
