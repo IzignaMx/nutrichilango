@@ -1,0 +1,22 @@
+
+{
+  "id": "test-store",
+  "name": "Test Store",
+  "type": "vegan",
+  "products": [
+    {
+      "id": "p1",
+      "name": "Test Product",
+      "category": "legumes",
+      "traditional": { "price": 10, "unit": "kg" },
+      "plantBased": { "price": 12, "unit": "kg" },
+      "nutrition": {
+        "calories": 100,
+        "protein": 5,
+        "carbs": 20,
+        "fat": 1,
+        "sugar": 0
+      }
+    }
+  ]
+}
