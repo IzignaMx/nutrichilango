@@ -1,0 +1,2088 @@
+[
+  {
+    "id": "mercado-jamaica-1",
+    "name": "Mercado de Jamaica",
+    "location": "Jamaica, CDMX",
+    "coordinates": [
+      -99.124,
+      19.414
+    ],
+    "hasPromotion": false,
+    "storeType": "market",
+    "products": [
+      {
+        "id": "chicken-vs-commercial-nuggets-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Pollo para Nuggets",
+          "brand": "Local",
+          "price": 35,
+          "unit": "500g",
+          "pricePerUnit": 70
+        },
+        "plantBased": {
+          "name": "Nuggets Plant-Based",
+          "brand": "Beyond Meat",
+          "price": 189,
+          "unit": "500g",
+          "pricePerUnit": 378,
+          "isCommercial": true
+        },
+        "priceDifferencePercent": 440,
+        "availability": {
+          "traditional": true,
+          "plantBased": false
+        },
+        "comparisonType": "animal-vs-commercial"
+      },
+      {
+        "id": "chicken-vs-homemade-nuggets-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Pollo para Nuggets",
+          "brand": "Local",
+          "price": 35,
+          "unit": "500g",
+          "pricePerUnit": 70
+        },
+        "plantBased": {
+          "name": "Nuggets Caseros de Lentejas",
+          "brand": "Casero",
+          "price": 18.5,
+          "unit": "500g",
+          "pricePerUnit": 37,
+          "isCommercial": false,
+          "recipe": {
+            "id": "lentil-nuggets-1",
+            "name": "Nuggets de Lentejas Caseros",
+            "description": "Nuggets saludables y económicos hechos con lentejas rojas",
+            "servings": 4,
+            "prepTime": "45 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Lentejas rojas",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 25,
+                "totalCost": 5,
+                "source": "Mercado de Jamaica"
+              },
+              {
+                "name": "Pan molido integral",
+                "amount": 100,
+                "unit": "g",
+                "pricePerUnit": 30,
+                "totalCost": 3,
+                "source": "Mercado local"
+              },
+              {
+                "name": "Cebolla",
+                "amount": 1,
+                "unit": "pieza",
+                "pricePerUnit": 3,
+                "totalCost": 3,
+                "source": "Mercado de Jamaica"
+              },
+              {
+                "name": "Ajo",
+                "amount": 3,
+                "unit": "dientes",
+                "pricePerUnit": 1,
+                "totalCost": 3,
+                "source": "Mercado de Jamaica"
+              },
+              {
+                "name": "Especias (comino, pimentón)",
+                "amount": 1,
+                "unit": "porción",
+                "pricePerUnit": 4.5,
+                "totalCost": 4.5,
+                "source": "Mercado de especias"
+              }
+            ],
+            "instructions": [
+              "Cocer las lentejas hasta que estén suaves (20 min)",
+              "Sofreír cebolla y ajo hasta dorar",
+              "Mezclar lentejas cocidas con sofrito y especias",
+              "Formar nuggets y rebozar con pan molido",
+              "Hornear a 180°C por 15-20 minutos"
+            ],
+            "nutritionInfo": {
+              "protein": 18,
+              "carbs": 32,
+              "fat": 3,
+              "calories": 220
+            }
+          }
+        },
+        "priceDifferencePercent": -47.1,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "beef-vs-homemade-lentil-meat-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Carne Molida de Res",
+          "brand": "Local",
+          "price": 55,
+          "unit": "500g",
+          "pricePerUnit": 110
+        },
+        "plantBased": {
+          "name": "Carne Vegetal Casera de Lentejas",
+          "brand": "Casero",
+          "price": 24,
+          "unit": "500g",
+          "pricePerUnit": 48,
+          "isCommercial": false,
+          "recipe": {
+            "id": "lentil-meat-1",
+            "name": "Carne Vegetal de Lentejas y Champiñones",
+            "description": "Sustituto de carne con textura y sabor similar, perfecto para tacos y guisados",
+            "servings": 6,
+            "prepTime": "40 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Lentejas pardinas cocidas",
+                "amount": 300,
+                "unit": "g",
+                "pricePerUnit": 28,
+                "totalCost": 8.4,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Champiñones",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 45,
+                "totalCost": 9,
+                "source": "Mercado de Jamaica"
+              },
+              {
+                "name": "Cebolla blanca",
+                "amount": 1,
+                "unit": "pieza",
+                "pricePerUnit": 3.5,
+                "totalCost": 3.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Salsa de soya",
+                "amount": 30,
+                "unit": "ml",
+                "pricePerUnit": 60,
+                "totalCost": 1.8,
+                "source": "Mercado local"
+              },
+              {
+                "name": "Aceite de oliva",
+                "amount": 15,
+                "unit": "ml",
+                "pricePerUnit": 80,
+                "totalCost": 1.2,
+                "source": "Mercado local"
+              }
+            ],
+            "instructions": [
+              "Picar finamente los champiñones y la cebolla",
+              "Sofreír la cebolla hasta que esté transparente",
+              "Agregar champiñones y cocinar hasta evaporar el agua",
+              "Triturar las lentejas dejando textura gruesa",
+              "Mezclar todo con salsa de soya y cocinar 5 minutos más"
+            ],
+            "nutritionInfo": {
+              "protein": 16,
+              "carbs": 24,
+              "fat": 4,
+              "calories": 185
+            }
+          }
+        },
+        "priceDifferencePercent": -56.4,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "pork-vs-homemade-mushroom-chorizo-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Chorizo de Cerdo",
+          "brand": "Local",
+          "price": 48,
+          "unit": "400g",
+          "pricePerUnit": 120
+        },
+        "plantBased": {
+          "name": "Chorizo Vegetal Casero",
+          "brand": "Casero",
+          "price": 32,
+          "unit": "400g",
+          "pricePerUnit": 80,
+          "isCommercial": false,
+          "recipe": {
+            "id": "mushroom-chorizo-1",
+            "name": "Chorizo Vegetal de Champiñones",
+            "description": "Chorizo plant-based con el sabor ahumado tradicional",
+            "servings": 5,
+            "prepTime": "35 minutos",
+            "difficulty": "medium",
+            "ingredients": [
+              {
+                "name": "Champiñones portobello",
+                "amount": 300,
+                "unit": "g",
+                "pricePerUnit": 65,
+                "totalCost": 19.5,
+                "source": "Mercado de Jamaica"
+              },
+              {
+                "name": "Frijoles bayos cocidos",
+                "amount": 150,
+                "unit": "g",
+                "pricePerUnit": 24,
+                "totalCost": 3.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Chile chipotle",
+                "amount": 2,
+                "unit": "piezas",
+                "pricePerUnit": 8,
+                "totalCost": 2,
+                "source": "Mercado de especias"
+              },
+              {
+                "name": "Pimentón dulce",
+                "amount": 10,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 1.2,
+                "source": "Mercado de especias"
+              },
+              {
+                "name": "Ajo en polvo",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 80,
+                "totalCost": 0.4,
+                "source": "Mercado de especias"
+              },
+              {
+                "name": "Vinagre de manzana",
+                "amount": 15,
+                "unit": "ml",
+                "pricePerUnit": 35,
+                "totalCost": 0.53,
+                "source": "Mercado local"
+              },
+              {
+                "name": "Aceite de girasol",
+                "amount": 20,
+                "unit": "ml",
+                "pricePerUnit": 25,
+                "totalCost": 0.5,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Picar finamente los champiñones",
+              "Remojar el chile chipotle y licuar con un poco de agua",
+              "Sofreír los champiñones hasta dorar",
+              "Agregar frijoles triturados y mezclar",
+              "Añadir especias, chipotle y vinagre",
+              "Cocinar a fuego medio 10 minutos removiendo constantemente"
+            ],
+            "nutritionInfo": {
+              "protein": 12,
+              "carbs": 18,
+              "fat": 6,
+              "calories": 165
+            }
+          }
+        },
+        "priceDifferencePercent": -33.3,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "fish-vs-homemade-mushroom-tuna-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Atún en Lata",
+          "brand": "Local",
+          "price": 28,
+          "unit": "140g",
+          "pricePerUnit": 200
+        },
+        "plantBased": {
+          "name": "Atún Vegetal Casero",
+          "brand": "Casero",
+          "price": 15.5,
+          "unit": "140g",
+          "pricePerUnit": 110.71,
+          "isCommercial": false,
+          "recipe": {
+            "id": "mushroom-tuna-1",
+            "name": "Atún Vegetal de Corazones de Alcachofa",
+            "description": "Sustituto de atún perfecto para ensaladas y sándwiches",
+            "servings": 3,
+            "prepTime": "20 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Corazones de alcachofa en conserva",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 45,
+                "totalCost": 9,
+                "source": "Mercado local"
+              },
+              {
+                "name": "Algas nori",
+                "amount": 2,
+                "unit": "hojas",
+                "pricePerUnit": 15,
+                "totalCost": 3,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Mayonesa vegana",
+                "amount": 30,
+                "unit": "g",
+                "pricePerUnit": 85,
+                "totalCost": 2.55,
+                "source": "Tienda vegana"
+              },
+              {
+                "name": "Limón",
+                "amount": 0.5,
+                "unit": "pieza",
+                "pricePerUnit": 2,
+                "totalCost": 1,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Sal y pimienta",
+                "amount": 1,
+                "unit": "pizca",
+                "pricePerUnit": 0.5,
+                "totalCost": 0.5,
+                "source": "Despensa"
+              }
+            ],
+            "instructions": [
+              "Escurrir y desmenuzar los corazones de alcachofa",
+              "Cortar finamente las algas nori",
+              "Mezclar alcachofas con algas para dar sabor a mar",
+              "Agregar mayonesa vegana y jugo de limón",
+              "Sazonar con sal y pimienta al gusto",
+              "Refrigerar 30 minutos antes de servir"
+            ],
+            "nutritionInfo": {
+              "protein": 8,
+              "carbs": 12,
+              "fat": 7,
+              "calories": 135
+            }
+          }
+        },
+        "priceDifferencePercent": -44.6,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "commercial-vs-homemade-burger-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Hamburguesa Plant-Based Comercial",
+          "brand": "Beyond Burger",
+          "price": 89,
+          "unit": "2 piezas",
+          "pricePerUnit": 445
+        },
+        "plantBased": {
+          "name": "Hamburguesa Casera de Frijoles",
+          "brand": "Casero",
+          "price": 22,
+          "unit": "2 piezas",
+          "pricePerUnit": 110,
+          "isCommercial": false,
+          "recipe": {
+            "id": "bean-burger-1",
+            "name": "Hamburguesa de Frijoles Negros",
+            "description": "Hamburguesa nutritiva y económica con frijoles negros",
+            "servings": 4,
+            "prepTime": "30 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Frijoles negros cocidos",
+                "amount": 400,
+                "unit": "g",
+                "pricePerUnit": 22,
+                "totalCost": 8.8,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Avena en hojuelas",
+                "amount": 80,
+                "unit": "g",
+                "pricePerUnit": 18,
+                "totalCost": 1.44,
+                "source": "Mercado local"
+              },
+              {
+                "name": "Cebolla morada",
+                "amount": 1,
+                "unit": "pieza",
+                "pricePerUnit": 4,
+                "totalCost": 4,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Zanahoria",
+                "amount": 1,
+                "unit": "pieza",
+                "pricePerUnit": 2.5,
+                "totalCost": 2.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Condimentos variados",
+                "amount": 1,
+                "unit": "porción",
+                "pricePerUnit": 5.26,
+                "totalCost": 5.26,
+                "source": "Mercado de especias"
+              }
+            ],
+            "instructions": [
+              "Triturar los frijoles dejando algunos trozos",
+              "Mezclar con avena, cebolla y zanahoria picadas",
+              "Condimentar al gusto con sal, pimienta y especias",
+              "Formar hamburguesas y refrigerar 15 minutos",
+              "Cocinar en sartén con poco aceite, 4 min por lado"
+            ],
+            "nutritionInfo": {
+              "protein": 15,
+              "carbs": 28,
+              "fat": 2,
+              "calories": 185
+            }
+          }
+        },
+        "priceDifferencePercent": -75.3,
+        "availability": {
+          "traditional": false,
+          "plantBased": true
+        },
+        "comparisonType": "commercial-vs-homemade"
+      }
+    ]
+  },
+  {
+    "id": "central-abastos-1",
+    "name": "Central de Abastos CDMX",
+    "location": "Iztapalapa, CDMX",
+    "coordinates": [
+      -99.087,
+      19.377
+    ],
+    "hasPromotion": true,
+    "promotionDetails": "Precios mayoreo disponibles desde 5kg. Productos orgánicos certificados disponibles",
+    "storeType": "wholesale",
+    "products": [
+      {
+        "id": "milk-vs-almond-milk-1",
+        "category": "dairy",
+        "traditional": {
+          "name": "Leche Entera de Vaca",
+          "brand": "A granel",
+          "price": 22,
+          "unit": "1L",
+          "pricePerUnit": 22,
+          "nutritionInfo": {
+            "protein": 3.4,
+            "carbs": 4.8,
+            "fat": 3.2,
+            "calories": 61,
+            "calcium": 113,
+            "iron": 0.1,
+            "fiber": 0
+          }
+        },
+        "plantBased": {
+          "name": "Leche de Almendra Casera",
+          "brand": "Casero",
+          "price": 18.5,
+          "unit": "1L",
+          "pricePerUnit": 18.5,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 2.1,
+            "carbs": 3.8,
+            "fat": 2.7,
+            "calories": 41,
+            "calcium": 200,
+            "iron": 0.4,
+            "fiber": 1.2
+          },
+          "recipe": {
+            "id": "almond-milk-1",
+            "name": "Leche de Almendra Casera",
+            "description": "Deliciosa leche vegetal sin aditivos",
+            "servings": 4,
+            "prepTime": "20 minutos + remojo",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Almendras crudas",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 36,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Agua filtrada",
+                "amount": 1000,
+                "unit": "ml",
+                "pricePerUnit": 2,
+                "totalCost": 2,
+                "source": "Casa"
+              },
+              {
+                "name": "Vainilla natural",
+                "amount": 5,
+                "unit": "ml",
+                "pricePerUnit": 120,
+                "totalCost": 0.6,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Sal marina",
+                "amount": 2,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.16,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Remojar almendras 8-12 horas",
+              "Escurrir y enjuagar",
+              "Licuar con agua filtrada por 2 minutos",
+              "Colar con manta de cielo",
+              "Agregar vainilla y sal",
+              "Refrigerar hasta 5 días"
+            ],
+            "nutritionInfo": {
+              "protein": 2.1,
+              "carbs": 3.8,
+              "fat": 2.7,
+              "calories": 41
+            }
+          }
+        },
+        "priceDifferencePercent": -15.9,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "cheese-vs-cashew-cheese-1",
+        "category": "dairy",
+        "traditional": {
+          "name": "Queso Panela",
+          "brand": "A granel",
+          "price": 45,
+          "unit": "250g",
+          "pricePerUnit": 180,
+          "nutritionInfo": {
+            "protein": 14.1,
+            "carbs": 4.1,
+            "fat": 4.3,
+            "calories": 106,
+            "calcium": 472,
+            "iron": 0.4,
+            "fiber": 0
+          }
+        },
+        "plantBased": {
+          "name": "Queso de Anacardo Casero",
+          "brand": "Casero",
+          "price": 32,
+          "unit": "250g",
+          "pricePerUnit": 128,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 8.2,
+            "carbs": 8.5,
+            "fat": 12.4,
+            "calories": 157,
+            "calcium": 245,
+            "iron": 1.2,
+            "fiber": 2.1
+          },
+          "recipe": {
+            "id": "cashew-cheese-1",
+            "name": "Queso de Anacardo Fermentado",
+            "description": "Queso cremoso con probióticos naturales",
+            "servings": 8,
+            "prepTime": "30 min + fermentación",
+            "difficulty": "medium",
+            "ingredients": [
+              {
+                "name": "Anacardos crudos",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 220,
+                "totalCost": 44,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Agua",
+                "amount": 150,
+                "unit": "ml",
+                "pricePerUnit": 2,
+                "totalCost": 0.3,
+                "source": "Casa"
+              },
+              {
+                "name": "Levadura nutricional",
+                "amount": 30,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 5.4,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Limón",
+                "amount": 30,
+                "unit": "ml",
+                "pricePerUnit": 40,
+                "totalCost": 1.2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Sal marina",
+                "amount": 8,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.64,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Ajo en polvo",
+                "amount": 3,
+                "unit": "g",
+                "pricePerUnit": 80,
+                "totalCost": 0.24,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Remojar anacardos 4 horas",
+              "Licuar todos los ingredientes hasta obtener consistencia cremosa",
+              "Dejar fermentar 24-48h a temperatura ambiente",
+              "Refrigerar para endurecer",
+              "Moldear y usar como queso fresco"
+            ],
+            "nutritionInfo": {
+              "protein": 8.2,
+              "carbs": 8.5,
+              "fat": 12.4,
+              "calories": 157
+            }
+          }
+        },
+        "priceDifferencePercent": -28.9,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "greek-yogurt-vs-coconut-yogurt",
+        "category": "dairy",
+        "traditional": {
+          "name": "Yogurt Griego Natural",
+          "brand": "A granel",
+          "price": 38,
+          "unit": "250g",
+          "pricePerUnit": 152,
+          "nutritionInfo": {
+            "protein": 15.3,
+            "carbs": 6.1,
+            "fat": 4,
+            "calories": 97,
+            "calcium": 200,
+            "iron": 0.2,
+            "fiber": 0
+          }
+        },
+        "plantBased": {
+          "name": "Yogurt de Coco Probiótico Casero",
+          "brand": "Casero",
+          "price": 28.5,
+          "unit": "250g",
+          "pricePerUnit": 114,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 4.2,
+            "carbs": 8.5,
+            "fat": 18.5,
+            "calories": 198,
+            "calcium": 125,
+            "iron": 1.8,
+            "fiber": 7.2
+          },
+          "recipe": {
+            "id": "coconut-yogurt-1",
+            "name": "Yogurt Probiótico de Coco Casero",
+            "description": "Yogurt cremoso con probióticos naturales, rico en grasas saludables",
+            "servings": 6,
+            "prepTime": "20 min + fermentación 12-24h",
+            "difficulty": "medium",
+            "ingredients": [
+              {
+                "name": "Leche de coco entera (lata)",
+                "amount": 400,
+                "unit": "ml",
+                "pricePerUnit": 95,
+                "totalCost": 38,
+                "source": "Tienda asiática"
+              },
+              {
+                "name": "Cápsulas probióticas",
+                "amount": 4,
+                "unit": "piezas",
+                "pricePerUnit": 12,
+                "totalCost": 48,
+                "source": "Farmacia/Tienda naturista"
+              },
+              {
+                "name": "Almidón de tapioca",
+                "amount": 15,
+                "unit": "g",
+                "pricePerUnit": 80,
+                "totalCost": 1.2,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Jarabe de agave",
+                "amount": 20,
+                "unit": "ml",
+                "pricePerUnit": 120,
+                "totalCost": 2.4,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Vainilla natural",
+                "amount": 5,
+                "unit": "ml",
+                "pricePerUnit": 120,
+                "totalCost": 0.6,
+                "source": "Tienda naturista"
+              }
+            ],
+            "instructions": [
+              "Calentar leche de coco a 43°C (tibia al tacto)",
+              "Disolver almidón de tapioca en poca leche fría",
+              "Mezclar almidón disuelto con leche tibia",
+              "Abrir cápsulas probióticas y mezclar contenido",
+              "Añadir agave y vainilla, mezclar bien",
+              "Verter en frascos esterilizados",
+              "Mantener a 43°C por 12-24h (yogurtera o horno apagado)",
+              "Refrigerar 4h antes de consumir",
+              "Dura hasta 7 días refrigerado"
+            ],
+            "nutritionInfo": {
+              "protein": 4.2,
+              "carbs": 8.5,
+              "fat": 18.5,
+              "calories": 198
+            }
+          }
+        },
+        "priceDifferencePercent": -25,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "butter-vs-cashew-butter",
+        "category": "dairy",
+        "traditional": {
+          "name": "Mantequilla con Sal",
+          "brand": "A granel",
+          "price": 45,
+          "unit": "200g",
+          "pricePerUnit": 225,
+          "nutritionInfo": {
+            "protein": 0.9,
+            "carbs": 0.1,
+            "fat": 81.1,
+            "calories": 717,
+            "calcium": 24,
+            "iron": 0.2,
+            "fiber": 0
+          }
+        },
+        "plantBased": {
+          "name": "Mantequilla de Anacardo Casera",
+          "brand": "Casero",
+          "price": 35,
+          "unit": "200g",
+          "pricePerUnit": 175,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 5.2,
+            "carbs": 9.2,
+            "fat": 44.8,
+            "calories": 553,
+            "calcium": 45,
+            "iron": 6.7,
+            "fiber": 1
+          },
+          "recipe": {
+            "id": "cashew-butter-1",
+            "name": "Mantequilla Untable de Anacardo",
+            "description": "Mantequilla cremosa plant-based, ideal para pan y repostería",
+            "servings": 10,
+            "prepTime": "15 minutos + remojo",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Anacardos crudos",
+                "amount": 300,
+                "unit": "g",
+                "pricePerUnit": 220,
+                "totalCost": 66,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Aceite de coco refinado",
+                "amount": 60,
+                "unit": "ml",
+                "pricePerUnit": 300,
+                "totalCost": 18,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Agua filtrada",
+                "amount": 80,
+                "unit": "ml",
+                "pricePerUnit": 2,
+                "totalCost": 0.16,
+                "source": "Casa"
+              },
+              {
+                "name": "Sal marina fina",
+                "amount": 4,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.32,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Lecitina de girasol",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 0.9,
+                "source": "Tienda naturista"
+              }
+            ],
+            "instructions": [
+              "Remojar anacardos 4-6 horas en agua",
+              "Escurrir y enjuagar bien",
+              "Procesar en procesador potente hasta pasta fina",
+              "Agregar agua gradualmente hasta consistencia cremosa",
+              "Añadir aceite de coco derretido tibio",
+              "Incorporar sal y lecitina, procesar hasta homogéneo",
+              "Refrigerar 2 horas para que endurezca",
+              "Conservar refrigerado hasta 2 semanas"
+            ],
+            "nutritionInfo": {
+              "protein": 5.2,
+              "carbs": 9.2,
+              "fat": 44.8,
+              "calories": 553
+            }
+          }
+        },
+        "priceDifferencePercent": -22.2,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "commercial-vs-homemade-tofu-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Tofu Comercial",
+          "brand": "Kikkoman",
+          "price": 65,
+          "unit": "400g",
+          "pricePerUnit": 162.5
+        },
+        "plantBased": {
+          "name": "Tofu Casero",
+          "brand": "Casero",
+          "price": 28,
+          "unit": "400g",
+          "pricePerUnit": 70,
+          "isCommercial": false,
+          "recipe": {
+            "id": "homemade-tofu-1",
+            "name": "Tofu Casero de Soya",
+            "description": "Tofu fresco y económico hecho en casa",
+            "servings": 6,
+            "prepTime": "2 horas",
+            "difficulty": "medium",
+            "ingredients": [
+              {
+                "name": "Frijol de soya seco",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 35,
+                "totalCost": 7,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Agua",
+                "amount": 1500,
+                "unit": "ml",
+                "pricePerUnit": 2,
+                "totalCost": 3,
+                "source": "Casa"
+              },
+              {
+                "name": "Vinagre blanco o limón",
+                "amount": 60,
+                "unit": "ml",
+                "pricePerUnit": 12,
+                "totalCost": 0.72,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Sal",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 3,
+                "totalCost": 0.15,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Remojar la soya 8-12 horas",
+              "Licuar con agua y colar para obtener leche de soya",
+              "Hervir la leche de soya por 10 minutos",
+              "Agregar vinagre para cuajar",
+              "Colar y prensar el cuajo por 1 hora",
+              "Cortar y usar inmediatamente o refrigerar"
+            ],
+            "nutritionInfo": {
+              "protein": 20,
+              "carbs": 4,
+              "fat": 11,
+              "calories": 183
+            }
+          }
+        },
+        "priceDifferencePercent": -56.9,
+        "availability": {
+          "traditional": false,
+          "plantBased": true
+        },
+        "comparisonType": "commercial-vs-homemade"
+      },
+      {
+        "id": "chicken-vs-homemade-mushroom-protein-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Pechuga de Pollo",
+          "brand": "A granel",
+          "price": 85,
+          "unit": "500g",
+          "pricePerUnit": 170
+        },
+        "plantBased": {
+          "name": "Proteína Vegetal de Setas",
+          "brand": "Casero",
+          "price": 42.5,
+          "unit": "500g",
+          "pricePerUnit": 85,
+          "isCommercial": false,
+          "recipe": {
+            "id": "mushroom-protein-1",
+            "name": "Proteína Vegetal de Setas y Lentejas",
+            "description": "Textura carnosa perfecta para guisos y tacos",
+            "servings": 6,
+            "prepTime": "45 minutos",
+            "difficulty": "medium",
+            "ingredients": [
+              {
+                "name": "Setas ostra frescas",
+                "amount": 250,
+                "unit": "g",
+                "pricePerUnit": 80,
+                "totalCost": 20,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Lentejas cocidas",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 32,
+                "totalCost": 6.4,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Nueces picadas",
+                "amount": 80,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 9.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Salsa de soya",
+                "amount": 30,
+                "unit": "ml",
+                "pricePerUnit": 25,
+                "totalCost": 0.75,
+                "source": "Tienda asiática"
+              },
+              {
+                "name": "Aceite de oliva",
+                "amount": 20,
+                "unit": "ml",
+                "pricePerUnit": 85,
+                "totalCost": 1.7,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Ajo y especias",
+                "amount": 15,
+                "unit": "g",
+                "pricePerUnit": 60,
+                "totalCost": 0.9,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Harina de avena",
+                "amount": 50,
+                "unit": "g",
+                "pricePerUnit": 20,
+                "totalCost": 1,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Levadura nutricional",
+                "amount": 15,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 2.7,
+                "source": "Tienda naturista"
+              }
+            ],
+            "instructions": [
+              "Picar finamente las setas y sofreír hasta dorar",
+              "Mezclar lentejas cocidas con nueces trituradas",
+              "Combinar setas con mezcla de lentejas",
+              "Agregar salsa de soya, especias y levadura nutricional",
+              "Incorporar harina de avena para dar consistencia",
+              "Formar hamburguesas o desmenuzar para tacos",
+              "Cocinar a fuego medio 5-7 minutos por lado"
+            ],
+            "nutritionInfo": {
+              "protein": 18,
+              "carbs": 12,
+              "fat": 8,
+              "calories": 185
+            }
+          }
+        },
+        "priceDifferencePercent": -50,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "ground-beef-vs-homemade-lentil-walnut-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Carne Molida de Res",
+          "brand": "A granel",
+          "price": 120,
+          "unit": "500g",
+          "pricePerUnit": 240
+        },
+        "plantBased": {
+          "name": "Carne Vegetal de Lentejas y Nuez",
+          "brand": "Casero",
+          "price": 55,
+          "unit": "500g",
+          "pricePerUnit": 110,
+          "isCommercial": false,
+          "recipe": {
+            "id": "lentil-walnut-meat-1",
+            "name": "Carne Vegetal de Lentejas y Nuez",
+            "description": "Textura perfecta para bolognesa, tacos y rellenos",
+            "servings": 8,
+            "prepTime": "30 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Lentejas pardinas cocidas",
+                "amount": 300,
+                "unit": "g",
+                "pricePerUnit": 32,
+                "totalCost": 9.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Nueces de Castilla",
+                "amount": 120,
+                "unit": "g",
+                "pricePerUnit": 150,
+                "totalCost": 18,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Champiñones portobello",
+                "amount": 150,
+                "unit": "g",
+                "pricePerUnit": 90,
+                "totalCost": 13.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Cebolla blanca",
+                "amount": 100,
+                "unit": "g",
+                "pricePerUnit": 18,
+                "totalCost": 1.8,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Concentrado de tomate",
+                "amount": 40,
+                "unit": "g",
+                "pricePerUnit": 45,
+                "totalCost": 1.8,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Salsa de soya",
+                "amount": 25,
+                "unit": "ml",
+                "pricePerUnit": 25,
+                "totalCost": 0.63,
+                "source": "Tienda asiática"
+              },
+              {
+                "name": "Aceite de oliva",
+                "amount": 25,
+                "unit": "ml",
+                "pricePerUnit": 85,
+                "totalCost": 2.13,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Especias (comino, pimentón, orégano)",
+                "amount": 12,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 1.44,
+                "source": "Mercado de especias"
+              },
+              {
+                "name": "Sal y pimienta",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 15,
+                "totalCost": 0.08,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Picar finamente cebolla y champiñones, sofreír hasta dorar",
+              "En procesador, pulsar lentejas hasta textura granular",
+              "Triturar nueces hasta obtener trozos pequeños",
+              "Mezclar lentejas, nueces y vegetales sofritos",
+              "Agregar concentrate de tomate, salsa de soya y especias",
+              "Cocinar a fuego medio 8-10 minutos removiendo",
+              "Rectificar sazón y usar como carne molida tradicional"
+            ],
+            "nutritionInfo": {
+              "protein": 16,
+              "carbs": 18,
+              "fat": 12,
+              "calories": 220
+            }
+          }
+        },
+        "priceDifferencePercent": -54.2,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "tuna-vs-homemade-chickpea-tuna-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Atún en Lata",
+          "brand": "Marca comercial",
+          "price": 25,
+          "unit": "140g",
+          "pricePerUnit": 178.57
+        },
+        "plantBased": {
+          "name": "Atún Vegetal de Garbanzos",
+          "brand": "Casero",
+          "price": 12.5,
+          "unit": "140g",
+          "pricePerUnit": 89.29,
+          "isCommercial": false,
+          "recipe": {
+            "id": "chickpea-tuna-1",
+            "name": "Atún Vegetal de Garbanzos",
+            "description": "Perfecta textura para ensaladas y sándwiches",
+            "servings": 4,
+            "prepTime": "15 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Garbanzos cocidos",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 35,
+                "totalCost": 7,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Alga nori en hojuelas",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 300,
+                "totalCost": 1.5,
+                "source": "Tienda asiática"
+              },
+              {
+                "name": "Mayonesa vegetal casera",
+                "amount": 30,
+                "unit": "ml",
+                "pricePerUnit": 85,
+                "totalCost": 2.55,
+                "source": "Casera"
+              },
+              {
+                "name": "Jugo de limón",
+                "amount": 15,
+                "unit": "ml",
+                "pricePerUnit": 40,
+                "totalCost": 0.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Mostaza Dijon",
+                "amount": 8,
+                "unit": "ml",
+                "pricePerUnit": 65,
+                "totalCost": 0.52,
+                "source": "Supermercado"
+              },
+              {
+                "name": "Apio picado",
+                "amount": 25,
+                "unit": "g",
+                "pricePerUnit": 35,
+                "totalCost": 0.88,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Cebolla morada",
+                "amount": 20,
+                "unit": "g",
+                "pricePerUnit": 25,
+                "totalCost": 0.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Sal y pimienta",
+                "amount": 2,
+                "unit": "g",
+                "pricePerUnit": 15,
+                "totalCost": 0.03,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Escurrir y enjuagar los garbanzos cocidos",
+              "Machacar ligeramente con tenedor dejando textura",
+              "Agregar alga nori para sabor marino",
+              "Mezclar con mayonesa, limón y mostaza",
+              "Incorporar apio y cebolla picados finamente",
+              "Sazonar con sal y pimienta al gusto",
+              "Refrigerar 30 minutos antes de servir"
+            ],
+            "nutritionInfo": {
+              "protein": 8,
+              "carbs": 15,
+              "fat": 6,
+              "calories": 135
+            }
+          }
+        },
+        "priceDifferencePercent": -50,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "eggs-vs-homemade-chickpea-flour-1",
+        "category": "eggs",
+        "traditional": {
+          "name": "Huevos de Gallina",
+          "brand": "A granel",
+          "price": 32,
+          "unit": "12 piezas",
+          "pricePerUnit": 2.67
+        },
+        "plantBased": {
+          "name": "Sustituto de Huevo de Harina de Garbanzo",
+          "brand": "Casero",
+          "price": 18,
+          "unit": "12 equivalentes",
+          "pricePerUnit": 1.5,
+          "isCommercial": false,
+          "recipe": {
+            "id": "chickpea-egg-1",
+            "name": "Sustituto de Huevo con Harina de Garbanzo",
+            "description": "Perfecto para tortillas, revueltos y horneado",
+            "servings": 12,
+            "prepTime": "5 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Harina de garbanzo",
+                "amount": 180,
+                "unit": "g",
+                "pricePerUnit": 45,
+                "totalCost": 8.1,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Agua",
+                "amount": 480,
+                "unit": "ml",
+                "pricePerUnit": 2,
+                "totalCost": 0.96,
+                "source": "Casa"
+              },
+              {
+                "name": "Levadura nutricional",
+                "amount": 24,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 4.32,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Sal marina",
+                "amount": 6,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.48,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Cúrcuma en polvo",
+                "amount": 3,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 0.36,
+                "source": "Mercado de especias"
+              },
+              {
+                "name": "Pimienta negra",
+                "amount": 1,
+                "unit": "g",
+                "pricePerUnit": 150,
+                "totalCost": 0.15,
+                "source": "Mercado de especias"
+              }
+            ],
+            "instructions": [
+              "Mezclar harina de garbanzo con especias secas",
+              "Agregar agua gradualmente batiendo para evitar grumos",
+              "Dejar reposar 5 minutos para hidratarse",
+              "Para tortilla: usar 1/4 taza de mezcla por huevo",
+              "Cocinar en sartén antiadherente como huevo revuelto",
+              "Para horear: usar 1/4 taza por cada huevo en la receta"
+            ],
+            "nutritionInfo": {
+              "protein": 6,
+              "carbs": 8,
+              "fat": 2,
+              "calories": 70
+            }
+          }
+        },
+        "priceDifferencePercent": -43.8,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "ground-beef-vs-lentil-bolognese",
+        "category": "proteins",
+        "traditional": {
+          "name": "Carne Molida de Res (80/20)",
+          "brand": "A granel",
+          "price": 159,
+          "unit": "500g",
+          "pricePerUnit": 318,
+          "nutritionInfo": {
+            "protein": 20,
+            "carbs": 0,
+            "fat": 20,
+            "calories": 254,
+            "calcium": 18,
+            "iron": 2.6,
+            "fiber": 0
+          }
+        },
+        "plantBased": {
+          "name": "Boloñesa de Lentejas Casera",
+          "brand": "Casero",
+          "price": 85,
+          "unit": "500g",
+          "pricePerUnit": 170,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 18.2,
+            "carbs": 35.4,
+            "fat": 2.8,
+            "calories": 230,
+            "calcium": 56,
+            "iron": 7.2,
+            "fiber": 15.6
+          },
+          "recipe": {
+            "id": "lentil-bolognese-1",
+            "name": "Boloñesa de Lentejas con Vegetales",
+            "description": "Rica salsa boloñesa plant-based con alto contenido proteico y fibra",
+            "servings": 6,
+            "prepTime": "45 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Lentejas rojas",
+                "amount": 300,
+                "unit": "g",
+                "pricePerUnit": 35,
+                "totalCost": 10.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Cebolla blanca",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 18,
+                "totalCost": 3.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Zanahoria",
+                "amount": 150,
+                "unit": "g",
+                "pricePerUnit": 12,
+                "totalCost": 1.8,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Apio",
+                "amount": 100,
+                "unit": "g",
+                "pricePerUnit": 25,
+                "totalCost": 2.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Jitomate triturado",
+                "amount": 400,
+                "unit": "g",
+                "pricePerUnit": 22,
+                "totalCost": 8.8,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Pasta de tomate",
+                "amount": 60,
+                "unit": "g",
+                "pricePerUnit": 80,
+                "totalCost": 4.8,
+                "source": "Tienda convencional"
+              },
+              {
+                "name": "Aceite de oliva",
+                "amount": 30,
+                "unit": "ml",
+                "pricePerUnit": 200,
+                "totalCost": 6,
+                "source": "Tienda convencional"
+              },
+              {
+                "name": "Ajo",
+                "amount": 15,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 1.8,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Hierbas secas (orégano, albahaca)",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 300,
+                "totalCost": 1.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Sal marina",
+                "amount": 8,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.64,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Remojar lentejas 2 horas (opcional para cocción más rápida)",
+              "Picar finamente cebolla, zanahoria, apio y ajo",
+              "Sofreír vegetales en aceite hasta que estén suaves (8-10 min)",
+              "Agregar lentejas escurridas y cocinar 2 minutos",
+              "Añadir jitomate triturado, pasta de tomate y hierbas",
+              "Cubrir con agua o caldo vegetal (500ml)",
+              "Cocinar a fuego medio 25-30 minutos hasta que lentejas estén suaves",
+              "Sazonar con sal y ajustar consistencia",
+              "Servir sobre pasta o como guarnición"
+            ],
+            "nutritionInfo": {
+              "protein": 18.2,
+              "carbs": 35.4,
+              "fat": 2.8,
+              "calories": 230
+            }
+          }
+        },
+        "priceDifferencePercent": -46.5,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "chicken-breast-vs-tofu-scramble",
+        "category": "proteins",
+        "traditional": {
+          "name": "Pechuga de Pollo sin Hueso",
+          "brand": "A granel",
+          "price": 95,
+          "unit": "500g",
+          "pricePerUnit": 190,
+          "nutritionInfo": {
+            "protein": 23.1,
+            "carbs": 0,
+            "fat": 3.6,
+            "calories": 165,
+            "calcium": 15,
+            "iron": 1,
+            "fiber": 0
+          }
+        },
+        "plantBased": {
+          "name": "Revuelto de Tofu con Vegetales",
+          "brand": "Casero",
+          "price": 75,
+          "unit": "500g",
+          "pricePerUnit": 150,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 19.8,
+            "carbs": 8.2,
+            "fat": 12.4,
+            "calories": 198,
+            "calcium": 425,
+            "iron": 3.4,
+            "fiber": 2.8
+          },
+          "recipe": {
+            "id": "tofu-scramble-1",
+            "name": "Revuelto de Tofu Estilo Huevos Revueltos",
+            "description": "Alternativa plant-based rica en proteína y calcio, similar a huevos revueltos",
+            "servings": 4,
+            "prepTime": "20 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Tofu firme",
+                "amount": 400,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 48,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Levadura nutricional",
+                "amount": 20,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 3.6,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Cúrcuma en polvo",
+                "amount": 3,
+                "unit": "g",
+                "pricePerUnit": 200,
+                "totalCost": 0.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Cebolla morada",
+                "amount": 100,
+                "unit": "g",
+                "pricePerUnit": 20,
+                "totalCost": 2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Pimiento morrón",
+                "amount": 120,
+                "unit": "g",
+                "pricePerUnit": 35,
+                "totalCost": 4.2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Espinacas frescas",
+                "amount": 80,
+                "unit": "g",
+                "pricePerUnit": 40,
+                "totalCost": 3.2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Aceite de coco",
+                "amount": 15,
+                "unit": "ml",
+                "pricePerUnit": 300,
+                "totalCost": 4.5,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Sal marina",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.4,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Pimienta negra",
+                "amount": 2,
+                "unit": "g",
+                "pricePerUnit": 150,
+                "totalCost": 0.3,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Escurrir y desmenuzar el tofu con las manos",
+              "Picar cebolla, pimiento y espinacas",
+              "Calentar aceite en sartén antiadherente",
+              "Sofreír cebolla hasta transparente (3-4 min)",
+              "Agregar pimiento y cocinar 2 minutos más",
+              "Añadir tofu desmenuzado, cúrcuma, sal y pimienta",
+              "Cocinar removiendo constantemente 5-7 minutos",
+              "Agregar espinacas y levadura nutricional",
+              "Cocinar hasta que espinacas se marchiten (2 min)",
+              "Servir caliente como desayuno o cena"
+            ],
+            "nutritionInfo": {
+              "protein": 19.8,
+              "carbs": 8.2,
+              "fat": 12.4,
+              "calories": 198
+            }
+          }
+        },
+        "priceDifferencePercent": -21.1,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "chicken-tacos-vs-jackfruit-tacos",
+        "category": "prepared-dishes",
+        "traditional": {
+          "name": "Tacos de Pollo Deshebrado (4 piezas)",
+          "brand": "Preparado local",
+          "price": 45,
+          "unit": "4 tacos",
+          "pricePerUnit": 11.25,
+          "nutritionInfo": {
+            "protein": 28,
+            "carbs": 32,
+            "fat": 12,
+            "calories": 340,
+            "calcium": 120,
+            "iron": 2.8,
+            "fiber": 4
+          }
+        },
+        "plantBased": {
+          "name": "Tacos de Jackfruit al Pastor (4 piezas)",
+          "brand": "Casero",
+          "price": 32,
+          "unit": "4 tacos",
+          "pricePerUnit": 8,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 8.4,
+            "carbs": 45.2,
+            "fat": 6.8,
+            "calories": 268,
+            "calcium": 180,
+            "iron": 1.8,
+            "fiber": 12.4
+          },
+          "recipe": {
+            "id": "jackfruit-tacos-1",
+            "name": "Tacos de Jackfruit al Pastor Plant-Based",
+            "description": "Tacos veganos que imitan el sabor del pastor tradicional usando jackfruit",
+            "servings": 4,
+            "prepTime": "40 minutos + marinado",
+            "difficulty": "medium",
+            "ingredients": [
+              {
+                "name": "Jackfruit en salmuera (escurrido)",
+                "amount": 400,
+                "unit": "g",
+                "pricePerUnit": 85,
+                "totalCost": 34,
+                "source": "Tienda asiática"
+              },
+              {
+                "name": "Tortillas de maíz",
+                "amount": 8,
+                "unit": "piezas",
+                "pricePerUnit": 1.5,
+                "totalCost": 12,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Chile guajillo",
+                "amount": 20,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 2.4,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Chile chipotle adobado",
+                "amount": 15,
+                "unit": "g",
+                "pricePerUnit": 180,
+                "totalCost": 2.7,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Achiote en pasta",
+                "amount": 10,
+                "unit": "g",
+                "pricePerUnit": 200,
+                "totalCost": 2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Piña natural",
+                "amount": 100,
+                "unit": "g",
+                "pricePerUnit": 25,
+                "totalCost": 2.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Cebolla blanca",
+                "amount": 80,
+                "unit": "g",
+                "pricePerUnit": 18,
+                "totalCost": 1.44,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Ajo",
+                "amount": 10,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 1.2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Vinagre de manzana",
+                "amount": 20,
+                "unit": "ml",
+                "pricePerUnit": 45,
+                "totalCost": 0.9,
+                "source": "Tienda convencional"
+              },
+              {
+                "name": "Aceite vegetal",
+                "amount": 20,
+                "unit": "ml",
+                "pricePerUnit": 35,
+                "totalCost": 0.7,
+                "source": "Tienda convencional"
+              },
+              {
+                "name": "Comino molido",
+                "amount": 3,
+                "unit": "g",
+                "pricePerUnit": 200,
+                "totalCost": 0.6,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Orégano seco",
+                "amount": 2,
+                "unit": "g",
+                "pricePerUnit": 300,
+                "totalCost": 0.6,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Remojar chiles guajillo en agua caliente 15 min",
+              "Escurrir y deshebrar jackfruit, removing semillas",
+              "Licuar chiles con chipotle, achiote, ajo, vinagre y especias",
+              "Marinar jackfruit con salsa 2 horas mínimo",
+              "Asar piña y cebolla hasta caramelizar",
+              "Cocinar jackfruit marinado en sartén 15-20 min",
+              "Calentar tortillas en comal",
+              "Servir jackfruit en tortillas con piña, cebolla y salsa"
+            ],
+            "nutritionInfo": {
+              "protein": 8.4,
+              "carbs": 45.2,
+              "fat": 6.8,
+              "calories": 268
+            }
+          }
+        },
+        "priceDifferencePercent": -28.9,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      },
+      {
+        "id": "beef-soup-vs-mushroom-soup",
+        "category": "prepared-dishes",
+        "traditional": {
+          "name": "Sopa de Res con Verduras (1 porción)",
+          "brand": "Preparado local",
+          "price": 55,
+          "unit": "350ml",
+          "pricePerUnit": 157.14,
+          "nutritionInfo": {
+            "protein": 18.5,
+            "carbs": 12,
+            "fat": 8.5,
+            "calories": 185,
+            "calcium": 35,
+            "iron": 3.2,
+            "fiber": 2.5
+          }
+        },
+        "plantBased": {
+          "name": "Sopa de Hongos y Proteína Vegetal",
+          "brand": "Casero",
+          "price": 38,
+          "unit": "350ml",
+          "pricePerUnit": 108.57,
+          "isCommercial": false,
+          "nutritionInfo": {
+            "protein": 16.2,
+            "carbs": 18.5,
+            "fat": 4.2,
+            "calories": 168,
+            "calcium": 45,
+            "iron": 2.8,
+            "fiber": 8.5
+          },
+          "recipe": {
+            "id": "mushroom-protein-soup-1",
+            "name": "Sopa Cremosa de Hongos con Proteína Vegetal",
+            "description": "Sopa nutritiva y reconfortante con alto contenido de proteína vegetal y fibra",
+            "servings": 4,
+            "prepTime": "35 minutos",
+            "difficulty": "easy",
+            "ingredients": [
+              {
+                "name": "Hongos portobello",
+                "amount": 200,
+                "unit": "g",
+                "pricePerUnit": 120,
+                "totalCost": 24,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Hongos shiitake secos",
+                "amount": 30,
+                "unit": "g",
+                "pricePerUnit": 400,
+                "totalCost": 12,
+                "source": "Tienda asiática"
+              },
+              {
+                "name": "Proteína de soya texturizada",
+                "amount": 80,
+                "unit": "g",
+                "pricePerUnit": 45,
+                "totalCost": 3.6,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Cebolla blanca",
+                "amount": 150,
+                "unit": "g",
+                "pricePerUnit": 18,
+                "totalCost": 2.7,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Zanahoria",
+                "amount": 100,
+                "unit": "g",
+                "pricePerUnit": 12,
+                "totalCost": 1.2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Apio",
+                "amount": 80,
+                "unit": "g",
+                "pricePerUnit": 25,
+                "totalCost": 2,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Caldo de verduras (concentrado)",
+                "amount": 40,
+                "unit": "g",
+                "pricePerUnit": 200,
+                "totalCost": 8,
+                "source": "Tienda naturista"
+              },
+              {
+                "name": "Leche de avena",
+                "amount": 200,
+                "unit": "ml",
+                "pricePerUnit": 35,
+                "totalCost": 7,
+                "source": "Tienda convencional"
+              },
+              {
+                "name": "Aceite de oliva",
+                "amount": 20,
+                "unit": "ml",
+                "pricePerUnit": 200,
+                "totalCost": 4,
+                "source": "Tienda convencional"
+              },
+              {
+                "name": "Tomillo fresco",
+                "amount": 5,
+                "unit": "g",
+                "pricePerUnit": 300,
+                "totalCost": 1.5,
+                "source": "Central de Abastos"
+              },
+              {
+                "name": "Sal marina",
+                "amount": 6,
+                "unit": "g",
+                "pricePerUnit": 8,
+                "totalCost": 0.48,
+                "source": "Central de Abastos"
+              }
+            ],
+            "instructions": [
+              "Hidratar hongos shiitake y proteína de soya en agua caliente",
+              "Picar todos los vegetales en cubos medianos",
+              "Rehogar cebolla en aceite hasta transparente",
+              "Agregar zanahoria y apio, cocinar 5 minutos",
+              "Añadir hongos frescos y cocinar hasta dorar",
+              "Incorporar proteína hidratada y hongos shiitake",
+              "Agregar caldo y 800ml de agua, hervir 15 minutos",
+              "Añadir leche de avena y tomillo, cocinar 5 minutos más",
+              "Sazonar y servir caliente"
+            ],
+            "nutritionInfo": {
+              "protein": 16.2,
+              "carbs": 18.5,
+              "fat": 4.2,
+              "calories": 168
+            }
+          }
+        },
+        "priceDifferencePercent": -30.9,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-homemade"
+      }
+    ]
+  }
+]

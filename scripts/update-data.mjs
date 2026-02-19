@@ -72,8 +72,32 @@ async function runPipeline() {
 
   // Phase 2: Commit (Apply)
   console.log('🚀 Phase 2: Committing Changes...');
-  // In a full implementation, this would use the 'Transformer' module
-  // to safely patch the .ts store files.
+  for (const newStore of newItems) {
+    let found = false;
+    const storeFiles = fs.readdirSync(STORES_DIR).filter(f => f.endsWith('.json'));
+    
+    for (const file of storeFiles) {
+      const filePath = path.join(STORES_DIR, file);
+      const stores = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      
+      const storeIndex = stores.findIndex(s => s.id === newStore.id);
+      if (storeIndex !== -1) {
+        stores[storeIndex] = newStore;
+        fs.writeFileSync(filePath, JSON.stringify(stores, null, 2));
+        console.log(`✅ Updated store ${newStore.id} in ${file}`);
+        found = true;
+        break;
+      }
+    }
+    
+    if (!found) {
+      const defaultPath = path.join(STORES_DIR, 'conventional.json');
+      const stores = JSON.parse(fs.readFileSync(defaultPath, 'utf-8'));
+      stores.push(newStore);
+      fs.writeFileSync(defaultPath, JSON.stringify(stores, null, 2));
+      console.log(`✅ Added new store ${newStore.id} into conventional.json`);
+    }
+  }
   
   updateMetadata();
   console.log(`✨ Pipeline execution finished. Processed ${globalAudit.totalItems} items with high consistency.`);

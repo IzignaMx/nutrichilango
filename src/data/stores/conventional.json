@@ -1,0 +1,104 @@
+[
+  {
+    "id": "soriana-1",
+    "name": "Soriana Hiper Santa Fe",
+    "location": "Santa Fe, CDMX",
+    "coordinates": [
+      -99.259,
+      19.359
+    ],
+    "hasPromotion": true,
+    "promotionDetails": "15% descuento en productos plant-based",
+    "storeType": "conventional",
+    "products": [
+      {
+        "id": "beef-vs-tofu-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Carne de Res Molida",
+          "brand": "SuKarne",
+          "price": 149.5,
+          "unit": "500g",
+          "pricePerUnit": 299
+        },
+        "plantBased": {
+          "name": "Carne Plant-Based",
+          "brand": "NotCo",
+          "price": 189.9,
+          "unit": "500g",
+          "pricePerUnit": 379.8,
+          "isCommercial": true
+        },
+        "priceDifferencePercent": 27,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-commercial"
+      },
+      {
+        "id": "milk-vs-soy-1",
+        "category": "dairy",
+        "traditional": {
+          "name": "Leche Entera",
+          "brand": "Lala",
+          "price": 25.5,
+          "unit": "1L",
+          "pricePerUnit": 25.5
+        },
+        "plantBased": {
+          "name": "Leche de Soya",
+          "brand": "Silk",
+          "price": 42.9,
+          "unit": "1L",
+          "pricePerUnit": 42.9,
+          "isCommercial": true
+        },
+        "priceDifferencePercent": 68.2,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-commercial"
+      }
+    ]
+  },
+  {
+    "id": "walmart-1",
+    "name": "Walmart Supercenter Periférico",
+    "location": "Periférico Sur, CDMX",
+    "coordinates": [
+      -99.191,
+      19.302
+    ],
+    "hasPromotion": false,
+    "storeType": "conventional",
+    "products": [
+      {
+        "id": "chicken-vs-tempeh-1",
+        "category": "proteins",
+        "traditional": {
+          "name": "Pechuga de Pollo",
+          "brand": "Tyson",
+          "price": 89.9,
+          "unit": "500g",
+          "pricePerUnit": 179.8
+        },
+        "plantBased": {
+          "name": "Tempeh Natural",
+          "brand": "Lightlife",
+          "price": 145,
+          "unit": "500g",
+          "pricePerUnit": 290,
+          "isCommercial": true
+        },
+        "priceDifferencePercent": 61.3,
+        "availability": {
+          "traditional": true,
+          "plantBased": true
+        },
+        "comparisonType": "animal-vs-commercial"
+      }
+    ]
+  }
+]

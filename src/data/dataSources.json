@@ -1,0 +1,148 @@
+{
+  "priceSources": [
+    {
+      "category": "Supermercados y Cadenas",
+      "items": [
+        {
+          "name": "Soriana",
+          "description": "Sitio web oficial y aplicación móvil",
+          "badge": "Actualización automática",
+          "badgeColor": "primary"
+        },
+        {
+          "name": "Walmart",
+          "description": "API pública y sitio web",
+          "badge": "Actualización diaria",
+          "badgeColor": "brand-success"
+        },
+        {
+          "name": "Chedraui",
+          "description": "Catálogo en línea",
+          "badge": "Actualización semanal",
+          "badgeColor": "brand-accent"
+        }
+      ]
+    },
+    {
+      "category": "Mercados y Tianguis",
+      "items": [
+        {
+          "name": "Central de Abastos",
+          "description": "Relevamiento presencial semanal",
+          "badge": "Verificación manual",
+          "badgeColor": "destructive"
+        },
+        {
+          "name": "Mercado Jamaica",
+          "description": "Contacto directo con comerciantes",
+          "badge": "Actualización semanal",
+          "badgeColor": "secondary"
+        },
+        {
+          "name": "Tianguis Locales",
+          "description": "Red de colaboradores",
+          "badge": "Datos comunitarios",
+          "badgeColor": "brand-primary-light"
+        }
+      ]
+    }
+  ],
+  "nutritionalSources": [
+    {
+      "name": "USDA FoodData Central",
+      "description": "Base de datos oficial del Departamento de Agricultura de Estados Unidos",
+      "features": [
+        "Más de 300,000 alimentos catalogados",
+        "Datos verificados científicamente",
+        "Actualización continua"
+      ],
+      "badgeColor": "primary",
+      "externalLink": true
+    },
+    {
+      "name": "Tablas INCMNSZ",
+      "description": "Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán",
+      "features": [
+        "Alimentos específicos de México",
+        "Análisis de laboratorio local",
+        "Enfoque en productos tradicionales"
+      ],
+      "badgeColor": "brand-success",
+      "externalLink": false
+    },
+    {
+      "name": "Etiquetas de Productos",
+      "description": "Información nutricional directa del fabricante",
+      "features": [
+        "Productos plant-based comerciales",
+        "Cumplimiento NOM-051-SCFI/SSA1-2010",
+        "Verificación cruzada con laboratorios"
+      ],
+      "badgeColor": "brand-accent",
+      "externalLink": false
+    },
+    {
+      "name": "Literatura Científica",
+      "description": "Estudios peer-reviewed y bases de datos académicas",
+      "features": [
+        "PubMed y bases científicas",
+        "Estudios de bioavailabilidad",
+        "Investigación en nutrición plant-based"
+      ],
+      "badgeColor": "secondary",
+      "externalLink": false
+    }
+  ],
+  "recipeSources": [
+    {
+      "name": "Chefs Profesionales",
+      "description": "Colaboración con chefs especializados en cocina plant-based",
+      "features": [
+        "Recetas probadas profesionalmente",
+        "Técnicas de optimización nutricional",
+        "Adaptaciones mexicanas"
+      ],
+      "badgeColor": "destructive"
+    },
+    {
+      "name": "Comunidad",
+      "description": "Recetas validadas por la comunidad de usuarios",
+      "features": [
+        "Experiencias reales de preparación",
+        "Adaptaciones económicas",
+        "Feedback de sabor y textura"
+      ],
+      "badgeColor": "brand-success"
+    },
+    {
+      "name": "Literatura Culinaria",
+      "description": "Libros de cocina y recursos académicos",
+      "features": [
+        "Técnicas tradicionales adaptadas",
+        "Fundamentos científicos de cocción",
+        "Métodos de conservación"
+      ],
+      "badgeColor": "primary"
+    }
+  ],
+  "dataQuality": [
+    {
+      "name": "Verificación Automatizada",
+      "features": [
+        "Validación de rangos de precios",
+        "Detección de anomalías estadísticas",
+        "Comparación con datos históricos",
+        "Alertas por cambios abruptos"
+      ]
+    },
+    {
+      "name": "Revisión Manual",
+      "features": [
+        "Verificación presencial semanal",
+        "Validación cruzada entre fuentes",
+        "Revisión por expertos nutricionales",
+        "Feedback de usuarios registrados"
+      ]
+    }
+  ]
+}
