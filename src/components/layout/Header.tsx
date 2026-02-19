@@ -1,13 +1,15 @@
-
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useNutriStore } from '@/store/useNutriStore';
 import { Link } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useTheme } from "@/components/theme-provider"
+import { Sun, Moon, Menu, X } from 'lucide-react';
+import { useTheme } from '@/components/theme-context';
+import { Badge } from '@/components/ui/badge';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const generatedPantry = useNutriStore(useCallback(state => state.generatedPantry, []));
 
   const mainNavItems = [
     { name: 'Comparador Productos', href: '/' },
@@ -34,8 +36,13 @@ const Header: React.FC = () => {
     <ul className="flex space-x-6 lg:space-x-8">
       {items.map((item) => (
         <li key={item.name}>
-          <Link to={item.href} className="hover:text-header-accent transition-colors duration-300 text-sm md:text-base font-medium hover:scale-105 transform transition-transform px-2 py-1 rounded-md">
+          <Link to={item.href} className="hover:text-header-accent transition-colors duration-300 text-sm md:text-base font-medium hover:scale-105 transform transition-transform px-2 py-1 rounded-md flex items-center gap-2">
             {item.name}
+            {item.href === '/despensa' && generatedPantry.length > 0 && (
+              <Badge variant="secondary" className="h-4 w-4 p-0 flex items-center justify-center rounded-full text-[10px]">
+                {generatedPantry.length}
+              </Badge>
+            )}
           </Link>
         </li>
       ))}
@@ -48,7 +55,7 @@ const Header: React.FC = () => {
         
         <Link to="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
           <img 
-            src="/lovable-uploads/426e756a-fc13-4011-a25a-c9e8e5f5bce3.png" 
+            src="/assets/logo-nutrichilango.png" 
             alt="NutriChilango Logo" 
             className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
           />
@@ -98,10 +105,15 @@ const Header: React.FC = () => {
                   <Link 
                     key={item.name}
                     to={item.href} 
-                    className="block py-3 px-4 rounded-lg hover:bg-white/10 hover:text-header-accent transition-all duration-300 text-sm font-medium transform hover:translate-x-1"
+                    className="flex items-center gap-2 py-3 px-4 rounded-lg hover:bg-white/10 hover:text-header-accent transition-all duration-300 text-sm font-medium transform hover:translate-x-1"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
+                    {item.href === '/despensa' && generatedPantry.length > 0 && (
+                      <Badge variant="secondary" className="h-4 w-4 p-0 flex items-center justify-center rounded-full text-[10px]">
+                        {generatedPantry.length}
+                      </Badge>
+                    )}
                   </Link>
                 ))}
               </div>
