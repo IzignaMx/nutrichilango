@@ -1,6 +1,6 @@
-# Estructura del Proyecto
+# Estructura del Proyecto - NutriChilango
 
-```
+```text
 src/
 ├── components/           # Componentes reutilizables
 │   ├── ui/              # Componentes base de shadcn/ui
@@ -28,6 +28,6 @@ src/
 - **Frontend**: React 18, TypeScript, Vite
 - **UI/UX**: Tailwind CSS, shadcn/ui, Lucide React
 - **Gráficas**: Recharts
-- **Routing**: React Router DOM
+- **Enrutamiento**: React Router DOM
 - **Estado**: TanStack React Query
-- **Accesibilidad**: WCAG 2.1 AA compliant
+- **Accesibilidad**: Cumplimiento WCAG 2.1 AA

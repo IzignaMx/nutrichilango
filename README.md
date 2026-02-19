@@ -14,11 +14,13 @@ Una plataforma web dedicada a facilitar la transición hacia una alimentación b
 ## ✨ Características Principales
 
 ### 🔍 Comparaciones Inteligentes
+
 - **Animal vs Comercial Plant-Based**: Productos listos para consumir
 - **Animal vs Casero Plant-Based**: Preparaciones caseras con recetas incluidas
 - **Comercial vs Casero Plant-Based**: Análisis de ahorro al cocinar en casa
 
 ### 📊 Análisis Nutricional
+
 - Gráficas de barras comparativas de macronutrientes
 - Perfiles nutricionales en radar charts
 - Análisis basado en valores de referencia mexicanos (IDR)
@@ -37,6 +39,11 @@ Una plataforma web dedicada a facilitar la transición hacia una alimentación b
 - Análisis de tendencias de precios
 - Rankings de mejores valores por tienda
 
+### 🔄 Actualizaciones Automatizadas (Weekly)
+- **Precios y Fuentes**: Cada lunes a las 00:00 UTC, un workflow de GitHub Actions verifica y actualiza las tendencias de precios.
+- **Validación de Datos**: Las actualizaciones pasan por un proceso de validación para asegurar la integridad de la información.
+- **Transparencia**: El sitio muestra automáticamente la fecha de la "Última Actualización" en el pie de página.
+
 ## 🚀 Inicio Rápido
 
 ```bash
@@ -53,11 +60,16 @@ npm run dev
 
 ## 📚 Documentación
 
-- **[Estructura del Proyecto](docs/PROJECT_STRUCTURE.md)** - Organización del código
-- **[Deployment](DEPLOYMENT.md)** - Guía de despliegue y configuración
-- **[Contribuir](CONTRIBUTING.md)** - Cómo colaborar con el proyecto
-- **[Accesibilidad](ACCESSIBILITY.md)** - Estándares y características de accesibilidad
-- **[Roadmap](ROADMAP.md)** - Plan de desarrollo futuro
+NutriChilango utiliza un sistema de documentación estructurado para mantener una "fuente única de verdad":
+
+- **[Arquitectura de Sistema](ARCHITECTURE.md)** - Diseño técnico, flujo de datos y decisiones de diseño (ADR).
+- **[Sistema de Diseño](DESIGN_SYSTEM.md)** - Guía de tokens de diseño, componentes y principios de UI/UX.
+- **[Guía de Desarrollo](docs/DEVELOPMENT_GUIDE.md)** - Configuración del entorno, scripts y flujo de trabajo.
+- **[Convenciones de Agentes](AGENTS.md)** - Reglas para asistentes de IA y estándares de código.
+- **[Despliegue (Deployment)](DEPLOYMENT.md)** - Guía de infraestructura y CI/CD.
+- **[Contribución](CONTRIBUTING.md)** - Cómo colaborar siguiendo nuestros estándares.
+- **[Accesibilidad](ACCESSIBILITY.md)** - Informe de cumplimiento WCAG 2.1 AA.
+- **[Roadmap](ROADMAP.md)** - Visión a futuro y próximos pasos.
 
 ## 📄 Licencia
 

@@ -12,7 +12,7 @@
 
 2. **HTML Meta Tags** - index.html still references old project:
    - Title: "comer-verde-mexico-city" → should be "NutriChilango"
-   - Description: "Lovable Generated Project" → should be project description
+   - Description: "NutriChilango - Comparador de Precios y Nutrición"
    - OpenGraph meta tags reference old project
 
 3. **Design System Violations** - Many components use direct color classes instead of design tokens:
