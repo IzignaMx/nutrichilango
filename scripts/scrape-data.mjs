@@ -1,9 +1,11 @@
 /**
- * Autonomous Price Scraper for NutriChilango
+ * NutriChilango Autonomous Price Scraper v2
  *
- * Reads the existing store catalog, builds scraping targets for products
- * that have real online counterparts, extracts current prices, and writes
- * a price-only update file consumed by update-data.mjs.
+ * Multi-source, resilient scraper with:
+ * - Auto-discovery of all branded products from the store catalog
+ * - Multiple retailer fallback (Soriana → Chedraui → HEB)
+ * - Retry logic with exponential backoff per target
+ * - Structured reporting
  *
  * Exit code 1 if zero prices were scraped.
  */
@@ -21,85 +23,110 @@ const REPORT_PATH = path.join(UPDATES_DIR, 'scrape-report.json');
 const OUTPUT_PATH = path.join(UPDATES_DIR, 'scraped-prices.json');
 
 // ---------------------------------------------------------------------------
-// Scraping target map
-// Each entry maps a (storeId, productId, side) in our catalog to a real URL.
-// The `searchUrl` points to the retailer's search so we don't depend on
-// exact product paths that go stale.
+// Retail search sources — ordered by reliability (best first)
 // ---------------------------------------------------------------------------
-const SCRAPING_TARGETS = [
-  // ── Soriana ──────────────────────────────────────────────────────────────
+const RETAIL_SOURCES = [
   {
-    storeId: 'soriana-1',
-    productId: 'beef-vs-tofu-1',
-    side: 'traditional',
-    label: 'Carne de Res Molida SuKarne 500g',
-    searchUrl: 'https://www.soriana.com/buscar?q=carne+molida+sukarne',
+    name: 'Soriana',
+    buildUrl: (query) => `https://www.soriana.com/buscar?q=${encodeURIComponent(query)}`,
     selector: '.price',
   },
   {
-    storeId: 'soriana-1',
-    productId: 'beef-vs-tofu-1',
-    side: 'plantBased',
-    label: 'NotCo Carne Plant-Based 500g',
-    searchUrl: 'https://www.soriana.com/buscar?q=notco+carne+plant+based',
-    selector: '.price',
+    name: 'Chedraui',
+    buildUrl: (query) => `https://www.chedraui.com.mx/search?q=${encodeURIComponent(query)}`,
+    selector: '.product-price, .price, .vtex-product-price',
   },
   {
-    storeId: 'soriana-1',
-    productId: 'milk-vs-soy-1',
-    side: 'traditional',
-    label: 'Leche Entera Lala 1L',
-    searchUrl: 'https://www.soriana.com/buscar?q=leche+lala+entera+1+litro',
-    selector: '.price',
-  },
-  {
-    storeId: 'soriana-1',
-    productId: 'milk-vs-soy-1',
-    side: 'plantBased',
-    label: 'Leche de Soya Silk 1L',
-    searchUrl: 'https://www.soriana.com/buscar?q=leche+soya+silk',
-    selector: '.price',
-  },
-
-  // ── Walmart ──────────────────────────────────────────────────────────────
-  {
-    storeId: 'walmart-1',
-    productId: 'chicken-vs-tempeh-1',
-    side: 'traditional',
-    label: 'Pechuga de Pollo Tyson 500g',
-    searchUrl: 'https://super.walmart.com.mx/search?q=pechuga+pollo+tyson',
-    selector: '[data-testid="price"], .price-main, .product-price',
-  },
-  {
-    storeId: 'walmart-1',
-    productId: 'chicken-vs-tempeh-1',
-    side: 'plantBased',
-    label: 'Tempeh Natural',
-    searchUrl: 'https://super.walmart.com.mx/search?q=tempeh',
-    selector: '[data-testid="price"], .price-main, .product-price',
+    name: 'HEB',
+    buildUrl: (query) => `https://www.heb.com.mx/buscar?q=${encodeURIComponent(query)}`,
+    selector: '.product-price, .price',
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Helpers
+// Auto-discover all branded products from the store catalog
 // ---------------------------------------------------------------------------
-const delay = (ms) => new Promise((r) => setTimeout(r, ms));
-const randomDelay = (min, max) => delay(min + Math.floor(Math.random() * (max - min)));
+function discoverTargets() {
+  const targets = [];
+  const files = fs.readdirSync(STORES_DIR).filter(f => f.endsWith('.json'));
+
+  for (const file of files) {
+    const stores = JSON.parse(fs.readFileSync(path.join(STORES_DIR, file), 'utf-8'));
+    for (const store of stores) {
+      for (const product of store.products || []) {
+        for (const side of ['traditional', 'plantBased']) {
+          const sideData = product[side];
+          if (!sideData) continue;
+
+          // Skip homemade/artisan products (brand === 'Casero' or local-only)
+          const brand = sideData.brand || '';
+          const name = sideData.name || '';
+
+          // Only scrape products with known commercial brands or recognizable names
+          if (isScrapable(brand, name)) {
+            targets.push({
+              storeId: store.id,
+              productId: product.id,
+              side,
+              brand,
+              productName: name,
+              unit: sideData.unit || '',
+              currentPrice: sideData.price,
+              searchQuery: buildSearchQuery(brand, name, sideData.unit),
+            });
+          }
+        }
+      }
+    }
+  }
+
+  return targets;
+}
 
 /**
- * Extracts the first reasonable MXN price from the body text.
- * This is the universal fallback that works regardless of DOM structure.
+ * Determines if a product can be scraped from online retailers.
+ * Skip artisan/local/homemade products that only exist in physical stores.
  */
-function extractPriceFromPage(page, targetSelector) {
+function isScrapable(brand, name) {
+  const localBrands = [
+    'casero', 'local', 'a granel', 'por amor', 'por amor gourmet',
+    'green corner', 'mr. tofu', 'mr. tofu gourmet', 'abasto verde',
+    'abasto premium', 'abasto gourmet', 'verde vivo', 'verde vivo artesanal',
+    'verde vivo gourmet', 'veggie smiles', 'veggie smiles premium',
+    'veggie smiles artesanal', 'plantae', 'plantae gourmet', 'plantae pro',
+    'vegan label', 'veggie cheese', 'artisan vegan', 'verde vida',
+    'green spot',
+  ];
+  const lowerBrand = brand.toLowerCase().trim();
+  if (!lowerBrand || localBrands.includes(lowerBrand)) return false;
+  return true;
+}
+
+/**
+ * Builds a clean search query for online retailers.
+ */
+function buildSearchQuery(brand, name, unit) {
+  // Combine brand + product name, remove redundant terms
+  const cleaned = `${brand} ${name}`
+    .replace(/\b(de|para|en|con|y|la|el|los|las|del)\b/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return cleaned;
+}
+
+// ---------------------------------------------------------------------------
+// Price extraction — universal fallback
+// ---------------------------------------------------------------------------
+function extractPriceFromPage(page, selector) {
   return page.evaluate((sel) => {
-    // 1) Try the specific selector first
+    // 1) Specific selector
     const el = document.querySelector(sel);
     let text = el ? (el.innerText || el.textContent || '') : '';
 
-    // 2) Fallback: scan the whole body
+    // 2) Fallback: full body scan
     if (!text.trim()) text = document.body.innerText || '';
 
-    // 3) Match MXN price patterns: $149.50, $2,190.00, $25.5
+    // 3) Match MXN price patterns
     const matches = text.match(/\$\s*([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?)/g);
     if (!matches) return null;
 
@@ -108,16 +135,84 @@ function extractPriceFromPage(page, targetSelector) {
       if (!isNaN(num) && num > 1 && num < 15_000) return num;
     }
     return null;
-  }, targetSelector);
+  }, selector);
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+const randomDelay = (min, max) => delay(min + Math.floor(Math.random() * (max - min)));
+
+// ---------------------------------------------------------------------------
+// Scrape a single target with multi-source fallback and retry
+// ---------------------------------------------------------------------------
+async function scrapeTarget(context, target) {
+  const MAX_RETRIES = 2;
+
+  for (const source of RETAIL_SOURCES) {
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      const page = await context.newPage();
+      const url = source.buildUrl(target.searchQuery);
+
+      try {
+        const resp = await page.goto(url, {
+          waitUntil: 'domcontentloaded',
+          timeout: 25_000,
+        });
+
+        if (resp && (resp.status() === 404 || resp.status() === 403)) {
+          throw new Error(`HTTP ${resp.status()}`);
+        }
+
+        await randomDelay(2500, 4500);
+
+        const price = await extractPriceFromPage(page, source.selector);
+
+        if (price === null) {
+          throw new Error('No price found');
+        }
+
+        // Sanity check: price should be in a reasonable range vs current
+        if (target.currentPrice > 0) {
+          const ratio = price / target.currentPrice;
+          if (ratio > 5 || ratio < 0.1) {
+            throw new Error(`Price $${price} is suspiciously different from current $${target.currentPrice} (ratio: ${ratio.toFixed(2)})`);
+          }
+        }
+
+        return { price, source: source.name };
+      } catch (err) {
+        // On last retry of this source, move to next source
+        if (attempt === MAX_RETRIES) {
+          // Silent — try next source
+        } else {
+          await randomDelay(1000, 2000); // Brief pause before retry
+        }
+      } finally {
+        await page.close();
+      }
+    }
+  }
+
+  return null; // All sources and retries exhausted
 }
 
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 async function run() {
-  console.log('🤖 NutriChilango Autonomous Price Scraper');
-  console.log(`   Targets: ${SCRAPING_TARGETS.length}`);
-  console.log(`   Date:    ${new Date().toISOString()}\n`);
+  const targets = discoverTargets();
+
+  console.log('🤖 NutriChilango Autonomous Price Scraper v2');
+  console.log(`   Discovered: ${targets.length} scrapable products`);
+  console.log(`   Sources:    ${RETAIL_SOURCES.map(s => s.name).join(', ')}`);
+  console.log(`   Date:       ${new Date().toISOString()}\n`);
+
+  if (targets.length === 0) {
+    console.log('ℹ️  No scrapable products found in catalog.');
+    process.exit(0);
+  }
 
   fs.mkdirSync(UPDATES_DIR, { recursive: true });
 
@@ -130,70 +225,54 @@ async function run() {
     viewport: { width: 1440, height: 900 },
   });
 
-  const results = [];  // successful price updates
-  const failures = []; // failed scrapes
+  const results = [];
+  const failures = [];
 
-  for (const target of SCRAPING_TARGETS) {
-    const page = await context.newPage();
+  for (const target of targets) {
     const tag = `[${target.storeId}/${target.productId}/${target.side}]`;
-    console.log(`🔍 ${tag} ${target.label}`);
-    console.log(`   URL: ${target.searchUrl}`);
+    console.log(`🔍 ${tag} ${target.brand} ${target.productName}`);
+    console.log(`   Search: "${target.searchQuery}"`);
 
-    try {
-      const resp = await page.goto(target.searchUrl, {
-        waitUntil: 'domcontentloaded',
-        timeout: 30_000,
-      });
+    const result = await scrapeTarget(context, target);
 
-      if (resp && (resp.status() === 404 || resp.status() === 403)) {
-        throw new Error(`HTTP ${resp.status()}`);
-      }
-
-      // Give the page time to render dynamic content
-      await randomDelay(2000, 4000);
-
-      const price = await extractPriceFromPage(page, target.selector);
-
-      if (price === null) {
-        throw new Error('No valid price pattern found on page');
-      }
-
-      console.log(`   ✅ $${price}\n`);
+    if (result) {
+      console.log(`   ✅ $${result.price} (via ${result.source})\n`);
       results.push({
         storeId: target.storeId,
         productId: target.productId,
         side: target.side,
-        price,
+        price: result.price,
+        source: result.source,
         scrapedAt: new Date().toISOString(),
       });
-    } catch (err) {
-      console.error(`   ❌ ${err.message}\n`);
+    } else {
+      console.log(`   ❌ All sources failed\n`);
       failures.push({
         storeId: target.storeId,
         productId: target.productId,
         side: target.side,
-        label: target.label,
-        error: err.message,
+        label: `${target.brand} ${target.productName}`,
+        searchQuery: target.searchQuery,
       });
-    } finally {
-      await page.close();
-      await randomDelay(2000, 5000); // Human-like gap between pages
     }
+
+    await randomDelay(1500, 3500);
   }
 
   await browser.close();
 
-  // ── Write outputs ────────────────────────────────────────────────────────
+  // ── Report ────────────────────────────────────────────────────────────────
   const report = {
     date: new Date().toISOString(),
-    totalTargets: SCRAPING_TARGETS.length,
+    totalTargets: targets.length,
     successes: results.length,
     failures: failures.length,
+    successRate: `${((results.length / targets.length) * 100).toFixed(1)}%`,
     failureDetails: failures,
   };
 
   fs.writeFileSync(REPORT_PATH, JSON.stringify(report, null, 2));
-  console.log(`📊 Report: ${report.successes}/${report.totalTargets} prices scraped`);
+  console.log(`\n📊 Report: ${report.successes}/${report.totalTargets} (${report.successRate})`);
 
   if (results.length > 0) {
     fs.writeFileSync(OUTPUT_PATH, JSON.stringify(results, null, 2));
@@ -201,15 +280,16 @@ async function run() {
   }
 
   if (failures.length > 0) {
-    console.log(`⚠️  ${failures.length} targets failed:`);
-    for (const f of failures) console.log(`   - ${f.label}: ${f.error}`);
+    console.log(`\n⚠️  ${failures.length} targets failed:`);
+    for (const f of failures) console.log(`   - ${f.label}: "${f.searchQuery}"`);
   }
 
-  // ── Exit code ────────────────────────────────────────────────────────────
   if (results.length === 0) {
     console.error('\n🛑 Zero prices scraped. Exiting with error.');
     process.exit(1);
   }
+
+  console.log('\n✨ Scraping complete.');
 }
 
 run().catch((err) => {

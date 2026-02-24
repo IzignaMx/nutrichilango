@@ -1,22 +1,37 @@
 {
-  "date": "2026-02-24T05:06:10.887Z",
-  "totalTargets": 6,
-  "successes": 4,
-  "failures": 2,
+  "date": "2026-02-24T05:17:04.348Z",
+  "totalTargets": 31,
+  "successes": 27,
+  "failures": 4,
+  "successRate": "87.1%",
   "failureDetails": [
     {
       "storeId": "walmart-1",
       "productId": "chicken-vs-tempeh-1",
-      "side": "traditional",
-      "label": "Pechuga de Pollo Tyson 500g",
-      "error": "HTTP 404"
+      "side": "plantBased",
+      "label": "Lightlife Tempeh Natural",
+      "searchQuery": "Lightlife Tempeh Natural"
     },
     {
-      "storeId": "walmart-1",
-      "productId": "chicken-vs-tempeh-1",
+      "storeId": "central-abastos-1",
+      "productId": "tuna-vs-homemade-chickpea-tuna-1",
+      "side": "traditional",
+      "label": "Marca comercial Atún en Lata",
+      "searchQuery": "Marca comercial Atún Lata"
+    },
+    {
+      "storeId": "por-amor-1",
+      "productId": "vegan-yogurt-1",
+      "side": "traditional",
+      "label": "Silk Yogurt de Soya Natural",
+      "searchQuery": "Silk Yogurt Soya Natural"
+    },
+    {
+      "storeId": "forever-vegano-1",
+      "productId": "vegan-eggs-1",
       "side": "plantBased",
-      "label": "Tempeh Natural",
-      "error": "HTTP 404"
+      "label": "JUST JUST Egg Líquido",
+      "searchQuery": "JUST JUST Egg Líquido"
     }
   ]
 }

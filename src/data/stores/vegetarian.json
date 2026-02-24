@@ -24,12 +24,13 @@
         "plantBased": {
           "name": "Jackfruit en Salmuera",
           "brand": "The Jackfruit Company",
-          "price": 89.9,
+          "price": 45.5,
           "unit": "300g",
           "pricePerUnit": 299.67,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:17:01.950Z"
         },
-        "priceDifferencePercent": 12.5,
+        "priceDifferencePercent": -43.1,
         "availability": {
           "traditional": false,
           "plantBased": true

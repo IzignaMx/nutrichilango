@@ -17,9 +17,10 @@
         "traditional": {
           "name": "Tofu Orgánico",
           "brand": "Nasoya",
-          "price": 89.9,
+          "price": 84.9,
           "unit": "400g",
-          "pricePerUnit": 224.75
+          "pricePerUnit": 224.75,
+          "lastUpdated": "2026-02-24T05:14:04.553Z"
         },
         "plantBased": {
           "name": "Seitán Artesanal",
@@ -29,7 +30,7 @@
           "pricePerUnit": 237.5,
           "isCommercial": true
         },
-        "priceDifferencePercent": 5.7,
+        "priceDifferencePercent": 11.9,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -42,19 +43,21 @@
         "traditional": {
           "name": "Leche de Almendra Sin Azúcar",
           "brand": "Blue Diamond",
-          "price": 52.9,
+          "price": 59.9,
           "unit": "1L",
-          "pricePerUnit": 52.9
+          "pricePerUnit": 52.9,
+          "lastUpdated": "2026-02-24T05:14:11.261Z"
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
           "brand": "Natura",
-          "price": 68.9,
+          "price": 24,
           "unit": "1L",
           "pricePerUnit": 68.9,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:14:19.527Z"
         },
-        "priceDifferencePercent": 30.2,
+        "priceDifferencePercent": -59.9,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -80,9 +83,10 @@
         "traditional": {
           "name": "Semillas de Hemp",
           "brand": "Manitoba Harvest",
-          "price": 185,
+          "price": 59,
           "unit": "250g",
-          "pricePerUnit": 740
+          "pricePerUnit": 740,
+          "lastUpdated": "2026-02-24T05:14:29.016Z"
         },
         "plantBased": {
           "name": "Proteína de Hemp en Polvo",
@@ -92,7 +96,7 @@
           "pricePerUnit": 1180,
           "isCommercial": true
         },
-        "priceDifferencePercent": 59.5,
+        "priceDifferencePercent": 400,
         "availability": {
           "traditional": false,
           "plantBased": true

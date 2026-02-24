@@ -81,6 +81,7 @@ export const PriceUpdateSchema = z.object({
   productId: z.string(),
   side: z.enum(['traditional', 'plantBased']),
   price: z.number().positive(),
+  source: z.string().optional(),
   scrapedAt: z.string(),
 });
 

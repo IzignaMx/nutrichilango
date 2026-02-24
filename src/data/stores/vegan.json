@@ -49,12 +49,13 @@
         "plantBased": {
           "name": "Yogurt de Coco Probiótico",
           "brand": "CocoYo",
-          "price": 78.9,
+          "price": 13.8,
           "unit": "500g",
           "pricePerUnit": 157.8,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:15:50.090Z"
         },
-        "priceDifferencePercent": 61.3,
+        "priceDifferencePercent": -71.8,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -80,9 +81,10 @@
         "traditional": {
           "name": "Levadura Nutricional Básica",
           "brand": "Bragg",
-          "price": 125,
+          "price": 249,
           "unit": "200g",
-          "pricePerUnit": 625
+          "pricePerUnit": 625,
+          "lastUpdated": "2026-02-24T05:15:58.102Z"
         },
         "plantBased": {
           "name": "Levadura Nutricional Premium",
@@ -92,7 +94,7 @@
           "pricePerUnit": 725,
           "isCommercial": true
         },
-        "priceDifferencePercent": 16,
+        "priceDifferencePercent": -41.8,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -119,9 +121,10 @@
         "traditional": {
           "name": "Sustituto de Huevo Básico",
           "brand": "Ener-G",
-          "price": 85,
+          "price": 25,
           "unit": "450g",
-          "pricePerUnit": 188.89
+          "pricePerUnit": 188.89,
+          "lastUpdated": "2026-02-24T05:16:07.904Z"
         },
         "plantBased": {
           "name": "JUST Egg Líquido",
@@ -131,7 +134,7 @@
           "pricePerUnit": 436.62,
           "isCommercial": true
         },
-        "priceDifferencePercent": 82.4,
+        "priceDifferencePercent": 520,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -310,19 +313,21 @@
         "traditional": {
           "name": "Beyond Burger Original",
           "brand": "Beyond Meat",
-          "price": 185,
+          "price": 152,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 814.98
+          "pricePerUnit": 814.98,
+          "lastUpdated": "2026-02-24T05:16:35.429Z"
         },
         "plantBased": {
           "name": "Impossible Burger",
           "brand": "Impossible Foods",
-          "price": 225,
+          "price": 349,
           "unit": "2 piezas (227g)",
           "pricePerUnit": 991.19,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:16:42.738Z"
         },
-        "priceDifferencePercent": 21.6,
+        "priceDifferencePercent": 129.6,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -342,12 +347,13 @@
         "plantBased": {
           "name": "Helado Ben & Jerry's Vegano",
           "brand": "Ben & Jerry's",
-          "price": 189,
+          "price": 226,
           "unit": "500ml",
           "pricePerUnit": 378,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:16:50.635Z"
         },
-        "priceDifferencePercent": 51.2,
+        "priceDifferencePercent": 80.8,
         "availability": {
           "traditional": false,
           "plantBased": true
