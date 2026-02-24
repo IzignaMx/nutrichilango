@@ -19,7 +19,7 @@
           "price": 129,
           "unit": "500g",
           "pricePerUnit": 250,
-          "lastUpdated": "2026-02-24T05:14:40.450Z"
+          "lastUpdated": "2026-02-24T05:42:46.221Z"
         },
         "plantBased": {
           "name": "Mix de Leguminosas Orgánicas",
@@ -28,7 +28,7 @@
           "unit": "500g",
           "pricePerUnit": 170,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:14:52.350Z"
+          "lastUpdated": "2026-02-24T05:42:58.138Z"
         },
         "priceDifferencePercent": 0,
         "availability": {
@@ -46,7 +46,7 @@
           "price": 70,
           "unit": "400ml",
           "pricePerUnit": 114.75,
-          "lastUpdated": "2026-02-24T05:15:00.012Z"
+          "lastUpdated": "2026-02-24T05:43:04.189Z"
         },
         "plantBased": {
           "name": "Leche de Coco Orgánica",
@@ -55,7 +55,7 @@
           "unit": "400ml",
           "pricePerUnit": 149.75,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:15:08.399Z"
+          "lastUpdated": "2026-02-24T05:43:11.516Z"
         },
         "priceDifferencePercent": 278.6,
         "availability": {
@@ -87,7 +87,7 @@
           "price": 123,
           "unit": "500g",
           "pricePerUnit": 90,
-          "lastUpdated": "2026-02-24T05:15:15.410Z"
+          "lastUpdated": "2026-02-24T05:43:17.113Z"
         },
         "plantBased": {
           "name": "Hamburguesas de Frijol Orgánico",
@@ -96,7 +96,7 @@
           "unit": "4 piezas (400g)",
           "pricePerUnit": 212.5,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:15:24.296Z"
+          "lastUpdated": "2026-02-24T05:43:23.742Z"
         },
         "priceDifferencePercent": -37.5,
         "availability": {

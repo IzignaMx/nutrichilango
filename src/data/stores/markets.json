@@ -27,7 +27,7 @@
           "unit": "500g",
           "pricePerUnit": 378,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:13:09.030Z"
+          "lastUpdated": "2026-02-24T05:41:15.586Z"
         },
         "priceDifferencePercent": 334.3,
         "availability": {
@@ -415,7 +415,7 @@
           "price": 152,
           "unit": "2 piezas",
           "pricePerUnit": 445,
-          "lastUpdated": "2026-02-24T05:13:16.653Z"
+          "lastUpdated": "2026-02-24T05:41:21.535Z"
         },
         "plantBased": {
           "name": "Hamburguesa Casera de Frijoles",
@@ -950,7 +950,7 @@
           "price": 113,
           "unit": "400g",
           "pricePerUnit": 162.5,
-          "lastUpdated": "2026-02-24T05:13:24.247Z"
+          "lastUpdated": "2026-02-24T05:41:29.084Z"
         },
         "plantBased": {
           "name": "Tofu Casero",
@@ -1781,7 +1781,7 @@
             "iron": 2.8,
             "fiber": 4
           },
-          "lastUpdated": "2026-02-24T05:13:49.622Z"
+          "lastUpdated": "2026-02-24T05:41:58.473Z"
         },
         "plantBased": {
           "name": "Tacos de Jackfruit al Pastor (4 piezas)",
@@ -1947,7 +1947,7 @@
             "iron": 3.2,
             "fiber": 2.5
           },
-          "lastUpdated": "2026-02-24T05:13:56.451Z"
+          "lastUpdated": "2026-02-24T05:42:06.539Z"
         },
         "plantBased": {
           "name": "Sopa de Hongos y Proteína Vegetal",

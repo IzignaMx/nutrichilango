@@ -20,7 +20,7 @@
           "price": 84.9,
           "unit": "400g",
           "pricePerUnit": 224.75,
-          "lastUpdated": "2026-02-24T05:14:04.553Z"
+          "lastUpdated": "2026-02-24T05:42:14.499Z"
         },
         "plantBased": {
           "name": "Seitán Artesanal",
@@ -46,7 +46,7 @@
           "price": 59.9,
           "unit": "1L",
           "pricePerUnit": 52.9,
-          "lastUpdated": "2026-02-24T05:14:11.261Z"
+          "lastUpdated": "2026-02-24T05:42:22.251Z"
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
@@ -55,7 +55,7 @@
           "unit": "1L",
           "pricePerUnit": 68.9,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:14:19.527Z"
+          "lastUpdated": "2026-02-24T05:42:29.648Z"
         },
         "priceDifferencePercent": -59.9,
         "availability": {
@@ -86,7 +86,7 @@
           "price": 59,
           "unit": "250g",
           "pricePerUnit": 740,
-          "lastUpdated": "2026-02-24T05:14:29.016Z"
+          "lastUpdated": "2026-02-24T05:42:38.971Z"
         },
         "plantBased": {
           "name": "Proteína de Hemp en Polvo",

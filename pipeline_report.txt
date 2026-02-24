@@ -1,0 +1,37 @@
+🏗️  Starting Advanced 2-Phase Data Pipeline...
+
+🔍 Phase 1: Auditing Scraped Price Updates...
+   Found 27 price updates.
+   Audit: 27 passed, 0 failed.
+
+🚀 Phase 2: Committing Price Changes...
+   ✅ soriana-1/beef-vs-tofu-1 [traditional]: $79 → $79
+   ✅ soriana-1/beef-vs-tofu-1 [plantBased]: $49.5 → $49.5
+   ✅ soriana-1/milk-vs-soy-1 [traditional]: $172 → $172
+   ✅ soriana-1/milk-vs-soy-1 [plantBased]: $84 → $84
+   ✅ walmart-1/chicken-vs-tempeh-1 [traditional]: $205 → $205
+   ✅ mercado-jamaica-1/chicken-vs-commercial-nuggets-1 [plantBased]: $152 → $152
+   ✅ mercado-jamaica-1/commercial-vs-homemade-burger-1 [traditional]: $152 → $152
+   ✅ central-abastos-1/commercial-vs-homemade-tofu-1 [traditional]: $113 → $113
+   ✅ central-abastos-1/chicken-tacos-vs-jackfruit-tacos [traditional]: $69 → $69
+   ✅ central-abastos-1/beef-soup-vs-mushroom-soup [traditional]: $49 → $49
+   ✅ super-naturista-1/tofu-vs-seitan-1 [traditional]: $84.9 → $84.9
+   ✅ super-naturista-1/almond-milk-1 [traditional]: $59.9 → $59.9
+   ✅ super-naturista-1/almond-milk-1 [plantBased]: $24 → $24
+   ✅ the-green-spot-1/hemp-seeds-1 [traditional]: $59 → $59
+   ✅ madre-tierra-1/quinoa-vs-legumes-1 [traditional]: $129 → $129
+   ✅ madre-tierra-1/quinoa-vs-legumes-1 [plantBased]: $129 → $129
+   ✅ madre-tierra-1/coconut-milk-1 [traditional]: $70 → $70
+   ✅ madre-tierra-1/coconut-milk-1 [plantBased]: $265 → $265
+   ✅ organico-nacional-1/organic-beans-1 [traditional]: $123 → $123
+   ✅ organico-nacional-1/organic-beans-1 [plantBased]: $76.9 → $76.9
+   ✅ por-amor-1/vegan-yogurt-1 [plantBased]: $13.8 → $13.8
+   ✅ green-corner-1/nutritional-yeast-1 [traditional]: $249 → $249
+   ✅ forever-vegano-1/vegan-eggs-1 [traditional]: $25 → $25
+   ✅ vegan-label-1/imported-vegan-meat-1 [traditional]: $152 → $152
+   ✅ vegan-label-1/imported-vegan-meat-1 [plantBased]: $349 → $349
+   ✅ vegan-label-1/vegan-ice-cream-1 [plantBased]: $226 → $226
+   ✅ la-esquina-vegetariana-1/tempeh-vs-jackfruit-1 [plantBased]: $45.5 → $45.5
+✅ Metadata timestamp updated.
+
+✨ Pipeline finished. Applied 27 price updates, 0 not found.

@@ -53,7 +53,7 @@
           "unit": "500g",
           "pricePerUnit": 157.8,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:15:50.090Z"
+          "lastUpdated": "2026-02-24T05:43:48.599Z"
         },
         "priceDifferencePercent": -71.8,
         "availability": {
@@ -84,7 +84,7 @@
           "price": 249,
           "unit": "200g",
           "pricePerUnit": 625,
-          "lastUpdated": "2026-02-24T05:15:58.102Z"
+          "lastUpdated": "2026-02-24T05:43:55.329Z"
         },
         "plantBased": {
           "name": "Levadura Nutricional Premium",
@@ -124,7 +124,7 @@
           "price": 25,
           "unit": "450g",
           "pricePerUnit": 188.89,
-          "lastUpdated": "2026-02-24T05:16:07.904Z"
+          "lastUpdated": "2026-02-24T05:44:04.689Z"
         },
         "plantBased": {
           "name": "JUST Egg Líquido",
@@ -316,7 +316,7 @@
           "price": 152,
           "unit": "2 piezas (227g)",
           "pricePerUnit": 814.98,
-          "lastUpdated": "2026-02-24T05:16:35.429Z"
+          "lastUpdated": "2026-02-24T05:44:33.377Z"
         },
         "plantBased": {
           "name": "Impossible Burger",
@@ -325,7 +325,7 @@
           "unit": "2 piezas (227g)",
           "pricePerUnit": 991.19,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:16:42.738Z"
+          "lastUpdated": "2026-02-24T05:44:39.060Z"
         },
         "priceDifferencePercent": 129.6,
         "availability": {
@@ -351,7 +351,7 @@
           "unit": "500ml",
           "pricePerUnit": 378,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:16:50.635Z"
+          "lastUpdated": "2026-02-24T05:44:46.901Z"
         },
         "priceDifferencePercent": 80.8,
         "availability": {
