@@ -8,7 +8,6 @@ import FeaturesSection from '@/components/home/FeaturesSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import ComparisonSection from '@/components/home/ComparisonSection';
 import CallToActionSection from '@/components/home/CallToActionSection';
-import PriceDateBanner from '@/components/ui/price-date-banner';
 import FloatingActionButton from '@/components/ui/floating-action-button';
 import BugReportModal from '@/components/ui/bug-report-modal';
 import { Bug } from 'lucide-react';
@@ -27,18 +26,11 @@ const Index: React.FC = () => {
   } = useNutriStore();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [hasHydrated, setHasHydrated] = useState(false);
   const [isBugReportOpen, setIsBugReportOpen] = useState(false);
 
   // Zustand Hydration Guard
   useEffect(() => {
-    setHasHydrated(true);
-  }, []);
-
-  // Simulate data loading
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
+    setIsLoading(false); // Data is loaded locally, no artificial delay
   }, []);
 
   // Filter and search logic using custom hook
@@ -59,7 +51,7 @@ const Index: React.FC = () => {
 
       <TestimonialsSection />
 
-      <main id="main-content">
+      <div className="w-full">
         <ComparisonSection
           filteredData={filteredData}
           searchQuery={searchQuery}
@@ -77,7 +69,7 @@ const Index: React.FC = () => {
         <div className="container mx-auto max-w-7xl px-4 pb-12">
           <CallToActionSection />
         </div>
-      </main>
+      </div>
 
       <FloatingActionButton
         onClick={() => setIsBugReportOpen(true)}

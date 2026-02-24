@@ -61,7 +61,7 @@ const ComparisonSection: React.FC<ComparisonSectionProps> = ({
         </Alert>
 
         {/* Comparisons Table */}
-        <section id="comparisons" role="region" aria-labelledby="comparisons-heading">
+        <section id="comparisons" role="region" aria-labelledby="comparisons-heading" aria-live="polite" aria-atomic="true">
           <div className="mb-4 md:mb-6">
             <h2 id="comparisons-heading" className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
               Comparaciones de Productos
