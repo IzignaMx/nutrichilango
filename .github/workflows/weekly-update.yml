@@ -22,6 +22,12 @@ jobs:
 
       - run: npm ci
 
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Scrape Real Prices
+        run: node scripts/scrape-data.mjs
+
       - name: Generate date
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
