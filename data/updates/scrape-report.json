@@ -1,0 +1,126 @@
+{
+  "date": "2026-02-24T07:40:04.026Z",
+  "totalTargets": 56,
+  "successes": 43,
+  "failures": 13,
+  "successRate": "76.8%",
+  "failureDetails": [
+    {
+      "storeId": "soriana-1",
+      "productId": "milk-vs-soy-1",
+      "side": "traditional",
+      "label": "Lala Leche Entera",
+      "searchQuery": "Lala Leche Entera 1L",
+      "category": "dairy",
+      "storeType": "conventional"
+    },
+    {
+      "storeId": "walmart-1",
+      "productId": "chicken-vs-tempeh-1",
+      "side": "plantBased",
+      "label": "Tofupac Tempeh de Soya",
+      "searchQuery": "tempeh soya tofupac",
+      "category": "proteins",
+      "storeType": "conventional"
+    },
+    {
+      "storeId": "the-green-spot-1",
+      "productId": "hemp-seeds-1",
+      "side": "traditional",
+      "label": "Manitoba Harvest Semillas de Hemp",
+      "searchQuery": "Manitoba Harvest Semillas Hemp 250g",
+      "category": "proteins",
+      "storeType": "naturist"
+    },
+    {
+      "storeId": "the-green-spot-1",
+      "productId": "hemp-seeds-1",
+      "side": "plantBased",
+      "label": "Manitoba Harvest Proteína de Hemp en Polvo",
+      "searchQuery": "Manitoba Harvest Proteína Hemp Polvo 250g",
+      "category": "proteins",
+      "storeType": "naturist"
+    },
+    {
+      "storeId": "organico-nacional-1",
+      "productId": "organic-beans-1",
+      "side": "plantBased",
+      "label": "Orgánico Nacional Hamburguesas de Frijol Orgánico",
+      "searchQuery": "Orgánico Nacional Hamburguesas Frijol Orgánico 4 piezas (400g)",
+      "category": "proteins",
+      "storeType": "organic"
+    },
+    {
+      "storeId": "forever-vegano-1",
+      "productId": "vegan-eggs-1",
+      "side": "traditional",
+      "label": "Ener-G Sustituto de Huevo en Polvo",
+      "searchQuery": "ener-g egg replacer sustituto huevo",
+      "category": "eggs",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "mr-tofu-1",
+      "productId": "tofu-varieties-1",
+      "side": "plantBased",
+      "label": "Tofupac Tofu Ahumado",
+      "searchQuery": "Tofupac Tofu Ahumado 350g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "veggie-smiles-1",
+      "productId": "vegan-tacos-meat-1",
+      "side": "plantBased",
+      "label": "NotCo Tiras de Carne Vegana al Pastor",
+      "searchQuery": "NotCo Tiras Carne Vegana al Pastor 500g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "plantae-1",
+      "productId": "fermented-cashew-cheese-1",
+      "side": "traditional",
+      "label": "Miyoko's Queso de Anacardo Fermentado",
+      "searchQuery": "Miyoko's Queso Anacardo Fermentado 200g",
+      "category": "dairy",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "la-esquina-vegetariana-1",
+      "productId": "tempeh-vs-jackfruit-1",
+      "side": "plantBased",
+      "label": "Upton's Naturals Jackfruit en Salmuera",
+      "searchQuery": "Upton's Naturals Jackfruit Salmuera 300g",
+      "category": "proteins",
+      "storeType": "vegetarian"
+    },
+    {
+      "storeId": "plantae-1",
+      "productId": "plant-protein-powder-1",
+      "side": "plantBased",
+      "label": "Vega Proteína Multi-Plant Premium",
+      "searchQuery": "Vega Proteína Multi-Plant Premium 500g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "la-esquina-vegetariana-1",
+      "productId": "tempeh-vs-jackfruit-1",
+      "side": "traditional",
+      "label": "Tofupac Tempeh de Soya",
+      "searchQuery": "Tofupac Tempeh Soya 300g",
+      "category": "proteins",
+      "storeType": "vegetarian"
+    },
+    {
+      "storeId": "la-esquina-vegetariana-1",
+      "productId": "cashew-cheese-1",
+      "side": "plantBased",
+      "label": "Miyoko's Queso de Anacardo Premium",
+      "searchQuery": "Miyoko's Queso Anacardo Premium 200g",
+      "category": "dairy",
+      "storeType": "vegetarian"
+    }
+  ]
+}

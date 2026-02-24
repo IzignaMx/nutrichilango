@@ -17,19 +17,21 @@
         "traditional": {
           "name": "Carne de Res Molida",
           "brand": "SuKarne",
-          "price": 89,
+          "price": 79,
           "unit": "500g",
-          "pricePerUnit": 178
+          "pricePerUnit": 178,
+          "lastUpdated": "2026-02-24T07:32:20.260Z"
         },
         "plantBased": {
           "name": "Carne Plant-Based",
           "brand": "NotCo",
-          "price": 99,
+          "price": 49.5,
           "unit": "500g",
           "pricePerUnit": 198,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T07:32:23.652Z"
         },
-        "priceDifferencePercent": 11.2,
+        "priceDifferencePercent": -37.3,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -49,12 +51,13 @@
         "plantBased": {
           "name": "Leche de Soya",
           "brand": "Silk",
-          "price": 42,
+          "price": 84,
           "unit": "1L",
           "pricePerUnit": 42,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T07:32:33.893Z"
         },
-        "priceDifferencePercent": 31.3,
+        "priceDifferencePercent": 162.5,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -80,9 +83,10 @@
         "traditional": {
           "name": "Pechuga de Pollo",
           "brand": "Bachoco",
-          "price": 95,
+          "price": 98.9,
           "unit": "500g",
-          "pricePerUnit": 190
+          "pricePerUnit": 190,
+          "lastUpdated": "2026-02-24T07:32:34.643Z"
         },
         "plantBased": {
           "name": "Tempeh de Soya",
@@ -92,7 +96,7 @@
           "pricePerUnit": 283.3,
           "isCommercial": true
         },
-        "priceDifferencePercent": -10.5,
+        "priceDifferencePercent": -14.1,
         "availability": {
           "traditional": true,
           "plantBased": true

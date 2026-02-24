@@ -19,17 +19,19 @@
           "brand": "Morinaga",
           "price": 65,
           "unit": "349g",
-          "pricePerUnit": 186.2
+          "pricePerUnit": 186.2,
+          "lastUpdated": "2026-02-24T07:33:11.030Z"
         },
         "plantBased": {
           "name": "Seitán Artesanal",
           "brand": "Seitanbul",
-          "price": 89,
+          "price": 88,
           "unit": "400g",
           "pricePerUnit": 222.5,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T07:33:27.194Z"
         },
-        "priceDifferencePercent": 36.9,
+        "priceDifferencePercent": 35.4,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -42,19 +44,21 @@
         "traditional": {
           "name": "Leche de Almendra Sin Azúcar",
           "brand": "Silk",
-          "price": 52,
+          "price": 59,
           "unit": "946ml",
-          "pricePerUnit": 55
+          "pricePerUnit": 55,
+          "lastUpdated": "2026-02-24T07:33:33.385Z"
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
           "brand": "Natura",
-          "price": 68,
+          "price": 59,
           "unit": "946ml",
           "pricePerUnit": 71.9,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T07:33:33.808Z"
         },
-        "priceDifferencePercent": 30.8,
+        "priceDifferencePercent": 0,
         "availability": {
           "traditional": false,
           "plantBased": true
