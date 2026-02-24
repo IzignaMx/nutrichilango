@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, Mail, Facebook } from 'lucide-react';
+import { Mail, Facebook } from 'lucide-react';
 import { siteMetadata } from '@/data/metadata';
 
 const Footer: React.FC = () => {
@@ -20,6 +20,9 @@ const Footer: React.FC = () => {
                 src="/assets/logo-nutrichilango.png" 
                 alt="NutriChilango Logo" 
                 className="w-8 h-8 object-contain filter brightness-0 invert"
+                width={32}
+                height={32}
+                loading="lazy"
               />
               <h3 className="text-xl font-bold text-brand-accent">NutriChilango</h3>
             </div>

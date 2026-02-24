@@ -58,6 +58,9 @@ const Header: React.FC = () => {
             src="/assets/logo-nutrichilango.png" 
             alt="NutriChilango Logo" 
             className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+            width={40}
+            height={40}
+            fetchPriority="high"
           />
           <span className="text-lg sm:text-xl md:text-2xl font-bold truncate">NutriChilango</span>
         </Link>

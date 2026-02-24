@@ -16,15 +16,12 @@ export const useNutriStore = create<NutriState>()(
     {
       name: 'nutrichilango-storage',
       storage: createJSONStorage(() => localStorage),
-      // Optional: partialize if we only want to persist certain parts
-      // partialize: (state) => ({ 
-      //   householdSize: state.householdSize,
-      //   preferences: state.preferences,
-      //   frequency: state.frequency,
-      //   generatedPantry: state.generatedPantry,
-      //   // We might want to persist search filters too, or not. 
-      //   // Current implementation persists everything which is fine.
-      // }),
+      partialize: (state) => ({ 
+        householdSize: state.householdSize,
+        preferences: state.preferences,
+        frequency: state.frequency,
+        generatedPantry: state.generatedPantry,
+      }),
     }
   )
 );
