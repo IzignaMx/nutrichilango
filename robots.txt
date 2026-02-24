@@ -8,7 +8,7 @@ Disallow: /*.json$
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: /sitemap.xml
+Sitemap: https://nutrichilango.izignamx.com/sitemap.xml
 
 # Major search engines
 User-agent: Googlebot
