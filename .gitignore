@@ -34,3 +34,4 @@ secrets.json
 scan-secrets.mjs
 tsc_output.txt
 lint_output.txt
+.agent/*

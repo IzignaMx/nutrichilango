@@ -23,13 +23,12 @@
         "plantBased": {
           "name": "Nuggets Plant-Based",
           "brand": "Beyond Meat",
-          "price": 152,
-          "unit": "500g",
-          "pricePerUnit": 378,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:13:09.030Z"
+          "price": 162,
+          "unit": "250g",
+          "pricePerUnit": 648,
+          "isCommercial": true
         },
-        "priceDifferencePercent": 334.3,
+        "priceDifferencePercent": 362.9,
         "availability": {
           "traditional": true,
           "plantBased": false
@@ -411,11 +410,10 @@
         "category": "proteins",
         "traditional": {
           "name": "Hamburguesa Plant-Based Comercial",
-          "brand": "Beyond Burger",
-          "price": 152,
-          "unit": "2 piezas",
-          "pricePerUnit": 445,
-          "lastUpdated": "2026-02-24T05:13:16.653Z"
+          "brand": "Beyond Meat",
+          "price": 169,
+          "unit": "2 piezas (227g)",
+          "pricePerUnit": 744.5
         },
         "plantBased": {
           "name": "Hamburguesa Casera de Frijoles",
@@ -488,7 +486,7 @@
             }
           }
         },
-        "priceDifferencePercent": -85.5,
+        "priceDifferencePercent": -87,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -946,11 +944,10 @@
         "category": "proteins",
         "traditional": {
           "name": "Tofu Comercial",
-          "brand": "Kikkoman",
-          "price": 113,
+          "brand": "House Foods",
+          "price": 59,
           "unit": "400g",
-          "pricePerUnit": 162.5,
-          "lastUpdated": "2026-02-24T05:13:24.247Z"
+          "pricePerUnit": 147.5
         },
         "plantBased": {
           "name": "Tofu Casero",
@@ -1016,7 +1013,7 @@
             }
           }
         },
-        "priceDifferencePercent": -75.2,
+        "priceDifferencePercent": -52.5,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -1771,7 +1768,7 @@
           "brand": "Preparado local",
           "price": 69,
           "unit": "4 tacos",
-          "pricePerUnit": 11.25,
+          "pricePerUnit": 17.25,
           "nutritionInfo": {
             "protein": 28,
             "carbs": 32,
@@ -1780,8 +1777,7 @@
             "calcium": 120,
             "iron": 2.8,
             "fiber": 4
-          },
-          "lastUpdated": "2026-02-24T05:13:49.622Z"
+          }
         },
         "plantBased": {
           "name": "Tacos de Jackfruit al Pastor (4 piezas)",
@@ -1937,7 +1933,7 @@
           "brand": "Preparado local",
           "price": 49,
           "unit": "350ml",
-          "pricePerUnit": 157.14,
+          "pricePerUnit": 140,
           "nutritionInfo": {
             "protein": 18.5,
             "carbs": 12,
@@ -1946,8 +1942,7 @@
             "calcium": 35,
             "iron": 3.2,
             "fiber": 2.5
-          },
-          "lastUpdated": "2026-02-24T05:13:56.451Z"
+          }
         },
         "plantBased": {
           "name": "Sopa de Hongos y Proteína Vegetal",

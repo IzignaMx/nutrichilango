@@ -15,54 +15,51 @@
         "id": "tofu-vs-seitan-1",
         "category": "proteins",
         "traditional": {
-          "name": "Tofu Orgánico",
-          "brand": "Nasoya",
-          "price": 84.9,
-          "unit": "400g",
-          "pricePerUnit": 224.75,
-          "lastUpdated": "2026-02-24T05:14:04.553Z"
+          "name": "Tofu Firme",
+          "brand": "Morinaga",
+          "price": 65,
+          "unit": "349g",
+          "pricePerUnit": 186.2
         },
         "plantBased": {
           "name": "Seitán Artesanal",
-          "brand": "Verde Vida",
-          "price": 95,
+          "brand": "Seitanbul",
+          "price": 89,
           "unit": "400g",
-          "pricePerUnit": 237.5,
+          "pricePerUnit": 222.5,
           "isCommercial": true
         },
-        "priceDifferencePercent": 11.9,
+        "priceDifferencePercent": 36.9,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "almond-milk-1",
         "category": "dairy",
         "traditional": {
           "name": "Leche de Almendra Sin Azúcar",
-          "brand": "Blue Diamond",
-          "price": 59.9,
-          "unit": "1L",
-          "pricePerUnit": 52.9,
-          "lastUpdated": "2026-02-24T05:14:11.261Z"
+          "brand": "Silk",
+          "price": 52,
+          "unit": "946ml",
+          "pricePerUnit": 55
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
           "brand": "Natura",
-          "price": 24,
-          "unit": "1L",
-          "pricePerUnit": 68.9,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:14:19.527Z"
+          "price": 68,
+          "unit": "946ml",
+          "pricePerUnit": 71.9,
+          "isCommercial": true
         },
-        "priceDifferencePercent": -59.9,
+        "priceDifferencePercent": 30.8,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -83,25 +80,24 @@
         "traditional": {
           "name": "Semillas de Hemp",
           "brand": "Manitoba Harvest",
-          "price": 59,
+          "price": 349,
           "unit": "250g",
-          "pricePerUnit": 740,
-          "lastUpdated": "2026-02-24T05:14:29.016Z"
+          "pricePerUnit": 1396
         },
         "plantBased": {
           "name": "Proteína de Hemp en Polvo",
-          "brand": "Green Spot",
-          "price": 295,
+          "brand": "Manitoba Harvest",
+          "price": 429,
           "unit": "250g",
-          "pricePerUnit": 1180,
+          "pricePerUnit": 1716,
           "isCommercial": true
         },
-        "priceDifferencePercent": 400,
+        "priceDifferencePercent": 22.9,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   }

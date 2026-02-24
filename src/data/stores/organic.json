@@ -16,26 +16,24 @@
         "traditional": {
           "name": "Quinoa Orgánica",
           "brand": "Madre Tierra",
-          "price": 129,
+          "price": 125,
           "unit": "500g",
-          "pricePerUnit": 250,
-          "lastUpdated": "2026-02-24T05:14:40.450Z"
+          "pricePerUnit": 250
         },
         "plantBased": {
           "name": "Mix de Leguminosas Orgánicas",
           "brand": "Madre Tierra",
-          "price": 129,
+          "price": 85,
           "unit": "500g",
           "pricePerUnit": 170,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:14:52.350Z"
+          "isCommercial": true
         },
-        "priceDifferencePercent": 0,
+        "priceDifferencePercent": -32,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "coconut-milk-1",
@@ -43,26 +41,24 @@
         "traditional": {
           "name": "Leche de Coco Natural",
           "brand": "Thai Kitchen",
-          "price": 70,
+          "price": 65,
           "unit": "400ml",
-          "pricePerUnit": 114.75,
-          "lastUpdated": "2026-02-24T05:15:00.012Z"
+          "pricePerUnit": 162.5
         },
         "plantBased": {
           "name": "Leche de Coco Orgánica",
-          "brand": "Natura Bio",
-          "price": 265,
+          "brand": "Aroy-D",
+          "price": 79,
           "unit": "400ml",
-          "pricePerUnit": 149.75,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:15:08.399Z"
+          "pricePerUnit": 197.5,
+          "isCommercial": true
         },
-        "priceDifferencePercent": 278.6,
+        "priceDifferencePercent": 21.5,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -84,26 +80,24 @@
         "traditional": {
           "name": "Frijoles Negros Orgánicos",
           "brand": "Orgánico Nacional",
-          "price": 123,
+          "price": 59,
           "unit": "500g",
-          "pricePerUnit": 90,
-          "lastUpdated": "2026-02-24T05:15:15.410Z"
+          "pricePerUnit": 118
         },
         "plantBased": {
           "name": "Hamburguesas de Frijol Orgánico",
           "brand": "Orgánico Nacional",
-          "price": 76.9,
+          "price": 85,
           "unit": "4 piezas (400g)",
           "pricePerUnit": 212.5,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:15:24.296Z"
+          "isCommercial": true
         },
-        "priceDifferencePercent": -37.5,
+        "priceDifferencePercent": 44.1,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   }

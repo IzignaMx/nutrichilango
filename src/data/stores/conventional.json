@@ -17,21 +17,19 @@
         "traditional": {
           "name": "Carne de Res Molida",
           "brand": "SuKarne",
-          "price": 79,
+          "price": 89,
           "unit": "500g",
-          "pricePerUnit": 299,
-          "lastUpdated": "2026-02-24T05:12:01.438Z"
+          "pricePerUnit": 178
         },
         "plantBased": {
           "name": "Carne Plant-Based",
           "brand": "NotCo",
-          "price": 49.5,
+          "price": 99,
           "unit": "500g",
-          "pricePerUnit": 379.8,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:12:10.326Z"
+          "pricePerUnit": 198,
+          "isCommercial": true
         },
-        "priceDifferencePercent": -37.3,
+        "priceDifferencePercent": 11.2,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -44,21 +42,19 @@
         "traditional": {
           "name": "Leche Entera",
           "brand": "Lala",
-          "price": 172,
+          "price": 32,
           "unit": "1L",
-          "pricePerUnit": 25.5,
-          "lastUpdated": "2026-02-24T05:12:21.104Z"
+          "pricePerUnit": 32
         },
         "plantBased": {
           "name": "Leche de Soya",
           "brand": "Silk",
-          "price": 84,
+          "price": 42,
           "unit": "1L",
-          "pricePerUnit": 42.9,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:12:28.608Z"
+          "pricePerUnit": 42,
+          "isCommercial": true
         },
-        "priceDifferencePercent": -51.2,
+        "priceDifferencePercent": 31.3,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -83,21 +79,20 @@
         "category": "proteins",
         "traditional": {
           "name": "Pechuga de Pollo",
-          "brand": "Tyson",
-          "price": 205,
+          "brand": "Bachoco",
+          "price": 95,
           "unit": "500g",
-          "pricePerUnit": 179.8,
-          "lastUpdated": "2026-02-24T05:12:34.740Z"
+          "pricePerUnit": 190
         },
         "plantBased": {
-          "name": "Tempeh Natural",
-          "brand": "Lightlife",
-          "price": 145,
-          "unit": "500g",
-          "pricePerUnit": 290,
+          "name": "Tempeh de Soya",
+          "brand": "Tofupac",
+          "price": 85,
+          "unit": "300g",
+          "pricePerUnit": 283.3,
           "isCommercial": true
         },
-        "priceDifferencePercent": -29.3,
+        "priceDifferencePercent": -10.5,
         "availability": {
           "traditional": true,
           "plantBased": true

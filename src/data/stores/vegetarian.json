@@ -16,51 +16,50 @@
         "category": "proteins",
         "traditional": {
           "name": "Tempeh de Soya",
-          "brand": "Verde Vida",
-          "price": 79.9,
+          "brand": "Tofupac",
+          "price": 79,
           "unit": "300g",
-          "pricePerUnit": 266.33
+          "pricePerUnit": 263.3
         },
         "plantBased": {
           "name": "Jackfruit en Salmuera",
-          "brand": "The Jackfruit Company",
-          "price": 45.5,
+          "brand": "Upton's Naturals",
+          "price": 89,
           "unit": "300g",
-          "pricePerUnit": 299.67,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:17:01.950Z"
+          "pricePerUnit": 296.7,
+          "isCommercial": true
         },
-        "priceDifferencePercent": -43.1,
+        "priceDifferencePercent": 12.7,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "cashew-cheese-1",
         "category": "dairy",
         "traditional": {
           "name": "Queso de Anacardo Natural",
-          "brand": "Veggie Cheese",
-          "price": 145,
+          "brand": "Violife",
+          "price": 129,
           "unit": "200g",
-          "pricePerUnit": 725
+          "pricePerUnit": 645
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
-          "brand": "Artisan Vegan",
-          "price": 165,
+          "brand": "Miyoko's",
+          "price": 189,
           "unit": "200g",
-          "pricePerUnit": 825,
+          "pricePerUnit": 945,
           "isCommercial": true
         },
-        "priceDifferencePercent": 13.8,
+        "priceDifferencePercent": 46.5,
         "availability": {
           "traditional": false,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   }

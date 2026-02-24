@@ -15,26 +15,26 @@
         "id": "vegan-meat-1",
         "category": "proteins",
         "traditional": {
-          "name": "Carne Vegana Base Soya",
-          "brand": "Por Amor",
-          "price": 95,
+          "name": "Carne de Soya Texturizada",
+          "brand": "Soyamex",
+          "price": 45,
           "unit": "500g",
-          "pricePerUnit": 190
+          "pricePerUnit": 90
         },
         "plantBased": {
-          "name": "Carne Vegana Premium Mix",
-          "brand": "Por Amor Gourmet",
-          "price": 125,
-          "unit": "500g",
-          "pricePerUnit": 250,
+          "name": "Carne Vegana Beyond Beef",
+          "brand": "Beyond Meat",
+          "price": 189,
+          "unit": "454g",
+          "pricePerUnit": 416.3,
           "isCommercial": true
         },
-        "priceDifferencePercent": 31.6,
+        "priceDifferencePercent": 320,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "animal-vs-commercial"
       },
       {
         "id": "vegan-yogurt-1",
@@ -42,25 +42,24 @@
         "traditional": {
           "name": "Yogurt de Soya Natural",
           "brand": "Silk",
-          "price": 48.9,
-          "unit": "500g",
-          "pricePerUnit": 97.8
+          "price": 48,
+          "unit": "480g",
+          "pricePerUnit": 100
         },
         "plantBased": {
           "name": "Yogurt de Coco Probiótico",
-          "brand": "CocoYo",
-          "price": 13.8,
-          "unit": "500g",
-          "pricePerUnit": 157.8,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:15:50.090Z"
+          "brand": "Forager Project",
+          "price": 89,
+          "unit": "355ml",
+          "pricePerUnit": 250.7,
+          "isCommercial": true
         },
-        "priceDifferencePercent": -71.8,
+        "priceDifferencePercent": 85.4,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -79,27 +78,26 @@
         "id": "nutritional-yeast-1",
         "category": "pantry",
         "traditional": {
-          "name": "Levadura Nutricional Básica",
+          "name": "Levadura Nutricional",
           "brand": "Bragg",
           "price": 249,
-          "unit": "200g",
-          "pricePerUnit": 625,
-          "lastUpdated": "2026-02-24T05:15:58.102Z"
+          "unit": "127g",
+          "pricePerUnit": 1961
         },
         "plantBased": {
-          "name": "Levadura Nutricional Premium",
-          "brand": "Green Corner",
-          "price": 145,
-          "unit": "200g",
-          "pricePerUnit": 725,
+          "name": "Levadura Nutricional Orgánica",
+          "brand": "Bob's Red Mill",
+          "price": 189,
+          "unit": "142g",
+          "pricePerUnit": 1331,
           "isCommercial": true
         },
-        "priceDifferencePercent": -41.8,
+        "priceDifferencePercent": -24.1,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -119,27 +117,26 @@
         "id": "vegan-eggs-1",
         "category": "eggs",
         "traditional": {
-          "name": "Sustituto de Huevo Básico",
+          "name": "Sustituto de Huevo en Polvo",
           "brand": "Ener-G",
-          "price": 25,
-          "unit": "450g",
-          "pricePerUnit": 188.89,
-          "lastUpdated": "2026-02-24T05:16:07.904Z"
+          "price": 380,
+          "unit": "454g",
+          "pricePerUnit": 837.4
         },
         "plantBased": {
           "name": "JUST Egg Líquido",
           "brand": "JUST",
-          "price": 155,
+          "price": 189,
           "unit": "355ml",
-          "pricePerUnit": 436.62,
+          "pricePerUnit": 532.4,
           "isCommercial": true
         },
-        "priceDifferencePercent": 520,
+        "priceDifferencePercent": -50.3,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -159,51 +156,51 @@
         "id": "tofu-varieties-1",
         "category": "proteins",
         "traditional": {
-          "name": "Tofu Natural Básico",
-          "brand": "Mr. Tofu",
-          "price": 75,
-          "unit": "400g",
-          "pricePerUnit": 187.5
+          "name": "Tofu Natural Firme",
+          "brand": "Morinaga",
+          "price": 65,
+          "unit": "349g",
+          "pricePerUnit": 186.2
         },
         "plantBased": {
-          "name": "Tofu Ahumado Premium",
-          "brand": "Mr. Tofu",
-          "price": 95,
-          "unit": "400g",
-          "pricePerUnit": 237.5,
+          "name": "Tofu Ahumado",
+          "brand": "Tofupac",
+          "price": 85,
+          "unit": "350g",
+          "pricePerUnit": 242.9,
           "isCommercial": true
         },
-        "priceDifferencePercent": 26.7,
+        "priceDifferencePercent": 30.8,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "soy-chorizo-1",
         "category": "proteins",
         "traditional": {
           "name": "Chorizo de Soya",
-          "brand": "Mr. Tofu",
-          "price": 89,
+          "brand": "Soyamex",
+          "price": 65,
           "unit": "300g",
-          "pricePerUnit": 296.67
+          "pricePerUnit": 216.7
         },
         "plantBased": {
-          "name": "Chorizo Verde Especiado",
-          "brand": "Mr. Tofu Gourmet",
-          "price": 115,
+          "name": "Chorizo Vegetal Especiado",
+          "brand": "NotCo",
+          "price": 109,
           "unit": "300g",
-          "pricePerUnit": 383.33,
+          "pricePerUnit": 363.3,
           "isCommercial": true
         },
-        "priceDifferencePercent": 29.2,
+        "priceDifferencePercent": 67.7,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -223,65 +220,65 @@
         "id": "vegan-cheese-varieties-1",
         "category": "dairy",
         "traditional": {
-          "name": "Queso Vegano Básico",
-          "brand": "Abasto Verde",
-          "price": 135,
-          "unit": "250g",
-          "pricePerUnit": 540
+          "name": "Queso Vegano Cheddar",
+          "brand": "Violife",
+          "price": 109,
+          "unit": "200g",
+          "pricePerUnit": 545
         },
         "plantBased": {
-          "name": "Queso Vegano Artesanal",
-          "brand": "Abasto Premium",
-          "price": 175,
-          "unit": "250g",
-          "pricePerUnit": 700,
+          "name": "Queso Vegano Mozzarella",
+          "brand": "Daiya",
+          "price": 129,
+          "unit": "200g",
+          "pricePerUnit": 645,
           "isCommercial": true
         },
-        "priceDifferencePercent": 29.6,
+        "priceDifferencePercent": 18.3,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "plant-milk-combo-1",
         "category": "dairy",
         "traditional": {
           "name": "Leche de Avena",
-          "brand": "Abasto Verde",
+          "brand": "Silk",
           "price": 45,
-          "unit": "1L",
-          "pricePerUnit": 45
+          "unit": "946ml",
+          "pricePerUnit": 47.6
         },
         "plantBased": {
-          "name": "Leche de Macadamia Premium",
-          "brand": "Abasto Premium",
-          "price": 85,
-          "unit": "1L",
-          "pricePerUnit": 85,
+          "name": "Leche de Macadamia",
+          "brand": "Milkadamia",
+          "price": 99,
+          "unit": "946ml",
+          "pricePerUnit": 104.7,
           "isCommercial": true
         },
-        "priceDifferencePercent": 88.9,
+        "priceDifferencePercent": 120,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "vegan-snacks-1",
         "category": "snacks",
         "traditional": {
-          "name": "Galletas Veganas Básicas",
-          "brand": "Abasto Verde",
+          "name": "Galletas Veganas Integrales",
+          "brand": "Sanissimo",
           "price": 35,
           "unit": "200g",
           "pricePerUnit": 175
         },
         "plantBased": {
-          "name": "Cookies Veganas Premium",
-          "brand": "Abasto Gourmet",
+          "name": "Cookies Veganas con Chispas",
+          "brand": "Lenny & Larry's",
           "price": 65,
           "unit": "200g",
           "pricePerUnit": 325,
@@ -289,10 +286,10 @@
         },
         "priceDifferencePercent": 85.7,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -313,52 +310,49 @@
         "traditional": {
           "name": "Beyond Burger Original",
           "brand": "Beyond Meat",
-          "price": 152,
+          "price": 169,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 814.98,
-          "lastUpdated": "2026-02-24T05:16:35.429Z"
+          "pricePerUnit": 744.5
         },
         "plantBased": {
           "name": "Impossible Burger",
           "brand": "Impossible Foods",
-          "price": 349,
+          "price": 249,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 991.19,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:16:42.738Z"
+          "pricePerUnit": 1096.9,
+          "isCommercial": true
         },
-        "priceDifferencePercent": 129.6,
+        "priceDifferencePercent": 47.3,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "vegan-ice-cream-1",
         "category": "dairy",
         "traditional": {
-          "name": "Helado Vegano Básico",
-          "brand": "Vegan Label",
-          "price": 125,
-          "unit": "500ml",
-          "pricePerUnit": 250
+          "name": "Helado Vegano de Coco",
+          "brand": "So Delicious",
+          "price": 129,
+          "unit": "473ml",
+          "pricePerUnit": 272.7
         },
         "plantBased": {
-          "name": "Helado Ben & Jerry's Vegano",
+          "name": "Helado Ben & Jerry's Non-Dairy",
           "brand": "Ben & Jerry's",
-          "price": 226,
-          "unit": "500ml",
-          "pricePerUnit": 378,
-          "isCommercial": true,
-          "lastUpdated": "2026-02-24T05:16:50.635Z"
+          "price": 219,
+          "unit": "473ml",
+          "pricePerUnit": 463,
+          "isCommercial": true
         },
-        "priceDifferencePercent": 80.8,
+        "priceDifferencePercent": 69.8,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -378,23 +372,23 @@
         "id": "mexican-vegan-chorizo-1",
         "category": "proteins",
         "traditional": {
-          "name": "Chorizo Vegano Mexicano",
-          "brand": "Verde Vivo",
-          "price": 95,
+          "name": "Chorizo Vegano de Soya",
+          "brand": "Soyamex",
+          "price": 55,
           "unit": "400g",
-          "pricePerUnit": 237.5
+          "pricePerUnit": 137.5
         },
         "plantBased": {
-          "name": "Chorizo Verde Oaxaqueño",
-          "brand": "Verde Vivo Artesanal",
-          "price": 125,
+          "name": "Chorizo Vegetal Oaxaqueño",
+          "brand": "Casero",
+          "price": 75,
           "unit": "400g",
-          "pricePerUnit": 312.5,
-          "isCommercial": true
+          "pricePerUnit": 187.5,
+          "isCommercial": false
         },
-        "priceDifferencePercent": 31.6,
+        "priceDifferencePercent": 36.4,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
         "comparisonType": "commercial-vs-homemade"
@@ -403,23 +397,23 @@
         "id": "agua-fresca-concentrates-1",
         "category": "pantry",
         "traditional": {
-          "name": "Concentrado Jamaica",
-          "brand": "Verde Vivo",
+          "name": "Concentrado de Jamaica",
+          "brand": "A granel",
           "price": 45,
           "unit": "500ml",
           "pricePerUnit": 90
         },
         "plantBased": {
-          "name": "Concentrado Hibisco Premium",
-          "brand": "Verde Vivo Gourmet",
+          "name": "Concentrado Hibisco Orgánico",
+          "brand": "Casero",
           "price": 65,
           "unit": "500ml",
           "pricePerUnit": 130,
-          "isCommercial": true
+          "isCommercial": false
         },
         "priceDifferencePercent": 44.4,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
         "comparisonType": "commercial-vs-homemade"
@@ -442,51 +436,51 @@
         "id": "vegan-tacos-meat-1",
         "category": "proteins",
         "traditional": {
-          "name": "Carne para Tacos Base Soya",
-          "brand": "Veggie Smiles",
-          "price": 75,
+          "name": "Proteína de Soya para Tacos",
+          "brand": "Soyamex",
+          "price": 49,
           "unit": "500g",
-          "pricePerUnit": 150
+          "pricePerUnit": 98
         },
         "plantBased": {
-          "name": "Carne de Pastor Vegana",
-          "brand": "Veggie Smiles Premium",
-          "price": 115,
+          "name": "Tiras de Carne Vegana al Pastor",
+          "brand": "NotCo",
+          "price": 119,
           "unit": "500g",
-          "pricePerUnit": 230,
+          "pricePerUnit": 238,
           "isCommercial": true
         },
-        "priceDifferencePercent": 53.3,
+        "priceDifferencePercent": 142.9,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       },
       {
         "id": "mexican-vegan-mayo-1",
         "category": "pantry",
         "traditional": {
           "name": "Mayonesa Vegana",
-          "brand": "Veggie Smiles",
+          "brand": "Hellmann's Vegan",
           "price": 55,
           "unit": "350g",
-          "pricePerUnit": 157.14
+          "pricePerUnit": 157.1
         },
         "plantBased": {
-          "name": "Mayo de Aguacate Gourmet",
-          "brand": "Veggie Smiles Artesanal",
-          "price": 85,
+          "name": "Vegenesa de Aguacate",
+          "brand": "NotCo NotMayo",
+          "price": 79,
           "unit": "350g",
-          "pricePerUnit": 242.86,
+          "pricePerUnit": 225.7,
           "isCommercial": true
         },
-        "priceDifferencePercent": 54.5,
+        "priceDifferencePercent": 43.6,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   },
@@ -506,22 +500,22 @@
         "category": "dairy",
         "traditional": {
           "name": "Queso de Anacardo Fermentado",
-          "brand": "Plantae",
-          "price": 165,
+          "brand": "Miyoko's",
+          "price": 189,
           "unit": "200g",
-          "pricePerUnit": 825
+          "pricePerUnit": 945
         },
         "plantBased": {
-          "name": "Queso Azul Vegano Artesanal",
-          "brand": "Plantae Gourmet",
-          "price": 225,
+          "name": "Queso Vegano Artesanal Tipo Azul",
+          "brand": "Casero",
+          "price": 145,
           "unit": "200g",
-          "pricePerUnit": 1125,
-          "isCommercial": true
+          "pricePerUnit": 725,
+          "isCommercial": false
         },
-        "priceDifferencePercent": 36.4,
+        "priceDifferencePercent": -23.3,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
         "comparisonType": "commercial-vs-homemade"
@@ -531,25 +525,25 @@
         "category": "proteins",
         "traditional": {
           "name": "Proteína de Chícharo",
-          "brand": "Plantae",
-          "price": 285,
+          "brand": "Now Foods",
+          "price": 325,
           "unit": "500g",
-          "pricePerUnit": 570
+          "pricePerUnit": 650
         },
         "plantBased": {
           "name": "Proteína Multi-Plant Premium",
-          "brand": "Plantae Pro",
-          "price": 385,
+          "brand": "Vega",
+          "price": 549,
           "unit": "500g",
-          "pricePerUnit": 770,
+          "pricePerUnit": 1098,
           "isCommercial": true
         },
-        "priceDifferencePercent": 35.1,
+        "priceDifferencePercent": 68.9,
         "availability": {
-          "traditional": false,
+          "traditional": true,
           "plantBased": true
         },
-        "comparisonType": "commercial-vs-homemade"
+        "comparisonType": "commercial-vs-commercial"
       }
     ]
   }
