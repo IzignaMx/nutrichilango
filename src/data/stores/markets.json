@@ -23,12 +23,13 @@
         "plantBased": {
           "name": "Nuggets Plant-Based",
           "brand": "Beyond Meat",
-          "price": 162,
+          "price": 152,
           "unit": "250g",
           "pricePerUnit": 648,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T07:33:05.315Z"
         },
-        "priceDifferencePercent": 362.9,
+        "priceDifferencePercent": 334.3,
         "availability": {
           "traditional": true,
           "plantBased": false
@@ -411,9 +412,10 @@
         "traditional": {
           "name": "Hamburguesa Plant-Based Comercial",
           "brand": "Beyond Meat",
-          "price": 169,
+          "price": 152,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 744.5
+          "pricePerUnit": 744.5,
+          "lastUpdated": "2026-02-24T07:33:04.964Z"
         },
         "plantBased": {
           "name": "Hamburguesa Casera de Frijoles",
@@ -486,7 +488,7 @@
             }
           }
         },
-        "priceDifferencePercent": -87,
+        "priceDifferencePercent": -85.5,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -945,9 +947,10 @@
         "traditional": {
           "name": "Tofu Comercial",
           "brand": "House Foods",
-          "price": 59,
+          "price": 84.9,
           "unit": "400g",
-          "pricePerUnit": 147.5
+          "pricePerUnit": 147.5,
+          "lastUpdated": "2026-02-24T07:33:05.465Z"
         },
         "plantBased": {
           "name": "Tofu Casero",
@@ -1013,7 +1016,7 @@
             }
           }
         },
-        "priceDifferencePercent": -52.5,
+        "priceDifferencePercent": -67,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -1262,9 +1265,10 @@
         "traditional": {
           "name": "Atún en Lata",
           "brand": "Marca comercial",
-          "price": 25,
+          "price": 54.9,
           "unit": "140g",
-          "pricePerUnit": 178.57
+          "pricePerUnit": 178.57,
+          "lastUpdated": "2026-02-24T07:33:12.277Z"
         },
         "plantBased": {
           "name": "Atún Vegetal de Garbanzos",
@@ -1363,7 +1367,7 @@
             }
           }
         },
-        "priceDifferencePercent": -50,
+        "priceDifferencePercent": -77.2,
         "availability": {
           "traditional": true,
           "plantBased": true
