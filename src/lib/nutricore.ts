@@ -24,7 +24,7 @@ export const IDR = {
  */
 export function calculatePriceDiff(traditional: number, plantBased: number): number {
   if (traditional <= 0) return 0;
-  return Math.round(((plantBased - traditional) / traditional) * 100);
+  return Math.round(((plantBased - traditional) / traditional) * 1000) / 10;
 }
 
 /**

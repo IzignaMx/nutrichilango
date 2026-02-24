@@ -57,7 +57,7 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
       });
       
       if (isInvalidPair) {
-        console.log(`Comparación inválida detectada: ${product.traditional.name} vs ${product.plantBased.name}`);
+        if (import.meta.env.DEV) console.log(`Comparación inválida detectada: ${product.traditional.name} vs ${product.plantBased.name}`);
         return false;
       }
 
@@ -69,7 +69,7 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
           if (!isPlantBased(traditionalName)) {
             return true;
           } else {
-            console.log(`Producto tradicional es plant-based: ${product.traditional.name}`);
+            if (import.meta.env.DEV) console.log(`Producto tradicional es plant-based: ${product.traditional.name}`);
             return false;
           }
         }
@@ -80,7 +80,7 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
         // Verificamos que al menos uno sea claramente plant-based o casero
         if (!isPlantBased(traditionalName) && !isPlantBased(plantBasedName) && 
             !traditionalName.includes('comercial') && !plantBasedName.includes('casero')) {
-          console.log(`Comparación comercial vs casero sin productos plant-based claros: ${product.traditional.name} vs ${product.plantBased.name}`);
+          if (import.meta.env.DEV) console.log(`Comparación comercial vs casero sin productos plant-based claros: ${product.traditional.name} vs ${product.plantBased.name}`);
           // Permitimos la comparación si es comercial vs casero
           return true;
         }

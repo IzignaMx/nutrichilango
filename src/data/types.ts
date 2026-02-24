@@ -58,7 +58,7 @@ export interface Product {
     traditional: boolean;
     plantBased: boolean;
   };
-  comparisonType: 'animal-vs-commercial' | 'animal-vs-homemade' | 'commercial-vs-homemade';
+  comparisonType: 'animal-vs-commercial' | 'animal-vs-homemade' | 'commercial-vs-homemade' | 'commercial-vs-commercial';
 }
 
 export interface Store {
