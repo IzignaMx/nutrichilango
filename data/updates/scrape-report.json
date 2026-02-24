@@ -1,0 +1,22 @@
+{
+  "date": "2026-02-24T05:06:10.887Z",
+  "totalTargets": 6,
+  "successes": 4,
+  "failures": 2,
+  "failureDetails": [
+    {
+      "storeId": "walmart-1",
+      "productId": "chicken-vs-tempeh-1",
+      "side": "traditional",
+      "label": "Pechuga de Pollo Tyson 500g",
+      "error": "HTTP 404"
+    },
+    {
+      "storeId": "walmart-1",
+      "productId": "chicken-vs-tempeh-1",
+      "side": "plantBased",
+      "label": "Tempeh Natural",
+      "error": "HTTP 404"
+    }
+  ]
+}

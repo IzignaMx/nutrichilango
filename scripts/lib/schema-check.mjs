@@ -1,5 +1,5 @@
 
-import { StoreSchema, RecipeSchema, calculatePriceDiff } from './schemas.mjs';
+import { StoreSchema, RecipeSchema, PriceUpdateSchema, calculatePriceDiff } from './schemas.mjs';
 
 /**
  * Integrated validation engine for high consistency
@@ -45,4 +45,18 @@ export function auditData(data) {
   }
 
   return audit;
+}
+
+/**
+ * Validates a single price-only update from the scraper.
+ */
+export function auditPriceUpdate(item) {
+  const result = PriceUpdateSchema.safeParse(item);
+  if (!result.success) {
+    return {
+      valid: false,
+      errors: result.error.errors.map(e => `${e.path.join('.')}: ${e.message}`),
+    };
+  }
+  return { valid: true, errors: [] };
 }

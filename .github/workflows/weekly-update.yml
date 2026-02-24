@@ -8,6 +8,7 @@ on:
 jobs:
   update-content:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
@@ -22,10 +23,14 @@ jobs:
 
       - run: npm ci
 
+      - name: Clean stale update files
+        run: rm -f data/updates/scraped-prices.json data/updates/scrape-report.json
+
       - name: Install Playwright Browsers
         run: npx playwright install chromium --with-deps
 
       - name: Scrape Real Prices
+        timeout-minutes: 8
         run: node scripts/scrape-data.mjs
 
       - name: Generate date

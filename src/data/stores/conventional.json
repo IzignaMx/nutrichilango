@@ -17,19 +17,21 @@
         "traditional": {
           "name": "Carne de Res Molida",
           "brand": "SuKarne",
-          "price": 149.5,
+          "price": 79,
           "unit": "500g",
-          "pricePerUnit": 299
+          "pricePerUnit": 299,
+          "lastUpdated": "2026-02-24T05:05:30.346Z"
         },
         "plantBased": {
           "name": "Carne Plant-Based",
           "brand": "NotCo",
-          "price": 189.9,
+          "price": 158,
           "unit": "500g",
           "pricePerUnit": 379.8,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:05:38.948Z"
         },
-        "priceDifferencePercent": 27,
+        "priceDifferencePercent": 100,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -42,19 +44,21 @@
         "traditional": {
           "name": "Leche Entera",
           "brand": "Lala",
-          "price": 25.5,
+          "price": 172,
           "unit": "1L",
-          "pricePerUnit": 25.5
+          "pricePerUnit": 25.5,
+          "lastUpdated": "2026-02-24T05:05:48.842Z"
         },
         "plantBased": {
           "name": "Leche de Soya",
           "brand": "Silk",
-          "price": 42.9,
+          "price": 84,
           "unit": "1L",
           "pricePerUnit": 42.9,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-02-24T05:05:58.255Z"
         },
-        "priceDifferencePercent": 68.2,
+        "priceDifferencePercent": -51.2,
         "availability": {
           "traditional": true,
           "plantBased": true

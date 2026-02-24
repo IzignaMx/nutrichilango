@@ -71,3 +71,16 @@ export function isOutlier(price, historicalPrices, threshold = 3) {
   
   return zScore > threshold;
 }
+
+/**
+ * Schema for price-only updates produced by the scraper.
+ * Does NOT require the full store/product structure.
+ */
+export const PriceUpdateSchema = z.object({
+  storeId: z.string(),
+  productId: z.string(),
+  side: z.enum(['traditional', 'plantBased']),
+  price: z.number().positive(),
+  scrapedAt: z.string(),
+});
+
