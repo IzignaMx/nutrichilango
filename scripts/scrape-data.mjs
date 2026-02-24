@@ -310,7 +310,7 @@ function getPriceRange(category) {
 // Scrape a single target with multi-source + multi-query fallback
 // ---------------------------------------------------------------------------
 async function scrapeTarget(context, target) {
-  const MAX_RETRIES = 2;
+  const MAX_RETRIES = 1;
   const queries = [target.searchQuery, ...(target.altQueries || [])];
   const sources = getSourcesForTarget(target);
   const priceRange = getPriceRange(target.category);
@@ -331,7 +331,7 @@ async function scrapeTarget(context, target) {
             throw new Error(`HTTP ${resp.status()}`);
           }
 
-          await randomDelay(2500, 4500);
+          await randomDelay(1500, 3000);
 
           // Validate that results contain the expected product
           const isMatch = await validateProductMatch(page, target.brand, target.productName);
@@ -402,38 +402,57 @@ async function run() {
   const results = [];
   const failures = [];
 
-  for (const target of targets) {
-    const tag = `[${target.storeId}/${target.productId}/${target.side}]`;
-    const sourceType = VEGAN_STORE_TYPES.includes(target.storeType) ? '🌱' : '🏪';
-    console.log(`🔍 ${sourceType} ${tag} ${target.brand} ${target.productName}`);
-    console.log(`   Search: "${target.searchQuery}" | Category: ${target.category}`);
+  // Helper to chunk arrays
+  const chunkArray = (arr, size) => {
+    return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+      arr.slice(i * size, i * size + size)
+    );
+  };
 
-    const result = await scrapeTarget(context, target);
+  const targetChunks = chunkArray(targets, 3); // Run 3 parallel browsers
 
-    if (result) {
-      console.log(`   ✅ $${result.price} (via ${result.source})\n`);
-      results.push({
-        storeId: target.storeId,
-        productId: target.productId,
-        side: target.side,
-        price: result.price,
-        source: result.source,
-        scrapedAt: new Date().toISOString(),
-      });
-    } else {
-      console.log(`   ❌ All sources failed\n`);
-      failures.push({
-        storeId: target.storeId,
-        productId: target.productId,
-        side: target.side,
-        label: `${target.brand} ${target.productName}`,
-        searchQuery: target.searchQuery,
-        category: target.category,
-        storeType: target.storeType,
-      });
+  let processedCount = 0;
+
+  for (const chunk of targetChunks) {
+    console.log(`\n⏳ Processing batch of ${chunk.length} products... (${processedCount + 1}-${processedCount + chunk.length} / ${targets.length})`);
+
+    // Process chunk concurrently
+    await Promise.all(chunk.map(async (target) => {
+      const tag = `[${target.storeId}/${target.productId}/${target.side}]`;
+      const sourceType = VEGAN_STORE_TYPES.includes(target.storeType) ? '🌱' : '🏪';
+      console.log(`🔍 ${sourceType} ${tag} ${target.brand} ${target.productName}`);
+
+      const result = await scrapeTarget(context, target);
+
+      if (result) {
+        console.log(`   ✅ $${result.price} (via ${result.source}) - ${target.productName}\n`);
+        results.push({
+          storeId: target.storeId,
+          productId: target.productId,
+          side: target.side,
+          price: result.price,
+          source: result.source,
+          scrapedAt: new Date().toISOString(),
+        });
+      } else {
+        console.log(`   ❌ All sources failed - ${target.productName}\n`);
+        failures.push({
+          storeId: target.storeId,
+          productId: target.productId,
+          side: target.side,
+          label: `${target.brand} ${target.productName}`,
+          searchQuery: target.searchQuery,
+          category: target.category,
+          storeType: target.storeType,
+        });
+      }
+    }));
+    
+    processedCount += chunk.length;
+    // Cool down between batches
+    if (processedCount < targets.length) {
+      await randomDelay(2000, 4000);
     }
-
-    await randomDelay(1500, 3500);
   }
 
   await browser.close();
