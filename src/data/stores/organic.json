@@ -19,7 +19,7 @@
           "price": 129,
           "unit": "500g",
           "pricePerUnit": 250,
-          "lastUpdated": "2026-02-24T07:34:02.443Z"
+          "lastUpdated": "2026-03-02T01:46:46.771Z"
         },
         "plantBased": {
           "name": "Mix de Leguminosas Orgánicas",
@@ -28,7 +28,7 @@
           "unit": "500g",
           "pricePerUnit": 170,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T07:34:03.603Z"
+          "lastUpdated": "2026-03-02T01:46:47.271Z"
         },
         "priceDifferencePercent": 0,
         "availability": {
@@ -43,10 +43,10 @@
         "traditional": {
           "name": "Leche de Coco Natural",
           "brand": "Thai Kitchen",
-          "price": 70,
+          "price": 94.5,
           "unit": "400ml",
           "pricePerUnit": 162.5,
-          "lastUpdated": "2026-02-24T07:34:28.921Z"
+          "lastUpdated": "2026-03-02T01:47:10.230Z"
         },
         "plantBased": {
           "name": "Leche de Coco Orgánica",
@@ -55,9 +55,9 @@
           "unit": "400ml",
           "pricePerUnit": 197.5,
           "isCommercial": true,
-          "lastUpdated": "2026-02-24T07:34:29.435Z"
+          "lastUpdated": "2026-03-02T01:47:09.670Z"
         },
-        "priceDifferencePercent": -15,
+        "priceDifferencePercent": -37,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -87,7 +87,7 @@
           "price": 123,
           "unit": "500g",
           "pricePerUnit": 118,
-          "lastUpdated": "2026-02-24T07:34:28.479Z"
+          "lastUpdated": "2026-03-02T01:47:09.159Z"
         },
         "plantBased": {
           "name": "Hamburguesas de Frijol Orgánico",

@@ -1,9 +1,9 @@
 {
-  "date": "2026-02-24T07:40:04.026Z",
+  "date": "2026-03-02T01:52:30.148Z",
   "totalTargets": 56,
-  "successes": 43,
-  "failures": 13,
-  "successRate": "76.8%",
+  "successes": 45,
+  "failures": 11,
+  "successRate": "80.4%",
   "failureDetails": [
     {
       "storeId": "soriana-1",
@@ -79,11 +79,11 @@
     },
     {
       "storeId": "plantae-1",
-      "productId": "fermented-cashew-cheese-1",
-      "side": "traditional",
-      "label": "Miyoko's Queso de Anacardo Fermentado",
-      "searchQuery": "Miyoko's Queso Anacardo Fermentado 200g",
-      "category": "dairy",
+      "productId": "plant-protein-powder-1",
+      "side": "plantBased",
+      "label": "Vega Proteína Multi-Plant Premium",
+      "searchQuery": "Vega Proteína Multi-Plant Premium 500g",
+      "category": "proteins",
       "storeType": "vegan"
     },
     {
@@ -96,30 +96,12 @@
       "storeType": "vegetarian"
     },
     {
-      "storeId": "plantae-1",
-      "productId": "plant-protein-powder-1",
-      "side": "plantBased",
-      "label": "Vega Proteína Multi-Plant Premium",
-      "searchQuery": "Vega Proteína Multi-Plant Premium 500g",
-      "category": "proteins",
-      "storeType": "vegan"
-    },
-    {
       "storeId": "la-esquina-vegetariana-1",
       "productId": "tempeh-vs-jackfruit-1",
       "side": "traditional",
       "label": "Tofupac Tempeh de Soya",
       "searchQuery": "Tofupac Tempeh Soya 300g",
       "category": "proteins",
-      "storeType": "vegetarian"
-    },
-    {
-      "storeId": "la-esquina-vegetariana-1",
-      "productId": "cashew-cheese-1",
-      "side": "plantBased",
-      "label": "Miyoko's Queso de Anacardo Premium",
-      "searchQuery": "Miyoko's Queso Anacardo Premium 200g",
-      "category": "dairy",
       "storeType": "vegetarian"
     }
   ]
