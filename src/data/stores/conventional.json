@@ -20,7 +20,7 @@
           "price": 79,
           "unit": "500g",
           "pricePerUnit": 178,
-          "lastUpdated": "2026-03-02T01:44:44.934Z"
+          "lastUpdated": "2026-03-09T01:46:17.805Z"
         },
         "plantBased": {
           "name": "Carne Plant-Based",
@@ -29,7 +29,7 @@
           "unit": "500g",
           "pricePerUnit": 198,
           "isCommercial": true,
-          "lastUpdated": "2026-03-02T01:44:47.315Z"
+          "lastUpdated": "2026-03-09T01:46:21.099Z"
         },
         "priceDifferencePercent": -37.3,
         "availability": {
@@ -55,7 +55,7 @@
           "unit": "1L",
           "pricePerUnit": 42,
           "isCommercial": true,
-          "lastUpdated": "2026-03-02T01:45:04.971Z"
+          "lastUpdated": "2026-03-09T01:46:35.055Z"
         },
         "priceDifferencePercent": 162.5,
         "availability": {
@@ -86,7 +86,7 @@
           "price": 98.9,
           "unit": "500g",
           "pricePerUnit": 190,
-          "lastUpdated": "2026-03-02T01:45:04.662Z"
+          "lastUpdated": "2026-03-09T01:46:35.229Z"
         },
         "plantBased": {
           "name": "Tempeh de Soya",
