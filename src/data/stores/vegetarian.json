@@ -45,18 +45,18 @@
           "price": 79,
           "unit": "200g",
           "pricePerUnit": 645,
-          "lastUpdated": "2026-03-02T01:52:11.589Z"
+          "lastUpdated": "2026-03-16T02:05:02.957Z"
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
           "brand": "Miyoko's",
-          "price": 99.9,
+          "price": 46.5,
           "unit": "200g",
           "pricePerUnit": 945,
           "isCommercial": true,
-          "lastUpdated": "2026-03-02T01:52:30.077Z"
+          "lastUpdated": "2026-03-16T02:05:19.948Z"
         },
-        "priceDifferencePercent": 26.5,
+        "priceDifferencePercent": -41.1,
         "availability": {
           "traditional": false,
           "plantBased": true

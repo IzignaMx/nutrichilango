@@ -5,7 +5,7 @@
    Audit: 45 passed, 0 failed.
 
 🚀 Phase 2: Committing Price Changes...
-   ✅ soriana-1/beef-vs-tofu-1 [traditional]: $79 → $79
+   ✅ soriana-1/beef-vs-tofu-1 [traditional]: $79 → $50
    ✅ soriana-1/beef-vs-tofu-1 [plantBased]: $49.5 → $49.5
    ✅ walmart-1/chicken-vs-tempeh-1 [traditional]: $98.9 → $98.9
    ✅ soriana-1/milk-vs-soy-1 [plantBased]: $84 → $84
@@ -14,42 +14,42 @@
    ✅ central-abastos-1/commercial-vs-homemade-tofu-1 [traditional]: $84.9 → $84.9
    ✅ super-naturista-1/tofu-vs-seitan-1 [traditional]: $65 → $65
    ✅ central-abastos-1/tuna-vs-homemade-chickpea-tuna-1 [traditional]: $54.9 → $54.9
-   ✅ super-naturista-1/tofu-vs-seitan-1 [plantBased]: $88 → $89.9
+   ✅ super-naturista-1/tofu-vs-seitan-1 [plantBased]: $89.9 → $115
    ✅ super-naturista-1/almond-milk-1 [plantBased]: $59 → $59
    ✅ super-naturista-1/almond-milk-1 [traditional]: $59 → $59
-   ✅ madre-tierra-1/quinoa-vs-legumes-1 [traditional]: $129 → $129
    ✅ madre-tierra-1/quinoa-vs-legumes-1 [plantBased]: $129 → $129
+   ✅ madre-tierra-1/quinoa-vs-legumes-1 [traditional]: $129 → $129
    ✅ organico-nacional-1/organic-beans-1 [traditional]: $123 → $123
    ✅ madre-tierra-1/coconut-milk-1 [plantBased]: $59.5 → $59.5
-   ✅ madre-tierra-1/coconut-milk-1 [traditional]: $70 → $94.5
+   ✅ madre-tierra-1/coconut-milk-1 [traditional]: $94.5 → $94.5
    ✅ por-amor-1/vegan-meat-1 [plantBased]: $205 → $205
    ✅ por-amor-1/vegan-meat-1 [traditional]: $47 → $47
-   ✅ por-amor-1/vegan-yogurt-1 [traditional]: $143 → $143
+   ✅ por-amor-1/vegan-yogurt-1 [traditional]: $143 → $164
    ✅ green-corner-1/nutritional-yeast-1 [traditional]: $234.3 → $234.3
-   ✅ por-amor-1/vegan-yogurt-1 [plantBased]: $70.9 → $70.9
+   ✅ por-amor-1/vegan-yogurt-1 [plantBased]: $70.9 → $82.5
+   ✅ forever-vegano-1/vegan-eggs-1 [plantBased]: $132 → $48.4
    ✅ green-corner-1/nutritional-yeast-1 [plantBased]: $133 → $133
-   ✅ forever-vegano-1/vegan-eggs-1 [plantBased]: $286 → $132
    ✅ mr-tofu-1/tofu-varieties-1 [traditional]: $65 → $65
    ✅ mr-tofu-1/soy-chorizo-1 [traditional]: $132 → $132
-   ✅ abasto-vegano-1/vegan-cheese-varieties-1 [traditional]: $79 → $79
    ✅ abasto-vegano-1/vegan-cheese-varieties-1 [plantBased]: $164 → $164
+   ✅ abasto-vegano-1/vegan-cheese-varieties-1 [traditional]: $79 → $109
    ✅ mr-tofu-1/soy-chorizo-1 [plantBased]: $170.5 → $170.5
-   ✅ abasto-vegano-1/plant-milk-combo-1 [traditional]: $54 → $54
-   ✅ abasto-vegano-1/vegan-snacks-1 [traditional]: $30.9 → $24.72
-   ✅ abasto-vegano-1/plant-milk-combo-1 [plantBased]: $74 → $52
+   ✅ abasto-vegano-1/plant-milk-combo-1 [traditional]: $54 → $90
+   ✅ abasto-vegano-1/plant-milk-combo-1 [plantBased]: $52 → $74
+   ✅ abasto-vegano-1/vegan-snacks-1 [traditional]: $24.72 → $30.9
    ✅ vegan-label-1/imported-vegan-meat-1 [traditional]: $160.6 → $160.6
    ✅ abasto-vegano-1/vegan-snacks-1 [plantBased]: $71.5 → $71.5
    ✅ vegan-label-1/imported-vegan-meat-1 [plantBased]: $349 → $349
    ✅ verde-vivo-1/mexican-vegan-chorizo-1 [traditional]: $109 → $109
-   ✅ vegan-label-1/vegan-ice-cream-1 [plantBased]: $226 → $192.5
-   ✅ vegan-label-1/vegan-ice-cream-1 [traditional]: $103 → $103
+   ✅ vegan-label-1/vegan-ice-cream-1 [plantBased]: $192.5 → $192.5
+   ✅ vegan-label-1/vegan-ice-cream-1 [traditional]: $103 → $77.25
+   ✅ veggie-smiles-1/vegan-tacos-meat-1 [traditional]: $85.8 → $93.5
    ✅ veggie-smiles-1/mexican-vegan-mayo-1 [traditional]: $61.6 → $61.6
-   ✅ veggie-smiles-1/vegan-tacos-meat-1 [traditional]: $51.7 → $85.8
-   ✅ plantae-1/plant-protein-powder-1 [traditional]: $110 → $85.8
+   ✅ plantae-1/plant-protein-powder-1 [traditional]: $85.8 → $93.5
+   ✅ plantae-1/fermented-cashew-cheese-1 [traditional]: $99.9 → $33
    ✅ veggie-smiles-1/mexican-vegan-mayo-1 [plantBased]: $168 → $168
-   ✅ plantae-1/fermented-cashew-cheese-1 [traditional]: $189 → $99.9
    ✅ la-esquina-vegetariana-1/cashew-cheese-1 [traditional]: $79 → $79
-   ✅ la-esquina-vegetariana-1/cashew-cheese-1 [plantBased]: $189 → $99.9
+   ✅ la-esquina-vegetariana-1/cashew-cheese-1 [plantBased]: $99.9 → $46.5
 ✅ Metadata timestamp updated.
 
 ✨ Pipeline finished. Applied 45 price updates, 0 not found.

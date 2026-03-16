@@ -1,5 +1,5 @@
 {
-  "date": "2026-03-02T01:52:30.148Z",
+  "date": "2026-03-16T02:05:20.019Z",
   "totalTargets": 56,
   "successes": 45,
   "failures": 11,
@@ -78,15 +78,6 @@
       "storeType": "vegan"
     },
     {
-      "storeId": "plantae-1",
-      "productId": "plant-protein-powder-1",
-      "side": "plantBased",
-      "label": "Vega Proteína Multi-Plant Premium",
-      "searchQuery": "Vega Proteína Multi-Plant Premium 500g",
-      "category": "proteins",
-      "storeType": "vegan"
-    },
-    {
       "storeId": "la-esquina-vegetariana-1",
       "productId": "tempeh-vs-jackfruit-1",
       "side": "plantBased",
@@ -103,6 +94,15 @@
       "searchQuery": "Tofupac Tempeh Soya 300g",
       "category": "proteins",
       "storeType": "vegetarian"
+    },
+    {
+      "storeId": "plantae-1",
+      "productId": "plant-protein-powder-1",
+      "side": "plantBased",
+      "label": "Vega Proteína Multi-Plant Premium",
+      "searchQuery": "Vega Proteína Multi-Plant Premium 500g",
+      "category": "proteins",
+      "storeType": "vegan"
     }
   ]
 }
