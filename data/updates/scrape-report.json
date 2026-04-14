@@ -1,9 +1,9 @@
 {
-  "date": "2026-03-16T02:05:20.019Z",
+  "date": "2026-04-13T02:17:48.946Z",
   "totalTargets": 56,
-  "successes": 45,
-  "failures": 11,
-  "successRate": "80.4%",
+  "successes": 35,
+  "failures": 21,
+  "successRate": "62.5%",
   "failureDetails": [
     {
       "storeId": "soriana-1",
@@ -42,6 +42,15 @@
       "storeType": "naturist"
     },
     {
+      "storeId": "madre-tierra-1",
+      "productId": "coconut-milk-1",
+      "side": "traditional",
+      "label": "Thai Kitchen Leche de Coco Natural",
+      "searchQuery": "Thai Kitchen Leche Coco Natural 400ml",
+      "category": "dairy",
+      "storeType": "organic"
+    },
+    {
       "storeId": "organico-nacional-1",
       "productId": "organic-beans-1",
       "side": "plantBased",
@@ -60,11 +69,65 @@
       "storeType": "vegan"
     },
     {
+      "storeId": "forever-vegano-1",
+      "productId": "vegan-eggs-1",
+      "side": "plantBased",
+      "label": "JUST JUST Egg Líquido",
+      "searchQuery": "just egg plant based scramble",
+      "category": "eggs",
+      "storeType": "vegan"
+    },
+    {
       "storeId": "mr-tofu-1",
       "productId": "tofu-varieties-1",
       "side": "plantBased",
       "label": "Tofupac Tofu Ahumado",
       "searchQuery": "Tofupac Tofu Ahumado 350g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "mr-tofu-1",
+      "productId": "tofu-varieties-1",
+      "side": "traditional",
+      "label": "Morinaga Tofu Natural Firme",
+      "searchQuery": "Morinaga Tofu Natural Firme 349g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "abasto-vegano-1",
+      "productId": "vegan-cheese-varieties-1",
+      "side": "plantBased",
+      "label": "Daiya Queso Vegano Mozzarella",
+      "searchQuery": "Daiya Queso Vegano Mozzarella 200g",
+      "category": "dairy",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "mr-tofu-1",
+      "productId": "soy-chorizo-1",
+      "side": "plantBased",
+      "label": "NotCo Chorizo Vegetal Especiado",
+      "searchQuery": "NotCo Chorizo Vegetal Especiado 300g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "abasto-vegano-1",
+      "productId": "vegan-snacks-1",
+      "side": "plantBased",
+      "label": "Lenny & Larry's Cookies Veganas con Chispas",
+      "searchQuery": "Lenny & Larry's Cookies Veganas Chispas 200g",
+      "category": "snacks",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "verde-vivo-1",
+      "productId": "mexican-vegan-chorizo-1",
+      "side": "traditional",
+      "label": "Soyamex Chorizo Vegano de Soya",
+      "searchQuery": "Soyamex Chorizo Vegano Soya 400g",
       "category": "proteins",
       "storeType": "vegan"
     },
@@ -78,20 +141,38 @@
       "storeType": "vegan"
     },
     {
+      "storeId": "veggie-smiles-1",
+      "productId": "mexican-vegan-mayo-1",
+      "side": "traditional",
+      "label": "Hellmann's Vegan Mayonesa Vegana",
+      "searchQuery": "Hellmann's Vegan Mayonesa Vegana 350g",
+      "category": "pantry",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "veggie-smiles-1",
+      "productId": "vegan-tacos-meat-1",
+      "side": "traditional",
+      "label": "Soyamex Proteína de Soya para Tacos",
+      "searchQuery": "Soyamex Proteína Soya Tacos 500g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "plantae-1",
+      "productId": "plant-protein-powder-1",
+      "side": "traditional",
+      "label": "Now Foods Proteína de Chícharo",
+      "searchQuery": "Now Foods Proteína Chícharo 500g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
       "storeId": "la-esquina-vegetariana-1",
       "productId": "tempeh-vs-jackfruit-1",
       "side": "plantBased",
       "label": "Upton's Naturals Jackfruit en Salmuera",
       "searchQuery": "Upton's Naturals Jackfruit Salmuera 300g",
-      "category": "proteins",
-      "storeType": "vegetarian"
-    },
-    {
-      "storeId": "la-esquina-vegetariana-1",
-      "productId": "tempeh-vs-jackfruit-1",
-      "side": "traditional",
-      "label": "Tofupac Tempeh de Soya",
-      "searchQuery": "Tofupac Tempeh Soya 300g",
       "category": "proteins",
       "storeType": "vegetarian"
     },
@@ -103,6 +184,15 @@
       "searchQuery": "Vega Proteína Multi-Plant Premium 500g",
       "category": "proteins",
       "storeType": "vegan"
+    },
+    {
+      "storeId": "la-esquina-vegetariana-1",
+      "productId": "tempeh-vs-jackfruit-1",
+      "side": "traditional",
+      "label": "Tofupac Tempeh de Soya",
+      "searchQuery": "Tofupac Tempeh Soya 300g",
+      "category": "proteins",
+      "storeType": "vegetarian"
     }
   ]
 }
