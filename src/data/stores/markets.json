@@ -27,7 +27,7 @@
           "unit": "250g",
           "pricePerUnit": 648,
           "isCommercial": true,
-          "lastUpdated": "2026-04-13T02:10:22.544Z"
+          "lastUpdated": "2026-05-04T02:27:33.432Z"
         },
         "priceDifferencePercent": 334.3,
         "availability": {
@@ -415,7 +415,7 @@
           "price": 152,
           "unit": "2 piezas (227g)",
           "pricePerUnit": 744.5,
-          "lastUpdated": "2026-04-13T02:10:22.370Z"
+          "lastUpdated": "2026-05-04T02:27:32.540Z"
         },
         "plantBased": {
           "name": "Hamburguesa Casera de Frijoles",
@@ -950,7 +950,7 @@
           "price": 84.9,
           "unit": "400g",
           "pricePerUnit": 147.5,
-          "lastUpdated": "2026-04-13T02:10:21.979Z"
+          "lastUpdated": "2026-05-04T02:27:32.614Z"
         },
         "plantBased": {
           "name": "Tofu Casero",
@@ -1265,10 +1265,10 @@
         "traditional": {
           "name": "Atún en Lata",
           "brand": "Marca comercial",
-          "price": 54.9,
+          "price": 68.5,
           "unit": "140g",
           "pricePerUnit": 178.57,
-          "lastUpdated": "2026-04-13T02:10:30.324Z"
+          "lastUpdated": "2026-05-04T02:27:40.683Z"
         },
         "plantBased": {
           "name": "Atún Vegetal de Garbanzos",
@@ -1367,7 +1367,7 @@
             }
           }
         },
-        "priceDifferencePercent": -77.2,
+        "priceDifferencePercent": -81.8,
         "availability": {
           "traditional": true,
           "plantBased": true

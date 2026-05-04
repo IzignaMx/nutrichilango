@@ -42,21 +42,21 @@
         "traditional": {
           "name": "Queso de Anacardo Natural",
           "brand": "Violife",
-          "price": 112,
+          "price": 102,
           "unit": "200g",
           "pricePerUnit": 645,
-          "lastUpdated": "2026-04-13T02:17:44.552Z"
+          "lastUpdated": "2026-05-04T02:34:12.457Z"
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
           "brand": "Miyoko's",
-          "price": 88.5,
+          "price": 71.5,
           "unit": "200g",
           "pricePerUnit": 945,
           "isCommercial": true,
-          "lastUpdated": "2026-04-13T02:17:48.891Z"
+          "lastUpdated": "2026-05-04T02:34:17.564Z"
         },
-        "priceDifferencePercent": -21,
+        "priceDifferencePercent": -29.9,
         "availability": {
           "traditional": false,
           "plantBased": true
