@@ -17,10 +17,10 @@
         "traditional": {
           "name": "Carne de Res Molida",
           "brand": "SuKarne",
-          "price": 79,
+          "price": 99,
           "unit": "500g",
           "pricePerUnit": 178,
-          "lastUpdated": "2026-04-13T02:09:21.704Z"
+          "lastUpdated": "2026-05-04T02:26:45.002Z"
         },
         "plantBased": {
           "name": "Carne Plant-Based",
@@ -29,9 +29,9 @@
           "unit": "500g",
           "pricePerUnit": 198,
           "isCommercial": true,
-          "lastUpdated": "2026-04-13T02:09:24.862Z"
+          "lastUpdated": "2026-05-04T02:26:46.223Z"
         },
-        "priceDifferencePercent": -37.3,
+        "priceDifferencePercent": -50,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -55,7 +55,7 @@
           "unit": "1L",
           "pricePerUnit": 42,
           "isCommercial": true,
-          "lastUpdated": "2026-04-13T02:09:42.489Z"
+          "lastUpdated": "2026-05-04T02:27:03.639Z"
         },
         "priceDifferencePercent": 55.9,
         "availability": {
@@ -86,7 +86,7 @@
           "price": 98.9,
           "unit": "500g",
           "pricePerUnit": 190,
-          "lastUpdated": "2026-04-13T02:09:41.076Z"
+          "lastUpdated": "2026-05-04T02:27:03.906Z"
         },
         "plantBased": {
           "name": "Tempeh de Soya",
