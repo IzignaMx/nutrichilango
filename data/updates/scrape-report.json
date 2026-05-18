@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-13T02:17:48.946Z",
+  "date": "2026-05-18T02:54:18.999Z",
   "totalTargets": 56,
   "successes": 35,
   "failures": 21,
@@ -51,6 +51,15 @@
       "storeType": "organic"
     },
     {
+      "storeId": "madre-tierra-1",
+      "productId": "coconut-milk-1",
+      "side": "plantBased",
+      "label": "Aroy-D Leche de Coco Orgánica",
+      "searchQuery": "Aroy-D Leche Coco Orgánica 400ml",
+      "category": "dairy",
+      "storeType": "organic"
+    },
+    {
       "storeId": "organico-nacional-1",
       "productId": "organic-beans-1",
       "side": "plantBased",
@@ -65,15 +74,6 @@
       "side": "traditional",
       "label": "Ener-G Sustituto de Huevo en Polvo",
       "searchQuery": "ener-g egg replacer sustituto huevo",
-      "category": "eggs",
-      "storeType": "vegan"
-    },
-    {
-      "storeId": "forever-vegano-1",
-      "productId": "vegan-eggs-1",
-      "side": "plantBased",
-      "label": "JUST JUST Egg Líquido",
-      "searchQuery": "just egg plant based scramble",
       "category": "eggs",
       "storeType": "vegan"
     },
@@ -142,20 +142,20 @@
     },
     {
       "storeId": "veggie-smiles-1",
-      "productId": "mexican-vegan-mayo-1",
-      "side": "traditional",
-      "label": "Hellmann's Vegan Mayonesa Vegana",
-      "searchQuery": "Hellmann's Vegan Mayonesa Vegana 350g",
-      "category": "pantry",
-      "storeType": "vegan"
-    },
-    {
-      "storeId": "veggie-smiles-1",
       "productId": "vegan-tacos-meat-1",
       "side": "traditional",
       "label": "Soyamex Proteína de Soya para Tacos",
       "searchQuery": "Soyamex Proteína Soya Tacos 500g",
       "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "veggie-smiles-1",
+      "productId": "mexican-vegan-mayo-1",
+      "side": "traditional",
+      "label": "Hellmann's Vegan Mayonesa Vegana",
+      "searchQuery": "Hellmann's Vegan Mayonesa Vegana 350g",
+      "category": "pantry",
       "storeType": "vegan"
     },
     {
