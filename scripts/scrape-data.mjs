@@ -246,7 +246,7 @@ function extractPriceFromPage(page, selector) {
     if (!matches) return null;
 
     for (const m of matches) {
-      const num = parseFloat(m.replace('$', '').replace(/,/g, '').trim());
+      const num = parseFloat(m.replace(/\$/g, '').replace(/,/g, '').trim());
       if (!isNaN(num) && num > 1 && num < 15_000) return num;
     }
     return null;
