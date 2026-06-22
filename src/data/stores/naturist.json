@@ -20,7 +20,7 @@
           "price": 65,
           "unit": "349g",
           "pricePerUnit": 186.2,
-          "lastUpdated": "2026-06-15T03:39:11.565Z"
+          "lastUpdated": "2026-06-22T03:39:56.818Z"
         },
         "plantBased": {
           "name": "Seitán Artesanal",
@@ -29,7 +29,7 @@
           "unit": "400g",
           "pricePerUnit": 222.5,
           "isCommercial": true,
-          "lastUpdated": "2026-06-15T03:39:11.663Z"
+          "lastUpdated": "2026-06-22T03:39:56.897Z"
         },
         "priceDifferencePercent": 90.8,
         "availability": {
@@ -47,7 +47,7 @@
           "price": 59,
           "unit": "946ml",
           "pricePerUnit": 55,
-          "lastUpdated": "2026-06-15T03:39:18.159Z"
+          "lastUpdated": "2026-06-22T03:40:02.932Z"
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
@@ -56,7 +56,7 @@
           "unit": "946ml",
           "pricePerUnit": 71.9,
           "isCommercial": true,
-          "lastUpdated": "2026-06-15T03:39:18.564Z"
+          "lastUpdated": "2026-06-22T03:40:04.025Z"
         },
         "priceDifferencePercent": 0,
         "availability": {
