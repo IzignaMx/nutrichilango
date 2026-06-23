@@ -20,7 +20,7 @@
           "price": 47,
           "unit": "300g",
           "pricePerUnit": 263.3,
-          "lastUpdated": "2026-06-15T03:47:04.365Z"
+          "lastUpdated": "2026-06-22T03:44:59.021Z"
         },
         "plantBased": {
           "name": "Jackfruit en Salmuera",
@@ -46,18 +46,18 @@
           "price": 125,
           "unit": "200g",
           "pricePerUnit": 645,
-          "lastUpdated": "2026-06-15T03:47:52.655Z"
+          "lastUpdated": "2026-06-22T03:45:24.138Z"
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
           "brand": "Miyoko's",
-          "price": 34,
+          "price": 99,
           "unit": "200g",
           "pricePerUnit": 945,
           "isCommercial": true,
-          "lastUpdated": "2026-06-15T03:47:52.028Z"
+          "lastUpdated": "2026-06-22T03:45:28.324Z"
         },
-        "priceDifferencePercent": -72.8,
+        "priceDifferencePercent": -20.8,
         "availability": {
           "traditional": false,
           "plantBased": true

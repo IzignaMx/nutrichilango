@@ -1,57 +1,55 @@
 🏗️  Starting Advanced 2-Phase Data Pipeline...
 
 🔍 Phase 1: Auditing Scraped Price Updates...
-   Found 47 price updates.
-   Audit: 47 passed, 0 failed.
+   Found 45 price updates.
+   Audit: 45 passed, 0 failed.
 
 🚀 Phase 2: Committing Price Changes...
-   ✅ soriana-1/beef-vs-tofu-1 [traditional]: $79 → $99
+   ✅ soriana-1/beef-vs-tofu-1 [traditional]: $99 → $99
    ✅ soriana-1/beef-vs-tofu-1 [plantBased]: $49.5 → $49.5
+   ✅ soriana-1/milk-vs-soy-1 [plantBased]: $55.9 → $55.9
    ✅ walmart-1/chicken-vs-tempeh-1 [traditional]: $98.9 → $98.9
-   ✅ soriana-1/milk-vs-soy-1 [plantBased]: $49.9 → $55.9
    ✅ mercado-jamaica-1/chicken-vs-commercial-nuggets-1 [plantBased]: $152 → $152
-   ✅ central-abastos-1/commercial-vs-homemade-tofu-1 [traditional]: $84.9 → $84.9
    ✅ mercado-jamaica-1/commercial-vs-homemade-burger-1 [traditional]: $152 → $152
+   ✅ central-abastos-1/commercial-vs-homemade-tofu-1 [traditional]: $84.9 → $84.9
    ✅ super-naturista-1/tofu-vs-seitan-1 [traditional]: $65 → $65
-   ✅ super-naturista-1/tofu-vs-seitan-1 [plantBased]: $88.5 → $124
-   ✅ central-abastos-1/tuna-vs-homemade-chickpea-tuna-1 [traditional]: $54.9 → $55.9
+   ✅ super-naturista-1/tofu-vs-seitan-1 [plantBased]: $124 → $124
+   ✅ central-abastos-1/tuna-vs-homemade-chickpea-tuna-1 [traditional]: $55.9 → $55.9
    ✅ super-naturista-1/almond-milk-1 [traditional]: $59 → $59
    ✅ super-naturista-1/almond-milk-1 [plantBased]: $59 → $59
-   ✅ madre-tierra-1/quinoa-vs-legumes-1 [plantBased]: $129 → $129
    ✅ madre-tierra-1/quinoa-vs-legumes-1 [traditional]: $129 → $129
-   ✅ madre-tierra-1/coconut-milk-1 [plantBased]: $59.5 → $59.5
+   ✅ madre-tierra-1/quinoa-vs-legumes-1 [plantBased]: $129 → $129
    ✅ organico-nacional-1/organic-beans-1 [traditional]: $123 → $123
-   ✅ por-amor-1/vegan-meat-1 [traditional]: $94 → $47
-   ✅ por-amor-1/vegan-meat-1 [plantBased]: $205 → $201
-   ✅ green-corner-1/nutritional-yeast-1 [traditional]: $234.3 → $139
-   ✅ por-amor-1/vegan-yogurt-1 [plantBased]: $82.5 → $179.3
-   ✅ green-corner-1/nutritional-yeast-1 [plantBased]: $133 → $139
-   ✅ forever-vegano-1/vegan-eggs-1 [traditional]: $380 → $203.5
-   ✅ forever-vegano-1/vegan-eggs-1 [plantBased]: $48.4 → $44
+   ✅ madre-tierra-1/coconut-milk-1 [plantBased]: $59.5 → $59.5
+   ✅ por-amor-1/vegan-meat-1 [traditional]: $47 → $47
+   ✅ por-amor-1/vegan-meat-1 [plantBased]: $201 → $205
+   ✅ green-corner-1/nutritional-yeast-1 [traditional]: $139 → $139
+   ✅ por-amor-1/vegan-yogurt-1 [plantBased]: $179.3 → $179.3
+   ✅ green-corner-1/nutritional-yeast-1 [plantBased]: $139 → $139
+   ✅ forever-vegano-1/vegan-eggs-1 [plantBased]: $44 → $44
+   ✅ mr-tofu-1/soy-chorizo-1 [traditional]: $109 → $229
+   ✅ mr-tofu-1/tofu-varieties-1 [plantBased]: $82 → $82
    ✅ mr-tofu-1/tofu-varieties-1 [traditional]: $65 → $65
-   ✅ mr-tofu-1/tofu-varieties-1 [plantBased]: $85 → $82
-   ✅ mr-tofu-1/soy-chorizo-1 [traditional]: $70.9 → $109
-   ✅ abasto-vegano-1/vegan-cheese-varieties-1 [traditional]: $129 → $95
+   ✅ mr-tofu-1/soy-chorizo-1 [plantBased]: $179 → $109
+   ✅ abasto-vegano-1/vegan-cheese-varieties-1 [traditional]: $95 → $125
    ✅ abasto-vegano-1/vegan-cheese-varieties-1 [plantBased]: $164 → $164
-   ✅ mr-tofu-1/soy-chorizo-1 [plantBased]: $170.5 → $179
-   ✅ abasto-vegano-1/plant-milk-combo-1 [plantBased]: $74 → $59
-   ✅ abasto-vegano-1/plant-milk-combo-1 [traditional]: $49.5 → $59
-   ✅ abasto-vegano-1/vegan-snacks-1 [traditional]: $25.2 → $31.5
-   ✅ abasto-vegano-1/vegan-snacks-1 [plantBased]: $71.5 → $105
-   ✅ vegan-label-1/imported-vegan-meat-1 [traditional]: $152 → $195.8
-   ✅ vegan-label-1/imported-vegan-meat-1 [plantBased]: $349 → $261.75
-   ✅ vegan-label-1/vegan-ice-cream-1 [traditional]: $103 → $143
+   ✅ abasto-vegano-1/plant-milk-combo-1 [plantBased]: $59 → $59
+   ✅ abasto-vegano-1/plant-milk-combo-1 [traditional]: $59 → $59
+   ✅ abasto-vegano-1/vegan-snacks-1 [traditional]: $31.5 → $35.5
+   ✅ abasto-vegano-1/vegan-snacks-1 [plantBased]: $105 → $105
+   ✅ vegan-label-1/imported-vegan-meat-1 [plantBased]: $261.75 → $160.6
+   ✅ vegan-label-1/imported-vegan-meat-1 [traditional]: $195.8 → $160.6
    ✅ verde-vivo-1/mexican-vegan-chorizo-1 [traditional]: $109 → $109
-   ✅ vegan-label-1/vegan-ice-cream-1 [plantBased]: $192.5 → $275
-   ✅ veggie-smiles-1/vegan-tacos-meat-1 [traditional]: $93.5 → $47
-   ✅ veggie-smiles-1/vegan-tacos-meat-1 [plantBased]: $119 → $179
-   ✅ veggie-smiles-1/mexican-vegan-mayo-1 [traditional]: $61.6 → $174
-   ✅ plantae-1/fermented-cashew-cheese-1 [traditional]: $88.5 → $34
-   ✅ veggie-smiles-1/mexican-vegan-mayo-1 [plantBased]: $168 → $179
-   ✅ plantae-1/plant-protein-powder-1 [traditional]: $93.5 → $108.9
-   ✅ la-esquina-vegetariana-1/tempeh-vs-jackfruit-1 [traditional]: $79 → $47
-   ✅ la-esquina-vegetariana-1/cashew-cheese-1 [plantBased]: $88.5 → $34
-   ✅ la-esquina-vegetariana-1/cashew-cheese-1 [traditional]: $112 → $125
+   ✅ vegan-label-1/vegan-ice-cream-1 [traditional]: $143 → $269.5
+   ✅ vegan-label-1/vegan-ice-cream-1 [plantBased]: $275 → $275
+   ✅ veggie-smiles-1/mexican-vegan-mayo-1 [traditional]: $174 → $174
+   ✅ veggie-smiles-1/vegan-tacos-meat-1 [traditional]: $47 → $47
+   ✅ veggie-smiles-1/vegan-tacos-meat-1 [plantBased]: $179 → $179
+   ✅ plantae-1/plant-protein-powder-1 [traditional]: $108.9 → $108.9
+   ✅ plantae-1/fermented-cashew-cheese-1 [traditional]: $34 → $42.5
+   ✅ la-esquina-vegetariana-1/tempeh-vs-jackfruit-1 [traditional]: $47 → $47
+   ✅ la-esquina-vegetariana-1/cashew-cheese-1 [traditional]: $125 → $125
+   ✅ la-esquina-vegetariana-1/cashew-cheese-1 [plantBased]: $34 → $99
 ✅ Metadata timestamp updated.
 
-✨ Pipeline finished. Applied 47 price updates, 0 not found.
+✨ Pipeline finished. Applied 45 price updates, 0 not found.
