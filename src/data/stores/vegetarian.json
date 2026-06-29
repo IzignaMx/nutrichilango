@@ -20,17 +20,18 @@
           "price": 47,
           "unit": "300g",
           "pricePerUnit": 263.3,
-          "lastUpdated": "2026-06-22T03:44:59.021Z"
+          "lastUpdated": "2026-06-29T03:01:27.009Z"
         },
         "plantBased": {
           "name": "Jackfruit en Salmuera",
           "brand": "Upton's Naturals",
-          "price": 89,
+          "price": 214.5,
           "unit": "300g",
           "pricePerUnit": 296.7,
-          "isCommercial": true
+          "isCommercial": true,
+          "lastUpdated": "2026-06-29T03:01:32.120Z"
         },
-        "priceDifferencePercent": 89.4,
+        "priceDifferencePercent": 356.4,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -46,7 +47,7 @@
           "price": 125,
           "unit": "200g",
           "pricePerUnit": 645,
-          "lastUpdated": "2026-06-22T03:45:24.138Z"
+          "lastUpdated": "2026-06-29T03:01:52.525Z"
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
@@ -55,7 +56,7 @@
           "unit": "200g",
           "pricePerUnit": 945,
           "isCommercial": true,
-          "lastUpdated": "2026-06-22T03:45:28.324Z"
+          "lastUpdated": "2026-06-29T03:01:51.365Z"
         },
         "priceDifferencePercent": -20.8,
         "availability": {
