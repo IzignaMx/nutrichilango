@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-06T02:45:06.224Z",
+  "date": "2026-07-13T02:17:07.548Z",
   "totalTargets": 56,
-  "successes": 47,
-  "failures": 9,
-  "successRate": "83.9%",
+  "successes": 50,
+  "failures": 6,
+  "successRate": "89.3%",
   "failureDetails": [
     {
       "storeId": "soriana-1",
@@ -22,24 +22,6 @@
       "searchQuery": "tempeh soya tofupac",
       "category": "proteins",
       "storeType": "conventional"
-    },
-    {
-      "storeId": "the-green-spot-1",
-      "productId": "hemp-seeds-1",
-      "side": "traditional",
-      "label": "Manitoba Harvest Semillas de Hemp",
-      "searchQuery": "Manitoba Harvest Semillas Hemp 250g",
-      "category": "proteins",
-      "storeType": "naturist"
-    },
-    {
-      "storeId": "the-green-spot-1",
-      "productId": "hemp-seeds-1",
-      "side": "plantBased",
-      "label": "Manitoba Harvest Proteína de Hemp en Polvo",
-      "searchQuery": "Manitoba Harvest Proteína Hemp Polvo 250g",
-      "category": "proteins",
-      "storeType": "naturist"
     },
     {
       "storeId": "madre-tierra-1",
@@ -67,15 +49,6 @@
       "searchQuery": "Orgánico Nacional Hamburguesas Frijol Orgánico 4 piezas (400g)",
       "category": "proteins",
       "storeType": "organic"
-    },
-    {
-      "storeId": "mr-tofu-1",
-      "productId": "tofu-varieties-1",
-      "side": "plantBased",
-      "label": "Tofupac Tofu Ahumado",
-      "searchQuery": "Tofupac Tofu Ahumado 350g",
-      "category": "proteins",
-      "storeType": "vegan"
     },
     {
       "storeId": "plantae-1",
