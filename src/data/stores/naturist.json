@@ -29,7 +29,7 @@
           "unit": "400g",
           "pricePerUnit": 222.5,
           "isCommercial": true,
-          "lastUpdated": "2026-07-13T02:13:43.116Z"
+          "lastUpdated": "2026-07-20T02:30:04.912Z"
         },
         "priceDifferencePercent": 36.2,
         "availability": {
@@ -47,18 +47,18 @@
           "price": 59,
           "unit": "946ml",
           "pricePerUnit": 55,
-          "lastUpdated": "2026-07-13T02:13:49.540Z"
+          "lastUpdated": "2026-07-20T02:30:16.463Z"
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
           "brand": "Natura",
-          "price": 59,
+          "price": 60.5,
           "unit": "946ml",
           "pricePerUnit": 71.9,
           "isCommercial": true,
-          "lastUpdated": "2026-07-13T02:13:49.513Z"
+          "lastUpdated": "2026-07-20T02:30:21.866Z"
         },
-        "priceDifferencePercent": 0,
+        "priceDifferencePercent": 2.5,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -87,7 +87,7 @@
           "price": 313.5,
           "unit": "250g",
           "pricePerUnit": 1396,
-          "lastUpdated": "2026-07-13T02:13:55.205Z"
+          "lastUpdated": "2026-07-20T02:30:22.618Z"
         },
         "plantBased": {
           "name": "Proteína de Hemp en Polvo",
@@ -96,7 +96,7 @@
           "unit": "250g",
           "pricePerUnit": 1716,
           "isCommercial": true,
-          "lastUpdated": "2026-07-13T02:14:00.523Z"
+          "lastUpdated": "2026-07-20T02:30:28.586Z"
         },
         "priceDifferencePercent": -55.7,
         "availability": {

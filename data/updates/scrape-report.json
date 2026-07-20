@@ -1,9 +1,9 @@
 {
-  "date": "2026-07-13T02:17:07.548Z",
+  "date": "2026-07-20T02:33:54.983Z",
   "totalTargets": 56,
-  "successes": 50,
-  "failures": 6,
-  "successRate": "89.3%",
+  "successes": 44,
+  "failures": 12,
+  "successRate": "78.6%",
   "failureDetails": [
     {
       "storeId": "soriana-1",
@@ -22,6 +22,15 @@
       "searchQuery": "tempeh soya tofupac",
       "category": "proteins",
       "storeType": "conventional"
+    },
+    {
+      "storeId": "super-naturista-1",
+      "productId": "tofu-vs-seitan-1",
+      "side": "traditional",
+      "label": "Morinaga Tofu Firme",
+      "searchQuery": "Morinaga Tofu Firme 349g",
+      "category": "proteins",
+      "storeType": "naturist"
     },
     {
       "storeId": "madre-tierra-1",
@@ -49,6 +58,51 @@
       "searchQuery": "Orgánico Nacional Hamburguesas Frijol Orgánico 4 piezas (400g)",
       "category": "proteins",
       "storeType": "organic"
+    },
+    {
+      "storeId": "abasto-vegano-1",
+      "productId": "vegan-cheese-varieties-1",
+      "side": "plantBased",
+      "label": "Daiya Queso Vegano Mozzarella",
+      "searchQuery": "Daiya Queso Vegano Mozzarella 200g",
+      "category": "dairy",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "mr-tofu-1",
+      "productId": "soy-chorizo-1",
+      "side": "plantBased",
+      "label": "NotCo Chorizo Vegetal Especiado",
+      "searchQuery": "NotCo Chorizo Vegetal Especiado 300g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "veggie-smiles-1",
+      "productId": "vegan-tacos-meat-1",
+      "side": "traditional",
+      "label": "Soyamex Proteína de Soya para Tacos",
+      "searchQuery": "Soyamex Proteína Soya Tacos 500g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "veggie-smiles-1",
+      "productId": "vegan-tacos-meat-1",
+      "side": "plantBased",
+      "label": "NotCo Tiras de Carne Vegana al Pastor",
+      "searchQuery": "NotCo Tiras Carne Vegana al Pastor 500g",
+      "category": "proteins",
+      "storeType": "vegan"
+    },
+    {
+      "storeId": "veggie-smiles-1",
+      "productId": "mexican-vegan-mayo-1",
+      "side": "traditional",
+      "label": "Hellmann's Vegan Mayonesa Vegana",
+      "searchQuery": "Hellmann's Vegan Mayonesa Vegana 350g",
+      "category": "pantry",
+      "storeType": "vegan"
     },
     {
       "storeId": "plantae-1",
