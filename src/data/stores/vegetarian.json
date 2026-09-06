@@ -20,7 +20,7 @@
           "price": 139,
           "unit": "300g",
           "pricePerUnit": 263.3,
-          "lastUpdated": "2026-08-24T01:01:20.126Z"
+          "lastUpdated": "2026-08-31T03:05:26.923Z"
         },
         "plantBased": {
           "name": "Jackfruit en Salmuera",
@@ -44,21 +44,21 @@
         "traditional": {
           "name": "Queso de Anacardo Natural",
           "brand": "Violife",
-          "price": 199,
+          "price": 108.9,
           "unit": "200g",
           "pricePerUnit": 645,
-          "lastUpdated": "2026-08-24T01:01:33.432Z"
+          "lastUpdated": "2026-08-31T03:05:53.763Z"
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
           "brand": "Miyoko's",
-          "price": 269.5,
+          "price": 141.9,
           "unit": "200g",
           "pricePerUnit": 945,
           "isCommercial": true,
-          "lastUpdated": "2026-08-24T01:01:39.480Z"
+          "lastUpdated": "2026-08-31T03:05:51.575Z"
         },
-        "priceDifferencePercent": 35.4,
+        "priceDifferencePercent": 30.3,
         "availability": {
           "traditional": false,
           "plantBased": true
