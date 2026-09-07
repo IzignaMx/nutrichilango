@@ -3,7 +3,7 @@
  * Global metadata for the NutriChilango data project.
  */
 export const siteMetadata = {
-  lastUpdated: "2026-08-31T03:05:53.915Z", // ISO string, will be updated by scripts/update-data.mjs
+  lastUpdated: "2026-09-07T02:31:39.957Z", // ISO string, will be updated by scripts/update-data.mjs
   updateFrequency: "weekly",
   dataSource: "Manual Research & Community Reports",
 };

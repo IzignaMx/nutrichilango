@@ -1,5 +1,5 @@
 {
-  "date": "2026-08-31T03:05:53.832Z",
+  "date": "2026-09-07T02:31:39.860Z",
   "totalTargets": 56,
   "successes": 49,
   "failures": 7,
@@ -33,13 +33,13 @@
       "storeType": "conventional"
     },
     {
-      "storeId": "madre-tierra-1",
-      "productId": "coconut-milk-1",
+      "storeId": "the-green-spot-1",
+      "productId": "hemp-seeds-1",
       "side": "plantBased",
-      "label": "Aroy-D Leche de Coco Orgánica",
-      "searchQuery": "Aroy-D Leche Coco Orgánica 400ml",
-      "category": "dairy",
-      "storeType": "organic"
+      "label": "Manitoba Harvest Proteína de Hemp en Polvo",
+      "searchQuery": "Manitoba Harvest Proteína Hemp Polvo 250g",
+      "category": "proteins",
+      "storeType": "naturist"
     },
     {
       "storeId": "madre-tierra-1",
@@ -51,6 +51,15 @@
       "storeType": "organic"
     },
     {
+      "storeId": "madre-tierra-1",
+      "productId": "coconut-milk-1",
+      "side": "plantBased",
+      "label": "Aroy-D Leche de Coco Orgánica",
+      "searchQuery": "Aroy-D Leche Coco Orgánica 400ml",
+      "category": "dairy",
+      "storeType": "organic"
+    },
+    {
       "storeId": "organico-nacional-1",
       "productId": "organic-beans-1",
       "side": "plantBased",
@@ -58,15 +67,6 @@
       "searchQuery": "Orgánico Nacional Hamburguesas Frijol Orgánico 4 piezas (400g)",
       "category": "proteins",
       "storeType": "organic"
-    },
-    {
-      "storeId": "la-esquina-vegetariana-1",
-      "productId": "tempeh-vs-jackfruit-1",
-      "side": "plantBased",
-      "label": "Upton's Naturals Jackfruit en Salmuera",
-      "searchQuery": "Upton's Naturals Jackfruit Salmuera 300g",
-      "category": "proteins",
-      "storeType": "vegetarian"
     }
   ]
 }
