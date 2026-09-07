@@ -20,7 +20,7 @@
           "price": 109,
           "unit": "500g",
           "pricePerUnit": 178,
-          "lastUpdated": "2026-08-31T03:01:21.046Z"
+          "lastUpdated": "2026-09-07T02:26:01.832Z"
         },
         "plantBased": {
           "name": "Carne Plant-Based",
@@ -51,13 +51,13 @@
         "plantBased": {
           "name": "Leche de Soya",
           "brand": "Silk",
-          "price": 51.5,
+          "price": 50.9,
           "unit": "1L",
           "pricePerUnit": 42,
           "isCommercial": true,
-          "lastUpdated": "2026-08-31T03:01:37.668Z"
+          "lastUpdated": "2026-09-07T02:26:19.414Z"
         },
-        "priceDifferencePercent": 60.9,
+        "priceDifferencePercent": 59.1,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -86,7 +86,7 @@
           "price": 119,
           "unit": "500g",
           "pricePerUnit": 190,
-          "lastUpdated": "2026-08-31T03:01:36.503Z"
+          "lastUpdated": "2026-09-07T02:26:17.705Z"
         },
         "plantBased": {
           "name": "Tempeh de Soya",
