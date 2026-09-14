@@ -17,10 +17,10 @@
         "traditional": {
           "name": "Tempeh de Soya",
           "brand": "Tofupac",
-          "price": 139,
+          "price": 139.7,
           "unit": "300g",
           "pricePerUnit": 263.3,
-          "lastUpdated": "2026-08-31T03:05:26.923Z"
+          "lastUpdated": "2026-09-14T03:03:47.875Z"
         },
         "plantBased": {
           "name": "Jackfruit en Salmuera",
@@ -31,7 +31,7 @@
           "isCommercial": true,
           "lastUpdated": "2026-08-24T01:01:27.463Z"
         },
-        "priceDifferencePercent": 54.3,
+        "priceDifferencePercent": 53.5,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -44,10 +44,10 @@
         "traditional": {
           "name": "Queso de Anacardo Natural",
           "brand": "Violife",
-          "price": 108.9,
+          "price": 95,
           "unit": "200g",
           "pricePerUnit": 645,
-          "lastUpdated": "2026-08-31T03:05:53.763Z"
+          "lastUpdated": "2026-09-14T03:04:07.594Z"
         },
         "plantBased": {
           "name": "Queso de Anacardo Premium",
@@ -58,7 +58,7 @@
           "isCommercial": true,
           "lastUpdated": "2026-08-31T03:05:51.575Z"
         },
-        "priceDifferencePercent": 30.3,
+        "priceDifferencePercent": 49.4,
         "availability": {
           "traditional": false,
           "plantBased": true
