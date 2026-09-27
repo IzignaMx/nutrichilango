@@ -17,21 +17,21 @@
         "traditional": {
           "name": "Tofu Firme",
           "brand": "Morinaga",
-          "price": 82,
+          "price": 65,
           "unit": "349g",
           "pricePerUnit": 186.2,
-          "lastUpdated": "2026-09-14T02:58:29.833Z"
+          "lastUpdated": "2026-09-21T02:55:16.378Z"
         },
         "plantBased": {
           "name": "Seitán Artesanal",
           "brand": "Seitanbul",
-          "price": 92,
+          "price": 84.5,
           "unit": "400g",
           "pricePerUnit": 222.5,
           "isCommercial": true,
-          "lastUpdated": "2026-09-14T02:58:48.431Z"
+          "lastUpdated": "2026-09-21T02:55:35.113Z"
         },
-        "priceDifferencePercent": 12.2,
+        "priceDifferencePercent": 30,
         "availability": {
           "traditional": false,
           "plantBased": true
@@ -47,18 +47,18 @@
           "price": 59,
           "unit": "946ml",
           "pricePerUnit": 55,
-          "lastUpdated": "2026-09-14T02:58:53.383Z"
+          "lastUpdated": "2026-09-21T02:55:42.073Z"
         },
         "plantBased": {
           "name": "Leche de Almendra Orgánica",
           "brand": "Natura",
-          "price": 116,
+          "price": 59,
           "unit": "946ml",
           "pricePerUnit": 71.9,
           "isCommercial": true,
-          "lastUpdated": "2026-09-14T02:59:07.651Z"
+          "lastUpdated": "2026-09-21T02:55:42.311Z"
         },
-        "priceDifferencePercent": 96.6,
+        "priceDifferencePercent": 0,
         "availability": {
           "traditional": false,
           "plantBased": true
