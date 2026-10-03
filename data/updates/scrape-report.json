@@ -1,9 +1,9 @@
 {
-  "date": "2026-09-21T03:00:17.219Z",
+  "date": "2026-09-28T03:13:19.303Z",
   "totalTargets": 56,
-  "successes": 43,
-  "failures": 13,
-  "successRate": "76.8%",
+  "successes": 46,
+  "failures": 10,
+  "successRate": "82.1%",
   "failureDetails": [
     {
       "storeId": "soriana-1",
@@ -22,15 +22,6 @@
       "searchQuery": "tempeh soya tofupac",
       "category": "proteins",
       "storeType": "conventional"
-    },
-    {
-      "storeId": "the-green-spot-1",
-      "productId": "hemp-seeds-1",
-      "side": "traditional",
-      "label": "Manitoba Harvest Semillas de Hemp",
-      "searchQuery": "Manitoba Harvest Semillas Hemp 250g",
-      "category": "proteins",
-      "storeType": "naturist"
     },
     {
       "storeId": "the-green-spot-1",
@@ -67,24 +58,6 @@
       "searchQuery": "Orgánico Nacional Hamburguesas Frijol Orgánico 4 piezas (400g)",
       "category": "proteins",
       "storeType": "organic"
-    },
-    {
-      "storeId": "mr-tofu-1",
-      "productId": "tofu-varieties-1",
-      "side": "plantBased",
-      "label": "Tofupac Tofu Ahumado",
-      "searchQuery": "Tofupac Tofu Ahumado 350g",
-      "category": "proteins",
-      "storeType": "vegan"
-    },
-    {
-      "storeId": "veggie-smiles-1",
-      "productId": "vegan-tacos-meat-1",
-      "side": "plantBased",
-      "label": "NotCo Tiras de Carne Vegana al Pastor",
-      "searchQuery": "NotCo Tiras Carne Vegana al Pastor 500g",
-      "category": "proteins",
-      "storeType": "vegan"
     },
     {
       "storeId": "veggie-smiles-1",
