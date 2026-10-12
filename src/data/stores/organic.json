@@ -19,7 +19,7 @@
           "price": 129,
           "unit": "500g",
           "pricePerUnit": 250,
-          "lastUpdated": "2026-09-28T03:10:03.565Z"
+          "lastUpdated": "2026-10-12T03:55:24.799Z"
         },
         "plantBased": {
           "name": "Mix de Leguminosas Orgánicas",
@@ -28,7 +28,7 @@
           "unit": "500g",
           "pricePerUnit": 170,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:10:04.125Z"
+          "lastUpdated": "2026-10-12T03:55:24.411Z"
         },
         "priceDifferencePercent": 0,
         "availability": {
@@ -87,7 +87,7 @@
           "price": 123,
           "unit": "500g",
           "pricePerUnit": 118,
-          "lastUpdated": "2026-09-28T03:10:27.627Z"
+          "lastUpdated": "2026-10-12T03:55:46.901Z"
         },
         "plantBased": {
           "name": "Hamburguesas de Frijol Orgánico",
