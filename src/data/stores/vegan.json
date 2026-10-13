@@ -20,7 +20,7 @@
           "price": 47,
           "unit": "500g",
           "pricePerUnit": 90,
-          "lastUpdated": "2026-09-28T03:10:37.420Z"
+          "lastUpdated": "2026-10-12T03:55:57.812Z"
         },
         "plantBased": {
           "name": "Carne Vegana Beyond Beef",
@@ -29,7 +29,7 @@
           "unit": "454g",
           "pricePerUnit": 416.3,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:10:38.094Z"
+          "lastUpdated": "2026-10-12T03:55:58.087Z"
         },
         "priceDifferencePercent": 327.7,
         "availability": {
@@ -44,21 +44,21 @@
         "traditional": {
           "name": "Yogurt de Soya Natural",
           "brand": "Silk",
-          "price": 226,
+          "price": 82,
           "unit": "480g",
           "pricePerUnit": 100,
-          "lastUpdated": "2026-09-28T03:10:47.805Z"
+          "lastUpdated": "2026-10-12T03:56:08.746Z"
         },
         "plantBased": {
           "name": "Yogurt de Coco Probiótico",
           "brand": "Forager Project",
-          "price": 89,
+          "price": 74.5,
           "unit": "355ml",
           "pricePerUnit": 250.7,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:10:47.510Z"
+          "lastUpdated": "2026-10-12T03:56:25.084Z"
         },
-        "priceDifferencePercent": -60.6,
+        "priceDifferencePercent": -9.1,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -87,18 +87,18 @@
           "price": 139,
           "unit": "127g",
           "pricePerUnit": 1961,
-          "lastUpdated": "2026-09-28T03:10:47.683Z"
+          "lastUpdated": "2026-10-12T03:56:08.177Z"
         },
         "plantBased": {
           "name": "Levadura Nutricional Orgánica",
           "brand": "Bob's Red Mill",
-          "price": 90.2,
+          "price": 133,
           "unit": "142g",
           "pricePerUnit": 1331,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:10:58.938Z"
+          "lastUpdated": "2026-10-12T03:56:45.907Z"
         },
-        "priceDifferencePercent": -35.1,
+        "priceDifferencePercent": -4.3,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -128,7 +128,7 @@
           "price": 203.5,
           "unit": "454g",
           "pricePerUnit": 837.4,
-          "lastUpdated": "2026-09-28T03:11:00.450Z"
+          "lastUpdated": "2026-10-12T03:56:38.598Z"
         },
         "plantBased": {
           "name": "JUST Egg Líquido",
@@ -137,7 +137,7 @@
           "unit": "355ml",
           "pricePerUnit": 532.4,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:10:55.151Z"
+          "lastUpdated": "2026-10-12T03:56:31.328Z"
         },
         "priceDifferencePercent": -39.1,
         "availability": {
@@ -169,18 +169,18 @@
           "price": 65,
           "unit": "349g",
           "pricePerUnit": 186.2,
-          "lastUpdated": "2026-09-28T03:11:07.503Z"
+          "lastUpdated": "2026-10-12T03:56:50.754Z"
         },
         "plantBased": {
           "name": "Tofu Ahumado",
           "brand": "Tofupac",
-          "price": 159,
+          "price": 126.5,
           "unit": "350g",
           "pricePerUnit": 242.9,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:11:06.758Z"
+          "lastUpdated": "2026-10-12T03:56:58.021Z"
         },
-        "priceDifferencePercent": 144.6,
+        "priceDifferencePercent": 94.6,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -196,18 +196,18 @@
           "price": 109,
           "unit": "300g",
           "pricePerUnit": 216.7,
-          "lastUpdated": "2026-09-28T03:11:06.715Z"
+          "lastUpdated": "2026-10-12T03:56:50.905Z"
         },
         "plantBased": {
           "name": "Chorizo Vegetal Especiado",
           "brand": "NotCo",
-          "price": 245,
+          "price": 89,
           "unit": "300g",
           "pricePerUnit": 363.3,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:11:12.808Z"
+          "lastUpdated": "2026-10-12T03:57:20.579Z"
         },
-        "priceDifferencePercent": 124.8,
+        "priceDifferencePercent": -18.3,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -237,7 +237,7 @@
           "price": 109,
           "unit": "200g",
           "pricePerUnit": 545,
-          "lastUpdated": "2026-09-28T03:11:12.671Z"
+          "lastUpdated": "2026-10-12T03:57:03.639Z"
         },
         "plantBased": {
           "name": "Queso Vegano Mozzarella",
@@ -246,7 +246,7 @@
           "unit": "200g",
           "pricePerUnit": 645,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:11:13.704Z"
+          "lastUpdated": "2026-10-12T03:57:04.309Z"
         },
         "priceDifferencePercent": 50.5,
         "availability": {
@@ -264,7 +264,7 @@
           "price": 89,
           "unit": "946ml",
           "pricePerUnit": 47.6,
-          "lastUpdated": "2026-09-28T03:11:35.382Z"
+          "lastUpdated": "2026-10-12T03:57:42.232Z"
         },
         "plantBased": {
           "name": "Leche de Macadamia",
@@ -273,7 +273,7 @@
           "unit": "946ml",
           "pricePerUnit": 104.7,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:11:35.614Z"
+          "lastUpdated": "2026-10-12T03:57:41.449Z"
         },
         "priceDifferencePercent": -16.9,
         "availability": {
@@ -291,18 +291,18 @@
           "price": 104.5,
           "unit": "200g",
           "pricePerUnit": 175,
-          "lastUpdated": "2026-09-28T03:11:24.935Z"
+          "lastUpdated": "2026-10-12T03:57:34.057Z"
         },
         "plantBased": {
           "name": "Cookies Veganas con Chispas",
           "brand": "Lenny & Larry's",
-          "price": 59,
+          "price": 71.5,
           "unit": "200g",
           "pricePerUnit": 325,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:11:42.916Z"
+          "lastUpdated": "2026-10-12T03:57:54.712Z"
         },
-        "priceDifferencePercent": -43.5,
+        "priceDifferencePercent": -31.6,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -331,7 +331,7 @@
           "price": 143,
           "unit": "2 piezas (227g)",
           "pricePerUnit": 744.5,
-          "lastUpdated": "2026-09-28T03:11:42.007Z"
+          "lastUpdated": "2026-10-12T03:57:49.015Z"
         },
         "plantBased": {
           "name": "Impossible Burger",
@@ -340,7 +340,7 @@
           "unit": "2 piezas (227g)",
           "pricePerUnit": 1096.9,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:11:47.692Z"
+          "lastUpdated": "2026-10-12T03:57:54.413Z"
         },
         "priceDifferencePercent": 169.2,
         "availability": {
@@ -358,18 +358,18 @@
           "price": 275,
           "unit": "473ml",
           "pricePerUnit": 272.7,
-          "lastUpdated": "2026-09-28T03:12:00.028Z"
+          "lastUpdated": "2026-10-12T03:58:07.457Z"
         },
         "plantBased": {
           "name": "Helado Ben & Jerry's Non-Dairy",
           "brand": "Ben & Jerry's",
-          "price": 137.5,
+          "price": 59,
           "unit": "473ml",
           "pricePerUnit": 463,
           "isCommercial": true,
-          "lastUpdated": "2026-09-28T03:12:00.410Z"
+          "lastUpdated": "2026-10-12T03:58:01.158Z"
         },
-        "priceDifferencePercent": -50,
+        "priceDifferencePercent": -78.5,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -399,7 +399,7 @@
           "price": 109,
           "unit": "400g",
           "pricePerUnit": 137.5,
-          "lastUpdated": "2026-09-28T03:11:53.113Z"
+          "lastUpdated": "2026-10-12T03:58:00.898Z"
         },
         "plantBased": {
           "name": "Chorizo Vegetal Oaxaqueño",
@@ -461,10 +461,10 @@
         "traditional": {
           "name": "Proteína de Soya para Tacos",
           "brand": "Soyamex",
-          "price": 47,
+          "price": 108.9,
           "unit": "500g",
           "pricePerUnit": 98,
-          "lastUpdated": "2026-09-28T03:12:06.301Z"
+          "lastUpdated": "2026-10-12T03:58:19.294Z"
         },
         "plantBased": {
           "name": "Tiras de Carne Vegana al Pastor",
@@ -475,7 +475,7 @@
           "isCommercial": true,
           "lastUpdated": "2026-09-28T03:12:05.643Z"
         },
-        "priceDifferencePercent": 421.3,
+        "priceDifferencePercent": 125,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -488,10 +488,10 @@
         "traditional": {
           "name": "Mayonesa Vegana",
           "brand": "Hellmann's Vegan",
-          "price": 169,
+          "price": 215,
           "unit": "350g",
           "pricePerUnit": 157.1,
-          "lastUpdated": "2026-09-28T03:12:06.193Z"
+          "lastUpdated": "2026-10-12T03:58:14.264Z"
         },
         "plantBased": {
           "name": "Vegenesa de Aguacate",
@@ -502,7 +502,7 @@
           "isCommercial": true,
           "lastUpdated": "2026-08-31T03:05:21.716Z"
         },
-        "priceDifferencePercent": 45,
+        "priceDifferencePercent": 14,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -528,10 +528,10 @@
         "traditional": {
           "name": "Queso de Anacardo Fermentado",
           "brand": "Miyoko's",
-          "price": 45,
+          "price": 44.5,
           "unit": "200g",
           "pricePerUnit": 945,
-          "lastUpdated": "2026-09-28T03:12:31.705Z"
+          "lastUpdated": "2026-10-12T03:58:58.052Z"
         },
         "plantBased": {
           "name": "Queso Vegano Artesanal Tipo Azul",
@@ -541,7 +541,7 @@
           "pricePerUnit": 725,
           "isCommercial": false
         },
-        "priceDifferencePercent": 222.2,
+        "priceDifferencePercent": 225.8,
         "availability": {
           "traditional": true,
           "plantBased": true
@@ -557,7 +557,7 @@
           "price": 108.9,
           "unit": "500g",
           "pricePerUnit": 650,
-          "lastUpdated": "2026-09-28T03:12:19.455Z"
+          "lastUpdated": "2026-10-12T03:58:43.479Z"
         },
         "plantBased": {
           "name": "Proteína Multi-Plant Premium",
