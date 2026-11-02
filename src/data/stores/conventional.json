@@ -20,7 +20,7 @@
           "price": 109,
           "unit": "500g",
           "pricePerUnit": 178,
-          "lastUpdated": "2026-10-12T03:53:34.451Z"
+          "lastUpdated": "2026-10-19T02:52:48.647Z"
         },
         "plantBased": {
           "name": "Carne Plant-Based",
@@ -47,7 +47,7 @@
           "price": 20,
           "unit": "1L",
           "pricePerUnit": 32,
-          "lastUpdated": "2026-10-12T03:53:35.753Z"
+          "lastUpdated": "2026-10-19T02:52:50.532Z"
         },
         "plantBased": {
           "name": "Leche de Soya",
@@ -56,7 +56,7 @@
           "unit": "1L",
           "pricePerUnit": 42,
           "isCommercial": true,
-          "lastUpdated": "2026-10-12T03:53:48.336Z"
+          "lastUpdated": "2026-10-19T02:53:00.304Z"
         },
         "priceDifferencePercent": 345,
         "availability": {
@@ -84,10 +84,10 @@
         "traditional": {
           "name": "Pechuga de Pollo",
           "brand": "Bachoco",
-          "price": 71.9,
+          "price": 119,
           "unit": "500g",
           "pricePerUnit": 190,
-          "lastUpdated": "2026-10-12T03:53:48.172Z"
+          "lastUpdated": "2026-10-19T02:53:00.939Z"
         },
         "plantBased": {
           "name": "Tempeh de Soya",
@@ -97,7 +97,7 @@
           "pricePerUnit": 283.3,
           "isCommercial": true
         },
-        "priceDifferencePercent": 18.2,
+        "priceDifferencePercent": -28.6,
         "availability": {
           "traditional": true,
           "plantBased": true
