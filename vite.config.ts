@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { pagesEntries } from "./scripts/pages-entries";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -10,6 +11,7 @@ export default defineConfig(() => ({
   },
   plugins: [
     react(),
+    pagesEntries(),
   ].filter(Boolean),
   resolve: {
     alias: {
