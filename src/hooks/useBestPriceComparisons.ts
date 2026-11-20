@@ -1,3 +1,4 @@
+import { compareSameBasis } from '@/data/price-normalization.mjs';
 import { useMemo } from 'react';
 import { Store, Product, OptimizedComparison } from '@/data/types';
 import { ANIMAL_BASED_KEYWORDS, PLANT_BASED_KEYWORDS, INVALID_COMPARISON_PAIRS } from '@/data/constants';
@@ -111,12 +112,14 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
 
       validVariants.forEach(variant => {
         // Priorizar siempre el menor precio en plant-based
-        if (variant.plantBased.pricePerUnit < bestVariant.plantBased.pricePerUnit) {
+        const plantPrice = compareSameBasis(variant.plantBased, bestVariant.plantBased);
+        const traditionalPrice = compareSameBasis(variant.traditional, bestVariant.traditional);
+        if (plantPrice !== null && plantPrice < 0) {
           bestVariant = variant;
         }
         // Si los precios plant-based son similares, priorizar el menor tradicional
-        else if (Math.abs(variant.plantBased.pricePerUnit - bestVariant.plantBased.pricePerUnit) < 5 &&
-                 variant.traditional.pricePerUnit < bestVariant.traditional.pricePerUnit) {
+        else if (plantPrice !== null && Math.abs(plantPrice) < 5 &&
+                 traditionalPrice !== null && traditionalPrice < 0) {
           bestVariant = variant;
         }
       });

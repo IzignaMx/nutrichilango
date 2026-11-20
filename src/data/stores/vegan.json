@@ -19,7 +19,7 @@
           "brand": "Soyamex",
           "price": 47,
           "unit": "500g",
-          "pricePerUnit": 90,
+          "pricePerUnit": 94,
           "lastUpdated": "2026-10-19T02:55:06.416Z"
         },
         "plantBased": {
@@ -27,7 +27,7 @@
           "brand": "Beyond Meat",
           "price": 205,
           "unit": "454g",
-          "pricePerUnit": 416.3,
+          "pricePerUnit": 451.54,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:55:07.455Z"
         },
@@ -46,7 +46,7 @@
           "brand": "Silk",
           "price": 82,
           "unit": "480g",
-          "pricePerUnit": 100,
+          "pricePerUnit": 170.83,
           "lastUpdated": "2026-10-19T02:55:15.833Z"
         },
         "plantBased": {
@@ -86,7 +86,7 @@
           "brand": "Bragg",
           "price": 139,
           "unit": "127g",
-          "pricePerUnit": 1961,
+          "pricePerUnit": 1094.49,
           "lastUpdated": "2026-10-19T02:55:15.359Z"
         },
         "plantBased": {
@@ -94,7 +94,7 @@
           "brand": "Bob's Red Mill",
           "price": 133,
           "unit": "142g",
-          "pricePerUnit": 1331,
+          "pricePerUnit": 936.62,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:55:36.590Z"
         },
@@ -127,7 +127,7 @@
           "brand": "Ener-G",
           "price": 203.5,
           "unit": "454g",
-          "pricePerUnit": 837.4,
+          "pricePerUnit": 448.24,
           "lastUpdated": "2026-10-12T03:56:38.598Z"
         },
         "plantBased": {
@@ -135,7 +135,7 @@
           "brand": "JUST",
           "price": 199,
           "unit": "355ml",
-          "pricePerUnit": 532.4,
+          "pricePerUnit": 560.56,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:55:23.243Z"
         },
@@ -168,7 +168,7 @@
           "brand": "Morinaga",
           "price": 65,
           "unit": "349g",
-          "pricePerUnit": 186.2,
+          "pricePerUnit": 186.25,
           "lastUpdated": "2026-10-19T02:56:35.077Z"
         },
         "plantBased": {
@@ -176,7 +176,7 @@
           "brand": "Tofupac",
           "price": 159,
           "unit": "350g",
-          "pricePerUnit": 242.9,
+          "pricePerUnit": 454.29,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:56:34.860Z"
         },
@@ -195,7 +195,7 @@
           "brand": "Soyamex",
           "price": 97,
           "unit": "300g",
-          "pricePerUnit": 216.7,
+          "pricePerUnit": 323.33,
           "lastUpdated": "2026-10-19T02:56:34.326Z"
         },
         "plantBased": {
@@ -203,7 +203,7 @@
           "brand": "NotCo",
           "price": 44,
           "unit": "300g",
-          "pricePerUnit": 363.3,
+          "pricePerUnit": 146.67,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:56:49.596Z"
         },
@@ -236,7 +236,7 @@
           "brand": "Violife",
           "price": 95,
           "unit": "200g",
-          "pricePerUnit": 545,
+          "pricePerUnit": 475,
           "lastUpdated": "2026-10-19T02:56:41.528Z"
         },
         "plantBased": {
@@ -244,7 +244,7 @@
           "brand": "Daiya",
           "price": 164,
           "unit": "200g",
-          "pricePerUnit": 645,
+          "pricePerUnit": 820,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:56:41.878Z"
         },
@@ -263,7 +263,7 @@
           "brand": "Silk",
           "price": 89,
           "unit": "946ml",
-          "pricePerUnit": 47.6,
+          "pricePerUnit": 94.08,
           "lastUpdated": "2026-10-19T02:57:12.665Z"
         },
         "plantBased": {
@@ -271,7 +271,7 @@
           "brand": "Milkadamia",
           "price": 74,
           "unit": "946ml",
-          "pricePerUnit": 104.7,
+          "pricePerUnit": 78.22,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:57:12.784Z"
         },
@@ -290,7 +290,7 @@
           "brand": "Sanissimo",
           "price": 104.5,
           "unit": "200g",
-          "pricePerUnit": 175,
+          "pricePerUnit": 522.5,
           "lastUpdated": "2026-10-19T02:57:03.445Z"
         },
         "plantBased": {
@@ -298,7 +298,7 @@
           "brand": "Lenny & Larry's",
           "price": 59,
           "unit": "200g",
-          "pricePerUnit": 325,
+          "pricePerUnit": 295,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:57:18.889Z"
         },
@@ -330,7 +330,7 @@
           "brand": "Beyond Meat",
           "price": 143,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 744.5,
+          "pricePerUnit": 629.96,
           "lastUpdated": "2026-10-19T02:57:19.228Z"
         },
         "plantBased": {
@@ -338,7 +338,7 @@
           "brand": "Impossible Foods",
           "price": 385,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 1096.9,
+          "pricePerUnit": 1696.04,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:57:24.898Z"
         },
@@ -357,7 +357,7 @@
           "brand": "So Delicious",
           "price": 275,
           "unit": "473ml",
-          "pricePerUnit": 272.7,
+          "pricePerUnit": 581.4,
           "lastUpdated": "2026-10-19T02:57:39.624Z"
         },
         "plantBased": {
@@ -365,7 +365,7 @@
           "brand": "Ben & Jerry's",
           "price": 143,
           "unit": "473ml",
-          "pricePerUnit": 463,
+          "pricePerUnit": 302.33,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:57:31.879Z"
         },
@@ -398,7 +398,7 @@
           "brand": "Soyamex",
           "price": 97,
           "unit": "400g",
-          "pricePerUnit": 137.5,
+          "pricePerUnit": 242.5,
           "lastUpdated": "2026-10-19T02:57:31.408Z"
         },
         "plantBased": {
@@ -463,7 +463,7 @@
           "brand": "Soyamex",
           "price": 109,
           "unit": "500g",
-          "pricePerUnit": 98,
+          "pricePerUnit": 218,
           "lastUpdated": "2026-10-19T02:57:47.306Z"
         },
         "plantBased": {
@@ -471,7 +471,7 @@
           "brand": "NotCo",
           "price": 245,
           "unit": "500g",
-          "pricePerUnit": 238,
+          "pricePerUnit": 490,
           "isCommercial": true,
           "lastUpdated": "2026-09-28T03:12:05.643Z"
         },
@@ -490,7 +490,7 @@
           "brand": "Hellmann's Vegan",
           "price": 267,
           "unit": "350g",
-          "pricePerUnit": 157.1,
+          "pricePerUnit": 762.86,
           "lastUpdated": "2026-10-19T02:57:45.933Z"
         },
         "plantBased": {
@@ -498,7 +498,7 @@
           "brand": "NotCo NotMayo",
           "price": 245,
           "unit": "350g",
-          "pricePerUnit": 225.7,
+          "pricePerUnit": 700,
           "isCommercial": true,
           "lastUpdated": "2026-08-31T03:05:21.716Z"
         },
@@ -530,7 +530,7 @@
           "brand": "Miyoko's",
           "price": 44.5,
           "unit": "200g",
-          "pricePerUnit": 945,
+          "pricePerUnit": 222.5,
           "lastUpdated": "2026-10-19T02:58:31.302Z"
         },
         "plantBased": {
@@ -556,7 +556,7 @@
           "brand": "Now Foods",
           "price": 108.9,
           "unit": "500g",
-          "pricePerUnit": 650,
+          "pricePerUnit": 217.8,
           "lastUpdated": "2026-10-19T02:58:18.879Z"
         },
         "plantBased": {
@@ -564,7 +564,7 @@
           "brand": "Vega",
           "price": 452,
           "unit": "500g",
-          "pricePerUnit": 1098,
+          "pricePerUnit": 904,
           "isCommercial": true,
           "lastUpdated": "2026-08-31T03:05:27.627Z"
         },

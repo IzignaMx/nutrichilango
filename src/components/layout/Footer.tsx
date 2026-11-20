@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Mail, Facebook } from 'lucide-react';
 import { siteMetadata } from '@/data/metadata';
+import { formatPriceObservationDate } from '@/data/price-observation-date';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -139,7 +140,7 @@ const Footer: React.FC = () => {
           <div className="text-sm text-primary-foreground/70">
             <p>© {currentYear} NutriChilango. Todos los derechos reservados.</p>
             <p className="mt-1">
-              Datos actualizados semanalmente. Última actualización: {new Date(siteMetadata.lastUpdated).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}
+              Última observación de precios publicada: {formatPriceObservationDate(siteMetadata.lastUpdated)}
             </p>
           </div>
           

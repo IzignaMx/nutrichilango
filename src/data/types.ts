@@ -40,7 +40,8 @@ export interface ProductVariant {
   brand: string;
   price: number;
   unit: string;
-  pricePerUnit: number;
+  pricePerUnit: number | null;
+  lastUpdated?: string;
   nutritionInfo?: NutritionInfo;
   isCommercial?: boolean;
   recipe?: Recipe;

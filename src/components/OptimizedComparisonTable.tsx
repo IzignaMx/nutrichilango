@@ -1,3 +1,4 @@
+import { compareGroupedUnitPrice } from '@/data/price-normalization.mjs';
 
 import React, { useMemo, useState } from 'react';
 import { Store, Recipe } from '@/data/types';
@@ -36,14 +37,14 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
       return [];
     }
     
-    return optimizedComparisons.sort((a, b) => {
+    return [...optimizedComparisons].sort((a, b) => {
       switch (sortBy) {
         case 'price-diff':
           return a.priceDifferencePercent - b.priceDifferencePercent;
         case 'traditional-price':
-          return a.traditional.pricePerUnit - b.traditional.pricePerUnit;
+          return compareGroupedUnitPrice(a.traditional, b.traditional);
         case 'plant-price':
-          return a.plantBased.pricePerUnit - b.plantBased.pricePerUnit;
+          return compareGroupedUnitPrice(a.plantBased, b.plantBased);
         case 'store-name':
           return a.storeName.localeCompare(b.storeName);
         default:
@@ -115,11 +116,10 @@ const OptimizedComparisonTable: React.FC<OptimizedComparisonTableProps> = ({
       <ComparisonFilters />
 
       <div className="space-y-4">
-        {sortedProducts.map((product, index) => (
+        {sortedProducts.map((product) => (
           <ComparisonCard
-            key={`${product.id}-${index}`}
+            key={product.id}
             product={product}
-            index={index}
             onRecipeClick={handleRecipeClick}
             expandedNutrition={expandedNutrition}
             onToggleNutrition={toggleNutritionChart}
