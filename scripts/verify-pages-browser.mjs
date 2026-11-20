@@ -139,6 +139,37 @@ try {
     await page.getByText(/Última observación publicada:.+Cada producto puede tener una fecha distinta/).waitFor();
     console.log('Chromium: importes, presentaciones y fechas históricas verificados en la comparación pública.');
 
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+    await page.goto(origin + '/despensa');
+    await page.getByRole('button', { name: '4', exact: true }).click();
+    await page.getByRole('button', { name: 'Siguiente' }).click();
+    await page.getByRole('button', { name: 'Económico', exact: true }).click();
+    await page.getByRole('button', { name: 'Siguiente' }).click();
+    await page.getByText('Quincenal', { exact: true }).click();
+    await page.getByRole('button', { name: 'Generar lista' }).click();
+    await page.getByRole('button', { name: 'Compartir configuración' }).click();
+    await page.getByText('Enlace copiado', { exact: true }).waitFor();
+    const sharedUrl = new URL(await page.evaluate(() => navigator.clipboard.readText()));
+    assert.equal(sharedUrl.origin + sharedUrl.pathname, origin + '/despensa');
+    assert.deepEqual(Object.fromEntries(sharedUrl.searchParams), { size: '4', prefs: 'Económico', freq: 'biweekly' });
+
+    const reader = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
+    await reader.route('**/*', (route) =>
+      new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    const sharedPage = await reader.newPage();
+    assert.equal((await sharedPage.goto(sharedUrl.href)).status(), 200);
+    const useShared = sharedPage.getByRole('button', { name: 'Usar configuración compartida' });
+    await useShared.waitFor();
+    assert.equal(await sharedPage.evaluate(() => localStorage.getItem('nutrichilango-storage')), null);
+    assert.equal((await sharedPage.reload()).status(), 200);
+    await useShared.click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Generar lista' }).click();
+    await sharedPage.getByRole('heading', { name: 'Tu despensa personalizada' }).waitFor();
+    await reader.close();
+    console.log('Chromium: enlace de despensa copiado y aplicado en otro perfil tras abrirlo y recargarlo.');
+
     assert.equal((await page.goto(unknown)).status(), 404);
     assert.equal(page.url(), unknown);
     await page.getByText('No encontrado', { exact: true }).waitFor();

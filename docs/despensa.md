@@ -12,7 +12,7 @@ Wizard interactivo de 3 pasos que genera listas personalizadas de compras vegana
 ## Características técnicas
 - Estado persistente en localStorage
 - Generación dinámica de cantidades según parámetros
-- Exportación: copiar texto, generar PDF, compartir URL
+- Exportación: copiar texto o generar un PDF para compartir la lista exacta. El enlace de configuración carga el tamaño del hogar, las preferencias y la frecuencia solo cuando quien lo abre decide usarlos. La lista se genera al final del asistente y puede incluir productos distintos.
 - Completamente responsive y accesible
 
 ## Extensibilidad
