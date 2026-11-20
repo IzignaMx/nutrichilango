@@ -174,7 +174,7 @@ const PantryPDFDocument: React.FC<PantryPDFDocumentProps> = ({
           <Text style={styles.footerNote}>
             * Los precios son estimados basados en datos de mercados locales de la CDMX.{'\n'}
             * Esta lista fue generada con NutriChilango para promover una alimentación vegana accesible.{'\n'}
-            * Visita nutrichilango.izignamx.com para comparar precios actualizados.
+            * Visita nutrichilango.izignamx.com para comparar precios de referencia.
           </Text>
         </View>
       </Page>

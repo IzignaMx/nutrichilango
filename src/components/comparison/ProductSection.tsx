@@ -3,13 +3,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Tag } from 'lucide-react';
 import { ProductVariant, Recipe } from '@/data/types';
+import { formatPriceObservationDate } from '@/data/price-observation-date';
+import { parsePackage } from '@/data/price-normalization.mjs';
 import DataConfidenceIndicator from '@/components/ui/DataConfidenceIndicator';
 
 interface ProductSectionProps {
   product: ProductVariant;
   title: string;
   priceColor: string;
-  comparisonType: string;
   onRecipeClick?: (recipe: Recipe) => void;
 }
 
@@ -17,9 +18,9 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   product,
   title,
   priceColor,
-  comparisonType,
   onRecipeClick
 }) => {
+  const basis = parsePackage(product.unit)?.basis;
   return (
     <div className="flex flex-col h-full bg-white/50 rounded-lg p-4 transition-colors hover:bg-white/80">
       <div className="flex items-center justify-between mb-3">
@@ -47,7 +48,15 @@ const ProductSection: React.FC<ProductSectionProps> = ({
             ${product.price ? product.price.toFixed(2) : 'N/A'}
           </p>
           <p className="text-xs text-gray-500">
-            {product.unit || 'por unidad'}
+            {product.unit || 'presentación no indicada'}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            {basis && product.pricePerUnit != null && Number.isFinite(product.pricePerUnit)
+              ? `$${product.pricePerUnit.toFixed(2)}/${basis}`
+              : 'Precio por unidad no disponible'}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Observación: {product.lastUpdated ? formatPriceObservationDate(product.lastUpdated) : 'sin fecha registrada'}
           </p>
         </div>
       </div>

@@ -49,20 +49,19 @@ const DishesComparison: React.FC = () => {
             🌮 ¡Revoluciona Tu Cocina Mexicana!
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-green-100">
-            <strong>Mantén todo el sabor, duplica los beneficios.</strong> Descubre cómo hacer tus platillos mexicanos favoritos  
-            <span className="text-yellow-300 font-bold"> más nutritivos, más baratos y más deliciosos</span> que nunca
+            Explora versiones de origen vegetal de platillos mexicanos y compara sus ingredientes, costos estimados y datos nutricionales.
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center max-w-3xl mx-auto">
             <div className="space-y-1 md:space-y-2">
-              <div className="text-xl sm:text-2xl font-bold">20+</div>
+              <div className="text-xl sm:text-2xl font-bold">{dishesData.length}</div>
               <div className="text-xs sm:text-sm text-green-200">Platillos</div>
             </div>
             <div className="space-y-1 md:space-y-2">
-              <div className="text-xl sm:text-2xl font-bold">100%</div>
-              <div className="text-xs sm:text-sm text-green-200">Plant-Based</div>
+              <div className="text-xl sm:text-2xl font-bold">Recetas</div>
+              <div className="text-xs sm:text-sm text-green-200">Alternativas de origen vegetal</div>
             </div>
             <div className="space-y-1 md:space-y-2">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold">En Tiempo Real</div>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold">De referencia</div>
               <div className="text-xs sm:text-sm text-green-200">Precios</div>
             </div>
             <div className="space-y-1 md:space-y-2">
@@ -81,9 +80,7 @@ const DishesComparison: React.FC = () => {
           <Alert className="border-green-200 bg-green-50">
             <Info className="h-4 w-4 text-green-600" />
             <AlertDescription className="text-green-800">
-              <strong>🔥 ¡COMPROBADO!</strong> Nuestros usuarios reportan que estos platillos plant-based saben 
-              igual o mejor que los originales, <span className="font-bold">cuestan hasta 40% menos</span> y 
-              aportan el doble de nutrientes.
+              Compara el costo estimado y los datos nutricionales por porción. El resultado depende de la receta, las cantidades y los precios de referencia.
             </AlertDescription>
           </Alert>
 
@@ -102,7 +99,7 @@ const DishesComparison: React.FC = () => {
           {isLoading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Actualizando precios en tiempo real...</p>
+              <p className="text-gray-600">Cargando la comparación de platillos...</p>
             </div>
           ) : (
             /* Dishes Grid */

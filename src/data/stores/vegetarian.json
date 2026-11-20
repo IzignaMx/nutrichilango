@@ -19,7 +19,7 @@
           "brand": "Tofupac",
           "price": 139,
           "unit": "300g",
-          "pricePerUnit": 263.3,
+          "pricePerUnit": 463.33,
           "lastUpdated": "2026-10-19T02:58:37.327Z"
         },
         "plantBased": {
@@ -27,7 +27,7 @@
           "brand": "Upton's Naturals",
           "price": 214.5,
           "unit": "300g",
-          "pricePerUnit": 296.7,
+          "pricePerUnit": 715,
           "isCommercial": true,
           "lastUpdated": "2026-08-24T01:01:27.463Z"
         },
@@ -46,7 +46,7 @@
           "brand": "Violife",
           "price": 109,
           "unit": "200g",
-          "pricePerUnit": 645,
+          "pricePerUnit": 545,
           "lastUpdated": "2026-10-19T02:59:02.760Z"
         },
         "plantBased": {
@@ -54,7 +54,7 @@
           "brand": "Miyoko's",
           "price": 141.9,
           "unit": "200g",
-          "pricePerUnit": 945,
+          "pricePerUnit": 709.5,
           "isCommercial": true,
           "lastUpdated": "2026-08-31T03:05:51.575Z"
         },

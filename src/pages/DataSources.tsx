@@ -32,6 +32,11 @@ const DataSources: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-8">
+              <p className="text-muted-foreground">
+                La actualización automática de precios está en pausa. Estas fuentes son de referencia:
+                no consultamos sus precios en tiempo real ni garantizamos una frecuencia de actualización.
+                Antes de comprar, confirma el precio y la presentación con la tienda.
+              </p>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {dataSources.priceSources.map((sourceCategory, idx) => (
                   <div key={idx}>

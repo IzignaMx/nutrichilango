@@ -100,9 +100,9 @@ const SearchAndFilters: React.FC<SearchAndFiltersProps> = ({
                     <SelectValue placeholder="Seleccionar orden" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="price-diff">Diferencia de Precio</SelectItem>
-                    <SelectItem value="traditional-price">Precio Tradicional</SelectItem>
-                    <SelectItem value="plant-price">Precio Plant-Based</SelectItem>
+                    <SelectItem value="price-diff">Diferencia por presentación</SelectItem>
+                    <SelectItem value="traditional-price">Precio tradicional por unidad (agrupado)</SelectItem>
+                    <SelectItem value="plant-price">Precio vegetal por unidad (agrupado)</SelectItem>
                     <SelectItem value="store-name">Nombre de Tienda</SelectItem>
                   </SelectContent>
                 </Select>

@@ -5,6 +5,8 @@ import { Info } from 'lucide-react';
 import OptimizedComparisonTable from '@/components/OptimizedComparisonTable';
 import SearchAndFilters from '@/components/SearchAndFilters';
 import { Store } from '@/data';
+import { siteMetadata } from '@/data/metadata';
+import { formatPriceObservationDate } from '@/data/price-observation-date';
 
 interface ComparisonSectionProps {
   filteredData: Store[];
@@ -55,7 +57,7 @@ const ComparisonSection: React.FC<ComparisonSectionProps> = ({
         <Alert className="border-blue-200 bg-blue-50">
           <Info className="h-4 w-4 text-blue-600" />
           <AlertDescription className="text-blue-800">
-            Los datos se actualizan semanalmente. Última actualización: {new Date().toLocaleDateString('es-MX')}. 
+            Última observación publicada: {formatPriceObservationDate(siteMetadata.lastUpdated)}. Cada producto puede tener una fecha distinta.
             Los precios pueden variar según la ubicación específica de la tienda.
           </AlertDescription>
         </Alert>

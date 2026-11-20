@@ -25,7 +25,7 @@
           "brand": "Beyond Meat",
           "price": 169,
           "unit": "250g",
-          "pricePerUnit": 648,
+          "pricePerUnit": 676,
           "isCommercial": true,
           "lastUpdated": "2026-10-19T02:53:34.194Z"
         },
@@ -414,7 +414,7 @@
           "brand": "Beyond Meat",
           "price": 169,
           "unit": "2 piezas (227g)",
-          "pricePerUnit": 744.5,
+          "pricePerUnit": 744.49,
           "lastUpdated": "2026-10-19T02:53:34.807Z"
         },
         "plantBased": {
@@ -422,7 +422,7 @@
           "brand": "Casero",
           "price": 22,
           "unit": "2 piezas",
-          "pricePerUnit": 110,
+          "pricePerUnit": 11,
           "isCommercial": false,
           "recipe": {
             "id": "bean-burger-1",
@@ -949,7 +949,7 @@
           "brand": "House Foods",
           "price": 84.9,
           "unit": "400g",
-          "pricePerUnit": 147.5,
+          "pricePerUnit": 212.25,
           "lastUpdated": "2026-10-19T02:53:34.082Z"
         },
         "plantBased": {
@@ -1267,7 +1267,7 @@
           "brand": "Marca comercial",
           "price": 68.5,
           "unit": "140g",
-          "pricePerUnit": 178.57,
+          "pricePerUnit": 489.29,
           "lastUpdated": "2026-10-19T02:53:42.080Z"
         },
         "plantBased": {

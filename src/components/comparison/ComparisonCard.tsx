@@ -1,9 +1,9 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Star, ChefHat, BarChart3 } from 'lucide-react';
+import { MapPin, ChefHat, BarChart3 } from 'lucide-react';
 import ProductSection from './ProductSection';
 import ComparisonAnalysis from './ComparisonAnalysis';
 import NutritionComparisonChart from '../NutritionComparisonChart';
@@ -11,7 +11,6 @@ import { OptimizedComparison, Recipe } from '@/data/types';
 
 interface ComparisonCardProps {
   product: OptimizedComparison;
-  index: number;
   onRecipeClick: (recipe: Recipe) => void;
   expandedNutrition: string | null;
   onToggleNutrition: (productId: string) => void;
@@ -61,7 +60,6 @@ const getComparisonTypeName = (type: string) => {
 
 const ComparisonCard: React.FC<ComparisonCardProps> = ({
   product,
-  index,
   onRecipeClick,
   expandedNutrition,
   onToggleNutrition
@@ -100,12 +98,6 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             <Badge className={getComparisonTypeColor(product.comparisonType)}>
               {getComparisonTypeName(product.comparisonType)}
             </Badge>
-            {index === 0 && (
-              <Badge className="bg-gradient-to-r from-brand-accent to-brand-accent/80 text-foreground">
-                <Star className="w-3 h-3 mr-1" aria-hidden="true" />
-                Mejor Valor
-              </Badge>
-            )}
           </div>
         </div>
       </CardHeader>
@@ -115,14 +107,12 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             product={product.traditional}
             title={product.comparisonType.includes('commercial-vs') ? 'Producto Comercial' : 'Producto Tradicional'}
             priceColor="text-brand-success"
-            comparisonType={product.comparisonType}
           />
           
           <ProductSection
             product={product.plantBased}
             title="Alternativa Plant-Based"
             priceColor="text-blue-600"
-            comparisonType={product.comparisonType}
             onRecipeClick={onRecipeClick}
           />
 
@@ -130,7 +120,6 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             priceDifferencePercent={product.priceDifferencePercent}
             traditionalPrice={product.traditional.price}
             plantBasedPrice={product.plantBased.price}
-            comparisonType={product.comparisonType}
             hasPromotion={product.hasPromotion}
             promotionDetails={product.promotionDetails}
           />

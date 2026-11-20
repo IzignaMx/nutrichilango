@@ -83,7 +83,11 @@ export const PriceUpdateSchema = z.object({
   side: z.enum(['traditional', 'plantBased']),
   price: z.number().positive().min(1).max(5000), // MXN range guard
   source: z.string().optional(),
-  scrapedAt: z.string(),
+  observedUnit: z.string().trim().min(1).optional(), // presentación de la fuente, no la del catálogo
+  scrapedAt: z.string().datetime().refine((value) => {
+    const date = new Date(value);
+    return Number.isFinite(date.getTime()) && date.toISOString() === value && date.getTime() <= Date.now();
+  }, 'Se requiere una fecha ISO UTC válida y no futura'),
 });
 
 /**
