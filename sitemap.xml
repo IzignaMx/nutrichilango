@@ -5,56 +5,35 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://nutrichilango.izignamx.com/</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/dishes-comparison</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <loc>https://nutrichilango.izignamx.com/dishes-comparison/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/about</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://nutrichilango.izignamx.com/about/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/how-it-works</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://nutrichilango.izignamx.com/how-it-works/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/guide</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://nutrichilango.izignamx.com/guide/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/data-sources</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://nutrichilango.izignamx.com/data-sources/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/privacy</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://nutrichilango.izignamx.com/privacy/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/terms</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://nutrichilango.izignamx.com/terms/</loc>
   </url>
   <url>
-    <loc>https://nutrichilango.izignamx.com/accessibility</loc>
-    <lastmod>2025-01-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://nutrichilango.izignamx.com/accessibility/</loc>
+  </url>
+  <url>
+    <loc>https://nutrichilango.izignamx.com/despensa/</loc>
+  </url>
+  <url>
+    <loc>https://nutrichilango.izignamx.com/emprendimientos/</loc>
   </url>
 </urlset>
