@@ -152,6 +152,18 @@ try {
     const sharedUrl = new URL(await page.evaluate(() => navigator.clipboard.readText()));
     assert.equal(sharedUrl.origin + sharedUrl.pathname, origin + '/despensa');
     assert.deepEqual(Object.fromEntries(sharedUrl.searchParams), { size: '4', prefs: 'Económico', freq: 'biweekly' });
+    await page.getByRole('button', { name: 'Copiar', exact: true }).click();
+    await page.getByText('Lista copiada', { exact: true }).waitFor();
+    const listText = await page.evaluate(() => navigator.clipboard.readText());
+    assert.match(listText, /.+: .+ - \$\d+\.\d{2}/);
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.getByRole('button', { name: 'PDF', exact: true }).click(),
+    ]);
+    assert.equal(download.suggestedFilename(), 'despensa-vegana-4personas-biweekly.pdf');
+    assert.equal((await readFile(await download.path())).subarray(0, 5).toString(), '%PDF-');
+    await page.getByText('PDF preparado', { exact: true }).waitFor();
+    console.log('Chromium: texto copiado y archivo PDF real verificado.');
 
     const reader = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
     await reader.route('**/*', (route) =>
