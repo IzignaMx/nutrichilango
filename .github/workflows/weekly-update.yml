@@ -1,92 +1,50 @@
-name: Advanced Weekly Content Update
+name: Validar procedencia de precios
 
 on:
   schedule:
     - cron: "0 0 * * 1"
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/weekly-update.yml'
+      - 'data/price-source-allowlist.json'
+      - 'scripts/**'
+      - 'src/data/price-normalization.mjs'
+      - 'src/data/stores/**'
+      - 'src/data/metadata.ts'
+      - 'package-lock.json'
+
+permissions:
+  contents: read
 
 jobs:
-  update-content:
-    # Playwright 1.58.2 tiene dependencias nativas para Ubuntu 24.04.
+  validar-precios:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    env:
-      # Rehabilitar solo con extracción y pruebas de observedUnit desde la fuente.
-      PRICE_SCRAPING_ENABLED: 'false'
-    permissions:
-      contents: write
-      pull-requests: write
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
+          cache: npm
 
       - run: npm ci
 
-      - name: Clean stale update files
-        run: rm -f data/updates/scraped-prices.json data/updates/scrape-report.json
+      - name: Verificar el registro de fuentes
+        run: node scripts/update-data.mjs --check-allowlist
 
-      - name: Install Playwright Browsers
-        run: npm exec --no -- playwright install chromium --with-deps
+      - name: Probar admisión y normalización con observaciones sintéticas
+        run: node --test scripts/lib/price-*.node.mjs
 
-      - name: Verificar inicio de Chromium
-        run: node scripts/verify-chromium.mjs
+      - name: Verificar que se conservó el catálogo
+        run: git diff --exit-code -- src/data/stores src/data/metadata.ts
 
-      - name: Informar bloqueo de procedencia
-        if: env.PRICE_SCRAPING_ENABLED != 'true'
-        run: echo 'Navegador verificado. Publicación de precios pausada hasta que el extractor aporte unidad observada y procedencia verificable.' >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Scrape Real Prices
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        timeout-minutes: 25
-        run: node scripts/scrape-data.mjs
-
-      - name: Generate date
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        id: date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
-      - name: Run Pipeline
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        id: pipeline
+      - name: Resumir el alcance
+        if: success()
         run: |
-          node scripts/update-data.mjs > "$RUNNER_TEMP/pipeline_report.txt"
-          echo "REPORT<<EOF" >> $GITHUB_OUTPUT
-          cat "$RUNNER_TEMP/pipeline_report.txt" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Detectar cambios publicables
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        id: data-changes
-        run: |
-          if git diff --quiet -- 'src/data/stores/*.json'; then
-            echo 'changed=false' >> "$GITHUB_OUTPUT"
-          else
-            echo 'changed=true' >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Create Pull Request
-        if: steps.data-changes.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "data: automated content & price refresh"
-          title: "🚀 Content Update: ${{ steps.date.outputs.date }}"
-          body: |
-            ## Automated Validation Report
-
-            ${{ steps.pipeline.outputs.REPORT }}
-
-            ---
-            *This PR was generated automatically. Human review is required before merging.*
-          branch: automation/content-update
-          add-paths: |
-            src/data/stores/*.json
-            src/data/metadata.ts
-          labels: |
-            data-update
-            needs-review
+          echo 'Validación local de procedencia con datos sintéticos. No se consultaron tiendas, no se aplicaron precios reales y no se abrió un PR de datos.' >> "$GITHUB_STEP_SUMMARY"

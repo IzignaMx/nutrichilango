@@ -3,26 +3,25 @@ import { describe, expect, it } from 'vitest';
 
 const workflow = readFileSync(new URL('../.github/workflows/weekly-update.yml', import.meta.url), 'utf8');
 
-describe('Contrato de actualización semanal', () => {
-  it('usa el entorno compatible y comprueba Chromium antes de consultar fuentes', () => {
+describe('Contrato de validación semanal de precios', () => {
+  it('ejecuta el mismo verificador local en horario fijo, a demanda y al revisar cambios', () => {
+    expect(workflow).toContain('schedule:');
+    expect(workflow).toContain('workflow_dispatch:');
+    expect(workflow).toContain('pull_request:');
     expect(workflow).toContain('runs-on: ubuntu-24.04');
     expect(workflow).toContain('node-version: "22"');
-    expect(workflow).toContain('npm exec --no -- playwright install chromium --with-deps');
-    expect(workflow.indexOf('node scripts/verify-chromium.mjs')).toBeLessThan(workflow.indexOf('node scripts/scrape-data.mjs'));
+    expect(workflow).toContain('node --test scripts/lib/price-*.node.mjs');
+    expect(workflow).toContain('node scripts/update-data.mjs --check-allowlist');
   });
 
-  it('mantiene explícitamente pausado el scraper sin unidad observada', () => {
-    expect(workflow).toContain("PRICE_SCRAPING_ENABLED: 'false'");
-    for (const step of ['Scrape Real Prices', 'Run Pipeline']) {
-      expect(workflow).toContain(`- name: ${step}\n        if: env.PRICE_SCRAPING_ENABLED == 'true'`);
-    }
-  });
-
-  it('excluye reportes y cambios de fecha sin cambios de precios del PR', () => {
-    expect(workflow).toContain('node scripts/update-data.mjs > "$RUNNER_TEMP/pipeline_report.txt"');
-    expect(workflow).toContain("git diff --quiet -- 'src/data/stores/*.json'");
-    expect(workflow).toContain("- name: Create Pull Request\n        if: steps.data-changes.outputs.changed == 'true'");
-    expect(workflow).toContain('add-paths: |\n            src/data/stores/*.json\n            src/data/metadata.ts');
-    expect(workflow).not.toContain('> pipeline_report.txt');
+  it('no conserva un camino configurable a un extractor, un PR automático o un despliegue', () => {
+    expect(workflow).toContain('permissions:\n  contents: read');
+    expect(workflow).toContain('persist-credentials: false');
+    expect(workflow).not.toMatch(/\b(?:contents|pull-requests|pages): write/);
+    expect(workflow).not.toMatch(/PRICE_SCRAPING_ENABLED|scrape-data\.mjs|create-pull-request|deploy-pages|GITHUB_TOKEN/);
+    expect(workflow.match(/run: node scripts\/update-data\.mjs[^\n]*/g)).toEqual([
+      'run: node scripts/update-data.mjs --check-allowlist',
+    ]);
+    expect(workflow).toContain('git diff --exit-code -- src/data/stores src/data/metadata.ts');
   });
 });
