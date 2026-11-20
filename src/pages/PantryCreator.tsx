@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -30,6 +31,8 @@ const PantryCreator: React.FC = () => {
 
   const [step, setStep] = useState(1);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [appliedLink, setAppliedLink] = useState<string>();
+  const location = useLocation();
   const { toast } = useToast();
 
   const preferencesList = [
@@ -46,6 +49,16 @@ const PantryCreator: React.FC = () => {
     { value: 'biweekly', label: 'Quincenal', description: 'Compras cada 15 días' },
     { value: 'monthly', label: 'Mensual', description: 'Compras una vez al mes' }
   ] as const;
+
+  const sharedParams = new URLSearchParams(location.search);
+  const [sharedSize] = sharedParams.getAll('size');
+  const [sharedPrefs] = sharedParams.getAll('prefs');
+  const sharedFrequency = frequencies.find(({ value }) => value === sharedParams.get('freq'))?.value;
+  const sharedPreferences = sharedPrefs ? sharedPrefs.split(',') : [];
+  const hasSharedConfiguration = ['size', 'prefs', 'freq'].every(key => sharedParams.getAll(key).length === 1)
+    && /^[1-6]$/.test(sharedSize ?? '')
+    && sharedPreferences.every(pref => preferencesList.includes(pref))
+    && new Set(sharedPreferences).size === sharedPreferences.length;
 
   const handleNext = () => {
     if (step === 3) {
@@ -74,7 +87,7 @@ const PantryCreator: React.FC = () => {
     toast({ title: "Lista copiada", description: "La lista se copió al portapapeles" });
   };
 
-  const shareList = () => {
+  const shareConfiguration = async () => {
     const params = new URLSearchParams({
       size: householdSize.toString(),
       prefs: selectedPreferences.join(','),
@@ -82,8 +95,16 @@ const PantryCreator: React.FC = () => {
     });
     
     const url = `${window.location.origin}/despensa?${params.toString()}`;
-    navigator.clipboard.writeText(url);
-    toast({ title: "Enlace copiado", description: "El enlace se copió al portapapeles" });
+    try {
+      await navigator.clipboard.writeText(url);
+      toast({ title: 'Enlace copiado', description: 'Incluye la configuración, no los productos de la lista.' });
+    } catch {
+      toast({
+        title: 'No se pudo copiar el enlace',
+        description: 'Puedes copiar la lista o compartir el PDF.',
+        variant: 'destructive',
+      });
+    }
   };
 
   const downloadPDF = async () => {
@@ -172,6 +193,22 @@ const PantryCreator: React.FC = () => {
           <CardContent>
             {step === 1 && (
               <div className="space-y-6">
+                {hasSharedConfiguration && sharedFrequency && appliedLink !== location.key && (
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      Este enlace comparte el tamaño del hogar, las preferencias y la frecuencia. No contiene una lista de productos.
+                    </p>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setPantryParams(Number(sharedSize), sharedFrequency, sharedPreferences);
+                        setAppliedLink(location.key);
+                      }}
+                    >
+                      Usar configuración compartida
+                    </Button>
+                  </div>
+                )}
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
                   {[1, 2, 3, 4, 5, 6].map(size => (
                     <Button
@@ -263,7 +300,7 @@ const PantryCreator: React.FC = () => {
                       <Download className="h-4 w-4" />
                       PDF
                     </Button>
-                    <Button onClick={shareList} variant="outline" size="sm" className="flex items-center gap-2">
+                    <Button onClick={shareConfiguration} aria-label="Compartir configuración" variant="outline" size="sm" className="flex items-center gap-2">
                       <Share className="h-4 w-4" />
                       Compartir
                     </Button>
