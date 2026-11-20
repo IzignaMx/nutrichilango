@@ -73,22 +73,45 @@ export function isOutlier(price, historicalPrices, threshold = 3) {
   return zScore > threshold;
 }
 
-/**
- * Schema for price-only updates produced by the scraper.
- * Does NOT require the full store/product structure.
- */
-export const PriceUpdateSchema = z.object({
-  storeId: z.string(),
-  productId: z.string(),
+// La procedencia debe venir del colector, nunca inferirse del destino del catálogo.
+const ExactIdentifier = z.string().min(1).max(120).regex(/^[a-zA-Z0-9_-]+$/);
+const SourceLabel = z.string().min(1).max(160).refine((value) => value.trim() === value);
+const ProductSourceUrl = z.string().max(2048).refine((value) => {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && url.href === value &&
+      !url.username && !url.password && !url.hash && url.pathname !== '/';
+  } catch {
+    return false;
+  }
+}, 'Se requiere URL HTTPS canónica de producto, sin credenciales ni fragmento');
+
+const PriceSourceBindingSchema = z.object({
+  storeId: ExactIdentifier,
+  productId: ExactIdentifier,
   side: z.enum(['traditional', 'plantBased']),
-  price: z.number().positive().min(1).max(5000), // MXN range guard
-  source: z.string().optional(),
-  observedUnit: z.string().trim().min(1).optional(), // presentación de la fuente, no la del catálogo
+  observedUnit: z.string().trim().min(1).max(100),
+  currency: z.literal('MXN'),
+  source: z.object({
+    merchant: SourceLabel,
+    channel: SourceLabel,
+    productUrl: ProductSourceUrl,
+    sku: SourceLabel,
+  }).strict(),
+}).strict();
+
+export const PriceSourceAllowlistSchema = z.object({
+  version: z.literal(1),
+  bindings: z.array(PriceSourceBindingSchema),
+}).strict();
+
+export const PriceUpdateSchema = PriceSourceBindingSchema.extend({
+  price: z.number().positive().min(1).max(5000),
   scrapedAt: z.string().datetime().refine((value) => {
     const date = new Date(value);
     return Number.isFinite(date.getTime()) && date.toISOString() === value && date.getTime() <= Date.now();
   }, 'Se requiere una fecha ISO UTC válida y no futura'),
-});
+}).strict();
 
 /**
  * Category-aware price validation

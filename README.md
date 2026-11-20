@@ -41,7 +41,7 @@ Una plataforma web dedicada a facilitar la transición hacia una alimentación b
 
 ### 🔄 Estado de los precios
 - **Precios de referencia**: El catálogo muestra observaciones publicadas. No se actualiza en tiempo real ni tiene una frecuencia de actualización garantizada.
-- **Automatización en pausa**: La tarea semanal comprueba que el navegador funciona. No consulta tiendas ni propone precios nuevos hasta que el extractor pueda comprobar la presentación en la fuente.
+- **Validación automática, publicación en pausa**: La tarea semanal revisa el registro de fuentes y prueba el actualizador con datos ficticios. No consulta tiendas ni publica precios. Para reanudar la carga real hace falta una fuente autorizada que identifique comercio, producto, presentación y fecha.
 - **Fechas**: El pie de página muestra la última observación publicada y cada producto indica su fecha cuando está registrada. Consulta cómo [interpretar los precios y las fechas](docs/precios-y-fechas.md).
 
 ## 🚀 Inicio Rápido

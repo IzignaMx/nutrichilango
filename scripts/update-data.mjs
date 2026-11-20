@@ -1,193 +1,117 @@
-
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { auditPriceUpdate } from './lib/schema-check.mjs';
+import { admittedPriceUpdates, validatedBindings } from './lib/price-provenance.mjs';
 import { toUnitPrice } from '../src/data/price-normalization.mjs';
 
-/**
- * Advanced Modular Data Pipeline - Two-Phase Commit
- *
- * DESIGN PRINCIPLES:
- * 1. ACID-like Consistency: Audit before Apply.
- * 2. High Congruency: Shared Zod-based validation.
- * 3. Surgical Price Merge: only price fields are updated; all other
- *    store/product metadata is preserved.
- * 4. Human Transparency: Generating human-readable reports.
- */
-
 const STORES_DIR = path.join(process.cwd(), 'src/data/stores');
-const UPDATES_DIR = path.join(process.cwd(), 'data/updates');
 const METADATA_FILE = path.join(process.cwd(), 'src/data/metadata.ts');
-const SCRAPED_FILE = path.join(UPDATES_DIR, 'scraped-prices.json');
+const SCRAPED_FILE = path.join(process.cwd(), 'data/updates/scraped-prices.json');
+const ALLOWLIST = path.join(process.cwd(), 'data/price-source-allowlist.json');
 
-// ---------------------------------------------------------------------------
-// Ingest price updates produced by scrape-data.mjs
-// ---------------------------------------------------------------------------
 function ingestPriceUpdates() {
-  if (!fs.existsSync(SCRAPED_FILE)) return [];
-  const raw = JSON.parse(fs.readFileSync(SCRAPED_FILE, 'utf-8'));
+  if (!fs.existsSync(SCRAPED_FILE)) return null;
+  const raw = JSON.parse(fs.readFileSync(SCRAPED_FILE, 'utf8'));
   return Array.isArray(raw) ? raw : [raw];
 }
 
-// ---------------------------------------------------------------------------
-// Update the metadata timestamp
-// ---------------------------------------------------------------------------
+function loadCatalog() {
+  const index = new Map();
+  for (const file of fs.readdirSync(STORES_DIR).filter((name) => name.endsWith('.json'))) {
+    const filePath = path.join(STORES_DIR, file);
+    const original = fs.readFileSync(filePath, 'utf8');
+    const stores = JSON.parse(original);
+    const entry = { filePath, original, stores };
+    for (const store of stores) {
+      if (index.has(store.id)) throw new Error(`Tienda duplicada en catálogo: ${store.id}`);
+      index.set(store.id, { store, entry });
+    }
+  }
+  return ({ storeId, productId, side }) => {
+    const located = index.get(storeId);
+    const products = located?.store.products?.filter((product) => product.id === productId);
+    if (!products || products.length !== 1 || !products[0][side]) return undefined;
+    return { entry: located.entry, product: products[0], variant: products[0][side] };
+  };
+}
+
 function updateMetadata(observedAt) {
   if (!fs.existsSync(METADATA_FILE)) return;
-  let content = fs.readFileSync(METADATA_FILE, 'utf-8');
+  let content = fs.readFileSync(METADATA_FILE, 'utf8');
   const previous = content.match(/lastUpdated: "([^"]+)"/)?.[1];
   if (!previous || Date.parse(previous) >= Date.parse(observedAt)) return;
   content = content.replace(/lastUpdated: "[^"]+"/, `lastUpdated: "${observedAt}"`);
   fs.writeFileSync(METADATA_FILE, content);
-  console.log('✅ Metadata timestamp updated.');
+  console.log('✅ Fecha de observación publicada actualizada.');
 }
 
-// ---------------------------------------------------------------------------
-// Surgical price merge
-// ---------------------------------------------------------------------------
-function mergePriceIntoStores(updates) {
-  const applied = [];
-  const notFound = [];
-  const rejected = [];
+function mergePriceIntoStores(updates, locateTarget) {
   const changedFiles = new Set();
-
-  // Load all stores into memory indexed by storeId
-  const storeFiles = fs.readdirSync(STORES_DIR).filter(f => f.endsWith('.json'));
-  const fileMap = Object.create(null); // storeId -> { filePath, stores[] }
-
-  for (const file of storeFiles) {
-    const filePath = path.join(STORES_DIR, file);
-    const stores = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    for (const store of stores) {
-      fileMap[store.id] = { filePath, stores };
+  for (const update of updates) {
+    const { entry, product, variant } = locateTarget(update);
+    const previous = variant.price;
+    variant.price = update.price;
+    variant.pricePerUnit = toUnitPrice(update.price, variant.unit);
+    variant.lastUpdated = update.scrapedAt;
+    if (product.traditional?.price > 0 && product.plantBased) {
+      const traditional = product.traditional.price;
+      const plantBased = product.plantBased.price;
+      product.priceDifferencePercent = Math.round(((plantBased - traditional) / traditional) * 1000) / 10;
     }
-  }
-
-  for (const upd of updates) {
-    const entry = fileMap[upd.storeId];
-    if (!entry) {
-      notFound.push(upd);
-      continue;
-    }
-
-    const store = entry.stores.find(s => s.id === upd.storeId);
-    if (!store) { notFound.push(upd); continue; }
-
-    const product = store.products?.find(p => p.id === upd.productId);
-    if (!product) { notFound.push(upd); continue; }
-
-    const side = product[upd.side]; // 'traditional' or 'plantBased'
-    if (!side) { notFound.push(upd); continue; }
-
-    // No usar el tamaño del catálogo como prueba de la variante que se observó.
-    if (typeof upd.observedUnit !== 'string' ||
-        upd.observedUnit.trim().toLowerCase() !== side.unit?.trim().toLowerCase()) {
-      rejected.push({ ...upd, reason: 'presentación observada ausente o diferente' });
-      continue;
-    }
-    if (Date.parse(upd.scrapedAt) <= (Date.parse(side.lastUpdated) || 0)) {
-      rejected.push({ ...upd, reason: 'observación no posterior a la publicada' });
-      continue;
-    }
-
-    const oldPrice = side.price;
-    side.price = upd.price;
-    side.pricePerUnit = toUnitPrice(upd.price, side.unit);
-    side.lastUpdated = upd.scrapedAt;
-
-    // Recalculate priceDifferencePercent if both sides are present
-    if (product.traditional && product.plantBased) {
-      const tradPrice = product.traditional.price;
-      const pbPrice = product.plantBased.price;
-      if (tradPrice > 0) {
-        product.priceDifferencePercent = Math.round(((pbPrice - tradPrice) / tradPrice) * 1000) / 10;
-      }
-    }
-
-    applied.push({ ...upd, oldPrice });
     changedFiles.add(entry);
+    console.log(`   ✅ ${update.storeId}/${update.productId} [${update.side}]: $${previous} → $${update.price}`);
   }
-
-  // Write back modified files (deduplicate by filePath)
-  const writtenPaths = new Set();
-  for (const entry of changedFiles) {
-    if (writtenPaths.has(entry.filePath)) continue;
-    writtenPaths.add(entry.filePath);
-    const original = fs.readFileSync(entry.filePath, 'utf-8');
-    const output = JSON.stringify(entry.stores, null, 2) + (original.endsWith('\n') ? '\n' : '');
-    fs.writeFileSync(entry.filePath, original.includes('\r\n') ? output.replaceAll('\n', '\r\n') : output);
+  for (const { filePath, original, stores } of changedFiles) {
+    const output = JSON.stringify(stores, null, 2) + (original.endsWith('\n') ? '\n' : '');
+    fs.writeFileSync(filePath, original.includes('\r\n') ? output.replaceAll('\n', '\r\n') : output);
   }
-
-  return { applied, notFound, rejected };
 }
 
-// ---------------------------------------------------------------------------
-// Main pipeline
-// ---------------------------------------------------------------------------
-async function runPipeline() {
-  console.log('🏗️  Starting Advanced 2-Phase Data Pipeline...');
+function runPipeline(args) {
+  const checkAllowlist = args.length === 1 && args[0] === '--check-allowlist';
+  const checkOnly = args.length === 0 || (args.length === 1 && args[0] === '--check-only');
+  const apply = args.length === 1 && args[0] === '--apply';
+  if (!checkAllowlist && !checkOnly && !apply) throw new Error('Argumentos no reconocidos');
+  const priceUpdates = checkAllowlist ? [] : ingestPriceUpdates();
 
-  // Phase 1: Ingest & Audit
-  console.log('\n🔍 Phase 1: Auditing Scraped Price Updates...');
-  const priceUpdates = ingestPriceUpdates();
-
-  if (priceUpdates.length === 0) {
-    console.log('ℹ️  Sin observaciones de precios. Se conserva la fecha publicada.');
+  const locateTarget = loadCatalog();
+  const findVariant = (target) => locateTarget(target)?.variant;
+  const bindings = validatedBindings(JSON.parse(fs.readFileSync(ALLOWLIST, 'utf8')), findVariant);
+  if (checkAllowlist) {
+    console.log(`Registro válido: ${bindings.size} vinculaciones. No se leyeron ni aplicaron observaciones.`);
     return;
   }
 
-  console.log(`   Found ${priceUpdates.length} price updates.`);
+  if (priceUpdates === null) {
+    console.log('Sin archivo de observaciones. No se validaron ni aplicaron precios.');
+    return;
+  }
 
-  const auditResults = { passed: 0, failed: 0, errors: [] };
-
-  const validUpdates = [];
-  for (const item of priceUpdates) {
+  // Primero comprobar TODA la tanda. Las discrepancias no dejan una actualización parcial.
+  const parsed = priceUpdates.map((item, index) => {
     const audit = auditPriceUpdate(item);
-    if (audit.valid) {
-      auditResults.passed++;
-      validUpdates.push(item);
-    } else {
-      auditResults.failed++;
-      auditResults.errors.push(...audit.errors);
-      console.error(`   ❌ Invalid update [${item.storeId}/${item.productId}]:`, audit.errors);
-    }
-  }
-
-  console.log(`   Audit: ${auditResults.passed} passed, ${auditResults.failed} failed.`);
-
-  if (validUpdates.length === 0) {
-    console.error('🛑 Pipeline Aborted. No valid price updates survived audit.');
-    process.exit(1);
-  }
-
-  // Phase 2: Commit (Surgical Merge)
-  console.log('\n🚀 Phase 2: Committing Price Changes...');
-  const { applied, notFound, rejected } = mergePriceIntoStores(validUpdates);
-
-  for (const a of applied) {
-    console.log(`   ✅ ${a.storeId}/${a.productId} [${a.side}]: $${a.oldPrice} → $${a.price}`);
-  }
-  for (const nf of notFound) {
-    console.log(`   ⚠️  Not found: ${nf.storeId}/${nf.productId} [${nf.side}]`);
-  }
-
-  for (const item of rejected) {
-    console.log(`   ⚠️  ${item.storeId}/${item.productId} [${item.side}]: ${item.reason}`);
-  }
-
-  if (applied.length === 0) {
-    console.log('ℹ️  No se aplicaron observaciones. Se conservan los precios y la fecha publicados.');
+    if (!audit.valid) throw new Error(`Observación ${index + 1} inválida: ${audit.errors.join('; ')}`);
+    return audit.data;
+  });
+  const admitted = admittedPriceUpdates(parsed, bindings, findVariant);
+  if (checkOnly) {
+    console.log(`Tanda válida: ${parsed.length} observaciones leídas, ${admitted.length} aplicables. No se modificaron archivos.`);
     return;
   }
-  updateMetadata(applied.map(({ scrapedAt }) => scrapedAt).sort().at(-1));
+  if (admitted.length === 0) {
+    console.log('ℹ️  Sin observaciones posteriores. Se conservan los precios y la fecha publicados.');
+    return;
+  }
 
-  // Clean up scraped file after successful merge
-  if (fs.existsSync(SCRAPED_FILE)) fs.unlinkSync(SCRAPED_FILE);
-
-  console.log(`\n✨ Pipeline finished. Applied ${applied.length} price updates, ${notFound.length} not found.`);
+  mergePriceIntoStores(admitted, locateTarget);
+  updateMetadata(admitted.map(({ scrapedAt }) => scrapedAt).sort().at(-1));
+  // Conservar el archivo de observaciones fechado para revisión y repetición idempotente.
+  console.log(`✨ Se aplicaron ${admitted.length} observaciones de precios.`);
 }
 
-runPipeline().catch(err => {
-  console.error('❌ Pipeline failed:', err);
-  process.exit(1);
-});
+try {
+  runPipeline(process.argv.slice(2));
+} catch (error) {
+  console.error('❌ Actualización de precios detenida:', error.message);
+  process.exitCode = 1;
+}

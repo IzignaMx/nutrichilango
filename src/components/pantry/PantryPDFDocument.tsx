@@ -144,7 +144,7 @@ const PantryPDFDocument: React.FC<PantryPDFDocumentProps> = ({
             </Text>
           )}
           <Text style={styles.metadata}>
-            Generada el {currentDate} • NutriChilango.com
+            Lista generada el {currentDate} • NutriChilango
           </Text>
         </View>
 
@@ -172,9 +172,8 @@ const PantryPDFDocument: React.FC<PantryPDFDocumentProps> = ({
             Total estimado: ${totalPrice.toFixed(2)} MXN
           </Text>
           <Text style={styles.footerNote}>
-            * Los precios son estimados basados en datos de mercados locales de la CDMX.{'\n'}
-            * Esta lista fue generada con NutriChilango para promover una alimentación vegana accesible.{'\n'}
-            * Visita nutrichilango.izignamx.com para comparar precios de referencia.
+            Los importes en MXN son estimaciones ilustrativas de una tabla fija de despensa.{'\n'}
+            No son precios observados en tiendas ni cotizaciones.
           </Text>
         </View>
       </Page>

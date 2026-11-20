@@ -12,10 +12,11 @@ Wizard interactivo de 3 pasos que genera listas personalizadas de compras vegana
 ## Características técnicas
 - Estado persistente en localStorage
 - Generación dinámica de cantidades según parámetros
-- Exportación: copiar texto, generar PDF, compartir URL
+- Exportación: copiar el contenido exacto de la lista o guardar el PDF. Si el navegador no permite copiar, la lista y el PDF siguen disponibles.
 - Completamente responsive y accesible
 
 ## Extensibilidad
 - Datos de productos modulares y escalables
 - Algoritmo de cálculo de cantidades personalizable
-- Integración futura con API de precios real
+- Los importes en MXN son estimaciones ilustrativas de la tabla fija de despensa; no proceden del comparador ni son precios observados en tiendas o cotizaciones.
+- Los enlaces que solo incluían preferencias, tamaño y frecuencia no reconstruían la lista generada. Si se retoma compartir por URL, primero definir un formato versionado y acotado que reconstruya la lista exacta y validar la lectura en otro navegador. Por ahora, compartir el texto copiado o el PDF.

@@ -70,24 +70,18 @@ las rutas de `App.tsx` y comprueba el HTML emitido por Vite. Para verificar el
 resultado, servir `dist` con un servidor estático **sin fallback SPA** y comprobar
 entrada directa y recarga, además de un 404 para una ruta inexistente.
 
-## Entorno de la actualización semanal
+## Validación semanal de precios
 
-La actualización semanal usa `ubuntu-24.04` y Node 22, con la versión de Playwright
-resuelta por `package-lock.json` (actualmente 1.58.2). Se evita `ubuntu-latest`
-porque puede cambiar de distribución sin que cambien las dependencias nativas
-del navegador. Después de instalar Chromium, `scripts/verify-chromium.mjs`
-comprueba su inicio y renderizado local antes de contactar fuentes de precios.
-Esto valida el navegador, no la disponibilidad ni la calidad de las fuentes.
+El workflow `weekly-update.yml` usa Ubuntu 24.04 y Node 22. Valida el registro
+de fuentes y ejecuta pruebas sintéticas que aíslan el catálogo en directorios
+temporales. Se ejecuta semanalmente, a demanda y en PR que tocan la ruta de
+actualización. Tiene permisos de lectura y no abre PR, escribe en ramas ni
+despliega. Comprueba que los precios y la fecha del checkout quedan intactos.
 
-La publicación automática queda deshabilitada explícitamente mediante
-`PRICE_SCRAPING_ENABLED: 'false'`: el extractor anterior no devuelve una unidad
-observada verificable. La tarea semanal instala y comprueba el navegador, pero
-no consulta tiendas ni crea PR de datos mientras siga esta condición. Solo se
-debe habilitar después de implementar y probar la extracción de `observedUnit`
-y su procedencia desde la fuente, nunca copiando la unidad del catálogo.
+Se retiró el extractor anterior: buscaba en comercios alternativos y no
+demostraba que la oferta correspondiera a la sucursal y presentación del catálogo.
+Chromium se sigue verificando en `pages-smoke.yml` para el build web; que funcione
+no demuestra que una fuente de precios esté disponible ni que pueda reutilizarse.
 
-El reporte del pipeline se escribe en `RUNNER_TEMP`, fuera del repositorio. El
-PR requiere cambios en `src/data/stores/*.json` y solo incluye esos archivos y
-`src/data/metadata.ts`. Un reporte o una fecha nuevos por sí solos no publican
-una actualización. Una ejecución del smoke no prueba que el scraping esté
-restaurado ni que haya precios nuevos válidos.
+Antes de habilitar una carga real, aplicar los pasos de
+[reactivación controlada](docs/precios-y-fechas.md#reactivación-controlada).

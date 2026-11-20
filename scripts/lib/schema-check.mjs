@@ -58,5 +58,5 @@ export function auditPriceUpdate(item) {
       errors: result.error.errors.map(e => `${e.path.join('.')}: ${e.message}`),
     };
   }
-  return { valid: true, errors: [] };
+  return { valid: true, errors: [], data: result.data };
 }

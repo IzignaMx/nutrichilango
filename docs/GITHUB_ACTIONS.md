@@ -27,18 +27,19 @@ Corre en un entorno \`ubuntu-latest\` bajo Node.js versión 20. Comprende los si
 
 ---
 
-## 2. Verificación semanal del navegador (`weekly-update.yml`)
+## 2. Validación semanal de procedencia (`weekly-update.yml`)
 
-Se programa para los lunes a las 00:00 UTC y puede ejecutarse manualmente.
-Usa Ubuntu 24.04, Node.js 22 y la versión de Playwright fijada en el lockfile.
-Instala Chromium y comprueba que puede iniciar y renderizar una página local.
+Se programa para los lunes a las 00:00 UTC, puede ejecutarse a demanda y también
+se verifica en PR que afecten la ruta de precios. Usa Ubuntu 24.04 y Node 22.
+Con permisos de sólo lectura valida el registro versionado y prueba el
+actualizador en catálogos temporales con observaciones sintéticas. Comprueba que
+el catálogo y su fecha no cambien. No instala un navegador, consulta tiendas,
+abre PR de datos ni despliega.
 
-La consulta y publicación de precios están en pausa (`PRICE_SCRAPING_ENABLED: 'false'`).
-Un navegador operativo no confirma que haya precios nuevos ni que los precios publicados estén vigentes.
-Solo se debe reactivar la consulta después de implementar y probar la extracción de la presentación
-observada en la fuente. El actualizador descarta observaciones sin esa evidencia.
-Si se rehabilita, solo propone un PR cuando cambian los datos de tiendas; el reporte temporal
-no forma parte del PR. Las propuestas se revisan antes de publicarse.
+La carga de precios reales continúa pausada. Un resultado verde significa que
+se respetan las reglas de admisión probadas, no que existan precios nuevos.
+Antes de conectar una fuente, seguir los
+[pasos de reactivación](precios-y-fechas.md#reactivación-controlada).
 
 ## 3. Verificación de rutas en PR (`pages-smoke.yml`)
 

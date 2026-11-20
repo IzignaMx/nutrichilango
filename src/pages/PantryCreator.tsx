@@ -1,15 +1,14 @@
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useRef, lazy, Suspense } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Users, ChefHat, Calendar, Download, Copy, Share, Eye } from 'lucide-react';
+import { Users, ChefHat, Calendar, Download, Copy, Eye } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { pdf } from '@react-pdf/renderer';
-import { generateBalancedPantryList, type PantryItem } from '@/data/pantry/products';
+import { generateBalancedPantryList } from '@/data/pantry/products';
 import { useNutriStore } from '@/store/useNutriStore';
-import { calculatePriceDiff } from '@/lib/nutricore';
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { PDFViewer } from '@react-pdf/renderer';
@@ -30,6 +29,10 @@ const PantryCreator: React.FC = () => {
 
   const [step, setStep] = useState(1);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [copyPending, setCopyPending] = useState(false);
+  const [copyMessage, setCopyMessage] = useState('');
+  const copyAttempt = useRef(0);
+  const clipboardBusy = useRef(false);
   const { toast } = useToast();
 
   const preferencesList = [
@@ -65,25 +68,32 @@ const PantryCreator: React.FC = () => {
     }
   };
 
-  const copyList = () => {
+  const copyList = async () => {
+    if (clipboardBusy.current) return;
+    clipboardBusy.current = true;
+    setCopyPending(true);
+    const attempt = ++copyAttempt.current;
     const listText = generatedList
       .map(item => `${item.name}: ${item.quantity} ${item.unit} - $${item.price.toFixed(2)}`)
       .join('\n');
-    
-    navigator.clipboard.writeText(listText);
-    toast({ title: "Lista copiada", description: "La lista se copió al portapapeles" });
-  };
 
-  const shareList = () => {
-    const params = new URLSearchParams({
-      size: householdSize.toString(),
-      prefs: selectedPreferences.join(','),
-      freq: frequency
-    });
-    
-    const url = `${window.location.origin}/despensa?${params.toString()}`;
-    navigator.clipboard.writeText(url);
-    toast({ title: "Enlace copiado", description: "El enlace se copió al portapapeles" });
+    try {
+      const clipboard = navigator.clipboard;
+      if (typeof clipboard?.writeText !== 'function') {
+        setCopyMessage('El portapapeles no está disponible. Puedes guardar la lista en PDF.');
+        return;
+      }
+      setCopyMessage('Copiando la lista…');
+      await clipboard.writeText(`Importes estimados en MXN; no son precios observados ni cotizaciones.\n\n${listText}`);
+      if (attempt === copyAttempt.current) setCopyMessage('Lista copiada al portapapeles.');
+    } catch {
+      if (attempt === copyAttempt.current) {
+        setCopyMessage('No se pudo copiar la lista. Inténtalo de nuevo o guárdala en PDF.');
+      }
+    } finally {
+      clipboardBusy.current = false;
+      setCopyPending(false);
+    }
   };
 
   const downloadPDF = async () => {
@@ -114,7 +124,7 @@ const PantryCreator: React.FC = () => {
 
       toast({ 
         title: "¡PDF generado!", 
-        description: "Tu lista de despensa se ha descargado correctamente" 
+        description: "Se solicitó la descarga de tu lista. Revisa las descargas del navegador."
       });
     } catch (error) {
       console.error('Error generando PDF:', error);
@@ -240,6 +250,8 @@ const PantryCreator: React.FC = () => {
                 <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
                   <Button 
                     onClick={() => {
+                      ++copyAttempt.current;
+                      setCopyMessage('');
                       resetPantry();
                       setStep(1);
                     }}
@@ -250,25 +262,29 @@ const PantryCreator: React.FC = () => {
                     Nueva lista
                   </Button>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 w-full md:w-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full md:w-auto">
                     <Button onClick={() => setIsPreviewOpen(true)} variant="outline" size="sm" className="flex items-center gap-2">
                       <Eye className="h-4 w-4" />
                       Vista Previa
                     </Button>
-                    <Button onClick={copyList} variant="outline" size="sm" className="flex items-center gap-2">
+                    <Button onClick={copyList} disabled={copyPending} variant="outline" size="sm" className="flex items-center gap-2">
                       <Copy className="h-4 w-4" />
-                      Copiar
+                      Copiar lista
                     </Button>
                     <Button onClick={downloadPDF} variant="outline" size="sm" className="flex items-center gap-2">
                       <Download className="h-4 w-4" />
                       PDF
                     </Button>
-                    <Button onClick={shareList} variant="outline" size="sm" className="flex items-center gap-2">
-                      <Share className="h-4 w-4" />
-                      Compartir
-                    </Button>
                   </div>
                 </div>
+
+                <p role="status" aria-atomic="true" className="text-sm text-muted-foreground">
+                  {copyMessage || (copyPending ? 'Ya hay una copia en curso.' : '')}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Los importes en MXN son estimaciones ilustrativas de una tabla fija de despensa.
+                  No son precios observados en tiendas ni cotizaciones.
+                </p>
 
                 <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
                   <DialogContent className="max-w-4xl h-[80vh]">
