@@ -71,3 +71,16 @@ porque puede cambiar de distribución sin que cambien las dependencias nativas
 del navegador. Después de instalar Chromium, `scripts/verify-chromium.mjs`
 comprueba su inicio y renderizado local antes de contactar fuentes de precios.
 Esto valida el navegador, no la disponibilidad ni la calidad de las fuentes.
+
+La publicación automática queda deshabilitada explícitamente mediante
+`PRICE_SCRAPING_ENABLED: 'false'`: el extractor anterior no devuelve una unidad
+observada verificable. La tarea semanal instala y comprueba el navegador, pero
+no consulta tiendas ni crea PR de datos mientras siga esta condición. Solo se
+debe habilitar después de implementar y probar la extracción de `observedUnit`
+y su procedencia desde la fuente, nunca copiando la unidad del catálogo.
+
+El reporte del pipeline se escribe en `RUNNER_TEMP`, fuera del repositorio. El
+PR requiere cambios en `src/data/stores/*.json` y solo incluye esos archivos y
+`src/data/metadata.ts`. Un reporte o una fecha nuevos por sí solos no publican
+una actualización. Una ejecución del smoke no prueba que el scraping esté
+restaurado ni que haya precios nuevos válidos.
