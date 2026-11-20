@@ -268,7 +268,7 @@ const HowItWorks: React.FC = () => {
                     <li>• Combina múltiples filtros para análisis específicos</li>
                     <li>• Usa las gráficas para identificar tendencias</li>
                     <li>• Compara diferentes metodologías de preparación</li>
-                    <li>• Revisa regularmente para datos actualizados</li>
+                    <li>• Consulta la fecha registrada y confirma el precio con la tienda</li>
                   </ul>
                 </div>
               </div>

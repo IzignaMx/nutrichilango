@@ -1,6 +1,6 @@
 # Documentación de Flujos de Trabajo (GitHub Actions)
 
-El proyecto Nutrichilango cuenta con dos flujos de trabajo (*workflows*) principales automatizados mediante GitHub Actions, ubicados en `.github/workflows`. Su objetivo es garantizar la calidad del código, el despliegue continuo (CI/CD) y la actualización automatizada y verificable de datos.
+Los flujos de GitHub Actions están en `.github/workflows`. Comprueban la aplicación, publican el sitio y verifican el entorno del actualizador de precios.
 
 ---
 
@@ -27,34 +27,20 @@ Corre en un entorno \`ubuntu-latest\` bajo Node.js versión 20. Comprende los si
 
 ---
 
-## 2. Flujo de Actualización Semanal de Datos (\`weekly-update.yml\`)
+## 2. Verificación semanal del navegador (`weekly-update.yml`)
 
-Este flujo representa el componente fundamental de la arquitectura de "Datos Confiables y Dinámicos" del proyecto, implementando un Data Pipeline.
+Se programa para los lunes a las 00:00 UTC y puede ejecutarse manualmente.
+Usa Ubuntu 24.04, Node.js 22 y la versión de Playwright fijada en el lockfile.
+Instala Chromium y comprueba que puede iniciar y renderizar una página local.
 
-### 🎯 Objetivo General
-Automatizar la ingestión, auditoría y propuesta de actualización de precios e información nutricional sin dependencia de intervención manual, manteniendo un modelo descentralizado de "Actualización en dos fases".
+La consulta y publicación de precios están en pausa (`PRICE_SCRAPING_ENABLED: 'false'`).
+Un navegador operativo no confirma que haya precios nuevos ni que los precios publicados estén vigentes.
+Solo se debe reactivar la consulta después de implementar y probar la extracción de la presentación
+observada en la fuente. El actualizador descarta observaciones sin esa evidencia.
+Si se rehabilita, solo propone un PR cuando cambian los datos de tiendas; el reporte temporal
+no forma parte del PR. Las propuestas se revisan antes de publicarse.
 
-### ⚡ Disparadores (Triggers)
-- **\`schedule\` (Cron):** Se ejecuta periódicamente basado en el cron \`0 0 * * 1\` (Todos los lunes a las 00:00 UTC).
-- **\`workflow_dispatch\`:** Permite ejecución manual desde la interfaz de GitHub Actions por parte de los administradores.
+## 3. Verificación de rutas en PR (`pages-smoke.yml`)
 
-### ⚙️ Secuencia de Ejecución (Jobs)
-Corre en \`ubuntu-latest\` con Node 20 y requiere permisos elevados de \`write\` en pull-requests y en contenido del repositorio temporalmente.
-
-1. **Instalación (\`npm ci\`):** Clona y asegura las dependencias del script procesador de datos.
-2. **Pipeline de Datos (\`scripts/update-data.mjs\`):**
-   - Se ejecuta el script de actualización en Node (\`node scripts/update-data.mjs\`).
-   - El script captura las entradas JSON colocadas en \`data/updates/\` (generalmente agregadas vía otros jobs o scrapers en el ecosistema).
-   - Realiza la **Fase 1 (Ingesta y Auditoría)** donde evalúa la estructura contra un esquema de ZOD (\`schema-check.mjs\`) determinando la precisión técnica y la congruencia científica (ej. cálculos de macronutrientes correctos y proporciones costo-beneficio validas).
-   - Realiza la **Fase 2 (Commit/Apply)** donde actualiza los datos fusionados (Stores, Products, Dishes) sobre-escribiendo de modo permanente el almacenamiento de persistencia (ej. \`conventional.json\`, \`vegan.json\`, \`dishes.json\`).
-   - Todos los resultados de la operación (éxitosos o fallidos) se capturan y son inyectados al entorno bajo \`$GITHUB_OUTPUT\`.
-3. **Generación de Pull Request (\`peter-evans/create-pull-request@v6\`):**
-   - Transforma los datos sobrescritos por la fase 2 local en una nueva rama remota (\`automation/content-update\`).
-   - Emite un **Pull Request automatizado** hacia la rama \`main\`.
-   - Incluye como cuerpo del PR el reporte extraído de la etapa 2, documentando exactamente qué productos y precios cambiaron o qué fallas técnicas de validación impidieron actualizar algo.
-   - Etiqueta dinámicamente el PR con \`data-update\` y \`needs-review\`.
-
-### 🛡️ Medidas de Seguridad y Buenas Prácticas Notables de las Actions
-- **No Despliegue en Ciego:** El job \`weekly-update\` **no hace push directamente a main**. Genera un Pull Request para revisión humana (\`needs-review\`), previniendo caídas en producción si la data enviada es errónea pero la sintaxis fuera "válida".
-- **Auditoría Local (Two-Phase):** Al vincular estrechamente el script ECMAScript de auditoria ZOD a la ejecución en el workflow en nube, aseguramos que el GitHub Action sirva solo como orquestador, y no posea lógica dura por sí mismo.
-- **Uso estricto de \`npm ci\`:** Protege contra derivas de versiones, fundamental en canales automatizados.
+En PR hacia `main`, construye el sitio y comprueba en Chromium la entrada directa y recarga de una ruta
+conocida, más un HTTP 404 para una ruta desconocida. Sirve el build local, no consulta tiendas ni despliega.

@@ -62,7 +62,7 @@ const DishesComparison: React.FC = () => {
               <div className="text-xs sm:text-sm text-green-200">Plant-Based</div>
             </div>
             <div className="space-y-1 md:space-y-2">
-              <div className="text-lg sm:text-xl lg:text-2xl font-bold">En Tiempo Real</div>
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold">De referencia</div>
               <div className="text-xs sm:text-sm text-green-200">Precios</div>
             </div>
             <div className="space-y-1 md:space-y-2">
@@ -102,7 +102,7 @@ const DishesComparison: React.FC = () => {
           {isLoading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Actualizando precios en tiempo real...</p>
+              <p className="text-gray-600">Cargando la comparación de platillos...</p>
             </div>
           ) : (
             /* Dishes Grid */

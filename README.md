@@ -39,10 +39,10 @@ Una plataforma web dedicada a facilitar la transición hacia una alimentación b
 - Análisis de tendencias de precios
 - Rankings de mejores valores por tienda
 
-### 🔄 Actualizaciones Automatizadas (Weekly)
-- **Precios y Fuentes**: Cada lunes a las 00:00 UTC, un workflow de GitHub Actions verifica y actualiza las tendencias de precios.
-- **Validación de Datos**: Las actualizaciones pasan por un proceso de validación para asegurar la integridad de la información.
-- **Transparencia**: El sitio muestra automáticamente la fecha de la "Última Actualización" en el pie de página.
+### 🔄 Estado de los precios
+- **Precios de referencia**: El catálogo muestra observaciones publicadas. No se actualiza en tiempo real ni tiene una frecuencia de actualización garantizada.
+- **Automatización en pausa**: La tarea semanal comprueba que el navegador funciona. No consulta tiendas ni propone precios nuevos hasta que el extractor pueda comprobar la presentación en la fuente.
+- **Fechas**: El pie de página muestra la última observación publicada y cada producto indica su fecha cuando está registrada. Consulta cómo [interpretar los precios y las fechas](docs/precios-y-fechas.md).
 
 ## 🚀 Inicio Rápido
 

@@ -5,20 +5,20 @@
       "items": [
         {
           "name": "Soriana",
-          "description": "Sitio web oficial y aplicación móvil",
-          "badge": "Actualización automática",
+          "description": "Sitio web oficial y aplicación móvil de referencia",
+          "badge": "Referencia en línea",
           "badgeColor": "primary"
         },
         {
           "name": "Walmart",
-          "description": "API pública y sitio web",
-          "badge": "Actualización diaria",
+          "description": "Sitio web de referencia",
+          "badge": "Referencia en línea",
           "badgeColor": "brand-success"
         },
         {
           "name": "Chedraui",
           "description": "Catálogo en línea",
-          "badge": "Actualización semanal",
+          "badge": "Referencia",
           "badgeColor": "brand-accent"
         }
       ]
@@ -28,14 +28,14 @@
       "items": [
         {
           "name": "Central de Abastos",
-          "description": "Relevamiento presencial semanal",
+          "description": "Mercado mayorista de referencia",
           "badge": "Verificación manual",
           "badgeColor": "destructive"
         },
         {
           "name": "Mercado Jamaica",
-          "description": "Contacto directo con comerciantes",
-          "badge": "Actualización semanal",
+          "description": "Mercado local de referencia",
+          "badge": "Referencia",
           "badgeColor": "secondary"
         },
         {
@@ -127,18 +127,18 @@
   ],
   "dataQuality": [
     {
-      "name": "Verificación Automatizada",
+      "name": "Validación de nuevas observaciones",
       "features": [
         "Validación de rangos de precios",
-        "Detección de anomalías estadísticas",
-        "Comparación con datos históricos",
-        "Alertas por cambios abruptos"
+        "Coincidencia con la presentación observada",
+        "Conservación de los registros históricos",
+        "Revisión antes de publicar precios nuevos"
       ]
     },
     {
       "name": "Revisión Manual",
       "features": [
-        "Verificación presencial semanal",
+        "Verificación de la presentación y la fecha cuando hay evidencia",
         "Validación cruzada entre fuentes",
         "Revisión por expertos nutricionales",
         "Feedback de usuarios registrados"
