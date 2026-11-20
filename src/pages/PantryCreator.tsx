@@ -1,6 +1,7 @@
 
 import React, { useState, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
+import { toast as notify } from 'sonner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -97,12 +98,10 @@ const PantryCreator: React.FC = () => {
     const url = `${window.location.origin}/despensa?${params.toString()}`;
     try {
       await navigator.clipboard.writeText(url);
-      toast({ title: 'Enlace copiado', description: 'Incluye la configuración, no los productos de la lista.' });
+      notify.success('Enlace copiado', { description: 'Incluye la configuración, no los productos de la lista.' });
     } catch {
-      toast({
-        title: 'No se pudo copiar el enlace',
+      notify.error('No se pudo copiar el enlace', {
         description: 'Puedes copiar la lista o compartir el PDF.',
-        variant: 'destructive',
       });
     }
   };

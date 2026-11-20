@@ -5,8 +5,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNutriStore } from '@/store/useNutriStore';
 import PantryCreator from './PantryCreator';
 
-const { toast } = vi.hoisted(() => ({ toast: vi.fn() }));
-vi.mock('@/hooks/use-toast', () => ({ useToast: () => ({ toast }) }));
+const { notify } = vi.hoisted(() => ({ notify: { success: vi.fn(), error: vi.fn() } }));
+vi.mock('sonner', () => ({ toast: notify }));
 
 function openPantry(path = '/despensa') {
   return render(<MemoryRouter initialEntries={[path]}><PantryCreator /></MemoryRouter>);
@@ -29,7 +29,7 @@ function setClipboard(writeText: (text: string) => Promise<void>) {
 
 beforeEach(() => {
   useNutriStore.getState().resetPantry();
-  toast.mockClear();
+  vi.clearAllMocks();
 });
 afterEach(() => {
   cleanup();
@@ -49,9 +49,9 @@ describe('Enlace de configuración de despensa', () => {
     const url = new URL(link);
     expect(url.pathname).toBe('/despensa');
     expect(Object.fromEntries(url.searchParams)).toEqual({ size: '4', prefs: 'Económico', freq: 'biweekly' });
-    expect(toast).not.toHaveBeenCalled();
+    expect(notify.success).not.toHaveBeenCalled();
     finish();
-    await waitFor(() => expect(toast).toHaveBeenCalledWith(expect.objectContaining({ title: 'Enlace copiado' })));
+    await waitFor(() => expect(notify.success).toHaveBeenCalledWith('Enlace copiado', expect.any(Object)));
   });
 
   it('abre enlaces anteriores sin sobrescribir la despensa hasta que se decide usar la configuración', () => {
@@ -87,10 +87,8 @@ describe('Enlace de configuración de despensa', () => {
     setClipboard(() => Promise.reject(new Error('Permiso denegado')));
     createPantry();
     fireEvent.click(screen.getByRole('button', { name: 'Compartir configuración' }));
-    await waitFor(() => expect(toast).toHaveBeenCalledWith(expect.objectContaining({
-      title: 'No se pudo copiar el enlace',
-    })));
-    expect(toast).not.toHaveBeenCalledWith(expect.objectContaining({ title: 'Enlace copiado' }));
+    await waitFor(() => expect(notify.error).toHaveBeenCalledWith('No se pudo copiar el enlace', expect.any(Object)));
+    expect(notify.success).not.toHaveBeenCalled();
     expect(screen.getByRole('button', { name: 'Copiar' })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'PDF' })).toBeTruthy();
   });
