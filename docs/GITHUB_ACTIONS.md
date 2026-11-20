@@ -17,7 +17,7 @@ Asegurar que cualquier código que llegue a producción pase por controles estri
 ### ⚙️ Secuencia de Ejecución (Jobs)
 Corre en un entorno \`ubuntu-latest\` bajo Node.js versión 20. Comprende los siguientes pasos clave, en un modelo de falla rústico (si un paso falla, se detiene el despliegue):
 
-1. **Checkout & Setup (\`actions/checkout@v4\`, \`actions/setup-node@v4\`):** Clona el repositorio y prepara Node 20 utilizando caché de \`npm\` para agilizar las descargas en futuras ejecuciones.
+1. **Checkout & Setup (\`actions/checkout@v4\`, \`actions/setup-node@v4\`):** Clona el repositorio y prepara Node 22 utilizando caché de \`npm\` para agilizar las descargas en futuras ejecuciones.
 2. **Instalación de Dependencias:** Ejecuta \`npm ci\` (Clean Install), lo que asegura que las dependencias instaladas sean idénticas a las almacenadas en \`package-lock.json\`, garantizando congruencia en el build y evitando vulnerabilidades introducidas por subversiones (semver).
 3. **Control de Calidad (Linting & Testing):**
    - Corre \`npm run lint\` (ESLint) para verificar estilos y convenciones estáticas en TypeScript/React.
@@ -42,5 +42,7 @@ no forma parte del PR. Las propuestas se revisan antes de publicarse.
 
 ## 3. Verificación de rutas en PR (`pages-smoke.yml`)
 
-En PR hacia `main`, construye el sitio y comprueba en Chromium la entrada directa y recarga de una ruta
-conocida, más un HTTP 404 para una ruta desconocida. Sirve el build local, no consulta tiendas ni despliega.
+En PR hacia `main`, ejecuta lint, Vitest, las pruebas nativas de precios y los dos proyectos TypeScript con
+Ubuntu 24.04 y Node.js 22. Construye el sitio, comprueba que incluye `CNAME` y verifica en Chromium las
+entradas directas y recargas de todas las rutas públicas, un HTTP 404 real y una comparación con sus
+importes, precios normalizados y fechas de observación. Sirve el build local, no consulta tiendas ni despliega.

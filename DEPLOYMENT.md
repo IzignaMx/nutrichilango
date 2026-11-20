@@ -57,8 +57,15 @@ conocida durante `npm run build`. Así GitHub Pages puede servir, por ejemplo,
 inicio. Una dirección sin barra final puede redirigir a la misma ruta con barra.
 BrowserRouter conserva los enlaces limpios y los parámetros de consulta.
 No se genera un `404.html` que convierta direcciones desconocidas en éxitos.
+Las entradas, Open Graph y el sitemap usan la dirección canónica de cada ruta.
 
-Al agregar una ruta, actualizar `pagesRoutes`. La prueba contrasta esa lista con
+El archivo `public/CNAME` se copia a `dist/CNAME`. Consérvalo para que la
+publicación desde la rama `gh-pages` no elimine la configuración del dominio
+personalizado. Tras un despliegue autorizado, comprueba en el dominio público
+que `/CNAME` conserva `nutrichilango.izignamx.com`, que una ruta directa abre y
+recarga, y que una dirección desconocida responde 404.
+
+Al agregar una ruta pública, actualizar `pagesRoutes` y el sitemap. La prueba contrasta esa lista con
 las rutas de `App.tsx` y comprueba el HTML emitido por Vite. Para verificar el
 resultado, servir `dist` con un servidor estático **sin fallback SPA** y comprobar
 entrada directa y recarga, además de un 404 para una ruta inexistente.

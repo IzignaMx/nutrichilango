@@ -5,7 +5,6 @@ import { storeData } from '@/data';
 import { useNutriStore } from '@/store/useNutriStore';
 import HeroSection from '@/components/home/HeroSection';
 import FeaturesSection from '@/components/home/FeaturesSection';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
 import ComparisonSection from '@/components/home/ComparisonSection';
 import CallToActionSection from '@/components/home/CallToActionSection';
 import FloatingActionButton from '@/components/ui/floating-action-button';
@@ -48,8 +47,6 @@ const Index: React.FC = () => {
       <HeroSection onScrollToComparisons={handleScrollToComparisons} />
       
       <FeaturesSection />
-
-      <TestimonialsSection />
 
       <div className="w-full">
         <ComparisonSection

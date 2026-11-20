@@ -20,6 +20,11 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: node --test scripts/lib/price-*.node.mjs
+      - run: npm exec --no -- tsc -p tsconfig.app.json --pretty false
+      - run: npm exec --no -- tsc -p tsconfig.node.json --pretty false
       - run: npm run build
       - run: npm exec --no -- playwright install chromium --with-deps
       - run: node scripts/verify-pages-browser.mjs
