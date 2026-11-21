@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNutriStore } from '@/store/useNutriStore';
@@ -37,6 +37,32 @@ afterEach(() => {
   else Reflect.deleteProperty(navigator, 'clipboard');
 });
 
+describe('Frecuencia de compras', () => {
+  it('permite elegir una opción mediante su etiqueta y borra la selección al crear otra lista', () => {
+    openPantry();
+    fireEvent.click(screen.getByRole('button', { name: '4' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+
+    const group = () => within(screen.getByRole('group', { name: 'Frecuencia de compras' }));
+    const monthly = group().getByRole<HTMLInputElement>('radio', { name: 'Mensual' });
+    expect(monthly.checked).toBe(false);
+    fireEvent.click(screen.getByText('Compras una vez al mes', { exact: true }));
+    expect(monthly.checked).toBe(true);
+    expect(group().getAllByRole('radio', { checked: true })).toEqual([monthly]);
+    fireEvent.click(screen.getByRole('button', { name: 'Generar lista' }));
+    expect(screen.getByText('Para 4 personas • Mensual')).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Nueva lista' }));
+    fireEvent.click(screen.getByRole('button', { name: '4' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    expect(group().getAllByRole('radio')).toHaveLength(3);
+    expect(group().queryByRole('radio', { checked: true })).toBeNull();
+    expect(screen.getByRole<HTMLButtonElement>('button', { name: 'Generar lista' }).disabled).toBe(true);
+  });
+});
+
 describe('Enlace de configuración de despensa', () => {
   it('copia los parámetros existentes y confirma solo cuando se escribe el enlace', async () => {
     let finish!: () => void;
@@ -66,6 +92,7 @@ describe('Enlace de configuración de despensa', () => {
     });
     fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
     fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    expect(screen.getByRole<HTMLInputElement>('radio', { name: 'Quincenal' }).checked).toBe(true);
     fireEvent.click(screen.getByRole('button', { name: 'Generar lista' }));
     expect(screen.getByText('Tu despensa personalizada')).toBeTruthy();
     expect(useNutriStore.getState().generatedPantry.length).toBeGreaterThan(0);

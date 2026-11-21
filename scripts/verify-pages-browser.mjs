@@ -139,19 +139,55 @@ try {
     await page.getByText(/Última observación publicada:.+Cada producto puede tener una fecha distinta/).waitFor();
     console.log('Chromium: importes, presentaciones y fechas históricas verificados en la comparación pública.');
 
-    await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
-    await page.goto(origin + '/despensa');
-    await page.getByRole('button', { name: '4', exact: true }).click();
-    await page.getByRole('button', { name: 'Siguiente' }).click();
-    await page.getByRole('button', { name: 'Económico', exact: true }).click();
-    await page.getByRole('button', { name: 'Siguiente' }).click();
-    await page.getByText('Quincenal', { exact: true }).click();
-    await page.getByRole('button', { name: 'Generar lista' }).click();
-    await page.getByRole('button', { name: 'Compartir configuración' }).click();
-    await page.getByText('Enlace copiado', { exact: true }).waitFor();
-    const sharedUrl = new URL(await page.evaluate(() => navigator.clipboard.readText()));
+    const pantryContext = await browser.newContext({
+      serviceWorkers: 'block',
+      viewport: { width: 390, height: 844 },
+    });
+    await pantryContext.route('**/*', (route) =>
+      new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    await pantryContext.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+    const pantryPage = await pantryContext.newPage();
+    assert.equal((await pantryPage.goto(origin + '/despensa')).status(), 200);
+    await pantryPage.getByRole('heading', { name: 'Creador de Despensa Vegana', level: 1 }).waitFor();
+    assert.equal(new URL(pantryPage.url()).search, '', 'El recorrido de teclado no usa un enlace compartido.');
+    assert.equal(await pantryPage.evaluate(() => localStorage.getItem('nutrichilango-storage')), null);
+    const pantryButton = (name) => pantryPage.getByRole('button', { name, exact: true });
+    async function tabTo(target, name) {
+      const focused = target.and(pantryPage.locator(':focus'));
+      for (let attempt = 0; attempt < 40; attempt++) {
+        if (await focused.count() === 1) return;
+        await pantryPage.keyboard.press('Tab');
+      }
+      assert.equal(await focused.count(), 1, `Tab debe alcanzar ${name}.`);
+    }
+    async function activateWithEnter(name) {
+      await tabTo(pantryButton(name), name);
+      await pantryPage.keyboard.press('Enter');
+    }
+
+    await activateWithEnter('4');
+    await activateWithEnter('Siguiente');
+    await activateWithEnter('Económico');
+    await activateWithEnter('Siguiente');
+    const frequency = pantryPage.getByRole('group', { name: 'Frecuencia de compras' });
+    const weekly = frequency.getByRole('radio', { name: 'Semanal' });
+    const biweekly = frequency.getByRole('radio', { name: 'Quincenal' });
+    assert.equal(await pantryButton('Generar lista').isDisabled(), true);
+    await tabTo(weekly, 'Semanal en el grupo Frecuencia de compras');
+    assert.equal(await weekly.isChecked(), false, 'Recibir el foco no debe seleccionar una frecuencia.');
+    await pantryPage.keyboard.press('ArrowRight');
+    assert.equal(await biweekly.isChecked(), true, 'Una flecha a la derecha debe seleccionar Quincenal.');
+    assert.equal(await biweekly.evaluate((radio) => radio.matches(':focus-visible')), true);
+    assert.notEqual(await biweekly.evaluate((radio) => getComputedStyle(radio.labels[0]).boxShadow), 'none');
+    await activateWithEnter('Generar lista');
+    await pantryPage.getByText('Para 4 personas • Quincenal', { exact: true }).waitFor();
+    console.log('Chromium: frecuencia seleccionada y lista generada solo con teclado desde /despensa sin parámetros.');
+    await activateWithEnter('Compartir configuración');
+    await pantryPage.getByText('Enlace copiado', { exact: true }).waitFor();
+    const sharedUrl = new URL(await pantryPage.evaluate(() => navigator.clipboard.readText()));
     assert.equal(sharedUrl.origin + sharedUrl.pathname, origin + '/despensa');
     assert.deepEqual(Object.fromEntries(sharedUrl.searchParams), { size: '4', prefs: 'Económico', freq: 'biweekly' });
+    await pantryContext.close();
 
     const reader = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
     await reader.route('**/*', (route) =>
@@ -165,8 +201,15 @@ try {
     await useShared.click();
     await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
     await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    assert.equal(await sharedPage.getByRole('radio', { name: 'Quincenal' }).isChecked(), true);
     await sharedPage.getByRole('button', { name: 'Generar lista' }).click();
     await sharedPage.getByRole('heading', { name: 'Tu despensa personalizada' }).waitFor();
+    await sharedPage.getByRole('button', { name: 'Nueva lista' }).click();
+    await sharedPage.getByRole('button', { name: '4', exact: true }).click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    assert.equal(await sharedPage.getByRole('radio', { checked: true }).count(), 0);
+    assert.equal(await sharedPage.getByRole('button', { name: 'Generar lista' }).isDisabled(), true);
     await reader.close();
     console.log('Chromium: enlace de despensa copiado y aplicado en otro perfil tras abrirlo y recargarlo.');
 
