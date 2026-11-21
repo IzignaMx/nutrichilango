@@ -20,6 +20,54 @@ const headings = new Map([
 ]);
 assert.deepEqual([...headings.keys()].sort(), ['/', ...pagesRoutes].sort());
 
+// Solo observación en Chromium: no cambiar CSP, respuestas, ni el resultado de las API.
+async function observePdf(page) {
+  const counts = {};
+  const count = (key) => { counts[key] = (counts[key] ?? 0) + 1; };
+  const classify = (message) => {
+    if (/wasm|webassembly/i.test(message)) {
+      return /content security policy|csp|unsafe-eval/i.test(message) ? 'wasm-csp' : 'wasm';
+    }
+    return /content security policy|csp/i.test(message) ? 'csp' : 'other';
+  };
+  page.on('pageerror', (error) => count('pageerror:' + classify(error.message)));
+  page.on('console', (message) => {
+    if (['error', 'warning'].includes(message.type())) count('console:' + classify(message.text()));
+  });
+  page.on('framenavigated', (frame) => {
+    if (frame !== page.mainFrame() && frame.url().startsWith('blob:')) count('frame:blob');
+  });
+  page.on('download', () => count('download'));
+  await page.addInitScript(() => {
+    const events = [];
+    Object.defineProperty(globalThis, '__pantryPdfSmokeEvents', { value: events });
+    const append = (event) => { if (events.length < 60) events.push(event); };
+    document.addEventListener('securitypolicyviolation', ({ effectiveDirective, blockedURI, disposition }) => {
+      const directive = /^(script-src(?:-elem)?|frame-src|child-src|default-src)$/.test(effectiveDirective)
+        ? effectiveDirective : 'other';
+      const blocked = /^(wasm-eval|eval|inline)$/.test(blockedURI) ? blockedURI
+        : blockedURI.startsWith('blob') ? 'blob' : 'other';
+      append({ kind: 'csp', directive, blocked, disposition: disposition === 'enforce' ? 'enforce' : 'report' });
+    });
+    const createObjectURL = URL.createObjectURL;
+    URL.createObjectURL = function (value) {
+      if (value instanceof Blob && value.type === 'application/pdf') {
+        append({ kind: 'pdf-blob-at-object-url', size: value.size });
+      }
+      return Reflect.apply(createObjectURL, this, arguments);
+    };
+  });
+  return {
+    reset() { for (const key of Object.keys(counts)) delete counts[key]; },
+    async report(mode, stage) {
+      const events = await page.evaluate(() => globalThis.__pantryPdfSmokeEvents ?? [])
+        .catch(() => null);
+      // No registrar URLs, identificadores blob, texto generado, consola bruta ni errores con stack.
+      console.log('Diagnóstico PDF:', JSON.stringify({ mode, stage, counts, events }));
+    },
+  };
+}
+
 const dist = path.resolve('dist');
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
@@ -140,6 +188,7 @@ try {
     console.log('Chromium: importes, presentaciones y fechas históricas verificados en la comparación pública.');
 
     await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+    const downloadDiagnostics = await observePdf(page);
     await page.goto(origin + '/despensa');
     await page.getByRole('button', { name: '4', exact: true }).click();
     await page.getByRole('button', { name: 'Siguiente' }).click();
@@ -156,14 +205,6 @@ try {
     await page.getByText('Lista copiada', { exact: true }).waitFor();
     const listText = await page.evaluate(() => navigator.clipboard.readText());
     assert.match(listText, /.+: .+ - \$\d+\.\d{2}/);
-    const [download] = await Promise.all([
-      page.waitForEvent('download'),
-      page.getByRole('button', { name: 'PDF', exact: true }).click(),
-    ]);
-    assert.equal(download.suggestedFilename(), 'despensa-vegana-4personas-biweekly.pdf');
-    assert.equal((await readFile(await download.path())).subarray(0, 5).toString(), '%PDF-');
-    await page.getByText('PDF preparado', { exact: true }).waitFor();
-    console.log('Chromium: texto copiado y archivo PDF real verificado.');
 
     const reader = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
     await reader.route('**/*', (route) =>
@@ -182,11 +223,76 @@ try {
     await reader.close();
     console.log('Chromium: enlace de despensa copiado y aplicado en otro perfil tras abrirlo y recargarlo.');
 
+    // El fallo de una operación no oculta la otra. La vista previa parte de
+    // otra página y contexto, sin reutilizar la instancia Yoga de la descarga.
+    const pdfFailures = [];
+    downloadDiagnostics.reset();
+    let downloadStage = 'download-event';
+    try {
+      const [download] = await Promise.all([
+        page.waitForEvent('download'),
+        page.getByRole('button', { name: 'PDF', exact: true }).click(),
+      ]);
+      downloadStage = 'filename';
+      assert.equal(download.suggestedFilename(), 'despensa-vegana-4personas-biweekly.pdf');
+      downloadStage = 'file-header';
+      assert.equal((await readFile(await download.path())).subarray(0, 5).toString(), '%PDF-');
+      downloadStage = 'notice';
+      await page.getByText('PDF preparado', { exact: true }).waitFor();
+      downloadStage = 'complete';
+      console.log('Chromium: texto copiado y archivo PDF real verificado.');
+    } catch {
+      pdfFailures.push('No se verificó la descarga PDF: ' + downloadStage + '.');
+    } finally {
+      await downloadDiagnostics.report('download', downloadStage);
+    }
+
+    const preview = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
+    await preview.route('**/*', (route) =>
+      new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    const previewPage = await preview.newPage();
+    const previewDiagnostics = await observePdf(previewPage);
+    let previewStage = 'setup';
+    try {
+      assert.equal((await previewPage.goto(sharedUrl.href)).status(), 200);
+      await previewPage.getByRole('button', { name: 'Usar configuración compartida' }).click();
+      await previewPage.getByRole('button', { name: 'Siguiente' }).click();
+      await previewPage.getByRole('button', { name: 'Siguiente' }).click();
+      await previewPage.getByRole('button', { name: 'Generar lista' }).click();
+      previewDiagnostics.reset();
+      previewStage = 'dialog';
+      await previewPage.getByRole('button', { name: 'Vista Previa', exact: true }).click();
+      const dialog = previewPage.getByRole('dialog', { name: 'Vista Previa de tu Despensa' });
+      await dialog.waitFor();
+      previewStage = 'iframe-src';
+      // Un src asignado no demuestra que el navegador cargó ni dibujó el PDF.
+      // La navegación y posibles rechazos CSP se reportan por separado.
+      await dialog.locator('iframe[src^="blob:"]').waitFor({ state: 'attached', timeout: 10000 });
+      previewStage = 'iframe-src-assigned';
+      // Dar tiempo para que Chromium comunique un rechazo de frame tras asignar src.
+      const blockedFrame = await previewPage.waitForFunction(() =>
+        globalThis.__pantryPdfSmokeEvents.some((event) => event.kind === 'csp' &&
+          event.disposition === 'enforce' && event.blocked === 'blob' &&
+          ['frame-src', 'child-src', 'default-src'].includes(event.directive)),
+      undefined, { timeout: 2500 }).then(() => true, (error) => {
+        if (error.name !== 'TimeoutError') throw error;
+        return false;
+      });
+      assert.equal(blockedFrame, false);
+      console.log('Chromium: la vista previa asignó un PDF blob al iframe; consultar el diagnóstico de navegación.');
+    } catch {
+      pdfFailures.push('No se verificó la preparación de la vista previa PDF: ' + previewStage + '.');
+    } finally {
+      await previewDiagnostics.report('preview', previewStage);
+      await preview.close();
+    }
+
     assert.equal((await page.goto(unknown)).status(), 404);
     assert.equal(page.url(), unknown);
     await page.getByText('No encontrado', { exact: true }).waitFor();
     assert.equal(await page.locator('#root').count(), 0, 'La ruta desconocida no monta el SPA.');
     console.log('Chromium: URL desconocida 404 sin fallback del SPA.');
+    assert.equal(pdfFailures.length, 0, pdfFailures.join(' '));
   }
 } finally {
   try {
