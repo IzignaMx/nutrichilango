@@ -246,29 +246,43 @@ const PantryCreator: React.FC = () => {
             )}
 
             {step === 3 && (
-              <div className="space-y-4">
-                {frequencies.map(freq => (
-                  <Card 
-                    key={freq.value}
-                    className={`cursor-pointer transition-colors ${
-                      frequency === freq.value ? 'border-primary bg-primary/5' : 'hover:border-primary/50'
-                    }`}
-                    onClick={() => setPantryParams(householdSize, freq.value, selectedPreferences)}
-                  >
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-medium">{freq.label}</h3>
-                          <p className="text-sm text-muted-foreground">{freq.description}</p>
-                        </div>
-                        <div className={`w-4 h-4 rounded-full border-2 ${
+              <fieldset className="min-w-0">
+                <legend className="sr-only">Frecuencia de compras</legend>
+                <div className="space-y-4">
+                  {frequencies.map(freq => (
+                    <Card
+                      key={freq.value}
+                      className={`transition-colors ${
+                        frequency === freq.value ? 'border-primary bg-primary/5' : 'hover:border-primary/50'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        id={`pantry-frequency-${freq.value}`}
+                        name="pantry-frequency"
+                        value={freq.value}
+                        className="peer sr-only"
+                        aria-labelledby={`pantry-frequency-label-${freq.value}`}
+                        aria-describedby={`pantry-frequency-description-${freq.value}`}
+                        checked={frequency === freq.value}
+                        onChange={() => setPantryParams(householdSize, freq.value, selectedPreferences)}
+                      />
+                      <label
+                        htmlFor={`pantry-frequency-${freq.value}`}
+                        className="flex cursor-pointer items-center justify-between rounded-lg p-4 peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2"
+                      >
+                        <span>
+                          <span id={`pantry-frequency-label-${freq.value}`} className="block font-medium">{freq.label}</span>
+                          <span id={`pantry-frequency-description-${freq.value}`} className="block text-sm text-muted-foreground">{freq.description}</span>
+                        </span>
+                        <span aria-hidden="true" className={`w-4 h-4 rounded-full border-2 ${
                           frequency === freq.value ? 'bg-primary border-primary' : 'border-muted-foreground'
                         }`} />
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      </label>
+                    </Card>
+                  ))}
+                </div>
+              </fieldset>
             )}
 
             {step === 4 && (
