@@ -253,6 +253,11 @@ try {
     const previewPage = await preview.newPage();
     const previewDiagnostics = await observePdf(previewPage);
     let previewStage = 'setup';
+    let previewFailure = null;
+    const results = previewPage.getByRole('heading', { name: 'Tu despensa personalizada', exact: true });
+    const button = previewPage.getByRole('button', { name: 'Vista Previa', exact: true });
+    const rawDialog = previewPage.locator('[role="dialog"]');
+    const dialog = previewPage.getByRole('dialog', { name: 'Vista Previa de tu Despensa', exact: true });
     try {
       assert.equal((await previewPage.goto(sharedUrl.href)).status(), 200);
       await previewPage.getByRole('button', { name: 'Usar configuración compartida' }).click();
@@ -260,11 +265,15 @@ try {
       await previewPage.getByRole('button', { name: 'Siguiente' }).click();
       await previewPage.getByRole('button', { name: 'Generar lista' }).click();
       previewDiagnostics.reset();
-      previewStage = 'dialog';
-      await previewPage.getByRole('button', { name: 'Vista Previa', exact: true }).click();
-      const dialog = previewPage.getByRole('dialog', { name: 'Vista Previa de tu Despensa' });
+      previewStage = 'results';
+      await results.waitFor();
+      previewStage = 'preview-button-click';
+      await button.click();
+      previewStage = 'wait-dialog-mounted';
+      await rawDialog.waitFor({ state: 'attached' });
+      previewStage = 'wait-dialog-accessible';
       await dialog.waitFor();
-      previewStage = 'iframe-src';
+      previewStage = 'wait-iframe-src';
       // Un src asignado no demuestra que el navegador cargó ni dibujó el PDF.
       // La navegación y posibles rechazos CSP se reportan por separado.
       await dialog.locator('iframe[src^="blob:"]').waitFor({ state: 'attached', timeout: 10000 });
@@ -280,9 +289,24 @@ try {
       });
       assert.equal(blockedFrame, false);
       console.log('Chromium: la vista previa asignó un PDF blob al iframe; consultar el diagnóstico de navegación.');
-    } catch {
+    } catch (error) {
+      // Clasificación cerrada: no imprimir el mensaje, DOM ni URLs de Playwright.
+      previewFailure = error.name !== 'TimeoutError' ? 'other'
+        : /intercepts pointer events/i.test(error.message) ? 'pointer-intercepted'
+        : 'timeout';
       pdfFailures.push('No se verificó la preparación de la vista previa PDF: ' + previewStage + '.');
     } finally {
+      const snapshot = await Promise.all([
+        results.count(), button.count(), rawDialog.count(), dialog.count(),
+        rawDialog.locator('iframe').count(), rawDialog.locator('iframe[src^="blob:"]').count(),
+        previewPage.evaluate(() => ({
+          secureContext: globalThis.isSecureContext === true,
+          nativePdfViewer: typeof navigator.pdfViewerEnabled === 'boolean' ? navigator.pdfViewerEnabled : null,
+        })),
+      ]).then(([resultCount, buttonCount, dialogCount, namedVisibleDialogCount, iframeCount, blobIframeCount, capabilities]) => ({
+        resultCount, buttonCount, dialogCount, namedVisibleDialogCount, iframeCount, blobIframeCount, ...capabilities,
+      })).catch(() => null);
+      console.log('Estado de vista previa PDF:', JSON.stringify({ stage: previewStage, failure: previewFailure, snapshot }));
       await previewDiagnostics.report('preview', previewStage);
       await preview.close();
     }
