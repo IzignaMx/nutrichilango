@@ -93,3 +93,31 @@ describe('Enlace de configuración de despensa', () => {
     expect(screen.getByRole('button', { name: 'PDF' })).toBeTruthy();
   });
 });
+
+describe('Copia de la lista de despensa', () => {
+  it('copia la lista generada y espera a que el navegador confirme la escritura', async () => {
+    let finish!: () => void;
+    const writeText = vi.fn((_text: string) => new Promise<void>(resolve => { finish = resolve; }));
+    setClipboard(writeText);
+    createPantry();
+    const rows = useNutriStore.getState().generatedPantry;
+
+    fireEvent.click(screen.getByRole('button', { name: /^Copiar$/ }));
+    expect(writeText).toHaveBeenCalledExactlyOnceWith(
+      rows.map(({ name, quantity, unit, price }) => `${name}: ${quantity} ${unit} - $${price.toFixed(2)}`).join('\n'),
+    );
+    expect(notify.success).not.toHaveBeenCalled();
+    finish();
+    await waitFor(() => expect(notify.success).toHaveBeenCalledWith('Lista copiada'));
+  });
+
+  it('muestra un error en lugar de confirmar una copia rechazada', async () => {
+    setClipboard(() => Promise.reject(new Error('Permiso denegado')));
+    createPantry();
+    fireEvent.click(screen.getByRole('button', { name: /^Copiar$/ }));
+
+    await waitFor(() => expect(notify.error).toHaveBeenCalledWith('No se pudo copiar la lista', expect.any(Object)));
+    expect(notify.success).not.toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: 'PDF' })).toBeTruthy();
+  });
+});

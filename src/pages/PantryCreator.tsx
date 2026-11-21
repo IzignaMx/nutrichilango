@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Users, ChefHat, Calendar, Download, Copy, Share, Eye } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import { pdf } from '@react-pdf/renderer';
 import { generateBalancedPantryList, type PantryItem } from '@/data/pantry/products';
 import { useNutriStore } from '@/store/useNutriStore';
@@ -34,7 +33,6 @@ const PantryCreator: React.FC = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [appliedLink, setAppliedLink] = useState<string>();
   const location = useLocation();
-  const { toast } = useToast();
 
   const preferencesList = [
     'Alto en proteína',
@@ -64,7 +62,7 @@ const PantryCreator: React.FC = () => {
   const handleNext = () => {
     if (step === 3) {
       if (!frequency) {
-        toast({ title: "Frecuencia requerida", description: "Selecciona una frecuencia de compra", variant: "destructive" });
+        notify.error('Frecuencia requerida', { description: 'Selecciona una frecuencia de compra.' });
         return;
       }
       const list = generateBalancedPantryList(
@@ -79,13 +77,17 @@ const PantryCreator: React.FC = () => {
     }
   };
 
-  const copyList = () => {
+  const copyList = async () => {
     const listText = generatedList
       .map(item => `${item.name}: ${item.quantity} ${item.unit} - $${item.price.toFixed(2)}`)
       .join('\n');
-    
-    navigator.clipboard.writeText(listText);
-    toast({ title: "Lista copiada", description: "La lista se copió al portapapeles" });
+
+    try {
+      await navigator.clipboard.writeText(listText);
+      notify.success('Lista copiada');
+    } catch {
+      notify.error('No se pudo copiar la lista', { description: 'Puedes volver a intentarlo o guardar el PDF.' });
+    }
   };
 
   const shareConfiguration = async () => {
@@ -108,9 +110,6 @@ const PantryCreator: React.FC = () => {
 
   const downloadPDF = async () => {
     try {
-      toast({ title: "Generando PDF", description: "Preparando tu lista personalizada..." });
-      
-      
       const PantryPDF = (await import('@/components/pantry/PantryPDFDocument')).default;
       
       const blob = await pdf(
@@ -132,17 +131,10 @@ const PantryCreator: React.FC = () => {
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
 
-      toast({ 
-        title: "¡PDF generado!", 
-        description: "Tu lista de despensa se ha descargado correctamente" 
-      });
+      notify.success('PDF preparado', { description: 'Se solicitó la descarga en tu navegador.' });
     } catch (error) {
       console.error('Error generando PDF:', error);
-      toast({ 
-        title: "Error", 
-        description: "No se pudo generar el PDF. Intenta de nuevo.",
-        variant: "destructive"
-      });
+      notify.error('No se pudo generar el PDF', { description: 'Intenta de nuevo.' });
     }
   };
 
