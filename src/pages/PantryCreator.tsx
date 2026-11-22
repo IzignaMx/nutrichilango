@@ -35,6 +35,7 @@ const PantryCreator: React.FC = () => {
   } = useNutriStore();
 
   const [step, setStep] = useState(1);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [appliedLink, setAppliedLink] = useState<string>();
   const location = useLocation();
   const requiresGlutenExclusion = selectedPreferences.includes('Sin gluten');
@@ -305,14 +306,23 @@ const PantryCreator: React.FC = () => {
                   </Button>
                   
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-2 w-full md:w-auto">
-                    <Dialog>
+                    <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
                       <DialogTrigger asChild>
                         <Button disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
                           <Eye className="h-4 w-4" />
                           Vista Previa
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="max-w-3xl max-h-[85dvh] grid-rows-[auto_minmax(0,1fr)]">
+                      <DialogContent
+                        className="max-w-3xl max-h-[85dvh] grid-rows-[auto_minmax(0,1fr)]"
+                        onKeyDownCapture={(event) => {
+                          if (event.key === 'Escape' && !event.nativeEvent.isComposing) {
+                            // La vista enfocada también cierra si la capa de Radix aún no procesa Escape.
+                            event.preventDefault();
+                            setIsPreviewOpen(false);
+                          }
+                        }}
+                      >
                         <DialogHeader className="pr-6">
                           <DialogTitle>Vista Previa de tu Despensa</DialogTitle>
                           <DialogDescription>Contenido de la lista que se incluirá en el PDF.</DialogDescription>

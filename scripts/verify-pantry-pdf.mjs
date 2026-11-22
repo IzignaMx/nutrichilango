@@ -23,6 +23,9 @@ export async function assertPantryPDF(page) {
     await activateWithEnter('Vista Previa');
     const dialog = page.getByRole('dialog', { name: 'Vista Previa de tu Despensa' });
     await dialog.getByRole('heading', { name: 'Lista de Despensa Vegana' }).waitFor();
+    const content = dialog.getByRole('region', { name: 'Contenido de la lista' });
+    // El diálogo debe recibir el foco por sí solo antes de que se pulse Escape.
+    await content.and(page.locator(':focus')).waitFor();
     assert.equal(await dialog.locator('iframe, object, embed').count(), 0);
     assert.equal(await dialog.getByText(/^Total estimado: \$\d+\.\d{2} MXN$/).count(), 1);
     for (const name of names) {
