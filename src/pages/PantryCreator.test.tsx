@@ -179,3 +179,29 @@ describe('Exclusión por Sin gluten', () => {
     expect(writeText).not.toHaveBeenCalled();
   });
 });
+
+it('muestra y copia el precio de las piezas visibles y las incluye en el total', () => {
+  const random = vi.spyOn(Math, 'random').mockReturnValue(0.41);
+  const writeText = vi.fn<(text: string) => Promise<void>>().mockResolvedValue(undefined);
+  setClipboard(writeText);
+  try {
+    openPantry('/despensa?size=1&prefs=Econ%C3%B3mico&freq=weekly');
+    fireEvent.click(screen.getByRole('button', { name: 'Usar configuración compartida' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Generar lista' }));
+    const row = screen.getByText('Brócoli', { exact: true }).parentElement?.parentElement;
+    expect(row).toBeTruthy();
+    expect(within(row!).getByText('2 piezas')).toBeTruthy();
+    expect(within(row!).getByText('$30.00')).toBeTruthy();
+    const otherPrices = useNutriStore.getState().generatedPantry
+      .filter(({ name }) => name !== 'Brócoli').map(({ price }) => price);
+    const expectedTotal = (30 + otherPrices.reduce((sum, price) => sum + price, 0)).toFixed(2);
+    const total = screen.getByText('Total estimado:', { exact: true });
+    expect(within(total).getByText(`$${expectedTotal}`)).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Copiar' }));
+    expect(writeText.mock.lastCall?.[0].split('\n')).toContain('Brócoli: 2 piezas - $30.00');
+  } finally {
+    random.mockRestore();
+  }
+});
