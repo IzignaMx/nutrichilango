@@ -446,17 +446,20 @@ export const PANTRY_PRODUCTS: PantryItem[] = [
 
 // Función para filtrar productos según preferencias
 export const filterProductsByPreferences = (products: PantryItem[], preferences: string[]): PantryItem[] => {
-  if (preferences.length === 0) return products;
+  const requiresGlutenExclusion = preferences.includes('Sin gluten');
+  const eligible = requiresGlutenExclusion
+    ? products.filter(product => product.isGlutenFree === true)
+    : products;
+  const optionalPreferences = preferences.filter(pref => pref !== 'Sin gluten');
+  if (optionalPreferences.length === 0) return eligible;
 
-  return products.filter(product => {
-    return preferences.some(pref => {
+  return eligible.filter(product => {
+    return optionalPreferences.some(pref => {
       switch (pref) {
         case 'Alto en proteína':
           return product.isHighProtein;
         case 'Económico':
           return product.isEconomical;
-        case 'Sin gluten':
-          return product.isGlutenFree;
         case 'Orgánico':
           return product.isOrganic;
         case 'Fácil preparación':
