@@ -19,6 +19,14 @@ import { PDFViewer } from '@react-pdf/renderer';
 // Lazy load del componente PDF para mejor performance
 const PantryPDFContent = lazy(() => import('@/components/pantry/PantryPDFDocument'));
 
+function GlutenCatalogNotice() {
+  return (
+    <p className="text-sm text-muted-foreground">
+      «Sin gluten» usa etiquetas del catálogo, no verifica productos empacados ni el contacto cruzado. Revisa la etiqueta del producto.
+    </p>
+  );
+}
+
 const PantryCreator: React.FC = () => {
   const { 
     householdSize, 
@@ -34,6 +42,8 @@ const PantryCreator: React.FC = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [appliedLink, setAppliedLink] = useState<string>();
   const location = useLocation();
+  const requiresGlutenExclusion = selectedPreferences.includes('Sin gluten');
+  const restrictedListIsEmpty = requiresGlutenExclusion && generatedList.length === 0;
   const { toast } = useToast();
 
   const preferencesList = [
@@ -242,6 +252,7 @@ const PantryCreator: React.FC = () => {
                     </Button>
                   ))}
                 </div>
+                {requiresGlutenExclusion && <GlutenCatalogNotice />}
               </div>
             )}
 
@@ -287,6 +298,10 @@ const PantryCreator: React.FC = () => {
 
             {step === 4 && (
               <div className="space-y-6">
+                {requiresGlutenExclusion && <GlutenCatalogNotice />}
+                {restrictedListIsEmpty && (
+                  <p role="status">No hay productos del catálogo que coincidan sin quitar la restricción «Sin gluten».</p>
+                )}
                 <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
                   <Button 
                     onClick={() => {
@@ -301,15 +316,15 @@ const PantryCreator: React.FC = () => {
                   </Button>
                   
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-2 w-full md:w-auto">
-                    <Button onClick={() => setIsPreviewOpen(true)} variant="outline" size="sm" className="flex items-center gap-2">
+                    <Button onClick={() => setIsPreviewOpen(true)} disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
                       <Eye className="h-4 w-4" />
                       Vista Previa
                     </Button>
-                    <Button onClick={copyList} variant="outline" size="sm" className="flex items-center gap-2">
+                    <Button onClick={copyList} disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
                       <Copy className="h-4 w-4" />
                       Copiar
                     </Button>
-                    <Button onClick={downloadPDF} variant="outline" size="sm" className="flex items-center gap-2">
+                    <Button onClick={downloadPDF} disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
                       <Download className="h-4 w-4" />
                       PDF
                     </Button>
@@ -370,7 +385,7 @@ const PantryCreator: React.FC = () => {
                   ))}
                 </div>
 
-                <div className="text-center p-6 bg-primary/10 rounded-lg">
+                {!restrictedListIsEmpty && <div className="text-center p-6 bg-primary/10 rounded-lg">
                   <p className="text-lg font-semibold">
                     Total estimado: <span className="text-primary">${totalPrice.toFixed(2)}</span>
                   </p>
@@ -380,7 +395,7 @@ const PantryCreator: React.FC = () => {
                       frequency === 'biweekly' ? 'Quincenal' : 'Mensual'
                     }
                   </p>
-                </div>
+                </div>}
               </div>
             )}
           </CardContent>

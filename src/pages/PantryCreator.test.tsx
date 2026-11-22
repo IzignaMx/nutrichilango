@@ -12,11 +12,11 @@ function openPantry(path = '/despensa') {
   return render(<MemoryRouter initialEntries={[path]}><PantryCreator /></MemoryRouter>);
 }
 
-function createPantry() {
+function createPantry(preferences = ['Económico']) {
   openPantry();
   fireEvent.click(screen.getByRole('button', { name: '4' }));
   fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
-  fireEvent.click(screen.getByRole('button', { name: 'Económico' }));
+  for (const name of preferences) fireEvent.click(screen.getByRole('button', { name }));
   fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
   fireEvent.click(screen.getByText('Quincenal', { exact: true }));
   fireEvent.click(screen.getByRole('button', { name: 'Generar lista' }));
@@ -118,5 +118,64 @@ describe('Enlace de configuración de despensa', () => {
     expect(notify.success).not.toHaveBeenCalled();
     expect(screen.getByRole('button', { name: 'Copiar' })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'PDF' })).toBeTruthy();
+  });
+});
+
+describe('Exclusión por Sin gluten', () => {
+  it('conserva la exclusión al crear y copiar, y al aplicar el enlace compartido', async () => {
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0.01);
+    const writeText = vi.fn<(text: string) => Promise<void>>().mockResolvedValue(undefined);
+    setClipboard(writeText);
+    const assertExactCopy = () => {
+      const list = useNutriStore.getState().generatedPantry;
+      expect(list.length).toBeGreaterThan(0);
+      expect(list.filter(({ isGlutenFree }) => isGlutenFree !== true)).toEqual([]);
+      expect(screen.queryByText('Bulgur', { exact: true })).toBeNull();
+      expect(screen.getByText(/contacto cruzado/i)).toBeTruthy();
+      fireEvent.click(screen.getByRole('button', { name: 'Copiar' }));
+      expect(writeText).toHaveBeenLastCalledWith(
+        list.map(({ name, quantity, unit, price }) => `${name}: ${quantity} ${unit} - $${price.toFixed(2)}`).join('\n'),
+      );
+    };
+    try {
+      createPantry(['Sin gluten', 'Económico', 'Fácil preparación']);
+      assertExactCopy();
+      fireEvent.click(screen.getByRole('button', { name: 'Compartir configuración' }));
+      const url = new URL(writeText.mock.lastCall![0]);
+      expect(Object.fromEntries(url.searchParams)).toEqual({
+        size: '4', prefs: 'Sin gluten,Económico,Fácil preparación', freq: 'biweekly',
+      });
+      await waitFor(() => expect(notify.success).toHaveBeenCalled());
+      cleanup();
+      useNutriStore.getState().resetPantry();
+      openPantry(url.pathname + url.search);
+      fireEvent.click(screen.getByRole('button', { name: 'Usar configuración compartida' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+      fireEvent.click(screen.getByRole('button', { name: 'Generar lista' }));
+      assertExactCopy();
+    } finally {
+      random.mockRestore();
+    }
+  });
+
+  it('explica que no hay coincidencias, sin conservar una lista anterior ni exportarla', () => {
+    createPantry();
+    expect(useNutriStore.getState().generatedPantry.length).toBeGreaterThan(0);
+    cleanup();
+    const writeText = vi.fn<(text: string) => Promise<void>>().mockResolvedValue(undefined);
+    setClipboard(writeText);
+    openPantry('/despensa?size=4&prefs=Sin+gluten%2COrg%C3%A1nico&freq=biweekly');
+    fireEvent.click(screen.getByRole('button', { name: 'Usar configuración compartida' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Generar lista' }));
+    expect(useNutriStore.getState().generatedPantry).toEqual([]);
+    expect(screen.getByText(/No hay productos del catálogo que coincidan/i)).toBeTruthy();
+    for (const name of ['Copiar', 'PDF', 'Vista Previa']) {
+      expect(screen.getByRole<HTMLButtonElement>('button', { name }).disabled).toBe(true);
+    }
+    expect(screen.getByRole<HTMLButtonElement>('button', { name: 'Compartir configuración' }).disabled).toBe(false);
+    expect(writeText).not.toHaveBeenCalled();
   });
 });

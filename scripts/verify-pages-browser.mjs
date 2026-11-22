@@ -3,6 +3,7 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { pagesRoutes } from './pages-entries.ts';
+import { PANTRY_PRODUCTS } from '../src/data/pantry/products.ts';
 
 // Cada entrada debe ser reconocible en el navegador, no solo devolver HTTP 200.
 const headings = new Map([
@@ -146,6 +147,7 @@ try {
     await pantryContext.route('**/*', (route) =>
       new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
     await pantryContext.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+    await pantryContext.addInitScript(() => { Math.random = () => 0.01; });
     const pantryPage = await pantryContext.newPage();
     assert.equal((await pantryPage.goto(origin + '/despensa')).status(), 200);
     await pantryPage.getByRole('heading', { name: 'Creador de Despensa Vegana', level: 1 }).waitFor();
@@ -168,6 +170,8 @@ try {
     await activateWithEnter('4');
     await activateWithEnter('Siguiente');
     await activateWithEnter('Económico');
+    await activateWithEnter('Sin gluten');
+    await activateWithEnter('Fácil preparación');
     await activateWithEnter('Siguiente');
     const frequency = pantryPage.getByRole('group', { name: 'Frecuencia de compras' });
     const weekly = frequency.getByRole('radio', { name: 'Semanal' });
@@ -182,16 +186,35 @@ try {
     await activateWithEnter('Generar lista');
     await pantryPage.getByText('Para 4 personas • Quincenal', { exact: true }).waitFor();
     console.log('Chromium: frecuencia seleccionada y lista generada solo con teclado desde /despensa sin parámetros.');
+    const eligibleNames = new Set(PANTRY_PRODUCTS.filter(({ isGlutenFree }) => isGlutenFree === true).map(({ name }) => name));
+    async function assertRestrictedCopy(page) {
+      await page.getByText(/no verifica productos empacados ni el contacto cruzado/i).waitFor();
+      assert.equal(await page.getByText('Bulgur', { exact: true }).count(), 0);
+      await page.waitForFunction(async () => (await navigator.clipboard.readText()).length > 0);
+      const copied = await page.evaluate(() => navigator.clipboard.readText());
+      assert.ok(copied.length > 0, 'La lista copiada no debe estar vacía.');
+      const names = copied.split('\n').map((line) => {
+        assert.match(line, /^.+: .+ - \$\d+\.\d{2}$/);
+        return line.split(': ', 1)[0];
+      });
+      assert.ok(names.every((name) => eligibleNames.has(name)), 'Copiar no debe incluir productos sin marca afirmativa.');
+    }
+    await pantryPage.evaluate(() => navigator.clipboard.writeText(''));
+    await activateWithEnter('Copiar');
+    await assertRestrictedCopy(pantryPage);
     await activateWithEnter('Compartir configuración');
+    await pantryPage.getByText('Enlace copiado', { exact: true }).waitFor();
     await pantryPage.getByText('Enlace copiado', { exact: true }).waitFor();
     const sharedUrl = new URL(await pantryPage.evaluate(() => navigator.clipboard.readText()));
     assert.equal(sharedUrl.origin + sharedUrl.pathname, origin + '/despensa');
-    assert.deepEqual(Object.fromEntries(sharedUrl.searchParams), { size: '4', prefs: 'Económico', freq: 'biweekly' });
+    assert.deepEqual(Object.fromEntries(sharedUrl.searchParams), { size: '4', prefs: 'Económico,Sin gluten,Fácil preparación', freq: 'biweekly' });
     await pantryContext.close();
 
     const reader = await browser.newContext({ serviceWorkers: 'block', viewport: { width: 390, height: 844 } });
     await reader.route('**/*', (route) =>
       new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    await reader.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+    await reader.addInitScript(() => { Math.random = () => 0.01; });
     const sharedPage = await reader.newPage();
     assert.equal((await sharedPage.goto(sharedUrl.href)).status(), 200);
     const useShared = sharedPage.getByRole('button', { name: 'Usar configuración compartida' });
@@ -204,6 +227,26 @@ try {
     assert.equal(await sharedPage.getByRole('radio', { name: 'Quincenal' }).isChecked(), true);
     await sharedPage.getByRole('button', { name: 'Generar lista' }).click();
     await sharedPage.getByRole('heading', { name: 'Tu despensa personalizada' }).waitFor();
+    await sharedPage.evaluate(() => navigator.clipboard.writeText(''));
+    await sharedPage.getByRole('button', { name: 'Copiar', exact: true }).click();
+    await assertRestrictedCopy(sharedPage);
+
+    // Conservar el mismo perfil y su lista previa al abrir una combinación sin coincidencias.
+    const unmatched = new URL(sharedUrl);
+    unmatched.searchParams.set('prefs', 'Sin gluten,Orgánico');
+    assert.equal((await sharedPage.goto(unmatched.href)).status(), 200);
+    await useShared.click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Generar lista' }).click();
+    await sharedPage.getByText(/No hay productos del catálogo que coincidan/i).waitFor();
+    for (const name of ['Copiar', 'PDF', 'Vista Previa']) {
+      assert.equal(await sharedPage.getByRole('button', { name, exact: true }).isDisabled(), true);
+    }
+    assert.equal(await sharedPage.getByRole('button', { name: 'Compartir configuración' }).isEnabled(), true);
+    const persisted = await sharedPage.evaluate(() => JSON.parse(localStorage.getItem('nutrichilango-storage')).state);
+    assert.deepEqual(persisted.generatedPantry, []);
+    console.log('Chromium: exclusión preservada al crear, copiar y aplicar un enlace; sin lista anterior si no hay coincidencias.');
     await sharedPage.getByRole('button', { name: 'Nueva lista' }).click();
     await sharedPage.getByRole('button', { name: '4', exact: true }).click();
     await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
