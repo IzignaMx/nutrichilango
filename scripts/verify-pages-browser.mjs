@@ -4,6 +4,7 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { pagesRoutes } from './pages-entries.ts';
 import { PANTRY_PRODUCTS } from '../src/data/pantry/products.ts';
+import { assertPantryPDF } from './verify-pantry-pdf.mjs';
 
 // Cada entrada debe ser reconocible en el navegador, no solo devolver HTTP 200.
 const headings = new Map([
@@ -143,12 +144,14 @@ try {
     const pantryContext = await browser.newContext({
       serviceWorkers: 'block',
       viewport: { width: 390, height: 844 },
+      acceptDownloads: true,
     });
     await pantryContext.route('**/*', (route) =>
       new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
     await pantryContext.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
     await pantryContext.addInitScript(() => { Math.random = () => 0.01; });
     const pantryPage = await pantryContext.newPage();
+    const pdfCheck = await assertPantryPDF(pantryPage);
     assert.equal((await pantryPage.goto(origin + '/despensa')).status(), 200);
     await pantryPage.getByRole('heading', { name: 'Creador de Despensa Vegana', level: 1 }).waitFor();
     assert.equal(new URL(pantryPage.url()).search, '', 'El recorrido de teclado no usa un enlace compartido.');
@@ -202,6 +205,7 @@ try {
     await pantryPage.evaluate(() => navigator.clipboard.writeText(''));
     await activateWithEnter('Copiar');
     await assertRestrictedCopy(pantryPage);
+    await pdfCheck({ activateWithEnter, expectedFilename: 'despensa-vegana-4personas-biweekly.pdf' });
     await activateWithEnter('Compartir configuración');
     await pantryPage.getByText('Enlace copiado', { exact: true }).waitFor();
     await pantryPage.getByText('Enlace copiado', { exact: true }).waitFor();

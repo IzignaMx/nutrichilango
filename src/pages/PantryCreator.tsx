@@ -1,5 +1,5 @@
 
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { toast as notify } from 'sonner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,16 +8,12 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Users, ChefHat, Calendar, Download, Copy, Share, Eye } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { pdf } from '@react-pdf/renderer';
 import { generateBalancedPantryList, type PantryItem } from '@/data/pantry/products';
 import { useNutriStore } from '@/store/useNutriStore';
 import { calculatePriceDiff } from '@/lib/nutricore';
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { PDFViewer } from '@react-pdf/renderer';
-
-// Lazy load del componente PDF para mejor performance
-const PantryPDFContent = lazy(() => import('@/components/pantry/PantryPDFDocument'));
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { buildPantryExport } from '@/components/pantry/pantry-export';
 
 function GlutenCatalogNotice() {
   return (
@@ -39,7 +35,6 @@ const PantryCreator: React.FC = () => {
   } = useNutriStore();
 
   const [step, setStep] = useState(1);
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [appliedLink, setAppliedLink] = useState<string>();
   const location = useLocation();
   const requiresGlutenExclusion = selectedPreferences.includes('Sin gluten');
@@ -119,28 +114,21 @@ const PantryCreator: React.FC = () => {
   const downloadPDF = async () => {
     try {
       toast({ title: "Generando PDF", description: "Preparando tu lista personalizada..." });
-      
-      
-      const PantryPDF = (await import('@/components/pantry/PantryPDFDocument')).default;
-      
-      const blob = await pdf(
-        <PantryPDF
-          items={generatedList}
-          householdSize={householdSize}
-          frequency={frequency}
-          preferences={selectedPreferences}
-          totalPrice={totalPrice}
-        />
-      ).toBlob();
+
+      const { createPantryPDFBlob } = await import('@/components/pantry/pantry-pdf');
+      const blob = await createPantryPDFBlob(exportModel);
 
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `despensa-vegana-${householdSize}personas-${frequency}.pdf`;
       document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      try {
+        link.click();
+      } finally {
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
 
       toast({ 
         title: "¡PDF generado!", 
@@ -157,6 +145,7 @@ const PantryCreator: React.FC = () => {
   };
 
   const totalPrice = generatedList.reduce((sum, item) => sum + item.price, 0);
+  const exportModel = buildPantryExport(generatedList, householdSize, frequency, selectedPreferences, totalPrice);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-8 px-4">
@@ -316,10 +305,47 @@ const PantryCreator: React.FC = () => {
                   </Button>
                   
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-2 w-full md:w-auto">
-                    <Button onClick={() => setIsPreviewOpen(true)} disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
-                      <Eye className="h-4 w-4" />
-                      Vista Previa
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
+                          <Eye className="h-4 w-4" />
+                          Vista Previa
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-3xl max-h-[85dvh] grid-rows-[auto_minmax(0,1fr)]">
+                        <DialogHeader className="pr-6">
+                          <DialogTitle>Vista Previa de tu Despensa</DialogTitle>
+                          <DialogDescription>Contenido de la lista que se incluirá en el PDF.</DialogDescription>
+                        </DialogHeader>
+                        <section aria-label="Contenido de la lista" tabIndex={0} className="min-h-0 space-y-5 overflow-y-auto px-1 pb-1">
+                          <header>
+                            <h3 className="text-lg font-semibold text-primary">{exportModel.title}</h3>
+                            {exportModel.subtitles.map(line => <p key={line}>{line}</p>)}
+                            <p className="text-sm text-muted-foreground">{exportModel.metadata}</p>
+                          </header>
+                          {exportModel.categories.map(({ name, rows }) => (
+                            <section key={name}>
+                              <h4 className="rounded bg-muted px-2 py-1 font-semibold">{name}</h4>
+                              <ul className="divide-y">
+                                {rows.map(row => (
+                                  <li key={row.id} className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-2 py-2 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
+                                    <span className="col-start-1 break-words">{row.name}</span>
+                                    <span className="col-start-1 text-sm text-muted-foreground sm:col-start-2 sm:row-start-1">{row.quantity}</span>
+                                    <span className="col-start-2 row-start-1 text-right font-semibold text-primary sm:col-start-3">{row.price}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </section>
+                          ))}
+                          <footer className="space-y-2 border-t pt-3">
+                            <p className="font-semibold text-primary">{exportModel.total}</p>
+                            <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground">
+                              {exportModel.notes.map(note => <li key={note}>{note}</li>)}
+                            </ul>
+                          </footer>
+                        </section>
+                      </DialogContent>
+                    </Dialog>
                     <Button onClick={copyList} disabled={restrictedListIsEmpty} variant="outline" size="sm" className="flex items-center gap-2">
                       <Copy className="h-4 w-4" />
                       Copiar
@@ -334,27 +360,6 @@ const PantryCreator: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-
-                <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
-                  <DialogContent className="max-w-4xl h-[80vh]">
-                    <DialogHeader>
-                      <DialogTitle>Vista Previa de tu Despensa</DialogTitle>
-                    </DialogHeader>
-                    <div className="w-full h-full min-h-[500px] flex items-center justify-center bg-gray-100 rounded-md overflow-hidden">
-                      <Suspense fallback={<div className="text-center p-4">Cargando vista previa...</div>}>
-                        <PDFViewer width="100%" height="100%" className="border-0">
-                          <PantryPDFContent 
-                            items={generatedList}
-                            householdSize={householdSize}
-                            frequency={frequency || 'weekly'}
-                            preferences={selectedPreferences}
-                            totalPrice={totalPrice}
-                          />
-                        </PDFViewer>
-                      </Suspense>
-                    </div>
-                  </DialogContent>
-                </Dialog>
 
                 <div className="space-y-4">
                   {[...new Set(generatedList.map(item => item.category))].map(category => (
