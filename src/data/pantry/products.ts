@@ -506,11 +506,15 @@ export const generateBalancedPantryList = (
   const multiplier = householdSize / 2; // Base para 2 personas
   const frequencyMultiplier = frequency === 'weekly' ? 1 : frequency === 'biweekly' ? 2 : 4;
 
-  return balancedList.map(item => ({
-    ...item,
-    quantity: (parseFloat(item.quantity) * multiplier * frequencyMultiplier).toFixed(
+  return balancedList.map(item => {
+    const catalogQuantity = parseFloat(item.quantity);
+    const quantity = (catalogQuantity * multiplier * frequencyMultiplier).toFixed(
       item.unit === 'kg' || item.unit === 'ml' ? 1 : 0
-    ),
-    price: Math.round(item.price * multiplier * frequencyMultiplier)
-  }));
+    );
+    // Cotizar las piezas enteras que verá la persona, con la base del catálogo.
+    const estimate = item.unit === 'piezas'
+      ? (item.price * Number(quantity)) / catalogQuantity
+      : item.price * multiplier * frequencyMultiplier;
+    return { ...item, quantity, price: Math.round(estimate) };
+  });
 };

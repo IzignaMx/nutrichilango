@@ -50,3 +50,47 @@ describe('Elegibilidad del catálogo de despensa', () => {
     }
   });
 });
+
+describe('Estimado a partir de las piezas mostradas', () => {
+  it.each([
+    [1, '2', 30],
+    [2, '3', 45],
+    [3, '5', 75],
+    [5, '8', 120],
+  ])('usa la base del catálogo para Brócoli, hogar de %s', (household, quantity, price) => {
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0.41);
+    try {
+      expect(generateBalancedPantryList(household, 'weekly', ['Económico']).find(({ name }) => name === 'Brócoli'))
+        .toMatchObject({ quantity, price });
+    } finally {
+      random.mockRestore();
+    }
+  });
+
+  it('mantiene las cantidades mostradas y la regla anterior para kg, g y ml, y nunca cotiza cero piezas en el catálogo actual', () => {
+    const random = vi.spyOn(Math, 'random').mockReturnValue(0.41);
+    const seen = new Set<string>();
+    try {
+      for (const [frequency, factor] of [['weekly', 1], ['biweekly', 2], ['monthly', 4]] as const) {
+        for (let household = 1; household <= 6; household++) {
+          for (const item of generateBalancedPantryList(household, frequency, [])) {
+            const catalog = PANTRY_PRODUCTS.find(({ id }) => id === item.id)!;
+            const scale = (household / 2) * factor;
+            const precision = item.unit === 'kg' || item.unit === 'ml' ? 1 : 0;
+            expect(item.quantity).toBe((Number(catalog.quantity) * scale).toFixed(precision));
+            seen.add(item.unit);
+            if (item.unit === 'piezas') {
+              expect(Number(item.quantity)).toBeGreaterThan(0);
+              expect(item.price).toBe(Math.round(catalog.price * Number(item.quantity) / Number(catalog.quantity)));
+            } else {
+              expect(item.price).toBe(Math.round(catalog.price * scale));
+            }
+          }
+        }
+      }
+    } finally {
+      random.mockRestore();
+    }
+    expect([...seen].sort()).toEqual(['g', 'kg', 'ml', 'piezas']);
+  });
+});
