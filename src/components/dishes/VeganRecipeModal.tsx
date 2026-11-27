@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Clock, Users, ChefHat, DollarSign } from 'lucide-react';
@@ -24,6 +24,7 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
             <ChefHat className="w-6 h-6 mr-2 text-brand-primary" />
             {recipe.name} - Receta Plant-Based
           </DialogTitle>
+            <DialogDescription>Los costos son estimaciones de referencia, no cotizaciones actuales de tiendas.</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
@@ -46,7 +47,7 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
             <div className="flex items-center space-x-2">
               <DollarSign className="w-4 h-4 text-gray-500" />
               <div>
-                <p className="text-sm text-gray-600">Costo total</p>
+                <p className="text-sm text-gray-600">Subtotal de ingredientes</p>
                 <p className="font-medium">${totalIngredientCost.toFixed(2)}</p>
               </div>
             </div>
@@ -63,6 +64,11 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
           </div>
 
           <p className="text-gray-700 leading-relaxed">{recipe.description}</p>
+          <p className="text-sm text-muted-foreground">
+            Estimación del platillo en el comparador: ${recipe.estimatedPrice.toFixed(2)} MXN.
+            El subtotal de ingredientes listados es ${totalIngredientCost.toFixed(2)} MXN.
+            Estos importes pueden diferir; la diferencia no está desglosada en el catálogo.
+          </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Ingredients */}
@@ -70,7 +76,7 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
               <CardHeader>
                 <CardTitle className="text-lg">Ingredientes</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  Costo por porción: <span className="font-medium text-brand-success">${costPerServing.toFixed(2)}</span>
+                  Subtotal de ingredientes por porción: <span className="font-medium text-brand-success">${costPerServing.toFixed(2)}</span>
                 </p>
               </CardHeader>
               <CardContent>
@@ -117,7 +123,7 @@ const VeganRecipeModal: React.FC<VeganRecipeModalProps> = ({ isOpen, onClose, re
           {/* Nutritional Info */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Información Nutricional (por porción)</CardTitle>
+              <CardTitle className="text-lg">Información nutricional orientativa (por porción)</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

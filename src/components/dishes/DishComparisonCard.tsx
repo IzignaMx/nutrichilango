@@ -8,13 +8,13 @@ import { ChefHat, DollarSign, Heart, Clock, Users, TrendingUp, TrendingDown, Boo
 import DishNutritionChart from './DishNutritionChart';
 import VeganRecipeModal from './VeganRecipeModal';
 import { DishComparison } from '@/data/dishes/types';
+import { dishCategoryLabels } from '@/data/dishes/display';
 
 interface DishComparisonCardProps {
   dish: DishComparison;
-  index: number;
 }
 
-const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) => {
+const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish }) => {
   const [showRecipe, setShowRecipe] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -52,24 +52,19 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
               </CardTitle>
               <div className="flex flex-wrap items-center gap-2">
                 <Badge className={getCategoryColor(dish.category)}>
-                  {dish.category === 'mexican' ? 'Mexicano' : 'Popular'}
+                  {dishCategoryLabels[dish.category]}
                 </Badge>
                 <Badge className={getDifficultyColor(dish.veganVersion.difficulty)}>
                   {dish.veganVersion.difficulty === 'easy' ? 'Fácil' : 
                    dish.veganVersion.difficulty === 'medium' ? 'Medio' : 'Difícil'}
                 </Badge>
-                {index === 0 && (
-                  <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-yellow-900">
-                    🏆 Mejor Opción
-                  </Badge>
-                )}
               </div>
             </div>
             <div className="flex items-center gap-2">
               <div className={`text-2xl font-bold ${getHealthScoreColor(dish.healthScore)}`}>
                 {dish.healthScore}
               </div>
-              <div className="text-sm text-gray-500">Salud</div>
+              <div className="text-sm text-gray-500">Índice orientativo</div>
             </div>
           </div>
         </CardHeader>
@@ -192,7 +187,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                     <TrendingDown className="w-8 h-8 text-brand-success mr-3" />
                   )}
                   <div>
-                    <span className="text-sm text-muted-foreground">Diferencia de precio:</span>
+                    <span className="text-sm text-muted-foreground">Diferencia entre costos estimados:</span>
                     <p className={`text-3xl font-bold ${
                       dish.priceDifferencePercent > 0 ? 'text-destructive' : 'text-brand-success'
                     }`}>
@@ -228,11 +223,12 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
             </TabsContent>
 
             <TabsContent value="health" className="space-y-4 mt-4 sm:mt-6">
+              <p className="text-sm text-muted-foreground">Índice, beneficios y porcentajes de referencia sin metodología ni fuentes individuales documentadas. No representan una evaluación clínica ni una medición de esta receta.</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-4">
                   <h4 className="font-semibold text-muted-foreground flex items-center">
                     <Heart className="w-5 h-5 mr-2 text-brand-primary" />
-                    Beneficios Plant-Based
+                    Beneficios potenciales
                   </h4>
                   <ul className="space-y-2">
                     {dish.healthBenefits.map((benefit, index) => (
@@ -244,7 +240,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish, index }) 
                   </ul>
                 </div>
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-muted-foreground">Impacto Ambiental</h4>
+                  <h4 className="font-semibold text-muted-foreground">Impacto ambiental orientativo</h4>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-muted-foreground">Reducción CO2:</span>

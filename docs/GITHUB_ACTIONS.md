@@ -15,7 +15,7 @@ Asegurar que cualquier código que llegue a producción pase por controles estri
 - **\`push\` a la rama \`main\`:** Se ejecuta automáticamente cada vez que se hace merge de un Pull Request o un push directo hacia la rama principal.
 
 ### ⚙️ Secuencia de Ejecución (Jobs)
-Corre en un entorno \`ubuntu-latest\` bajo Node.js versión 20. Comprende los siguientes pasos clave, en un modelo de falla rústico (si un paso falla, se detiene el despliegue):
+Corre en un entorno \`ubuntu-24.04\` bajo Node.js versión 22. Comprende los siguientes pasos clave, en un modelo de falla rústico (si un paso falla, se detiene el despliegue):
 
 1. **Checkout & Setup (\`actions/checkout@v4\`, \`actions/setup-node@v4\`):** Clona el repositorio y prepara Node 22 utilizando caché de \`npm\` para agilizar las descargas en futuras ejecuciones.
 2. **Instalación de Dependencias:** Ejecuta \`npm ci\` (Clean Install), lo que asegura que las dependencias instaladas sean idénticas a las almacenadas en \`package-lock.json\`, garantizando congruencia en el build y evitando vulnerabilidades introducidas por subversiones (semver).
@@ -27,18 +27,17 @@ Corre en un entorno \`ubuntu-latest\` bajo Node.js versión 20. Comprende los si
 
 ---
 
-## 2. Verificación semanal del navegador (`weekly-update.yml`)
+## 2. Auditoría semanal de fuentes (`weekly-update.yml`)
 
-Se programa para los lunes a las 00:00 UTC y puede ejecutarse manualmente.
-Usa Ubuntu 24.04, Node.js 22 y la versión de Playwright fijada en el lockfile.
-Instala Chromium y comprueba que puede iniciar y renderizar una página local.
+Se programa los lunes a las 12:23 UTC (06:23 CDMX), con ejecución manual disponible.
+Utiliza Ubuntu 24.04 y Python, sin instalar Chromium ni dependencias de npm. Verifica metadatos,
+diccionario y cabeceras de la fuente oficial Profeco QQP. Guarda un reporte temporal como
+artefacto por 14 días. Las pruebas locales del contrato se ejecutan en PRs que modifican
+el monitor; las consultas externas sólo ocurren fuera de PR.
 
-La consulta y publicación de precios están en pausa (`PRICE_SCRAPING_ENABLED: 'false'`).
-Un navegador operativo no confirma que haya precios nuevos ni que los precios publicados estén vigentes.
-Solo se debe reactivar la consulta después de implementar y probar la extracción de la presentación
-observada en la fuente. El actualizador descarta observaciones sin esa evidencia.
-Si se rehabilita, solo propone un PR cuando cambian los datos de tiendas; el reporte temporal
-no forma parte del PR. Las propuestas se revisan antes de publicarse.
+La publicación automática permanece detenida. No ejecuta el extractor anterior ni el actualizador,
+no crea PRs de datos y tiene permisos de sólo lectura. Ver
+[automatización de fuentes](fuentes-precios-automatizacion.md) para criterios de reactivación.
 
 ## 3. Verificación de rutas en PR (`pages-smoke.yml`)
 

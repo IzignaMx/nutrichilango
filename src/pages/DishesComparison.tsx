@@ -1,28 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import React, { useState } from 'react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ChefHat, Leaf, DollarSign, Heart, Clock, Users, Info } from 'lucide-react';
+import { ChefHat, Info } from 'lucide-react';
 import DishComparisonCard from '@/components/dishes/DishComparisonCard';
 import DishFilters from '@/components/dishes/DishFilters';
 import { dishesData } from '@/data/dishes';
 import { DishCategory } from '@/data/dishes/types';
+import { statedPreparationMinutes } from '@/data/dishes/display';
 
 const DishesComparison: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<DishCategory>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'easy' | 'medium' | 'hard' | 'all'>('all');
   const [sortBy, setSortBy] = useState<'price' | 'health' | 'prep-time'>('price');
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading real-time prices
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   const filteredDishes = dishesData.filter(dish => {
     if (selectedCategory !== 'all' && dish.category !== selectedCategory) return false;
     if (selectedDifficulty !== 'all' && dish.veganVersion.difficulty !== selectedDifficulty) return false;
@@ -34,7 +23,7 @@ const DishesComparison: React.FC = () => {
       case 'health':
         return b.healthScore - a.healthScore;
       case 'prep-time':
-        return parseInt(a.veganVersion.prepTime) - parseInt(b.veganVersion.prepTime);
+        return statedPreparationMinutes(a.veganVersion.prepTime) - statedPreparationMinutes(b.veganVersion.prepTime);
       default:
         return 0;
     }
@@ -80,7 +69,7 @@ const DishesComparison: React.FC = () => {
           <Alert className="border-green-200 bg-green-50">
             <Info className="h-4 w-4 text-green-600" />
             <AlertDescription className="text-green-800">
-              Compara el costo estimado y los datos nutricionales por porción. El resultado depende de la receta, las cantidades y los precios de referencia.
+              Compara el costo estimado y los datos nutricionales por porción. El resultado depende de la receta, las cantidades y los precios de referencia. Los valores nutricionales, índices de salud e impacto ambiental son orientativos; todavía no cuentan con trazabilidad individual publicada.
             </AlertDescription>
           </Alert>
 
@@ -95,27 +84,17 @@ const DishesComparison: React.FC = () => {
             totalResults={filteredDishes.length}
           />
 
-          {/* Loading State */}
-          {isLoading ? (
-            <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Cargando la comparación de platillos...</p>
-            </div>
-          ) : (
-            /* Dishes Grid */
-            <div className="grid gap-8">
-              {filteredDishes.map((dish, index) => (
-                <DishComparisonCard 
-                  key={dish.id}
-                  dish={dish}
-                  index={index}
-                />
-              ))}
-            </div>
-          )}
+          <div className="grid gap-8">
+            {filteredDishes.map(dish => (
+              <DishComparisonCard
+                key={`${dish.category}/${dish.id}`}
+                dish={dish}
+              />
+            ))}
+          </div>
 
           {/* No Results */}
-          {!isLoading && filteredDishes.length === 0 && (
+          {filteredDishes.length === 0 && (
             <div className="text-center py-12">
               <ChefHat className="h-16 w-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
