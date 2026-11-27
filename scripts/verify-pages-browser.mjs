@@ -111,6 +111,26 @@ try {
       console.log(`Chromium: entrada y recarga verificadas para ${route}.`);
     }
 
+    await page.goto(origin + '/dishes-comparison/');
+    const ingredientFilter = page.getByRole('combobox', { name: 'Ingrediente principal' });
+    const categoryFilter = page.getByRole('combobox', { name: 'Categoría' });
+    await ingredientFilter.click();
+    await page.getByRole('option', { name: 'Tofu', exact: true }).click();
+    await page.getByText('2 platillos encontrados', { exact: true }).waitFor();
+    assert.equal(await page.getByText('Principal: Tofu', { exact: true }).count(), 2);
+    assert.equal(await page.getByText('Principal: Soya texturizada', { exact: true }).count(), 0);
+    await categoryFilter.click();
+    await page.getByRole('option', { name: '🌮 Platillos Mexicanos', exact: true }).click();
+    await page.getByText('No se encontraron platillos', { exact: true }).waitFor();
+    await ingredientFilter.click();
+    await page.getByRole('option', { name: 'Soya texturizada', exact: true }).click();
+    await page.getByText('10 platillos encontrados', { exact: true }).waitFor();
+    assert.equal(await page.getByText('Principal: Soya texturizada', { exact: true }).count(), 10);
+    await ingredientFilter.click();
+    await page.getByRole('option', { name: 'Todos los ingredientes', exact: true }).click();
+    await page.getByText('17 platillos encontrados', { exact: true }).waitFor();
+    console.log('Chromium: filtro de ingrediente principal, composición con categoría, estado vacío y restablecimiento verificados.');
+
     await page.goto(origin + '/');
     // Tomar los valores de la fuente versionada; no inmovilizar una observación futura válida.
     const stores = JSON.parse(await readFile(new URL('../src/data/stores/conventional.json', import.meta.url), 'utf8'));

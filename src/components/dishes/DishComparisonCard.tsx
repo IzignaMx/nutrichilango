@@ -9,12 +9,14 @@ import DishNutritionChart from './DishNutritionChart';
 import VeganRecipeModal from './VeganRecipeModal';
 import { DishComparison } from '@/data/dishes/types';
 import { dishCategoryLabels } from '@/data/dishes/display';
+import { getMainIngredient, mainIngredientLabels } from '@/data/dishes/mainIngredient';
 
 interface DishComparisonCardProps {
   dish: DishComparison;
 }
 
 const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish }) => {
+  const mainIngredient = getMainIngredient(dish);
   const [showRecipe, setShowRecipe] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -54,6 +56,7 @@ const DishComparisonCard: React.FC<DishComparisonCardProps> = ({ dish }) => {
                 <Badge className={getCategoryColor(dish.category)}>
                   {dishCategoryLabels[dish.category]}
                 </Badge>
+                {mainIngredient && <Badge variant="outline">Principal: {mainIngredientLabels[mainIngredient.id]}</Badge>}
                 <Badge className={getDifficultyColor(dish.veganVersion.difficulty)}>
                   {dish.veganVersion.difficulty === 'easy' ? 'Fácil' : 
                    dish.veganVersion.difficulty === 'medium' ? 'Medio' : 'Difícil'}
