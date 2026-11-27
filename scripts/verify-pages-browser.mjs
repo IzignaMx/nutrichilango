@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { pagesRoutes } from './pages-entries.ts';
 import { PANTRY_PRODUCTS } from '../src/data/pantry/products.ts';
 import { assertPantryPDF } from './verify-pantry-pdf.mjs';
@@ -272,5 +274,11 @@ try {
   } finally {
     server.closeAllConnections();
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+    // Ejecutar el control aislado aunque falle la prueba del sitio; no sustituye esa prueba.
+    if (process.argv[2] !== '--http-only') {
+      const control = fileURLToPath(new URL('./verify-pdf-blob-csp.mjs', import.meta.url));
+      const result = spawnSync(process.execPath, [control], { stdio: 'inherit', timeout: 45000 });
+      if (result.error || result.status !== 0) process.exitCode = 1;
+    }
   }
 }
