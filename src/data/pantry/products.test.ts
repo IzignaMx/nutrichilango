@@ -38,7 +38,7 @@ describe('Elegibilidad del catálogo de despensa', () => {
     const random = vi.spyOn(Math, 'random').mockReturnValue(0.01);
     const optional = ['Alto en proteína', 'Económico', 'Orgánico', 'Fácil preparación', 'Rica en hierro'];
     try {
-      expect(PANTRY_PRODUCTS.find(({ name }) => name === 'Bulgur')?.isGlutenFree).not.toBe(true);
+      expect(PANTRY_PRODUCTS.find(({ id }) => id === 'gra-006')?.isGlutenFree).not.toBe(true);
       for (let mask = 0; mask < 2 ** optional.length; mask++) {
         const prefs = ['Sin gluten', ...optional.filter((_, i) => (mask & (1 << i)) !== 0)];
         const list = generateBalancedPantryList(2, 'weekly', prefs);

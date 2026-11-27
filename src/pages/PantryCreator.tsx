@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { toast as notify } from 'sonner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,12 +8,33 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Users, ChefHat, Calendar, Download, Copy, Share, Eye } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { generateBalancedPantryList, type PantryItem } from '@/data/pantry/products';
+import { generateBalancedPantryList } from '@/data/pantry/products';
 import { useNutriStore } from '@/store/useNutriStore';
-import { calculatePriceDiff } from '@/lib/nutricore';
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { buildPantryExport } from '@/components/pantry/pantry-export';
+import { buildPantryExport, formatPantryCopy } from '@/components/pantry/pantry-export';
+import { getPantryShoppingInfo, PANTRY_RECIPES_PATH, type PantryShoppingInfo } from '@/data/pantry/shopping';
+
+function ShoppingInfo({ info }: { info: PantryShoppingInfo }) {
+  return (
+    <div className="space-y-1 text-sm text-muted-foreground">
+      {info.description && <p>{info.description}</p>}
+      <p>Origen del precio: {info.priceOrigin}.</p>
+      <p><strong>Dónde buscar:</strong> {info.where}</p>
+      {info.reference && (
+        <p>
+          <a href={info.reference.url} target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-primary underline-offset-2 break-words rounded-sm focus-visible:ring-2 focus-visible:ring-ring">
+            {info.reference.label}
+          </a>
+          {info.reference.priceBasis ? ' (consulta la oferta del comercio). ' : ' (ficha de producto, no fuente del estimado).'}
+        </p>
+      )}
+      <a href={info.searchUrl} target="_blank" rel="noopener noreferrer" className="inline-block text-foreground underline decoration-primary underline-offset-2 rounded-sm focus-visible:ring-2 focus-visible:ring-ring">
+        Buscar {info.name} en CDMX
+      </a>
+    </div>
+  );
+}
 
 function GlutenCatalogNotice() {
   return (
@@ -86,9 +107,7 @@ const PantryCreator: React.FC = () => {
   };
 
   const copyList = () => {
-    const listText = generatedList
-      .map(item => `${item.name}: ${item.quantity} ${item.unit} - $${item.price.toFixed(2)}`)
-      .join('\n');
+    const listText = formatPantryCopy(generatedList);
     
     navigator.clipboard.writeText(listText);
     toast({ title: "Lista copiada", description: "La lista se copió al portapapeles" });
@@ -150,7 +169,7 @@ const PantryCreator: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-8 px-4">
-      <div className="container max-w-4xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Creador de Despensa Vegana
@@ -189,7 +208,7 @@ const PantryCreator: React.FC = () => {
               {step === 4 && "Lista generada según tus preferencias"}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="px-3 sm:px-6">
             {step === 1 && (
               <div className="space-y-6">
                 {hasSharedConfiguration && sharedFrequency && appliedLink !== location.key && (
@@ -342,6 +361,7 @@ const PantryCreator: React.FC = () => {
                                     <span className="col-start-1 break-words">{row.name}</span>
                                     <span className="col-start-1 text-sm text-muted-foreground sm:col-start-2 sm:row-start-1">{row.quantity}</span>
                                     <span className="col-start-2 row-start-1 text-right font-semibold text-primary sm:col-start-3">{row.price}</span>
+                                    <div className="col-span-full"><ShoppingInfo info={row.shopping} /></div>
                                   </li>
                                 ))}
                               </ul>
@@ -352,6 +372,7 @@ const PantryCreator: React.FC = () => {
                             <ul className="list-disc space-y-1 pl-4 text-sm text-muted-foreground">
                               {exportModel.notes.map(note => <li key={note}>{note}</li>)}
                             </ul>
+                            <a href={exportModel.recipesUrl} className="text-foreground underline decoration-primary rounded-sm focus-visible:ring-2 focus-visible:ring-ring">Explorar recetas vegetales (sin filtro de despensa)</a>
                           </footer>
                         </section>
                       </DialogContent>
@@ -377,23 +398,25 @@ const PantryCreator: React.FC = () => {
                       <CardHeader className="pb-3">
                         <CardTitle className="text-lg">{category}</CardTitle>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="px-3 sm:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           {generatedList
                             .filter(item => item.category === category)
-                            .map(item => (
-                              <div key={item.id} className="flex justify-between items-center p-3 bg-muted/50 rounded-md">
-                                <div>
-                                  <p className="font-medium">{item.name}</p>
-                                  <p className="text-sm text-muted-foreground">
-                                    {item.quantity} {item.unit}
-                                  </p>
+                            .map(item => {
+                              const info = getPantryShoppingInfo(item);
+                              return (
+                              <div key={item.id} className="min-w-0 space-y-2 p-3 bg-muted/50 rounded-md">
+                                <div className="flex justify-between items-start gap-2">
+                                  <div className="min-w-0">
+                                    <p className="font-medium break-words">{info.name}</p>
+                                    <p className="text-sm text-muted-foreground">{item.quantity} {item.unit}</p>
+                                  </div>
+                                  <Badge variant="secondary" className="shrink-0">${item.price.toFixed(2)}</Badge>
                                 </div>
-                                <Badge variant="secondary">
-                                  ${item.price.toFixed(2)}
-                                </Badge>
+                                <ShoppingInfo info={info} />
                               </div>
-                            ))}
+                              );
+                            })}
                         </div>
                       </CardContent>
                     </Card>
@@ -411,6 +434,15 @@ const PantryCreator: React.FC = () => {
                     }
                   </p>
                 </div>}
+                {!restrictedListIsEmpty && (
+                  <div className="space-y-2 rounded-lg border p-4 text-center">
+                    <h3 className="font-semibold">¿Qué puedes cocinar?</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Explora ideas de cocina mexicana de origen vegetal. Las recetas todavía no se filtran según tu despensa.
+                    </p>
+                    <Button asChild><Link to={PANTRY_RECIPES_PATH}>Explorar recetas vegetales</Link></Button>
+                  </div>
+                )}
               </div>
             )}
           </CardContent>

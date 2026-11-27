@@ -1,4 +1,5 @@
 import type { PantryItem } from '@/data/pantry/products';
+import { getPantryShoppingInfo, PANTRY_RECIPES_PATH, type PantryShoppingInfo } from '@/data/pantry/shopping';
 
 const frequencyLabels = {
   weekly: 'Semanal',
@@ -18,12 +19,14 @@ export function buildPantryExport(
   totalPrice: number,
   date = new Date(),
 ) {
-  const categories = new Map<string, { id: string; name: string; quantity: string; price: string }[]>();
+  const categories = new Map<string, { id: string; name: string; quantity: string; price: string; shopping: PantryShoppingInfo }[]>();
   for (const item of items) {
     const rows = categories.get(item.category) ?? [];
+    const shopping = getPantryShoppingInfo(item);
     rows.push({
       id: item.id,
-      name: item.name,
+      name: shopping.name,
+      shopping,
       quantity: `${item.quantity} ${item.unit}`,
       price: `$${item.price.toFixed(2)}`,
     });
@@ -40,9 +43,10 @@ export function buildPantryExport(
       year: 'numeric', month: 'long', day: 'numeric',
     })} • ${site}`,
     categories: Array.from(categories, ([name, rows]) => ({ name, rows })),
+    recipesUrl: `https://${site}${PANTRY_RECIPES_PATH}`,
     total: `Total estimado: $${totalPrice.toFixed(2)} MXN`,
     notes: [
-      'Los precios son estimados basados en datos de mercados locales de la CDMX.',
+      'Los precios son estimaciones de NutriChilango, no son cotizaciones ni disponibilidad garantizada. Las fichas de compra no acreditan el precio salvo cuando se indique una referencia proporcional.',
       'Esta lista fue generada con NutriChilango para promover una alimentación vegana accesible.',
       `Visita ${site} para comparar precios de referencia.`,
     ],
@@ -50,3 +54,17 @@ export function buildPantryExport(
 }
 
 export type PantryExport = ReturnType<typeof buildPantryExport>;
+
+export function formatPantryCopy(items: readonly PantryItem[]) {
+  return items.map(item => {
+    const info = getPantryShoppingInfo(item);
+    return [
+      `${info.name}: ${item.quantity} ${item.unit} - $${item.price.toFixed(2)}`,
+      `Origen: ${info.priceOrigin}`,
+      ...(info.description ? [info.description] : []),
+      `Dónde buscar: ${info.where}`,
+      `Buscar: ${info.searchUrl}`,
+      ...(info.reference ? [`${info.reference.label} (${info.reference.priceBasis ? 'referencia del estimado' : 'ficha, no fuente del estimado'}): ${info.reference.url}`] : []),
+    ].join(' | ');
+  }).join('\n');
+}

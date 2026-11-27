@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useNutriStore } from '@/store/useNutriStore';
 import PantryCreator from './PantryCreator';
+import { getPantryShoppingInfo } from '@/data/pantry/shopping';
 
 const { notify } = vi.hoisted(() => ({ notify: { success: vi.fn(), error: vi.fn() } }));
 vi.mock('sonner', () => ({ toast: notify }));
@@ -130,12 +131,14 @@ describe('Exclusión por Sin gluten', () => {
       const list = useNutriStore.getState().generatedPantry;
       expect(list.length).toBeGreaterThan(0);
       expect(list.filter(({ isGlutenFree }) => isGlutenFree !== true)).toEqual([]);
-      expect(screen.queryByText('Bulgur', { exact: true })).toBeNull();
+      expect(screen.queryByText(/trigo partido precocido/i)).toBeNull();
       expect(screen.getByText(/contacto cruzado/i)).toBeTruthy();
       fireEvent.click(screen.getByRole('button', { name: 'Copiar' }));
-      expect(writeText).toHaveBeenLastCalledWith(
-        list.map(({ name, quantity, unit, price }) => `${name}: ${quantity} ${unit} - $${price.toFixed(2)}`).join('\n'),
+      const rows = writeText.mock.lastCall![0].split('\n');
+      expect(rows.map(line => line.split(' | ')[0])).toEqual(
+        list.map(item => `${getPantryShoppingInfo(item).name}: ${item.quantity} ${item.unit} - $${item.price.toFixed(2)}`),
       );
+      expect(rows.every(row => row.includes('Origen: Estimación de NutriChilango') && row.includes('Buscar: https://'))).toBe(true);
     };
     try {
       createPantry(['Sin gluten', 'Económico', 'Fácil preparación']);
@@ -200,8 +203,18 @@ it('muestra y copia el precio de las piezas visibles y las incluye en el total',
     const total = screen.getByText('Total estimado:', { exact: true });
     expect(within(total).getByText(`$${expectedTotal}`)).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Copiar' }));
-    expect(writeText.mock.lastCall?.[0].split('\n')).toContain('Brócoli: 2 piezas - $30.00');
+    expect(writeText.mock.lastCall?.[0].split('\n').map(line => line.split(' | ')[0])).toContain('Brócoli: 2 piezas - $30.00');
   } finally {
     random.mockRestore();
   }
+});
+
+it('muestra origen de precio y búsqueda para cada producto y un acceso a recetas sin prometer personalización', () => {
+  createPantry();
+  const products = useNutriStore.getState().generatedPantry;
+  expect(screen.getAllByText(/Origen del precio: estimación de NutriChilango/i)).toHaveLength(products.length);
+  expect(screen.getAllByRole('link', { name: /Buscar .* en CDMX/ })).toHaveLength(products.length);
+  const recipes = screen.getByRole('link', { name: 'Explorar recetas vegetales' });
+  expect(recipes.getAttribute('href')).toBe('/dishes-comparison');
+  expect(screen.getByText(/todavía no se filtran según tu despensa/i)).toBeTruthy();
 });
