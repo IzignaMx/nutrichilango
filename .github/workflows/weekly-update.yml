@@ -2,91 +2,39 @@ name: Advanced Weekly Content Update
 
 on:
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "23 12 * * 1"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/weekly-update.yml'
+      - 'scripts/audit-price-sources.py'
+      - 'scripts/test_audit_price_sources.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: price-source-audit-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  update-content:
-    # Playwright 1.58.2 tiene dependencias nativas para Ubuntu 24.04.
+  audit-sources:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    env:
-      # Rehabilitar solo con extracción y pruebas de observedUnit desde la fuente.
-      PRICE_SCRAPING_ENABLED: 'false'
-    permissions:
-      contents: write
-      pull-requests: write
-
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "npm"
-
-      - run: npm ci
-
-      - name: Clean stale update files
-        run: rm -f data/updates/scraped-prices.json data/updates/scrape-report.json
-
-      - name: Install Playwright Browsers
-        run: npm exec --no -- playwright install chromium --with-deps
-
-      - name: Verificar inicio de Chromium
-        run: node scripts/verify-chromium.mjs
-
-      - name: Informar bloqueo de procedencia
-        if: env.PRICE_SCRAPING_ENABLED != 'true'
-        run: echo 'Navegador verificado. Publicación de precios pausada hasta que el extractor aporte unidad observada y procedencia verificable.' >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Scrape Real Prices
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        timeout-minutes: 25
-        run: node scripts/scrape-data.mjs
-
-      - name: Generate date
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        id: date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
-      - name: Run Pipeline
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        id: pipeline
-        run: |
-          node scripts/update-data.mjs > "$RUNNER_TEMP/pipeline_report.txt"
-          echo "REPORT<<EOF" >> $GITHUB_OUTPUT
-          cat "$RUNNER_TEMP/pipeline_report.txt" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Detectar cambios publicables
-        if: env.PRICE_SCRAPING_ENABLED == 'true'
-        id: data-changes
-        run: |
-          if git diff --quiet -- 'src/data/stores/*.json'; then
-            echo 'changed=false' >> "$GITHUB_OUTPUT"
-          else
-            echo 'changed=true' >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Create Pull Request
-        if: steps.data-changes.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+          persist-credentials: false
+      - name: Test source contracts
+        run: python3 -m unittest discover -s scripts -p 'test_audit_price_sources.py'
+      - name: Audit official price sources
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/audit-price-sources.py "$RUNNER_TEMP/price-source-report.json"
+      - name: Upload audit evidence
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "data: automated content & price refresh"
-          title: "🚀 Content Update: ${{ steps.date.outputs.date }}"
-          body: |
-            ## Automated Validation Report
-
-            ${{ steps.pipeline.outputs.REPORT }}
-
-            ---
-            *This PR was generated automatically. Human review is required before merging.*
-          branch: automation/content-update
-          add-paths: |
-            src/data/stores/*.json
-            src/data/metadata.ts
-          labels: |
-            data-update
-            needs-review
+          name: price-source-report
+          path: ${{ runner.temp }}/price-source-report.json
+          retention-days: 14
+          if-no-files-found: error

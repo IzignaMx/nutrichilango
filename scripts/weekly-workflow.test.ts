@@ -4,25 +4,26 @@ import { describe, expect, it } from 'vitest';
 const workflow = readFileSync(new URL('../.github/workflows/weekly-update.yml', import.meta.url), 'utf8');
 
 describe('Contrato de actualización semanal', () => {
-  it('usa el entorno compatible y comprueba Chromium antes de consultar fuentes', () => {
+  it('usa runner hospedado y no instala Chromium para la consulta CSV', () => {
     expect(workflow).toContain('runs-on: ubuntu-24.04');
-    expect(workflow).toContain('node-version: "22"');
-    expect(workflow).toContain('npm exec --no -- playwright install chromium --with-deps');
-    expect(workflow.indexOf('node scripts/verify-chromium.mjs')).toBeLessThan(workflow.indexOf('node scripts/scrape-data.mjs'));
+    expect(workflow).toContain('timeout-minutes: 5');
+    expect(workflow).not.toContain('playwright install');
   });
 
-  it('mantiene explícitamente pausado el scraper sin unidad observada', () => {
-    expect(workflow).toContain("PRICE_SCRAPING_ENABLED: 'false'");
-    for (const step of ['Scrape Real Prices', 'Run Pipeline']) {
-      expect(workflow).toContain(`- name: ${step}\n        if: env.PRICE_SCRAPING_ENABLED == 'true'`);
-    }
+  it('mantiene recolección independiente de publicación y sin permisos de escritura', () => {
+    expect(workflow).toContain('permissions:\n  contents: read');
+    expect(workflow).toContain('persist-credentials: false');
+    expect(workflow).not.toContain('scripts/scrape-data.mjs');
+    expect(workflow).not.toContain('scripts/update-data.mjs');
+    expect(workflow).not.toContain('create-pull-request');
+    expect(workflow).not.toContain('contents: write');
   });
 
-  it('excluye reportes y cambios de fecha sin cambios de precios del PR', () => {
-    expect(workflow).toContain('node scripts/update-data.mjs > "$RUNNER_TEMP/pipeline_report.txt"');
-    expect(workflow).toContain("git diff --quiet -- 'src/data/stores/*.json'");
-    expect(workflow).toContain("- name: Create Pull Request\n        if: steps.data-changes.outputs.changed == 'true'");
-    expect(workflow).toContain('add-paths: |\n            src/data/stores/*.json\n            src/data/metadata.ts');
-    expect(workflow).not.toContain('> pipeline_report.txt');
+  it('prueba el contrato en PR y conserva evidencia limitada de las consultas programadas', () => {
+    expect(workflow).toContain('pull_request:');
+    expect(workflow).toContain('python3 -m unittest discover');
+    expect(workflow).toContain("if: github.event_name != 'pull_request'");
+    expect(workflow).toContain('actions/upload-artifact@v4');
+    expect(workflow).toContain('retention-days: 14');
   });
 });
