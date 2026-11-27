@@ -7,12 +7,15 @@ import DishFilters from '@/components/dishes/DishFilters';
 import { dishesData } from '@/data/dishes';
 import { DishCategory } from '@/data/dishes/types';
 import { statedPreparationMinutes } from '@/data/dishes/display';
+import { getMainIngredient, getMainIngredientOptions, type MainIngredient } from '@/data/dishes/mainIngredient';
 
 const DishesComparison: React.FC = () => {
+  const [selectedIngredient, setSelectedIngredient] = useState<MainIngredient | 'all'>('all');
   const [selectedCategory, setSelectedCategory] = useState<DishCategory>('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState<'easy' | 'medium' | 'hard' | 'all'>('all');
   const [sortBy, setSortBy] = useState<'price' | 'health' | 'prep-time'>('price');
   const filteredDishes = dishesData.filter(dish => {
+    if (selectedIngredient !== 'all' && getMainIngredient(dish)?.id !== selectedIngredient) return false;
     if (selectedCategory !== 'all' && dish.category !== selectedCategory) return false;
     if (selectedDifficulty !== 'all' && dish.veganVersion.difficulty !== selectedDifficulty) return false;
     return true;
@@ -75,6 +78,9 @@ const DishesComparison: React.FC = () => {
 
           {/* Filters */}
           <DishFilters
+            selectedIngredient={selectedIngredient}
+            onIngredientChange={setSelectedIngredient}
+            ingredientOptions={getMainIngredientOptions(dishesData)}
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
             selectedDifficulty={selectedDifficulty}

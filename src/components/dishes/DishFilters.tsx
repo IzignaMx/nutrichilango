@@ -5,8 +5,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 
 import { DishCategory } from '@/data/dishes/types';
+import { mainIngredientLabels, type MainIngredient } from '@/data/dishes/mainIngredient';
 
 interface DishFiltersProps {
+  selectedIngredient: MainIngredient | 'all';
+  onIngredientChange: (ingredient: MainIngredient | 'all') => void;
+  ingredientOptions: MainIngredient[];
   selectedCategory: DishCategory;
   onCategoryChange: (category: DishCategory) => void;
   selectedDifficulty: 'easy' | 'medium' | 'hard' | 'all';
@@ -17,6 +21,9 @@ interface DishFiltersProps {
 }
 
 const DishFilters: React.FC<DishFiltersProps> = ({
+  selectedIngredient,
+  onIngredientChange,
+  ingredientOptions,
   selectedCategory,
   onCategoryChange,
   selectedDifficulty,
@@ -29,7 +36,7 @@ const DishFilters: React.FC<DishFiltersProps> = ({
     <Card className="bg-white/90 backdrop-blur-sm overflow-hidden">
       <CardContent className="p-4 sm:p-6">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 flex-1">
             <div className="space-y-2">
               <label htmlFor="category-select" className="text-sm font-medium text-gray-700">
                 Categoría
@@ -50,6 +57,23 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                   <SelectItem value="salsas">🌶️ Salsas y Aderezos</SelectItem>
                   <SelectItem value="aperitivos">🍿 Aperitivos</SelectItem>
                   <SelectItem value="bebidas">🥤 Bebidas</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="ingredient-select" className="text-sm font-medium text-gray-700">
+                Ingrediente principal
+              </label>
+              <Select value={selectedIngredient} onValueChange={onIngredientChange}>
+                <SelectTrigger id="ingredient-select" className="w-full">
+                  <SelectValue placeholder="Seleccionar ingrediente" />
+                </SelectTrigger>
+                <SelectContent className="bg-background border border-border shadow-lg z-50">
+                  <SelectItem value="all">Todos los ingredientes</SelectItem>
+                  {ingredientOptions.map(id => (
+                    <SelectItem key={id} value={id}>{mainIngredientLabels[id]}</SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -89,7 +113,7 @@ const DishFilters: React.FC<DishFiltersProps> = ({
           </div>
 
           <div className="flex items-center justify-center lg:justify-end">
-            <Badge variant="secondary" className="text-xs sm:text-sm whitespace-nowrap">
+            <Badge variant="secondary" role="status" className="text-xs sm:text-sm whitespace-nowrap">
               {totalResults} platillos encontrados
             </Badge>
           </div>
