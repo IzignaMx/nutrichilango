@@ -29,7 +29,7 @@
         {
           "name": "Central de Abastos",
           "description": "Mercado mayorista de referencia",
-          "badge": "Verificación manual",
+          "badge": "Referencia",
           "badgeColor": "destructive"
         },
         {
@@ -40,9 +40,35 @@
         },
         {
           "name": "Tianguis Locales",
-          "description": "Red de colaboradores",
-          "badge": "Datos comunitarios",
+          "description": "Mercados itinerantes de referencia; sin registros individuales documentados.",
+          "badge": "Referencia",
           "badgeColor": "brand-primary-light"
+        }
+      ]
+    },
+    {
+      "category": "Fuentes oficiales en evaluación",
+      "items": [
+        {
+          "name": "Profeco QQP",
+          "description": "Monitoreo de precios al público por establecimiento. Se comprueban los metadatos; los registros todavía no actualizan el catálogo.",
+          "badge": "Auditoría de fuente",
+          "badgeColor": "primary",
+          "url": "https://datos.profeco.gob.mx/index.php"
+        },
+        {
+          "name": "Central de Abasto CDMX",
+          "description": "Monitoreo de presentaciones y ubicaciones de compra. Los registros requieren verificación de unidades e identidad antes de incorporarse.",
+          "badge": "En evaluación",
+          "badgeColor": "secondary",
+          "url": "https://ficeda.com.mx/precios-al-consumidor/"
+        },
+        {
+          "name": "SNIIM",
+          "description": "Referencias de precios al mayoreo. No equivalen a precios minoristas.",
+          "badge": "En evaluación",
+          "badgeColor": "secondary",
+          "url": "https://www.economia-sniim.gob.mx/analisis/Precios.asp"
         }
       ]
     }
@@ -52,74 +78,67 @@
       "name": "USDA FoodData Central",
       "description": "Base de datos oficial del Departamento de Agricultura de Estados Unidos",
       "features": [
-        "Más de 300,000 alimentos catalogados",
-        "Datos verificados científicamente",
-        "Actualización continua"
+        "Datos de composición de alimentos",
+        "Distintos tipos de datos y metodologías",
+        "Referencia para futuras verificaciones por alimento"
       ],
       "badgeColor": "primary",
-      "externalLink": true
+      "url": "https://fdc.nal.usda.gov/"
     },
     {
       "name": "Tablas INCMNSZ",
       "description": "Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán",
       "features": [
-        "Alimentos específicos de México",
-        "Análisis de laboratorio local",
-        "Enfoque en productos tradicionales"
+        "Tablas de composición de alimentos mexicanos",
+        "Referencia para alimentos tradicionales"
       ],
       "badgeColor": "brand-success",
-      "externalLink": false
+      "url": "https://www.incmnsz.mx/nutricion/departamentos/ciencia-tecnologia/adquisicion"
     },
     {
       "name": "Etiquetas de Productos",
       "description": "Información nutricional directa del fabricante",
       "features": [
-        "Productos plant-based comerciales",
-        "Cumplimiento NOM-051-SCFI/SSA1-2010",
-        "Verificación cruzada con laboratorios"
+        "Consultar etiqueta específica de marca y presentación",
+        "Conservar fecha y procedencia al verificar"
       ],
-      "badgeColor": "brand-accent",
-      "externalLink": false
+      "badgeColor": "brand-accent"
     },
     {
       "name": "Literatura Científica",
       "description": "Estudios peer-reviewed y bases de datos académicas",
       "features": [
         "PubMed y bases científicas",
-        "Estudios de bioavailabilidad",
-        "Investigación en nutrición plant-based"
+        "Evaluación individual de evidencia"
       ],
-      "badgeColor": "secondary",
-      "externalLink": false
+      "badgeColor": "secondary"
     }
   ],
   "recipeSources": [
     {
       "name": "Chefs Profesionales",
-      "description": "Colaboración con chefs especializados en cocina plant-based",
+      "description": "Referencia metodológica para revisar recetas con especialistas",
       "features": [
-        "Recetas probadas profesionalmente",
-        "Técnicas de optimización nutricional",
+        "Validación de preparación pendiente",
         "Adaptaciones mexicanas"
       ],
       "badgeColor": "destructive"
     },
     {
       "name": "Comunidad",
-      "description": "Recetas validadas por la comunidad de usuarios",
+      "description": "Posibles aportaciones comunitarias a futuro",
       "features": [
-        "Experiencias reales de preparación",
+        "Experiencias de preparación",
         "Adaptaciones económicas",
-        "Feedback de sabor y textura"
+        "Validación de aportaciones pendiente"
       ],
       "badgeColor": "brand-success"
     },
     {
       "name": "Literatura Culinaria",
-      "description": "Libros de cocina y recursos académicos",
+      "description": "Referencias culinarias para documentar y revisar recetas",
       "features": [
         "Técnicas tradicionales adaptadas",
-        "Fundamentos científicos de cocción",
         "Métodos de conservación"
       ],
       "badgeColor": "primary"
@@ -136,12 +155,12 @@
       ]
     },
     {
-      "name": "Revisión Manual",
+      "name": "Revisión y trabajo pendiente",
       "features": [
-        "Verificación de la presentación y la fecha cuando hay evidencia",
-        "Validación cruzada entre fuentes",
-        "Revisión por expertos nutricionales",
-        "Feedback de usuarios registrados"
+        "Verificar presentación y fecha cuando hay evidencia",
+        "Documentar fuentes individuales",
+        "Revisión nutricional y de recetas pendiente",
+        "No asumir validación de usuarios o expertos"
       ]
     }
   ]

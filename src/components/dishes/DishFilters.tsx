@@ -81,8 +81,8 @@ const DishFilters: React.FC<DishFiltersProps> = ({
                 </SelectTrigger>
                 <SelectContent className="bg-background border border-border shadow-lg z-50">
                   <SelectItem value="price">💰 Diferencia de precio</SelectItem>
-                  <SelectItem value="health">❤️ Puntuación de salud</SelectItem>
-                  <SelectItem value="prep-time">⏱️ Tiempo de preparación</SelectItem>
+                  <SelectItem value="health">❤️ Índice orientativo</SelectItem>
+                  <SelectItem value="prep-time">⏱️ Tiempo indicado (sin esperas no cuantificadas)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

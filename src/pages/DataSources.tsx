@@ -4,6 +4,23 @@ import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Database, Store, Utensils } from 'lucide-react';
 import dataSources from '@/data/dataSources.json';
 
+const sourceStyles: Record<string, string> = {
+  primary: 'border-primary/20 bg-primary/5',
+  'brand-success': 'border-brand-success/20 bg-brand-success/5',
+  'brand-accent': 'border-brand-accent/20 bg-brand-accent/5',
+  destructive: 'border-destructive/20 bg-destructive/5',
+  secondary: 'border-border bg-muted',
+  'brand-primary-light': 'border-brand-primary/20 bg-brand-primary-lighter',
+};
+
+function SourceLink({ name, url }: { name: string; url?: string }) {
+  return url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-4">
+      {name}<ExternalLink className="w-4 h-4" aria-hidden="true" />
+    </a>
+  ) : <>{name}</>;
+}
+
 const DataSources: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-brand-primary-lighter to-accent/20">
@@ -15,7 +32,7 @@ const DataSources: React.FC = () => {
               Fuentes de Datos
             </h1>
             <p className="text-xl text-primary-foreground/90 leading-relaxed">
-              Documentación completa de todas las fuentes utilizadas para recopilar información
+              Referencias y estado de verificación de las fuentes de información
             </p>
           </div>
         </div>
@@ -35,6 +52,7 @@ const DataSources: React.FC = () => {
               <p className="text-muted-foreground">
                 La actualización automática de precios está en pausa. Estas fuentes son de referencia:
                 no consultamos sus precios en tiempo real ni garantizamos una frecuencia de actualización.
+                La auditoría de fuentes oficiales verifica metadatos, no actualiza precios publicados.
                 Antes de comprar, confirma el precio y la presentación con la tienda.
               </p>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -43,10 +61,10 @@ const DataSources: React.FC = () => {
                     <h3 className="text-xl font-semibold text-brand-primary mb-4">{sourceCategory.category}</h3>
                     <div className="space-y-4">
                       {sourceCategory.items.map((item, itemIdx) => (
-                        <div key={itemIdx} className={`p-4 bg-${item.badgeColor}/5 rounded-lg border border-${item.badgeColor}/20`}>
-                          <h4 className={`font-semibold text-${item.badgeColor}`}>{item.name}</h4>
+                        <div key={itemIdx} className={`p-4 rounded-lg border ${sourceStyles[item.badgeColor]}`}>
+                          <h4 className="font-semibold text-foreground"><SourceLink name={item.name} url={"url" in item ? item.url : undefined} /></h4>
                           <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
-                          <Badge className={`bg-${item.badgeColor}/10 text-${item.badgeColor}`}>{item.badge}</Badge>
+                          <Badge variant="secondary">{item.badge}</Badge>
                         </div>
                       ))}
                     </div>
@@ -67,13 +85,13 @@ const DataSources: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
+              <p className="text-muted-foreground">Estas referencias no acreditan que cada valor nutricional publicado se haya contrastado con un registro específico. Esa trazabilidad está pendiente.</p>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {dataSources.nutritionalSources.map((source, idx) => (
                   <div key={idx} className="space-y-4">
-                    <div className={`p-4 bg-${source.badgeColor}/5 rounded-lg border border-${source.badgeColor}/20`}>
-                      <h4 className={`font-semibold text-${source.badgeColor} flex items-center mb-2`}>
-                        {source.name}
-                        {source.externalLink && <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />}
+                    <div className={`p-4 rounded-lg border ${sourceStyles[source.badgeColor]}`}>
+                      <h4 className="font-semibold text-foreground flex items-center mb-2">
+                        <SourceLink name={source.name} url={"url" in source ? source.url : undefined} />
                       </h4>
                       <p className="text-sm text-muted-foreground mb-2">{source.description}</p>
                       <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
@@ -101,8 +119,8 @@ const DataSources: React.FC = () => {
             <CardContent>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {dataSources.recipeSources.map((source, idx) => (
-                  <div key={idx} className={`p-4 bg-${source.badgeColor}/5 rounded-lg border border-${source.badgeColor}/20`}>
-                    <h4 className={`font-semibold text-${source.badgeColor} mb-2`}>{source.name}</h4>
+                  <div key={idx} className={`p-4 rounded-lg border ${sourceStyles[source.badgeColor]}`}>
+                    <h4 className="font-semibold text-foreground mb-2">{source.name}</h4>
                     <p className="text-sm text-muted-foreground mb-3">{source.description}</p>
                     <ul className="text-xs text-muted-foreground/80 space-y-1" role="list">
                       {source.features.map((feat, featIdx) => (
@@ -142,9 +160,7 @@ const DataSources: React.FC = () => {
                 <div className="bg-muted p-4 rounded-lg">
                   <h4 className="font-semibold text-foreground mb-2">Transparencia en Limitaciones</h4>
                   <p className="text-muted-foreground text-sm">
-                    Reconocemos que nuestros datos tienen limitaciones inherentes. Todas las fuentes, 
-                    metodologías y restricciones están documentadas para permitir una interpretación 
-                    informada de la información presentada.
+                    Reconocemos que nuestros datos tienen limitaciones inherentes. No todos los productos y recetas cuentan con una fuente individual verificable. Se distinguen las fuentes de referencia de las observaciones verificadas y los trabajos pendientes.
                   </p>
                 </div>
               </div>
