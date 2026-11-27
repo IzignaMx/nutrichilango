@@ -4,6 +4,7 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { pagesRoutes } from './pages-entries.ts';
 import { PANTRY_PRODUCTS } from '../src/data/pantry/products.ts';
+import { getPantryShoppingInfo } from '../src/data/pantry/shopping.ts';
 import { assertPantryPDF } from './verify-pantry-pdf.mjs';
 
 // Cada entrada debe ser reconocible en el navegador, no solo devolver HTTP 200.
@@ -189,15 +190,16 @@ try {
     await activateWithEnter('Generar lista');
     await pantryPage.getByText('Para 4 personas • Quincenal', { exact: true }).waitFor();
     console.log('Chromium: frecuencia seleccionada y lista generada solo con teclado desde /despensa sin parámetros.');
-    const eligibleNames = new Set(PANTRY_PRODUCTS.filter(({ isGlutenFree }) => isGlutenFree === true).map(({ name }) => name));
+    const eligibleNames = new Set(PANTRY_PRODUCTS.filter(({ isGlutenFree }) => isGlutenFree === true).map(item => getPantryShoppingInfo(item).name));
     async function assertRestrictedCopy(page) {
       await page.getByText(/no verifica productos empacados ni el contacto cruzado/i).waitFor();
-      assert.equal(await page.getByText('Bulgur', { exact: true }).count(), 0);
+      assert.equal(await page.getByText(/trigo partido precocido/i).count(), 0);
       await page.waitForFunction(async () => (await navigator.clipboard.readText()).length > 0);
       const copied = await page.evaluate(() => navigator.clipboard.readText());
       assert.ok(copied.length > 0, 'La lista copiada no debe estar vacía.');
       const names = copied.split('\n').map((line) => {
-        assert.match(line, /^.+: .+ - \$\d+\.\d{2}$/);
+        assert.match(line, /^.+: .+ - \$\d+\.\d{2} \| Origen: Estimación de NutriChilango/);
+        assert.ok(line.includes('Buscar: https://www.google.com/search?q='));
         return line.split(': ', 1)[0];
       });
       assert.ok(names.every((name) => eligibleNames.has(name)), 'Copiar no debe incluir productos sin marca afirmativa.');
@@ -257,6 +259,34 @@ try {
     await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
     assert.equal(await sharedPage.getByRole('radio', { checked: true }).count(), 0);
     assert.equal(await sharedPage.getByRole('button', { name: 'Generar lista' }).isDisabled(), true);
+    // Sin restricciones: el nombre local, la referencia del precio y la guía son visibles.
+    const unrestricted = new URL(origin + '/despensa?size=2&prefs=&freq=weekly');
+    assert.equal((await sharedPage.goto(unrestricted.href)).status(), 200);
+    await useShared.click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Siguiente' }).click();
+    await sharedPage.getByRole('button', { name: 'Generar lista' }).click();
+    const bulgur = sharedPage.getByText('Trigo partido precocido (bulgur)', { exact: true });
+    await bulgur.waitFor();
+    const bulgurCard = bulgur.locator('../../..');
+    assert.equal(await bulgurCard.getByText('$35.00', { exact: true }).count(), 1);
+    assert.equal(await bulgurCard.getByText(/contiene gluten/i).count(), 1);
+    assert.equal(await bulgurCard.getByText(/\$70.00 MXN por 1 kg/).count(), 1);
+    assert.equal(await bulgurCard.getByRole('link', { name: 'Sinai Deli: bulgur Krinos, 1 kg' }).getAttribute('href'), 'https://shop.sinaidelibakery.com/producto/bulgur-krinos-1-kg-8535');
+    const generated = await sharedPage.evaluate(() => JSON.parse(localStorage.getItem('nutrichilango-storage')).state.generatedPantry);
+    assert.equal(await sharedPage.getByRole('link', { name: /Buscar .* en CDMX/ }).count(), generated.length);
+    assert.equal(await sharedPage.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    await sharedPage.getByRole('button', { name: 'Copiar', exact: true }).click();
+    await sharedPage.waitForFunction(async () => (await navigator.clipboard.readText()).includes('Trigo partido precocido (bulgur): 500 g - $35.00'));
+    await sharedPage.getByRole('button', { name: 'Vista Previa', exact: true }).click();
+    const preview = sharedPage.getByRole('dialog');
+    await preview.getByRole('link', { name: 'Sinai Deli: bulgur Krinos, 1 kg' }).waitFor();
+    await sharedPage.keyboard.press('Escape');
+    await preview.waitFor({ state: 'hidden' });
+    await sharedPage.getByRole('link', { name: 'Explorar recetas vegetales', exact: true }).click();
+    await sharedPage.getByRole('heading', { name: headings.get('/dishes-comparison').name, exact: true }).waitFor();
+    assert.equal(new URL(sharedPage.url()).pathname, '/dishes-comparison');
+    console.log('Chromium: orientación de compra, fuente proporcional de bulgur, copia, vista previa y enlace de recetas verificados.');
     await reader.close();
     console.log('Chromium: enlace de despensa copiado y aplicado en otro perfil tras abrirlo y recargarlo.');
 

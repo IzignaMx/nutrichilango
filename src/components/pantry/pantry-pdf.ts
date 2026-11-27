@@ -1,14 +1,29 @@
 import pdfMake from 'pdfmake/build/pdfmake';
-import type { Content, TDocumentDefinitions } from 'pdfmake/interfaces';
+import type { Content, ContentStack, TableCell, TDocumentDefinitions } from 'pdfmake/interfaces';
 import type { PantryExport } from './pantry-export';
 import helvetica from 'pdfmake/build/standard-fonts/Helvetica';
 
 pdfMake.addFontContainer(helvetica);
 
+function shoppingCell(row: PantryExport['categories'][number]['rows'][number]): ContentStack {
+  const stack: Content[] = [{ text: row.name, bold: true }];
+  if (row.shopping.description) stack.push({ text: row.shopping.description, fontSize: 9 });
+  stack.push(
+    { text: `Origen: ${row.shopping.priceOrigin}.`, fontSize: 9 },
+    { text: `Dónde buscar: ${row.shopping.where}`, fontSize: 9 },
+    { text: `Buscar en CDMX: ${row.name}`, link: row.shopping.searchUrl, decoration: 'underline', color: '#166534', fontSize: 9 },
+  );
+  if (row.shopping.reference) stack.push({
+    text: `${row.shopping.reference.label} (${row.shopping.reference.priceBasis ? 'referencia proporcional' : 'ficha, no fuente del estimado'})`,
+    link: row.shopping.reference.url, decoration: 'underline', color: '#166534', fontSize: 9,
+  });
+  return { stack };
+}
+
 export function createPantryPDFDefinition(model: PantryExport): TDocumentDefinitions {
   const sections: Content[] = model.categories.map<Content>(({ name, rows }) => ({
     table: {
-      widths: ['*', 'auto', 'auto'],
+      widths: ['*', 60, 65],
       headerRows: 1,
       keepWithHeaderRows: 1,
       dontBreakRows: true,
@@ -18,8 +33,8 @@ export function createPantryPDFDefinition(model: PantryExport): TDocumentDefinit
           '',
           '',
         ],
-        ...rows.map(row => [
-          { text: row.name },
+        ...rows.map<TableCell[]>(row => [
+          shoppingCell(row),
           { text: row.quantity, alignment: 'center' as const, color: '#4b5563' },
           { text: row.price, alignment: 'right' as const, bold: true, color: '#166534' },
         ]),
@@ -56,6 +71,7 @@ export function createPantryPDFDefinition(model: PantryExport): TDocumentDefinit
         stack: [
           { text: model.total, style: 'total', margin: [0, 8, 0, 8] },
           ...model.notes.map<Content>(text => ({ text: `* ${text}`, style: 'note', margin: [0, 0, 0, 3] })),
+          { text: 'Explorar recetas vegetales (sin filtro de despensa)', link: model.recipesUrl, decoration: 'underline', color: '#166534', alignment: 'center' },
         ],
       },
     ],
