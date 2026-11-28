@@ -8,13 +8,16 @@ on:
       - '.github/workflows/profeco-archive-audit.yml'
       - 'scripts/inspect-profeco-archive.py'
       - 'scripts/audit-price-sources.py'
+      - 'scripts/profeco-cache.py'
   pull_request:
     paths:
       - '.github/workflows/profeco-archive-audit.yml'
       - 'scripts/inspect-profeco-archive.py'
       - 'scripts/audit-price-sources.py'
+      - 'scripts/profeco-cache.py'
       - 'scripts/test_inspect_profeco_archive.py'
       - 'scripts/test_audit_price_sources.py'
+      - 'scripts/test_profeco_cache.py'
 
 permissions:
   contents: read
@@ -35,12 +38,42 @@ jobs:
         run: |
           python3 -m unittest discover -s scripts -p 'test_inspect_profeco_archive.py'
           python3 -m unittest discover -s scripts -p 'test_audit_price_sources.py'
+          python3 -m unittest discover -s scripts -p 'test_profeco_cache.py'
       - name: Verify source metadata
         if: github.event_name != 'pull_request'
         run: python3 scripts/audit-price-sources.py "$RUNNER_TEMP/price-source-report.json"
+      - name: Derive exact cache key
+        id: cache-key
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: python3 scripts/profeco-cache.py key "$RUNNER_TEMP/price-source-report.json"
+      - name: Restore audit summary
+        id: cache-restore
+        if: steps.cache-key.outputs.eligible == 'true'
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 1
+        with:
+          path: ${{ runner.temp }}/profeco-cache/summary.json
+          key: profeco-audit-v1-${{ steps.cache-key.outputs.key }}
+      - name: Validate cached summary
+        id: cache-read
+        if: steps.cache-restore.outputs.cache-hit == 'true'
+        run: python3 scripts/profeco-cache.py restore "$RUNNER_TEMP/price-source-report.json" "$RUNNER_TEMP/profeco-cache/summary.json" "$RUNNER_TEMP/profeco-archive-sample.json"
       - name: Sample official archive
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && steps.cache-read.outputs.reused != 'true'
         run: python3 scripts/inspect-profeco-archive.py "$RUNNER_TEMP/price-source-report.json" "$RUNNER_TEMP/profeco-archive-sample.json"
+      - name: Prepare aggregate-only cache
+        id: cache-prepare
+        if: steps.cache-key.outputs.eligible == 'true' && steps.cache-read.outputs.reused != 'true' && steps.cache-restore.outputs.cache-hit != 'true'
+        run: python3 scripts/profeco-cache.py save "$RUNNER_TEMP/price-source-report.json" "$RUNNER_TEMP/profeco-cache/summary.json" "$RUNNER_TEMP/profeco-archive-sample.json"
+      - name: Save immutable summary
+        if: steps.cache-prepare.outputs.ready == 'true'
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/profeco-cache/summary.json
+          key: profeco-audit-v1-${{ steps.cache-key.outputs.key }}
       - name: Upload audit artifacts
         if: always() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
