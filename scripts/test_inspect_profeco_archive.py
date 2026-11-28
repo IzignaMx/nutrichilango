@@ -3,6 +3,7 @@ import io
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import MagicMock, patch
 from datetime import date
 from pathlib import Path
 
@@ -38,6 +39,52 @@ class ArchiveTest(unittest.TestCase):
         self.assertEqual(result["cdmxRows"], 3)
         with self.assertRaises(ValueError):
             module.sample_rows(b"producto,precio\na,3", date(2026, 10, 31))
+
+    def test_recent_period_skips_older_members_and_scans_beyond_first_2000(self):
+        coverage = date(2026, 10, 31)
+        old = (HEADER + "\n" + ROW.replace("2026-10-30", "2026-01-01") + "\n").encode()
+        other = ROW.replace("CIUDAD DE MÉXICO", "ESTADO DE MÉXICO")
+        latest = ("\n".join([HEADER] + [other] * 2100 + [ROW]) + "\n").encode()
+        with tempfile.TemporaryDirectory() as root:
+            archive = Path(root) / "sample.tar"
+            with tarfile.open(archive, "w") as writer:
+                for name, raw in [("2026/01-2026_Q1.csv", old), ("2026/10-2026_Q2.csv", latest)]:
+                    member = tarfile.TarInfo(name)
+                    member.size = len(raw)
+                    writer.addfile(member, io.BytesIO(raw))
+            output = Path(root) / "observations.csv"
+            member, size, digest = module.read_recent_csv(archive, coverage, output)
+            self.assertEqual(member, "2026/10-2026_Q2.csv")
+            self.assertEqual(size, len(latest))
+            result = module.sample_recent_file(output, coverage)
+            self.assertEqual(result["rowsExamined"], 2101)
+            self.assertEqual(result["validSyntaxRows"], 1)
+            self.assertEqual(result["sample"][0]["recordNumber"], 2102)
+            with self.assertRaises(ValueError):
+                module.read_recent_csv(archive, date(2026, 11, 15), output)
+
+    def test_changed_etag_fails_before_writing(self):
+        response = MagicMock(status=200, headers={"ETag": '"new"'})
+        response.geturl.return_value = module.BASE + "2026.rar"
+        opener = MagicMock()
+        opener.open.return_value.__enter__.return_value = response
+        with tempfile.TemporaryDirectory() as root, patch.object(module, "build_opener", return_value=opener):
+            output = Path(root) / "archive.rar"
+            with self.assertRaisesRegex(ValueError, "ETag changed"):
+                module.download_archive(module.BASE + "2026.rar", output, 100, '"old"')
+            self.assertFalse(output.exists())
+
+    def test_recent_period_rejects_older_rows_and_row_limit(self):
+        old = ROW.replace("2026-10-30", "2026-10-15")
+        with tempfile.TemporaryDirectory() as root:
+            output = Path(root) / "period.csv"
+            output.write_text(HEADER + "\n" + old + "\n" + ROW + "\n", encoding="utf-8")
+            result = module.sample_recent_file(output, date(2026, 10, 31))
+            self.assertEqual(result["validSyntaxRows"], 1)
+            self.assertEqual(result["rejectedRows"], 1)
+            with patch.object(module, "MAX_PERIOD_ROWS", 1):
+                with self.assertRaisesRegex(ValueError, "row bound"):
+                    module.sample_recent_file(output, date(2026, 10, 31))
 
     def test_bounds_and_official_origin(self):
         with self.assertRaises(ValueError):

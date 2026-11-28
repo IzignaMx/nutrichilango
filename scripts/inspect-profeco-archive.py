@@ -18,6 +18,8 @@ BASE = "https://datos.profeco.gob.mx/docs/qqp/"
 MAX_ARCHIVE = 200_000_000
 MAX_SAMPLE = 4_000_000
 MAX_ROWS = 2000
+MAX_PERIOD_ROWS = 1_500_000
+MAX_MEMBER = 400_000_000
 MAX_EVIDENCE = 10
 REQUIRED = ("producto", "presentacion", "marca", "precio", "fecha_registro",
             "nombre_comercial", "direccion", "estado", "municipio")
@@ -28,7 +30,7 @@ class NoRedirect(HTTPRedirectHandler):
         raise ValueError("Unexpected archive redirect")
 
 
-def download_archive(url, output, expected_size):
+def download_archive(url, output, expected_size, expected_etag=None):
     if not re.fullmatch(re.escape(BASE) + r"20\d{2}\.rar", url):
         raise ValueError("Unexpected archive URL")
     if not isinstance(expected_size, int) or not 0 < expected_size <= MAX_ARCHIVE:
@@ -38,6 +40,8 @@ def download_archive(url, output, expected_size):
     with build_opener(NoRedirect()).open(Request(url, headers={"User-Agent": "NutriChilango-SourceAudit/1.0"}), timeout=20) as response:
         if response.status != 200 or response.geturl() != url:
             raise ValueError("Unexpected archive response")
+        if expected_etag and response.headers.get("ETag") != expected_etag:
+            raise ValueError("Archive ETag changed since metadata inspection")
         with open(output, "wb") as file:
             while chunk := response.read(256 * 1024):
                 total += len(chunk)
@@ -50,8 +54,8 @@ def download_archive(url, output, expected_size):
     return digest.hexdigest(), total
 
 
-def read_first_csv(path):
-    """Read only the first CSV member, never extract any file or trust member paths."""
+def read_first_csv(path, target=None, output=None):
+    """Read the first CSV prefix or one exact period to a caller-controlled temporary file."""
     library = ctypes.util.find_library("archive")
     if not library:
         raise OSError("libarchive unavailable")
@@ -86,14 +90,29 @@ def read_first_csv(path):
             if status != 0:
                 raise ValueError("Cannot read archive header")
             member = (name(entry) or b"").decode("utf-8", errors="strict")
-            if filetype(entry) != 0o100000 or not member.lower().endswith(".csv"):
+            if filetype(entry) != 0o100000 or not member.lower().endswith(".csv") or (target is not None and member != target):
                 if skip(archive) < 0:
                     raise ValueError("Cannot skip archive member")
                 continue
             length = size(entry)
-            if not 0 < length <= 400_000_000:
+            if not 0 < length <= MAX_MEMBER:
                 raise ValueError("CSV member outside size contract")
             buffer = C.create_string_buffer(65536)
+            if output is not None:
+                digest = hashlib.sha256()
+                total = 0
+                with open(output, "wb") as stream:
+                    while total < length:
+                        count = read(archive, buffer, min(len(buffer), length - total))
+                        if count <= 0:
+                            raise ValueError("Incomplete period member")
+                        chunk = buffer.raw[:count]
+                        stream.write(chunk)
+                        digest.update(chunk)
+                        total += count
+                    if read(archive, buffer, 1) != 0:
+                        raise ValueError("Period member exceeded declared size")
+                return member, length, digest.hexdigest()
             chunks = []
             total = 0
             while total < min(MAX_SAMPLE, length):
@@ -115,6 +134,13 @@ def read_first_csv(path):
         free(archive)
 
 
+def read_recent_csv(path, coverage_end, output):
+    # QQP observed archive convention: month and half-month (Q1/Q2), exact path.
+    half = 1 if coverage_end.day <= 15 else 2
+    target = f"{coverage_end.year}/{coverage_end.month:02d}-{coverage_end.year}_Q{half}.csv"
+    return read_first_csv(path, target=target, output=output)
+
+
 def normalize(value):
     return "".join(c for c in unicodedata.normalize("NFD", value.strip().upper()) if unicodedata.category(c) != "Mn")
 
@@ -124,13 +150,19 @@ def sample_rows(raw, coverage_end):
         decoded = raw.decode("utf-8-sig")
     except UnicodeDecodeError:
         decoded = raw.decode("cp1252")
-    rows = csv.DictReader(io.StringIO(decoded), strict=True)
+    return scan_rows(io.StringIO(decoded), coverage_end, MAX_ROWS)
+
+
+def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
+    rows = csv.DictReader(stream, strict=True)
     if not rows.fieldnames or len(set(rows.fieldnames)) != len(rows.fieldnames) or not set(REQUIRED) <= set(rows.fieldnames):
         raise ValueError("Unexpected observation CSV schema")
     counts = {"rowsExamined": 0, "cdmxRows": 0, "validSyntaxRows": 0, "rejectedRows": 0}
     evidence = []
     for number, row in enumerate(rows, start=2):
-        if counts["rowsExamined"] >= MAX_ROWS:
+        if counts["rowsExamined"] >= max_rows:
+            if coverage_start is not None:
+                raise ValueError("Recent period exceeds row bound")
             break
         counts["rowsExamined"] += 1
         if None in row or any(row.get(field) is None for field in REQUIRED):
@@ -144,7 +176,7 @@ def sample_rows(raw, coverage_end):
                 raise ValueError("Missing required value")
             price = Decimal(row["precio"])
             observed = datetime.fromisoformat(row["fecha_registro"]).date()
-            if not price.is_finite() or price <= 0 or observed > coverage_end:
+            if not price.is_finite() or price <= 0 or observed > coverage_end or (coverage_start is not None and observed < coverage_start):
                 raise ValueError("Invalid observation")
         except (ValueError, InvalidOperation):
             counts["rejectedRows"] += 1
@@ -157,22 +189,38 @@ def sample_rows(raw, coverage_end):
     return {"columns": rows.fieldnames, **counts, "sample": evidence}
 
 
+def sample_recent_file(path, coverage_end):
+    start = coverage_end.replace(day=1 if coverage_end.day <= 15 else 16)
+    for encoding in ("utf-8-sig", "cp1252"):
+        try:
+            with open(path, encoding=encoding, newline="") as stream:
+                result = scan_rows(stream, coverage_end, MAX_PERIOD_ROWS, start)
+                return {"periodStart": start.isoformat(), "periodEnd": coverage_end.isoformat(),
+                        "encoding": encoding, **result}
+        except UnicodeDecodeError:
+            if encoding == "cp1252":
+                raise
+    raise ValueError("No supported period encoding")
+
+
 def main(metadata_path, output_path):
     report = {"checkedAt": datetime.now(timezone.utc).isoformat(), "catalogChanged": False,
-              "publicationEligible": False, "sampling": "first CSV and first 2000 records, not complete or representative"}
+              "publicationEligible": False, "sampling": "exact latest declared half-month, bounded full member scan; evidence is not a representative retail sample"}
     try:
         source = json.loads(Path(metadata_path).read_text(encoding="utf-8"))["sources"][0]
         if source["status"] != "metadata-verified":
             raise ValueError("No verified metadata")
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / "source.rar"
-            digest, length = download_archive(source["archiveUrl"], path, source["archiveBytesReported"])
-            member, member_size, raw = read_first_csv(path)
+            coverage_end = date.fromisoformat(source["coverageEnd"])
+            digest, length = download_archive(source["archiveUrl"], path, source["archiveBytesReported"], source.get("archiveETag"))
+            period = Path(temporary) / "period.csv"
+            member, member_size, member_digest = read_recent_csv(path, coverage_end, period)
             report.update({"status": "sample-inspected", "sourceUrl": source["archiveUrl"],
                            "archiveSha256": digest, "archiveBytes": length,
                            "member": member, "memberBytesReported": member_size,
-                           "sampleBytes": len(raw), "sampleSha256": hashlib.sha256(raw).hexdigest(),
-                           **sample_rows(raw, date.fromisoformat(source["coverageEnd"]))})
+                           "memberSha256": member_digest,
+                           **sample_recent_file(period, coverage_end)})
     except (OSError, ValueError, KeyError, IndexError, csv.Error) as error:
         report.update({"status": "unavailable", "errorType": type(error).__name__})
     Path(output_path).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
