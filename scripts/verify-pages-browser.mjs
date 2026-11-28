@@ -200,6 +200,15 @@ try {
 
     await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Tofu Comercial');
     const tofuCard = page.getByRole('heading', { name: 'Tofu Comercial vs Tofu Casero', exact: true }).locator('xpath=../../../..');
+    await tofuCard.getByText('Subtotal de ingredientes documentados: $16.64 MXN', { exact: true }).waitFor();
+    await tofuCard.getByText('Desembolso por paquetes: $112.20 MXN', { exact: true }).waitFor();
+    await tofuCard.getByText(/Rendimiento final sin verificar/).waitFor();
+    assert.equal(await tofuCard.getByText('$70.00/kg', { exact: true }).isVisible(), false);
+    assert.equal(await tofuCard.getByText('-67.0%', { exact: true }).isVisible(), false);
+    const historicalTofu = tofuCard.getByText('Ver importes históricos no equivalentes', { exact: true });
+    await historicalTofu.click();
+    await tofuCard.getByText('$70.00/kg', { exact: true }).waitFor();
+    await historicalTofu.click();
     await tofuCard.getByRole('button', { name: 'Ver Receta y Preparación' }).click();
     const tofuRecipe = page.getByRole('dialog');
     const tofuCosts = tofuRecipe.getByRole('region', { name: 'Costos con referencias consultadas' });
@@ -210,6 +219,13 @@ try {
     await page.keyboard.press('Escape');
     await tofuRecipe.waitFor({ state: 'hidden' });
     console.log('Chromium: costo proporcional, desembolso y referencia directa de tofu casero verificados.');
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Hamburguesa Plant-Based Comercial');
+    const beanCard = page.getByRole('heading', { name: 'Hamburguesa Plant-Based Comercial vs Hamburguesa Casera de Frijoles', exact: true }).locator('xpath=../../../..');
+    await beanCard.getByText('Sin referencias directas para los ingredientes de esta receta.', { exact: true }).waitFor();
+    assert.equal(await beanCard.getByText('-87.0%', { exact: true }).isVisible(), false);
+    await beanCard.getByRole('button', { name: 'Ver Receta y Preparación' }).click();
+    await page.getByRole('dialog').waitFor();
+    await page.keyboard.press('Escape');
 
     const pantryContext = await browser.newContext({
       serviceWorkers: 'block',

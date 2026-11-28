@@ -8,6 +8,7 @@ import ProductSection from './ProductSection';
 import PromotionNotice from './PromotionNotice';
 import EconomicOptions from './EconomicOptions';
 import { economicGroup } from '@/data/prices/economicOffers';
+import { recipeCostEvidence } from '@/data/prices/recipeCostEvidence';
 import ComparisonAnalysis from './ComparisonAnalysis';
 import NutritionComparisonChart from '../NutritionComparisonChart';
 import { OptimizedComparison, Recipe } from '@/data/types';
@@ -68,6 +69,10 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
   onToggleNutrition
 }) => {
   const group = economicGroup(product);
+  const homemade = product.comparisonType === 'animal-vs-homemade' || product.comparisonType === 'commercial-vs-homemade';
+  const recipe = product.plantBased.recipe;
+  const cost = homemade && recipe ? recipeCostEvidence(recipe) : null;
+  const money = (value: number) => '$' + new Intl.NumberFormat('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value) + ' MXN';
 
   const historicalComparison = (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -81,7 +86,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             product={product.plantBased}
             title="Alternativa Plant-Based"
             priceColor="text-blue-600"
-            onRecipeClick={onRecipeClick}
+            onRecipeClick={homemade ? undefined : onRecipeClick}
           />
 
           <ComparisonAnalysis
@@ -131,6 +136,29 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             <summary className="cursor-pointer text-sm font-medium">Ver comparación histórica de {product.storeName}</summary>
             {historicalComparison}
           </details>
+        ) : homemade ? (
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ProductSection product={product.traditional}
+                title={product.comparisonType === 'commercial-vs-homemade' ? 'Producto Comercial' : 'Producto Tradicional'}
+                priceColor="text-brand-success" />
+              <section className="rounded-lg border p-4 space-y-3" aria-label="Preparación casera">
+                <h4 className="font-semibold">Preparación casera</h4>
+                <h3 className="font-bold text-card-foreground">{product.plantBased.name}</h3>
+                {cost ? <>
+                  <p className="font-medium">{cost.complete ? 'Subtotal de ingredientes documentados' : 'Subtotal parcial de ingredientes documentados'}: {money(cost.subtotal)}</p>
+                  <p className="text-sm">{cost.complete ? 'Desembolso por paquetes' : 'Desembolso parcial por paquetes'}: {money(cost.basketCost)}</p>
+                </> : <p className="text-sm text-muted-foreground">Sin referencias directas para los ingredientes de esta receta.</p>}
+                <p className="text-xs text-muted-foreground">Rendimiento final sin verificar. No se calcula ahorro ni costo por kilo frente al producto comercial; tampoco se incluyen preparación, energía o envío.</p>
+                {recipe && <Button variant="outline" size="sm" onClick={() => onRecipeClick(recipe)}>Ver Receta y Preparación</Button>}
+              </section>
+            </div>
+            <details className="mt-4">
+              <summary className="cursor-pointer text-sm font-medium">Ver importes históricos no equivalentes</summary>
+              <p className="text-xs text-muted-foreground my-2">Diferencia aritmética de registros históricos, no ahorro comprobado. Los costos caseros y su rendimiento no están verificados.</p>
+              {historicalComparison}
+            </details>
+          </>
         ) : historicalComparison}
 
         {!group && product.promotionEvidence?.map(promotion => <PromotionNotice key={promotion.id} promotion={promotion} />)}
