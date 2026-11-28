@@ -1,6 +1,8 @@
 name: Profeco archive sample audit
 
 on:
+  schedule:
+    - cron: "23 12 * * 1"
   workflow_dispatch:
   push:
     branches: [main]
@@ -104,5 +106,13 @@ jobs:
           path: |
             ${{ runner.temp }}/price-source-report.json
             ${{ runner.temp }}/profeco-archive-sample.json
+          retention-days: 14
+          if-no-files-found: error
+      - name: Preserve weekly metadata artifact
+        if: always() && github.event_name == 'schedule'
+        uses: actions/upload-artifact@v4
+        with:
+          name: price-source-report
+          path: ${{ runner.temp }}/price-source-report.json
           retention-days: 14
           if-no-files-found: error

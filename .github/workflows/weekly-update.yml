@@ -1,8 +1,7 @@
 name: Advanced Weekly Content Update
 
 on:
-  schedule:
-    - cron: "23 12 * * 1"
+  # The weekly audit is scheduled in profeco-archive-audit.yml.
   workflow_dispatch:
   pull_request:
     paths:
