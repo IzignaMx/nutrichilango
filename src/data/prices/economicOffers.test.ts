@@ -32,5 +32,13 @@ describe('Ofertas económicas observadas', () => {
     expect(economicGroup({ ...product, comparisonType: 'animal-vs-homemade' })).toBeNull();
     expect(economicGroup({ ...product, plantBased: { name: 'Carne Plant-Based Casera' } })).toBeNull();
   });
+  it('no confunde una tarifa por kilo con el desembolso por charola', () => {
+    expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'unit')[0].id).toBe('walmart-chicken-breast-kg');
+    expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'purchase')).toEqual([]);
+    expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'unit', 500)).toEqual([]);
+    expect(rankOffers(economicOffers, 'chicken-tempeh', 'plant', 'kg', 'purchase')[0].id).toBe('greenparadise-tempeh-250');
+    expect(rankOffers(economicOffers, 'chicken-tempeh', 'plant', 'kg', 'unit')[0].id).toBe('veganlabel-tempeh-500');
+  });
 });
+
 

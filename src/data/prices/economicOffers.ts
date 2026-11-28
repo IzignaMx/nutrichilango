@@ -10,6 +10,7 @@ export interface EconomicOffer {
   quantity: number;
   basis: OfferBasis;
   preparation: 'ready' | 'powder';
+  pricing?: 'package' | 'variable-weight';
   source: string;
   url: string;
   consultedOn: string;
@@ -31,7 +32,7 @@ export function rankOffers(
   mode: 'purchase' | 'unit', budget = Infinity,
 ): EconomicOffer[] {
   return offers.filter(offer => offer.group === group && offer.side === side && offer.basis === basis &&
-    offer.availability === 'listed' && offer.priceMXN <= budget && comparableUnitPrice(offer) !== null)
+    offer.availability === 'listed' && (offer.pricing === 'variable-weight' ? mode === 'unit' && budget === Infinity : offer.priceMXN <= budget) && comparableUnitPrice(offer) !== null)
     .sort((a, b) => {
       const unitDifference = comparableUnitPrice(a)! - comparableUnitPrice(b)!;
       return (mode === 'purchase' ? a.priceMXN - b.priceMXN || unitDifference :
@@ -60,12 +61,17 @@ export const economicOffers: readonly EconomicOffer[] = [
   { id: 'abasto-futopia-nuggets-750', group: 'nuggets', side: 'plant', name: 'Futopia Mega Nuggets', presentation: '750 g', priceMXN: 185, quantity: 0.75, basis: 'kg', preparation: 'ready', source: 'Abasto Vegano', url: 'https://abastovegano.com/products/mega-nuggets-750g-futopia', consultedOn: '2026-11-28', availability: 'unknown', note: 'La ficha contiene señales contradictorias de inventario; confirmar antes de comprar.' },
   { id: 'abasto-plantsquad-nuggets-460', group: 'nuggets', side: 'plant', name: 'Plant Squad nuggets sin pollo', presentation: '460 g', priceMXN: 162, quantity: 0.46, basis: 'kg', preparation: 'ready', source: 'Abasto Vegano', url: 'https://abastovegano.com/collections/sustitutos-de-pollo-y-huevo/products/nuggets-sin-pollo-460g-plant-squad', consultedOn: '2026-11-28', availability: 'unknown', note: 'La ficha contiene señales contradictorias de inventario; confirmar antes de comprar.' },
   { id: 'veganlabel-notco-nuggets-400', group: 'nuggets', side: 'plant', name: 'NotCo NotChicken nuggets', presentation: '400 g', priceMXN: 139, quantity: 0.4, basis: 'kg', preparation: 'ready', source: 'Vegan Label', url: 'https://www.veganlabel.mx/products/nuggets-veganos-not-chicken-nuggest-notco-300-g', consultedOn: '2026-11-28', availability: 'unknown', note: 'Copia de la ficha antigua; confirmar importe y existencia.' },
+  { id: 'walmart-chicken-breast-kg', group: 'chicken-tempeh', side: 'animal', name: 'Pechuga de pollo importada sin hueso', presentation: 'Charola de peso variable (aprox. 700–800 g)', priceMXN: 155, quantity: 1, basis: 'kg', preparation: 'ready', pricing: 'variable-weight', source: 'Walmart en línea', url: 'https://www.walmart.com.mx/ip/pechuga-sin-hueso-importada-por-kg/00020127400000?classType=REGULAR', consultedOn: '2026-11-28', availability: 'listed', note: 'Importe final según el peso real; no es precio de una charola.' },
+  { id: 'greenparadise-tempeh-250', group: 'chicken-tempeh', side: 'plant', name: 'Rusto’s tempeh Bintang', presentation: '250 g', priceMXN: 89, quantity: 0.25, basis: 'kg', preparation: 'ready', source: 'Green Paradise (Santa Cruz Atoyac, CDMX)', url: 'https://greenparadise.com.mx/catalogo/tempeh-bintag-rusto-s-250-g-.html', consultedOn: '2026-11-28', availability: 'listed', note: 'La copia consultada indicaba 19 en existencia; puede haber cambiado.' },
+  { id: 'veganlabel-tempeh-500', group: 'chicken-tempeh', side: 'plant', name: 'Bintang tempeh de soya', presentation: '500 g', priceMXN: 145, quantity: 0.5, basis: 'kg', preparation: 'ready', source: 'Vegan Label', url: 'https://www.veganlabel.mx/products/tempeh-bintang-500-g', consultedOn: '2026-11-28', availability: 'listed', note: 'La copia consultada indicaba 12 en existencia; confirma precio y stock.' },
+  { id: 'abasto-tempeh-250', group: 'chicken-tempeh', side: 'plant', name: 'Rusto’s tempeh', presentation: '250 g', priceMXN: 91, quantity: 0.25, basis: 'kg', preparation: 'ready', source: 'Abasto Vegano', url: 'https://abastovegano.com/products/tempeh-250-g-rusto-s', consultedOn: '2026-11-28', availability: 'unknown', note: 'La ficha muestra señales contradictorias de existencia.' },
 ];
 
 export const economicGroups = {
   'milk-soy': { basis: 'L', unitLabel: 'litro', measure: 'volumen de bebida', animalLabel: 'leche animal' },
   'ground-meat': { basis: 'kg', unitLabel: 'kilogramo', measure: 'peso del producto en su presentación comercial', animalLabel: 'carne molida animal' },
   'nuggets': { basis: 'kg', unitLabel: 'kilogramo', measure: 'peso de nuggets comerciales antes de cocinar', animalLabel: 'nuggets de pollo' },
+  'chicken-tempeh': { basis: 'kg', unitLabel: 'kilogramo', measure: 'peso de la pechuga sin hueso y del tempeh antes de cocinar', animalLabel: 'pechuga de pollo' },
 } as const;
 
 export type EconomicGroup = keyof typeof economicGroups;
@@ -74,6 +80,8 @@ export function economicGroup(product: { category: string; comparisonType: strin
   if (product.comparisonType !== 'animal-vs-commercial') return null;
   if (product.category === 'dairy' && product.traditional.name === 'Leche Entera' && product.plantBased.name === 'Leche de Soya') return 'milk-soy';
   if (product.category === 'proteins' && product.traditional.name === 'Carne de Res Molida' && product.plantBased.name === 'Carne Plant-Based') return 'ground-meat';
+  if (product.category === 'proteins' && product.traditional.name === 'Pechuga de Pollo' && product.plantBased.name === 'Tempeh de Soya') return 'chicken-tempeh';
   if (product.category === 'proteins' && product.traditional.name === 'Pollo para Nuggets' && product.plantBased.name === 'Nuggets Plant-Based') return 'nuggets';
   return null;
 }
+

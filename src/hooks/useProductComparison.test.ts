@@ -85,4 +85,14 @@ describe('useProductComparison', () => {
     });
     expect(result.current.filteredData[0].products[0].category).toBe('proteins');
   });
+  it('filtra comparaciones individuales aunque la tienda tenga varios productos y encuentra marcas nuevas', async () => {
+    const milk = { id: 'milk', category: 'dairy', comparisonType: 'animal-vs-commercial', traditional: { name: 'Leche Entera', brand: 'Lala' }, plantBased: { name: 'Leche de Soya', brand: 'Silk' } };
+    const data = [{ ...mockData[0], products: [...mockData[0].products, milk] }];
+    const { result } = renderHook(() => useProductComparison(data as unknown as import('@/data').Store[]));
+    act(() => useNutriStore.getState().setSearchQuery('Symken'));
+    await waitFor(() => expect(result.current.filteredData[0].products.map(p => p.id)).toEqual(['milk']));
+    act(() => useNutriStore.getState().setSelectedCategory('proteins'));
+    await waitFor(() => expect(result.current.filteredData).toEqual([]));
+  });
 });
+

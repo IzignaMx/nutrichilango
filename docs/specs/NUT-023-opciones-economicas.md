@@ -20,3 +20,8 @@ Añadir familias priorizadas por utilidad (proteína, lácteos, huevos, básicos
 - Molida animal vs vegetal comercial y nuggets comerciales se agregan como familias por kg; los productos se comparan en su presentación, no por nutrientes ni peso cocido. En nuggets la referencia animal ahora corresponde a nuggets comerciales terminados, no a pollo crudo.
 - 11 referencias adicionales (18 totales), incluidas ofertas con inventario desconocido o agotado, excluidas del ranking. Las fichas viejas o contradictorias quedan como referencias no recomendadas. La oferta Colpac Camporee de $72/500 g se omite: el sitio de cotización declara cierre 15 de marzo de 2026.
 - Mantener cobertura explícita: 3 de 47 comparaciones históricas enlazadas a ofertas nuevas. Las 44 restantes requieren investigación de fuente, identidad y equivalencias específicas; no se duplican precios ni se extrapolan rendimientos. Los productos secos y las recetas requieren rendimiento comprobado antes de comparar con productos hidratados.
+
+
+## Tercer incremento
+- Pechuga sin hueso vs tempeh: 4 referencias adicionales (22 totales, 4/47 pares). Walmart publica $155/kg, no importe fijo de la charola: queda fuera del ranking por desembolso e importe con presupuesto finito. Tempeh 250 g $89 en Green Paradise y 500 g $145 en Vegan Label, con disponibilidad declarada en las copias consultadas; Abasto Vegano tiene señales contradictorias. Planta Base se descarta por estar en Venezuela. No se asume disponibilidad en tiempo real.
+- La búsqueda filtra cada comparación, no todas las tarjetas de la tienda. Encuentra marcas registradas (incluidas variantes sin acentos) y respeta categoría. Se conserva la búsqueda por tienda.

@@ -179,7 +179,10 @@ try {
     await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Nuggets Plant-Based');
     await page.getByText('Pilgrim’s nuggets de pollo', { exact: true }).waitFor();
     await page.getByText('$170.00 MXN/kg', { exact: true }).waitFor();
-    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Leche de Soya');
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Tempeh de Soya');
+    await page.getByText('Bintang tempeh de soya', { exact: true }).waitFor();
+    await page.getByText('$155.00 MXN/kg', { exact: true }).waitFor();
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Symken');
     const economy = page.getByRole('region', { name: 'Opciones económicas observadas' }).filter({ hasText: 'Great Value leche entera' });
     await economy.getByText('Great Value soya sin azúcar', { exact: true }).waitFor();
     await economy.getByText('Symkën soya natural en polvo', { exact: true }).filter({ visible: true }).waitFor();
@@ -379,6 +382,7 @@ try {
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   }
 }
+
 
 
 
