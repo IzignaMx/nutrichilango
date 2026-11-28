@@ -203,6 +203,7 @@ try {
     await almond.getByText('$35.00 MXN/L', { exact: true }).waitFor();
     await almond.getByText('$55.00 MXN/L', { exact: true }).waitFor();
     assert.equal(await almond.getByText(/producto animal|desembolso animal/i).count(), 0);
+    assert.equal(await almond.getByText('Disponibilidad sin confirmar (fuera del ranking)', { exact: true }).isVisible(), false, 'El estado desplegado no debe heredarse de otra tarjeta al buscar.');
     await almond.getByText('Ver otras ofertas consultadas', { exact: true }).click();
     await almond.getByText('Disponibilidad sin confirmar (fuera del ranking)', { exact: true }).waitFor();
 
