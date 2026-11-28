@@ -129,7 +129,7 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
       
       if (!processedProducts.has(comparisonKey)) {
         const optimizedProduct: OptimizedComparison = {
-          id: `optimized-${optimizedComparisons.length}`,
+          id: `optimized-${JSON.stringify([bestVariant.category, bestVariant.comparisonType, bestVariant.traditional.name, bestVariant.plantBased.name])}`,
           category: bestVariant.category,
           traditional: bestVariant.traditional,
           plantBased: bestVariant.plantBased,
