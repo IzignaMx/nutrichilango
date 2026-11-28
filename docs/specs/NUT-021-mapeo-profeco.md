@@ -19,3 +19,18 @@ Busca etiquetas exactas normalizadas de productos básicos relevantes para despe
 ## Etapa 3: actualización eficiente y reversible
 
 Cachear solo reporte auditado (ETag, cobertura, hash de diccionario y versión de lector; no precios publicados), no procesar archivo idéntico salvo cambio de contrato o código. Verificar ETag de descarga, usar límites, un runner por ejecución, permisos mínimos y artefactos de corta retención. No activar la descarga programada hasta que estas etapas pasen CI y auditoría real; no dar permisos de escritura a la inspección.
+
+## Etapa 2a: candidatos exactos obtenidos del archivo
+
+Run 46123794614, artefacto 15254334495: el inventario confirmó 1,415 filas de Frijol (40 identidades), 294 de Lenteja (6), 114 de Garbanzo (2), 16 de Soya texturizada (1) y 336 de Vinagre (5). No fueron halladas las etiquetas exactas LECHE, BEBIDA DE SOYA, TOFU ni TEMPEH; no implica ausencia de otras etiquetas. La prueba de mapeo acotada utiliza las cuatro identidades crudas observadas:
+
+| Producto / Marca / Presentación | Candidato destino | Base |
+|---|---|---|
+| Vinagre / Clemente Jacques / Botella 1 Lt. Blanco Alcohol Cana | Ingrediente de tofu casero, referencia comercial existente walmart-cj-vinegar-1l | 1000 ml |
+| Soya / S/M / 1 Kg. Granel. Sin Sabor (texturizada) | Despensa pro-003 (presentación distinta, no reemplaza el estimado) | 1000 g a granel |
+| Garbanzo / Verde Valle / Bolsa 500 Gr. | Despensa leg-003 | 500 g |
+| Frijol / Verde Valle / Bolsa 900 Gr. Pinto | Despensa leg-005 | 900 g |
+
+Se contrastó el candidato de vinagre con la ficha comercial ya documentada (https://kiosco.www.walmart.com.mx/ip/vinagre-blanco-clemente-jacques-de-alcohol-de-cana-1-l/00750105247501?classType=REGULAR). Es equivalencia de producto/presentación, no de canal, tienda, fecha o disponibilidad. No se atribuyen observaciones QQP a esa sucursal ni se mezclan con consulta en línea.
+
+Cada observación candidata se agrupa por la identidad exacta + cadena, nombre comercial, dirección, entidad, alcaldía y fecha de captura. Importe Decimal igual se deduplica; diferencias para la misma clave quedan en conflicto y se excluyen de ejemplos. Cualquier falta de identidad o precisión mayor a dos decimales se descarta del conjunto candidato. Se conservan hasta cinco ejemplos de grupos no conflictivos por candidato en el artefacto (sin imprimirse en logs). El reporte no acredita moneda ni vigencia actual y nunca autoriza escribir precios. La etapa necesita verificar fuente real, revisar mapeo a tienda y evidencia monetaria antes de promociones a catálogo.
