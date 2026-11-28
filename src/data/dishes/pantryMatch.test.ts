@@ -32,3 +32,19 @@ describe('Vínculos editoriales de despensa', () => {
     }
   });
 });
+
+it('separa disponibilidad declarada de lista de compra y no cuenta variantes como coincidencias exactas', () => {
+  const tofu = dish('pastas', 'lasana-carne');
+  const absent = matchPantryIngredients(tofu, items('pro-001'));
+  expect(absent.principal?.availability).toBe('unknown');
+  const confirmed = matchPantryIngredients(tofu, [], { 'pro-001': 'available' });
+  expect(confirmed.principal?.availability).toBe('available');
+  expect(confirmed.principal?.status).toBe('not-listed');
+  expect(confirmed.confirmedCount).toBeGreaterThan(0);
+  const related = matchPantryIngredients(dish('mexican', 'tamales'), [], { 'leg-004': 'available' });
+  expect(related.principal?.availability).toBe('related-available');
+  expect(related.confirmedCount).toBe(0);
+  const missing = matchPantryIngredients(tofu, items('pro-001'), { 'pro-001': 'missing' });
+  expect(missing.principal?.availability).toBe('missing');
+  expect(missing.confirmedCount).toBe(0);
+});

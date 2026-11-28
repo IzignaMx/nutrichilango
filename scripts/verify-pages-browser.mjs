@@ -320,6 +320,20 @@ try {
     await sharedPage.getByRole('heading', { name: headings.get('/dishes-comparison').name, exact: true }).waitFor();
     assert.equal(new URL(sharedPage.url()).pathname, '/dishes-comparison');
     console.log('Chromium: orientación de compra, fuente proporcional de bulgur, copia, vista previa y enlace de recetas verificados.');
+    await sharedPage.getByText('Confirmar lo que tengo en casa (opcional)', { exact: true }).click();
+    const availableTofu = sharedPage.getByRole('combobox', { name: 'Disponibilidad: Tofu firme' });
+    assert.equal(await availableTofu.inputValue(), 'unknown');
+    await availableTofu.selectOption('available');
+    await sharedPage.getByText(/Revisar ingredientes frente a mi lista · Coincidencias exactas: 1/).first().waitFor();
+    await sharedPage.getByText(/Revisar ingredientes frente a mi lista · Coincidencias exactas: 1/).first().click();
+    await sharedPage.getByText('Producto confirmado por ti; cantidad sin comprobar.', { exact: true }).filter({ visible: true }).first().waitFor();
+    assert.equal(await sharedPage.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    await availableTofu.selectOption('missing');
+    await sharedPage.getByText('Producto declarado como faltante.', { exact: true }).filter({ visible: true }).first().waitFor();
+    await sharedPage.getByRole('button', { name: 'Borrar confirmaciones' }).click();
+    assert.equal(await availableTofu.inputValue(), 'unknown');
+    assert.deepEqual(await sharedPage.evaluate(() => JSON.parse(localStorage.getItem('nutrichilango-storage')).state.generatedPantry), generated);
+    console.log('Chromium: confirmación voluntaria, faltante y borrado sin modificar lista de compras.');
     await reader.close();
     console.log('Chromium: enlace de despensa copiado y aplicado en otro perfil tras abrirlo y recargarlo.');
 
