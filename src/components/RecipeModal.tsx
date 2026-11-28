@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Clock, Users, ChefHat, MapPin, DollarSign } from 'lucide-react';
 import { Recipe } from '@/data/types';
+import RecipeCostSources from './RecipeCostSources';
 
 interface RecipeModalProps {
   recipe: Recipe | null;
@@ -108,6 +109,8 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
             </CardContent>
           </Card>
 
+          <RecipeCostSources recipe={recipe} />
+
           {/* Instrucciones */}
           <Card>
             <CardHeader>
@@ -162,3 +165,4 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
 };
 
 export default RecipeModal;
+
