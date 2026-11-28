@@ -14,3 +14,9 @@ Objetivo: aumentar la utilidad para compras reales, sin forzar la conclusión de
 
 ## Expansión
 Añadir familias priorizadas por utilidad (proteína, lácteos, huevos, básicos), ofertas de ambos lados, formatos y marcas verificadas. Separar preparación comercial de estimaciones caseras, comprobar rendimiento, porción, alérgenos e información nutricional de etiquetas. Incorporar observaciones de fuentes autorizadas mediante Actions con validación de esquema, fecha, identidad, disponibilidad y revisión de discrepancias. Nunca prometer mínimo del mercado completo, y mantener datos históricos cuando no existan nuevas ofertas comparables. Precios y disponibilidad deben volver a consultarse en la tienda antes de comprar.
+
+
+## Segundo incremento (28 de noviembre de 2026)
+- Molida animal vs vegetal comercial y nuggets comerciales se agregan como familias por kg; los productos se comparan en su presentación, no por nutrientes ni peso cocido. En nuggets la referencia animal ahora corresponde a nuggets comerciales terminados, no a pollo crudo.
+- 11 referencias adicionales (18 totales), incluidas ofertas con inventario desconocido o agotado, excluidas del ranking. Las fichas viejas o contradictorias quedan como referencias no recomendadas. La oferta Colpac Camporee de $72/500 g se omite: el sitio de cotización declara cierre 15 de marzo de 2026.
+- Mantener cobertura explícita: 3 de 47 comparaciones históricas enlazadas a ofertas nuevas. Las 44 restantes requieren investigación de fuente, identidad y equivalencias específicas; no se duplican precios ni se extrapolan rendimientos. Los productos secos y las recetas requieren rendimiento comprobado antes de comparar con productos hidratados.
