@@ -200,6 +200,7 @@ def sample_recent_file(path, coverage_end):
         except UnicodeDecodeError:
             if encoding == "cp1252":
                 raise
+    raise ValueError("No supported period encoding")
 
 
 def main(metadata_path, output_path):
