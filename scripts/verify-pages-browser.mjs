@@ -310,7 +310,10 @@ try {
     const pantryFilter = sharedPage.getByRole('checkbox', { name: /ingrediente principal de mi lista/i });
     assert.equal(await pantryFilter.isChecked(), true);
     assert.equal(await sharedPage.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
-    await pantryFilter.uncheck();
+    await pantryFilter.click();
+    await sharedPage.waitForURL(url => !url.searchParams.has('despensa'));
+    await sharedPage.getByRole('checkbox', { name: /ingrediente principal de mi lista/i, checked: false }).waitFor();
+    await sharedPage.getByText('Principal: Tofu', { exact: true }).first().waitFor();
     assert.equal(new URL(sharedPage.url()).searchParams.has('despensa'), false);
     assert.equal(await sharedPage.getByText('Principal: Tofu', { exact: true }).count(), 2);
     // General access is preserved; removing the optional filter returns to it.
