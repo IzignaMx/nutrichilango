@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { comparableUnitPrice, economicOffers, rankOffers } from './economicOffers';
+import { comparableUnitPrice, economicOffers, economicGroup, rankOffers } from './economicOffers';
 
 describe('Ofertas económicas observadas', () => {
   it('elige la menor inversión y el menor precio por litro por separado', () => {
@@ -19,4 +19,18 @@ describe('Ofertas económicas observadas', () => {
     expect(rankOffers(economicOffers, 'milk-soy', 'plant', 'L', 'unit', 1)).toEqual([]);
     expect(comparableUnitPrice({ ...economicOffers[0], quantity: 0 })).toBeNull();
   });
+  it('elige molida vegetal por kg y no mezcla ofertas de familias', () => {
+    expect(rankOffers(economicOffers, 'ground-meat', 'plant', 'kg', 'unit')[0].id).toBe('veganlabel-veggie-express-molida');
+    expect(rankOffers(economicOffers, 'ground-meat', 'animal', 'kg', 'unit')[0].id).toBe('walmart-marketside-beef-500');
+    expect(rankOffers(economicOffers, 'nuggets', 'animal', 'kg', 'purchase')[0].id).toBe('walmart-bachoco-nuggets-500');
+    expect(rankOffers(economicOffers, 'nuggets', 'animal', 'kg', 'unit')[0].id).toBe('walmart-pilgrims-nuggets-700');
+    expect(rankOffers(economicOffers, 'nuggets', 'plant', 'kg', 'unit').map(x => x.id)).toEqual(['walmart-beyond-nuggets-250']);
+  });
+  it('no confunde carne comercial con sustituto casero ni cambia la familia por coincidencia parcial', () => {
+    const product = { category: 'proteins', comparisonType: 'animal-vs-commercial', traditional: { name: 'Carne de Res Molida' }, plantBased: { name: 'Carne Plant-Based' } };
+    expect(economicGroup(product)).toBe('ground-meat');
+    expect(economicGroup({ ...product, comparisonType: 'animal-vs-homemade' })).toBeNull();
+    expect(economicGroup({ ...product, plantBased: { name: 'Carne Plant-Based Casera' } })).toBeNull();
+  });
 });
+

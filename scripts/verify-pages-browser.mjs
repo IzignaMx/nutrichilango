@@ -149,6 +149,7 @@ try {
     const pair = store?.products.find(({ id }) => id === 'beef-vs-tofu-1');
     assert.ok(pair, 'Falta la comparación histórica representativa');
     await page.getByRole('textbox', { name: 'Buscar productos' }).fill(pair.traditional.name);
+    await page.getByRole('heading', { name: `${pair.traditional.name} vs ${pair.plantBased.name}`, exact: true }).locator('xpath=../../../..').getByText('Ver comparación histórica de Soriana Hiper Santa Fe', { exact: true }).click();
     for (const { name, unit, price, lastUpdated } of [pair.traditional, pair.plantBased]) {
       assert.ok(Number.isFinite(price) && price > 0, `Importe inválido: ${name}`);
       // Calcular el precio por kg sin compartir el normalizador de la aplicación.
@@ -173,8 +174,13 @@ try {
     await page.getByText(/Última observación publicada:.+Cada producto puede tener una fecha distinta/).waitFor();
     console.log('Chromium: importes, presentaciones y fechas históricas verificados en la comparación pública.');
 
+    await page.getByText('Veggie Express molida de quinoa y soya', { exact: true }).waitFor();
+    await page.getByText('$233.33 MXN/kg', { exact: true }).waitFor();
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Nuggets Plant-Based');
+    await page.getByText('Pilgrim’s nuggets de pollo', { exact: true }).waitFor();
+    await page.getByText('$170.00 MXN/kg', { exact: true }).waitFor();
     await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Leche de Soya');
-    const economy = page.getByRole('region', { name: 'Opciones económicas observadas' });
+    const economy = page.getByRole('region', { name: 'Opciones económicas observadas' }).filter({ hasText: 'Great Value leche entera' });
     await economy.getByText('Great Value soya sin azúcar', { exact: true }).waitFor();
     await economy.getByText('Symkën soya natural en polvo', { exact: true }).filter({ visible: true }).waitFor();
     await economy.getByText('$35.00 MXN/L', { exact: true }).waitFor();
@@ -373,5 +379,6 @@ try {
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   }
 }
+
 
 
