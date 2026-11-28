@@ -53,3 +53,29 @@ it('no inventa recetas de tempeh cuando no hay correspondencias del principal', 
   expect(screen.getByText(/no hay coincidencias con el ingrediente principal/i)).toBeTruthy();
   expect(screen.queryAllByText('Principal: Tofu', { exact: true })).toHaveLength(0);
 });
+
+it('permite declarar disponibilidad sin cambiar la lista y muestra cantidades originales', () => {
+  useNutriStore.getState().setGeneratedPantry(PANTRY_PRODUCTS.filter(p => p.id === 'pro-001'));
+  render(<MemoryRouter initialEntries={['/dishes-comparison?despensa=1']}><DishesComparison /></MemoryRouter>);
+  fireEvent.click(screen.getByText('Confirmar lo que tengo en casa (opcional)'));
+  const control = screen.getByRole('combobox', { name: 'Disponibilidad: Tofu firme' });
+  expect((control as HTMLSelectElement).value).toBe('unknown');
+  fireEvent.change(control, { target: { value: 'available' } });
+  expect(screen.getAllByText(/producto confirmado por ti; cantidad sin comprobar/i).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/cantidad de receta:/i).length).toBeGreaterThan(0);
+  expect(useNutriStore.getState().generatedPantry.map(p => p.id)).toEqual(['pro-001']);
+  fireEvent.change(control, { target: { value: 'missing' } });
+  expect(screen.getAllByText(/producto declarado como faltante/i).length).toBeGreaterThan(0);
+  fireEvent.click(screen.getByRole('button', { name: 'Borrar confirmaciones' }));
+  expect((control as HTMLSelectElement).value).toBe('unknown');
+});
+
+it('prioriza coincidencias exactas por decisión voluntaria sin necesitar lista de compras', () => {
+  render(<MemoryRouter><DishesComparison /></MemoryRouter>);
+  fireEvent.click(screen.getByText('Confirmar lo que tengo en casa (opcional)'));
+  fireEvent.change(screen.getByRole('combobox', { name: 'Disponibilidad: Tofu firme' }), { target: { value: 'available' } });
+  fireEvent.click(screen.getByRole('checkbox', { name: /priorizar recetas con más productos confirmados/i }));
+  expect(screen.getAllByRole('heading', { level: 3 })[0].textContent).toMatch(/Lasaña|César/i);
+  expect(screen.getAllByText(/Coincidencias exactas:/).length).toBeGreaterThan(1);
+  expect(useNutriStore.getState().generatedPantry).toEqual([]);
+});
