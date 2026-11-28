@@ -44,3 +44,7 @@ La caché de GitHub Actions guarda únicamente un resumen agregado sin muestras,
 ## Visibilidad de ejecución
 
 El run 46125141722 verificó una falta de caché, auditoría en vivo y guardado del resumen de 649 bytes; el archivo anual pesa 74,665,761 bytes. El resumen de GitHub Actions distingue reutilización validada, auditoría en vivo o fallo, además de elegibilidad de guardado (no implica escritura exitosa). La siguiente ejecución de main con la misma huella debe demostrar reutilización real sin descargar el archivo. No se activa cron ni publicación en este incremento.
+
+## Etapa 3b: auditoría periódica consolidada
+
+El run 46132583584, job 140940791221, recuperó los 649 bytes con la misma clave, validó el resumen y omitió la descarga anual; artefacto 15258701183. Todos los checks de main finalizaron correctamente. Se traslada la programación existente (lunes 12:23 UTC, 06:23 CDMX) de weekly-update.yml a profeco-archive-audit.yml, una sola ejecución semanal, manteniendo la auditoría antigua bajo demanda y pruebas de PR. La nueva ejecución incluye las mismas verificaciones de metadatos y preserva el artefacto price-source-report además del informe completo o resumen reutilizado. Solo descarga si cambió fuente/contrato/lector o no hay caché válida. No concede permisos de escritura ni publica precios; la promoción controlada de datos continúa pendiente. Primera ejecución programada posterior al cambio: lunes 30 de noviembre de 2026.
