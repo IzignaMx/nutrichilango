@@ -30,6 +30,7 @@ const contentTypes = {
   '.css': 'text/css',
   '.json': 'application/json',
   '.svg': 'image/svg+xml',
+  '.jpg': 'image/jpeg',
 };
 
 const server = createServer(async (request, response) => {
@@ -110,6 +111,16 @@ try {
       assert.equal(page.url(), expectedUrl);
       console.log(`Chromium: entrada y recarga verificadas para ${route}.`);
     }
+
+    await page.goto(origin + '/emprendimientos/');
+    await page.getByRole('heading', { name: 'Nómada psy kitchen', exact: true }).waitFor();
+    const nomadaPhoto = page.getByRole('img', { name: /charolas de comida/i });
+    await nomadaPhoto.scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => [...document.images].some(img => img.alt.includes('Charolas de comida') && img.complete && img.naturalWidth === 480 && img.naturalHeight === 640));
+    assert.equal(await page.getByRole('link', { name: 'Ver publicación original' }).getAttribute('href'), 'https://www.instagram.com/nomada_dark_kitchen_/p/Df0VwRpgDnA/');
+    assert.equal(await page.getByRole('link', { name: 'Ver menú publicado' }).getAttribute('href'), 'https://www.instagram.com/nomada_dark_kitchen_/p/DeXnG93lDwT/');
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    console.log('Chromium: primera ficha, foto local y enlaces de Nómada verificados.');
 
     await page.goto(origin + '/dishes-comparison/');
     const ingredientFilter = page.getByRole('combobox', { name: 'Ingrediente principal' });
@@ -351,3 +362,4 @@ try {
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   }
 }
+
