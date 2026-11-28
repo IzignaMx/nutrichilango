@@ -1,0 +1,48 @@
+name: Profeco archive sample audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/profeco-archive-audit.yml'
+      - 'scripts/inspect-profeco-archive.py'
+  pull_request:
+    paths:
+      - '.github/workflows/profeco-archive-audit.yml'
+      - 'scripts/inspect-profeco-archive.py'
+      - 'scripts/test_inspect_profeco_archive.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: profeco-archive-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  inspect-archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test bounded archive reader
+        run: python3 -m unittest discover -s scripts -p 'test_inspect_profeco_archive.py'
+      - name: Verify source metadata
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/audit-price-sources.py "$RUNNER_TEMP/price-source-report.json"
+      - name: Sample official archive
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/inspect-profeco-archive.py "$RUNNER_TEMP/price-source-report.json" "$RUNNER_TEMP/profeco-archive-sample.json"
+      - name: Upload audit artifacts
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: profeco-archive-evidence
+          path: |
+            ${{ runner.temp }}/price-source-report.json
+            ${{ runner.temp }}/profeco-archive-sample.json
+          retention-days: 14
+          if-no-files-found: error
