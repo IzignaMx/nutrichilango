@@ -173,6 +173,17 @@ try {
     await page.getByText(/Última observación publicada:.+Cada producto puede tener una fecha distinta/).waitFor();
     console.log('Chromium: importes, presentaciones y fechas históricas verificados en la comparación pública.');
 
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Leche de Soya');
+    const economy = page.getByRole('region', { name: 'Opciones económicas observadas' });
+    await economy.getByText('Great Value soya sin azúcar', { exact: true }).waitFor();
+    await economy.getByText('Symkën soya natural en polvo', { exact: true }).filter({ visible: true }).waitFor();
+    await economy.getByText('$35.00 MXN/L', { exact: true }).waitFor();
+    await economy.getByText('$24.87 MXN/L preparado', { exact: true }).waitFor();
+    await economy.getByText('Ver otras ofertas consultadas', { exact: true }).click();
+    await economy.getByText('Agotado en la consulta', { exact: true }).waitFor();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    console.log('Chromium: selección económica, rendimiento y agotados verificados.');
+
     const pantryContext = await browser.newContext({
       serviceWorkers: 'block',
       viewport: { width: 390, height: 844 },
@@ -362,4 +373,5 @@ try {
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   }
 }
+
 

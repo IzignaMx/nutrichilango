@@ -5,6 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, ChefHat, BarChart3 } from 'lucide-react';
 import ProductSection from './ProductSection';
+import EconomicOptions from './EconomicOptions';
+import { economicGroup } from '@/data/prices/economicOffers';
 import ComparisonAnalysis from './ComparisonAnalysis';
 import NutritionComparisonChart from '../NutritionComparisonChart';
 import { OptimizedComparison, Recipe } from '@/data/types';
@@ -64,6 +66,32 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
   expandedNutrition,
   onToggleNutrition
 }) => {
+  const group = economicGroup(product);
+
+  const historicalComparison = (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <ProductSection
+            product={product.traditional}
+            title={product.comparisonType.includes('commercial-vs') ? 'Producto Comercial' : 'Producto Tradicional'}
+            priceColor="text-brand-success"
+          />
+          
+          <ProductSection
+            product={product.plantBased}
+            title="Alternativa Plant-Based"
+            priceColor="text-blue-600"
+            onRecipeClick={onRecipeClick}
+          />
+
+          <ComparisonAnalysis
+            priceDifferencePercent={product.priceDifferencePercent}
+            traditionalPrice={product.traditional.price}
+            plantBasedPrice={product.plantBased.price}
+            hasPromotion={product.hasPromotion}
+            promotionDetails={product.promotionDetails}
+          />
+        </div>
+  );
 
   return (
     <Card className="shadow-lg border bg-card/95 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:bg-card focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
@@ -76,9 +104,9 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex items-center text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mr-1" aria-hidden="true" />
-                <span className="font-medium">{product.storeName}</span>
+                <span className="font-medium">{group ? "Ofertas en línea · consulta de referencia" : product.storeName}</span>
               </div>
-              {product.hasPromotion && (
+              {!group && product.hasPromotion && (
                 <Badge variant="outline" className="text-brand-success border-brand-success bg-brand-success/10">
                   🎯 Promoción
                 </Badge>
@@ -102,28 +130,13 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <ProductSection
-            product={product.traditional}
-            title={product.comparisonType.includes('commercial-vs') ? 'Producto Comercial' : 'Producto Tradicional'}
-            priceColor="text-brand-success"
-          />
-          
-          <ProductSection
-            product={product.plantBased}
-            title="Alternativa Plant-Based"
-            priceColor="text-blue-600"
-            onRecipeClick={onRecipeClick}
-          />
-
-          <ComparisonAnalysis
-            priceDifferencePercent={product.priceDifferencePercent}
-            traditionalPrice={product.traditional.price}
-            plantBasedPrice={product.plantBased.price}
-            hasPromotion={product.hasPromotion}
-            promotionDetails={product.promotionDetails}
-          />
-        </div>
+        {group && <EconomicOptions group={group} />}
+        {group ? (
+          <details className="mt-4">
+            <summary className="cursor-pointer text-sm font-medium">Ver comparación histórica de {product.storeName}</summary>
+            {historicalComparison}
+          </details>
+        ) : historicalComparison}
 
         {(product.traditional.nutritionInfo && product.plantBased.nutritionInfo) && (
           <div className="mt-6 border-t pt-6">
@@ -153,3 +166,4 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
 };
 
 export default ComparisonCard;
+

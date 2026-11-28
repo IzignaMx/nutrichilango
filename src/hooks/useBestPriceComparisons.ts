@@ -117,8 +117,8 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
         if (plantPrice !== null && plantPrice < 0) {
           bestVariant = variant;
         }
-        // Si los precios plant-based son similares, priorizar el menor tradicional
-        else if (plantPrice !== null && Math.abs(plantPrice) < 5 &&
+        // Si los precios plant-based son iguales, priorizar el menor tradicional
+        else if (plantPrice !== null && plantPrice === 0 &&
                  traditionalPrice !== null && traditionalPrice < 0) {
           bestVariant = variant;
         }
@@ -151,3 +151,4 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
     return optimizedComparisons;
   }, [stores, comparisonFilter]);
 };
+
