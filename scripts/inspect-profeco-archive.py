@@ -22,6 +22,12 @@ MAX_ROWS = 2000
 MAX_PERIOD_ROWS = 1_500_000
 MAX_MEMBER = 400_000_000
 MAX_EVIDENCE = 10
+MAX_IDENTITIES = 8192
+MAX_EXAMPLES_PER_LABEL = 5
+# Discovery hypotheses only. Do not infer vegan status, SKU or equivalence.
+CANDIDATE_LABELS = ("LECHE", "BEBIDA DE SOYA", "SOYA", "TOFU", "TEMPEH",
+                    "FRIJOL", "FRIJOLES", "LENTEJA", "LENTEJAS", "GARBANZO",
+                    "ARROZ", "AVENA", "AGUA", "VINAGRE", "SAL")
 REQUIRED = ("producto", "presentacion", "marca", "precio", "fecha_registro",
             "nombre_comercial", "direccion", "estado", "municipio")
 
@@ -189,12 +195,29 @@ def parse_observation_date(value):
     return datetime.fromisoformat(value).date()
 
 
+def candidate_report(identities):
+    labels = {}
+    for label in CANDIDATE_LABELS:
+        variants = [(identity, count) for identity, count in identities.items() if normalize(identity[0]) == label]
+        # Count raw records, not unique stores/offers; retain exact source identity strings.
+        variants.sort(key=lambda item: (-item[1], item[0]))
+        labels[label] = {"rows": sum(count for _, count in variants),
+                         "distinctIdentities": len(variants),
+                         "examples": [{"product": identity[0], "brand": identity[1],
+                                       "presentation": identity[2], "rows": count}
+                                      for identity, count in variants[:MAX_EXAMPLES_PER_LABEL]]}
+    return {"matchRule": "exact normalized product label, raw product/brand/presentation tuples",
+            "reportKind": "identity discovery only; counts include duplicate records",
+            "publicationEligible": False, "perLabel": labels}
+
+
 def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
     rows = csv.DictReader(stream, strict=True)
     if not rows.fieldnames or len(set(rows.fieldnames)) != len(rows.fieldnames) or not set(REQUIRED) <= set(rows.fieldnames):
         raise ValueError("Unexpected observation CSV schema")
     counts = {"rowsExamined": 0, "cdmxRows": 0, "validSyntaxRows": 0, "rejectedRows": 0}
     evidence = []
+    identities = Counter()
     rejection_reasons = Counter()
     missing_field_counts = Counter()
     date_formats = Counter()
@@ -237,13 +260,21 @@ def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
             reject("date-outside-coverage")
             continue
         counts["validSyntaxRows"] += 1
+        if normalize(row["producto"]) in CANDIDATE_LABELS:
+            identity = tuple(row[field] for field in ("producto", "marca", "presentacion"))
+            if any(len(value) > 256 for value in identity):
+                raise ValueError("Candidate identity outside field bound")
+            if identity not in identities and len(identities) >= MAX_IDENTITIES:
+                raise ValueError("Candidate identity bound exceeded")
+            identities[identity] += 1
         if len(evidence) < MAX_EVIDENCE:
             evidence.append({"recordNumber": number, "rawFields": {key: row[key] for key in REQUIRED},
                              "observedDate": observed.isoformat(),
                              "currencyVerified": False, "publicationEligible": False})
     return {"columns": rows.fieldnames, **counts, "sample": evidence,
             "rejectionReasons": dict(rejection_reasons), "missingFieldCounts": dict(missing_field_counts),
-            "dateFormats": dict(date_formats), "priceFormats": dict(price_formats)}
+            "dateFormats": dict(date_formats), "priceFormats": dict(price_formats),
+            "candidateInventory": candidate_report(identities)}
 
 
 def sample_recent_file(path, coverage_end):

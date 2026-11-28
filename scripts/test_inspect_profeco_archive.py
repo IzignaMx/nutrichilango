@@ -120,6 +120,25 @@ class ArchiveTest(unittest.TestCase):
         self.assertFalse(result["sample"][0]["publicationEligible"])
         self.assertFalse(result["sample"][0]["currencyVerified"])
 
+    def test_identity_discovery_is_exact_and_not_price_publication(self):
+        rows = [ROW, ROW, ROW.replace("MARCA", "OTRA MARCA"),
+                ROW.replace("LECHE", "LECHE CON CHOCOLATE"),
+                ROW.replace("LECHE", "FRIJOL").replace("1 L", "1 KG"),
+                ROW.replace("LECHE", "TOFU").replace("CIUDAD DE MÉXICO", "ESTADO DE MÉXICO")]
+        result = module.sample_rows(("\n".join([HEADER, *rows])).encode(), date(2026, 10, 31))
+        inventory = result["candidateInventory"]
+        self.assertEqual(inventory["perLabel"]["LECHE"]["rows"], 3)
+        self.assertEqual(inventory["perLabel"]["LECHE"]["distinctIdentities"], 2)
+        self.assertEqual(inventory["perLabel"]["LECHE"]["examples"][0],
+                         {"product": "LECHE", "brand": "MARCA", "presentation": "1 L", "rows": 2})
+        self.assertEqual(inventory["perLabel"]["FRIJOL"]["rows"], 1)
+        self.assertEqual(inventory["perLabel"]["TOFU"]["rows"], 0)
+        self.assertFalse(inventory["publicationEligible"])
+        self.assertNotIn("precio", str(inventory))
+        with patch.object(module, "MAX_IDENTITIES", 1):
+            with self.assertRaisesRegex(ValueError, "identity bound"):
+                module.sample_rows(("\n".join([HEADER, *rows])).encode(), date(2026, 10, 31))
+
     def test_bounds_and_official_origin(self):
         with self.assertRaises(ValueError):
             module.download_archive("https://example.com/2026.rar", "/tmp/unused", 100)
