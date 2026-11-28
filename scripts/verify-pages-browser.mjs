@@ -303,7 +303,20 @@ try {
     await preview.getByRole('link', { name: 'Sinai Deli: bulgur Krinos, 1 kg' }).waitFor();
     await sharedPage.keyboard.press('Escape');
     await preview.waitFor({ state: 'hidden' });
-    await sharedPage.getByRole('link', { name: 'Explorar recetas vegetales', exact: true }).click();
+    assert.equal(await sharedPage.getByRole('link', { name: 'Explorar recetas vegetales', exact: true }).getAttribute('href'), '/dishes-comparison');
+    await sharedPage.getByRole('link', { name: 'Recetas según mi despensa', exact: true }).click();
+    await sharedPage.getByRole('heading', { name: headings.get('/dishes-comparison').name, exact: true }).waitFor();
+    assert.equal(new URL(sharedPage.url()).searchParams.get('despensa'), '1');
+    const pantryFilter = sharedPage.getByRole('checkbox', { name: /ingrediente principal de mi lista/i });
+    assert.equal(await pantryFilter.isChecked(), true);
+    assert.equal(await sharedPage.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    await pantryFilter.click();
+    await sharedPage.waitForURL(url => !url.searchParams.has('despensa'));
+    await sharedPage.getByRole('checkbox', { name: /ingrediente principal de mi lista/i, checked: false }).waitFor();
+    await sharedPage.getByText('Principal: Tofu', { exact: true }).first().waitFor();
+    assert.equal(new URL(sharedPage.url()).searchParams.has('despensa'), false);
+    assert.equal(await sharedPage.getByText('Principal: Tofu', { exact: true }).count(), 2);
+    // General access is preserved; removing the optional filter returns to it.
     await sharedPage.getByRole('heading', { name: headings.get('/dishes-comparison').name, exact: true }).waitFor();
     assert.equal(new URL(sharedPage.url()).pathname, '/dishes-comparison');
     console.log('Chromium: orientación de compra, fuente proporcional de bulgur, copia, vista previa y enlace de recetas verificados.');

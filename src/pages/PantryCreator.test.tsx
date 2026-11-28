@@ -209,12 +209,13 @@ it('muestra y copia el precio de las piezas visibles y las incluye en el total',
   }
 });
 
-it('muestra origen de precio y búsqueda para cada producto y un acceso a recetas sin prometer personalización', () => {
+it('muestra origen de precio y búsqueda para cada producto y accesos a todas las recetas y al filtro opcional', () => {
   createPantry();
   const products = useNutriStore.getState().generatedPantry;
   expect(screen.getAllByText(/Origen del precio: estimación de NutriChilango/i)).toHaveLength(products.length);
   expect(screen.getAllByRole('link', { name: /Buscar .* en CDMX/ })).toHaveLength(products.length);
   const recipes = screen.getByRole('link', { name: 'Explorar recetas vegetales' });
   expect(recipes.getAttribute('href')).toBe('/dishes-comparison');
-  expect(screen.getByText(/todavía no se filtran según tu despensa/i)).toBeTruthy();
+  expect(screen.getByRole('link', { name: 'Recetas según mi despensa' }).getAttribute('href')).toBe('/dishes-comparison?despensa=1');
+  expect(screen.getByText(/revisa los demás ingredientes y las cantidades/i)).toBeTruthy();
 });

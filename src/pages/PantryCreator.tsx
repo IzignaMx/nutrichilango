@@ -438,9 +438,9 @@ const PantryCreator: React.FC = () => {
                   <div className="space-y-2 rounded-lg border p-4 text-center">
                     <h3 className="font-semibold">¿Qué puedes cocinar?</h3>
                     <p className="text-sm text-muted-foreground">
-                      Explora ideas de cocina mexicana de origen vegetal. Las recetas todavía no se filtran según tu despensa.
+                      Explora ideas de cocina de origen vegetal a partir del ingrediente principal de tu lista. Revisa los demás ingredientes y las cantidades antes de cocinar.
                     </p>
-                    <Button asChild><Link to={PANTRY_RECIPES_PATH}>Explorar recetas vegetales</Link></Button>
+                    <div className="flex flex-wrap gap-2"><Button asChild><Link to={`${PANTRY_RECIPES_PATH}?despensa=1`}>Recetas según mi despensa</Link></Button><Button asChild variant="outline"><Link to={PANTRY_RECIPES_PATH}>Explorar recetas vegetales</Link></Button></div>
                   </div>
                 )}
               </div>
