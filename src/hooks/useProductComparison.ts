@@ -1,35 +1,29 @@
 
 import { useMemo } from 'react';
 import { Store } from '@/data';
+import { economicGroup, economicOffers } from '@/data/prices/economicOffers';
 import { useNutriStore } from '@/store/useNutriStore';
 
 export const useProductComparison = (data: Store[]) => {
   const { searchQuery, selectedCategory } = useNutriStore();
 
   const filteredData = useMemo(() => {
-    let filtered = data;
+    const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const query = normalize(searchQuery.trim());
+    const matchingGroups = new Set(economicOffers.filter(offer =>
+      query && normalize(offer.name).includes(query)).map(offer => offer.group));
 
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(store => 
-        store.name.toLowerCase().includes(query) ||
-        store.location.toLowerCase().includes(query) ||
-        store.products.some(product => 
-          product.traditional.name.toLowerCase().includes(query) ||
-          product.plantBased.name.toLowerCase().includes(query) ||
-          product.traditional.brand?.toLowerCase().includes(query) ||
-          product.plantBased.brand?.toLowerCase().includes(query)
-        )
-      );
-    }
-
-    // Apply category filter
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(store =>
-        store.products.some(product => product.category === selectedCategory)
-      );
-    }
+    const filtered = data.map(store => {
+      const storeMatches = query && [store.name, store.location].some(value => normalize(value).includes(query));
+      const products = store.products.filter(product => {
+        if (selectedCategory !== 'all' && product.category !== selectedCategory) return false;
+        if (!query || storeMatches) return true;
+        const fields = [product.traditional.name, product.plantBased.name, product.traditional.brand, product.plantBased.brand];
+        const group = economicGroup(product);
+        return fields.some(value => value && normalize(value).includes(query)) || (group !== null && matchingGroups.has(group));
+      });
+      return { ...store, products };
+    }).filter(store => store.products.length > 0);
 
     return filtered;
   }, [data, searchQuery, selectedCategory]);
@@ -40,3 +34,4 @@ export const useProductComparison = (data: Store[]) => {
     hasActiveFilters: searchQuery || selectedCategory !== 'all'
   };
 };
+
