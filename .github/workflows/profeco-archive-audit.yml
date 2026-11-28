@@ -61,6 +61,7 @@ jobs:
         if: steps.cache-restore.outputs.cache-hit == 'true'
         run: python3 scripts/profeco-cache.py restore "$RUNNER_TEMP/price-source-report.json" "$RUNNER_TEMP/profeco-cache/summary.json" "$RUNNER_TEMP/profeco-archive-sample.json"
       - name: Sample official archive
+        id: archive-audit
         if: github.event_name != 'pull_request' && steps.cache-read.outputs.reused != 'true'
         run: python3 scripts/inspect-profeco-archive.py "$RUNNER_TEMP/price-source-report.json" "$RUNNER_TEMP/profeco-archive-sample.json"
       - name: Prepare aggregate-only cache
@@ -74,6 +75,27 @@ jobs:
         with:
           path: ${{ runner.temp }}/profeco-cache/summary.json
           key: profeco-audit-v1-${{ steps.cache-key.outputs.key }}
+      - name: Report audit and cache outcome
+        if: always() && github.event_name != 'pull_request'
+        env:
+          CACHE_REUSED: ${{ steps.cache-read.outputs.reused }}
+          CACHE_RESTORE: ${{ steps.cache-restore.outcome }}
+          CACHE_SAVE: ${{ steps.cache-prepare.outputs.ready }}
+          AUDIT_OUTCOME: ${{ steps.archive-audit.outcome }}
+        run: |
+          {
+            echo '## Profeco: auditoría de solo lectura'
+            if [ "$CACHE_REUSED" = true ]; then
+              echo 'Resumen validado de caché; descarga anual omitida.'
+            elif [ "$AUDIT_OUTCOME" = success ]; then
+              echo 'Lectura del archivo oficial realizada.'
+            else
+              echo 'No se completó la auditoría en vivo.'
+            fi
+            echo "Restauración de caché: ${CACHE_RESTORE:-no ejecutada}"
+            echo "Resumen elegible para guardar: ${CACHE_SAVE:-no}"
+            echo 'No se actualizó el catálogo ni se publicaron precios.'
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Upload audit artifacts
         if: always() && github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
