@@ -41,7 +41,7 @@ type Match = { name: string; status: MatchStatus; productName?: string; note?: s
 export function matchPantryIngredients(dish: DishComparison, list: readonly PantryItem[]) {
   const listed = new Set(list.map(item => item.id));
   const ingredients: Match[] = dish.veganVersion.ingredients.map(({ name }) => {
-    const link = Object.hasOwn(pantryIngredientLinks, name) ? pantryIngredientLinks[name] : undefined;
+    const link = Object.prototype.hasOwnProperty.call(pantryIngredientLinks, name) ? pantryIngredientLinks[name] : undefined;
     const product = link && PANTRY_PRODUCTS.find(p => p.id === link.id);
     if (!product) return { name, status: 'unmapped' };
     const status = listed.has(product.id) ? (link.note ? 'related' : 'listed') : 'not-listed';
