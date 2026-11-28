@@ -180,6 +180,15 @@ def format_shape(value, patterns):
     return "other"
 
 
+def parse_observation_date(value):
+    # Actual QQP 2026/10-Q2 rows use a year-first date separated by slashes.
+    # Do not accept ambiguous day/month-first strings or invalid calendar dates.
+    match = re.fullmatch(r"(\d{4})/(\d{1,2})/(\d{1,2})", value)
+    if match:
+        return date(*(int(part) for part in match.groups()))
+    return datetime.fromisoformat(value).date()
+
+
 def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
     rows = csv.DictReader(stream, strict=True)
     if not rows.fieldnames or len(set(rows.fieldnames)) != len(rows.fieldnames) or not set(REQUIRED) <= set(rows.fieldnames):
@@ -220,7 +229,7 @@ def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
             reject("invalid-price")
             continue
         try:
-            observed = datetime.fromisoformat(row["fecha_registro"]).date()
+            observed = parse_observation_date(row["fecha_registro"])
         except ValueError:
             reject("invalid-date")
             continue

@@ -108,6 +108,18 @@ class ArchiveTest(unittest.TestCase):
         self.assertEqual(result["priceFormats"]["other"], 1)
         self.assertNotIn("30/10/2026", str(result["dateFormats"]))
 
+    def test_profeco_observed_year_month_day_slash_only(self):
+        valid = ROW.replace("2026-10-30", "2026/10/30")
+        invalid = [ROW.replace("2026-10-30", value) for value in
+                   ("30/10/2026", "2026/10/32", "2026/13/01", "2026/11/01")]
+        result = module.sample_rows(("\n".join([HEADER, valid, *invalid])).encode(), date(2026, 10, 31))
+        self.assertEqual(result["validSyntaxRows"], 1)
+        self.assertEqual(result["sample"][0]["observedDate"], "2026-10-30")
+        self.assertEqual(result["sample"][0]["rawFields"]["fecha_registro"], "2026/10/30")
+        self.assertEqual(result["rejectionReasons"], {"invalid-date": 3, "date-outside-coverage": 1})
+        self.assertFalse(result["sample"][0]["publicationEligible"])
+        self.assertFalse(result["sample"][0]["currencyVerified"])
+
     def test_bounds_and_official_origin(self):
         with self.assertRaises(ValueError):
             module.download_archive("https://example.com/2026.rar", "/tmp/unused", 100)
