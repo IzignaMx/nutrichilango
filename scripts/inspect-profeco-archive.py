@@ -24,6 +24,23 @@ MAX_MEMBER = 400_000_000
 MAX_EVIDENCE = 10
 MAX_IDENTITIES = 8192
 MAX_EXAMPLES_PER_LABEL = 5
+MAX_MAPPED_ROWS = 8192
+STORE_FIELDS = ("cadena_comercial", "nombre_comercial", "direccion", "estado", "municipio")
+# Exact publisher tuple, NOT an assertion that the observation belongs to Walmart.
+MAPPED_CANDIDATES = {
+    ("Vinagre", "Clemente Jacques", "Botella 1 Lt. Blanco Alcohol Cana"): {
+        "id": "cj-vinegar-1l", "catalogHint": "walmart-cj-vinegar-1l", "amount": 1000, "unit": "ml",
+    },
+    ("Soya", "S/M", "1 Kg. Granel. Sin Sabor (texturizada)"): {
+        "id": "soya-texturizada-granel-1kg", "catalogHint": "pro-003", "amount": 1000, "unit": "g",
+    },
+    ("Garbanzo", "Verde Valle", "Bolsa 500 Gr."): {
+        "id": "garbanzo-verde-valle-500g", "catalogHint": "leg-003", "amount": 500, "unit": "g",
+    },
+    ("Frijol", "Verde Valle", "Bolsa 900 Gr. Pinto"): {
+        "id": "frijol-pinto-verde-valle-900g", "catalogHint": "leg-005", "amount": 900, "unit": "g",
+    },
+}
 # Discovery hypotheses only. Do not infer vegan status, SKU or equivalence.
 CANDIDATE_LABELS = ("LECHE", "BEBIDA DE SOYA", "SOYA", "TOFU", "TEMPEH",
                     "FRIJOL", "FRIJOLES", "LENTEJA", "LENTEJAS", "GARBANZO",
@@ -211,6 +228,55 @@ def candidate_report(identities):
             "publicationEligible": False, "perLabel": labels}
 
 
+def mapped_observations():
+    return {candidate["id"]: {"rawMatches": 0, "missingStoreIdentity": 0,
+                               "invalidPricePrecision": 0, "duplicateRows": 0, "groups": {}}
+            for candidate in MAPPED_CANDIDATES.values()}
+
+
+def collect_mapped(mapping, row, number, observed, price):
+    identity = tuple(row[field] for field in ("producto", "marca", "presentacion"))
+    candidate = MAPPED_CANDIDATES.get(identity)
+    if candidate is None:
+        return
+    audit = mapping[candidate["id"]]
+    audit["rawMatches"] += 1
+    if audit["rawMatches"] > MAX_MAPPED_ROWS:
+        raise ValueError("Mapped observation bound exceeded")
+    store = tuple(row.get(field, "") or "" for field in STORE_FIELDS)
+    if any(not value.strip() or len(value) > 512 for value in store):
+        audit["missingStoreIdentity"] += 1
+        return
+    # Dictionary specifies Number(18,2). Do not round an incompatible observation.
+    if price.as_tuple().exponent < -2 or price >= Decimal("10000000000000000"):
+        audit["invalidPricePrecision"] += 1
+        return
+    key = (*store, observed.isoformat())
+    group = audit["groups"].setdefault(key, {})
+    if price in group:
+        audit["duplicateRows"] += 1
+        return
+    group[price] = {"recordNumber": number, "rawFields": {field: row[field] for field in (*REQUIRED, "cadena_comercial")},
+                    "observedDate": observed.isoformat(), "currencyVerified": False, "publicationEligible": False}
+
+
+def mapped_report(mapping):
+    audits, evidence = {}, {}
+    for identity, candidate in MAPPED_CANDIDATES.items():
+        candidate_id = candidate["id"]
+        state = mapping[candidate_id]
+        groups = state["groups"]
+        valid = [(key, next(iter(prices.values()))) for key, prices in groups.items() if len(prices) == 1]
+        valid.sort(key=lambda item: (item[0][-1], item[0]), reverse=True)
+        audits[candidate_id] = {**candidate, "sourceIdentity": {"product": identity[0], "brand": identity[1], "presentation": identity[2]},
+                                **{key: value for key, value in state.items() if key != "groups"},
+                                "storeDateGroups": len(groups), "conflictedGroups": sum(len(prices) > 1 for prices in groups.values()),
+                                "unconflictedGroups": len(valid), "latestObservedDate": valid[0][0][-1] if valid else None,
+                                "currencyVerified": False, "publicationEligible": False}
+        evidence[candidate_id] = [record for _, record in valid[:MAX_EXAMPLES_PER_LABEL]]
+    return audits, evidence
+
+
 def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
     rows = csv.DictReader(stream, strict=True)
     if not rows.fieldnames or len(set(rows.fieldnames)) != len(rows.fieldnames) or not set(REQUIRED) <= set(rows.fieldnames):
@@ -218,6 +284,7 @@ def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
     counts = {"rowsExamined": 0, "cdmxRows": 0, "validSyntaxRows": 0, "rejectedRows": 0}
     evidence = []
     identities = Counter()
+    mapping = mapped_observations()
     rejection_reasons = Counter()
     missing_field_counts = Counter()
     date_formats = Counter()
@@ -260,6 +327,7 @@ def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
             reject("date-outside-coverage")
             continue
         counts["validSyntaxRows"] += 1
+        collect_mapped(mapping, row, number, observed, price)
         if normalize(row["producto"]) in CANDIDATE_LABELS:
             identity = tuple(row[field] for field in ("producto", "marca", "presentacion"))
             if any(len(value) > 256 for value in identity):
@@ -271,10 +339,12 @@ def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
             evidence.append({"recordNumber": number, "rawFields": {key: row[key] for key in REQUIRED},
                              "observedDate": observed.isoformat(),
                              "currencyVerified": False, "publicationEligible": False})
+    mapped_audit, mapped_evidence = mapped_report(mapping)
     return {"columns": rows.fieldnames, **counts, "sample": evidence,
             "rejectionReasons": dict(rejection_reasons), "missingFieldCounts": dict(missing_field_counts),
             "dateFormats": dict(date_formats), "priceFormats": dict(price_formats),
-            "candidateInventory": candidate_report(identities)}
+            "candidateInventory": candidate_report(identities),
+            "mappedCandidateAudit": mapped_audit, "mappedCandidateEvidence": mapped_evidence}
 
 
 def sample_recent_file(path, coverage_end):
@@ -312,7 +382,7 @@ def main(metadata_path, output_path):
     except (OSError, ValueError, KeyError, IndexError, csv.Error) as error:
         report.update({"status": "unavailable", "errorType": type(error).__name__})
     Path(output_path).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({key: value for key, value in report.items() if key != "sample"}, ensure_ascii=False))
+    print(json.dumps({key: value for key, value in report.items() if key not in {"sample", "mappedCandidateEvidence"}}, ensure_ascii=False))
     return 0 if report["status"] == "sample-inspected" else 1
 
 

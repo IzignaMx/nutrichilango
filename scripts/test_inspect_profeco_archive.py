@@ -139,6 +139,30 @@ class ArchiveTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "identity bound"):
                 module.sample_rows(("\n".join([HEADER, *rows])).encode(), date(2026, 10, 31))
 
+    def test_exact_candidate_deduplicates_and_quarantines_conflicting_store_day(self):
+        header = HEADER + ",cadena_comercial"
+        raw = ROW.replace("LECHE,1 L,MARCA", "Vinagre,Botella 1 Lt. Blanco Alcohol Cana,Clemente Jacques")
+        first = raw + ",CADENA"
+        duplicate = first.replace("25.50", "25.5")
+        conflict = first.replace("25.50", "26.50")
+        other = first.replace("CALLE", "OTRA CALLE")
+        missing = first.replace(",CADENA", ",")
+        near = first.replace("Botella 1 Lt.", "Botella 500 Ml.")
+        result = module.sample_rows(("\n".join([header, first, duplicate, conflict, other, missing, near])).encode(),
+                                    date(2026, 10, 31))
+        audit = result["mappedCandidateAudit"]["cj-vinegar-1l"]
+        self.assertEqual(audit["rawMatches"], 5)
+        self.assertEqual(audit["storeDateGroups"], 2)
+        self.assertEqual(audit["duplicateRows"], 1)
+        self.assertEqual(audit["conflictedGroups"], 1)
+        self.assertEqual(audit["unconflictedGroups"], 1)
+        self.assertEqual(audit["missingStoreIdentity"], 1)
+        self.assertFalse(audit["publicationEligible"])
+        self.assertFalse(audit["currencyVerified"])
+        evidence = result["mappedCandidateEvidence"]["cj-vinegar-1l"]
+        self.assertEqual(len(evidence), 1)
+        self.assertEqual(evidence[0]["rawFields"]["direccion"], "OTRA CALLE")
+
     def test_bounds_and_official_origin(self):
         with self.assertRaises(ValueError):
             module.download_archive("https://example.com/2026.rar", "/tmp/unused", 100)
