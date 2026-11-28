@@ -6,16 +6,12 @@ interface ComparisonAnalysisProps {
   priceDifferencePercent: number;
   traditionalPrice: number;
   plantBasedPrice: number;
-  hasPromotion: boolean;
-  promotionDetails?: string;
 }
 
 const ComparisonAnalysis: React.FC<ComparisonAnalysisProps> = ({
   priceDifferencePercent,
   traditionalPrice,
-  plantBasedPrice,
-  hasPromotion,
-  promotionDetails
+  plantBasedPrice
 }) => {
   return (
     <div className="space-y-3">
@@ -52,11 +48,7 @@ const ComparisonAnalysis: React.FC<ComparisonAnalysisProps> = ({
             </p>
           </div>
 
-          {hasPromotion && promotionDetails && (
-            <div className="p-3 bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-yellow-500 rounded-lg animate-pulse">
-              <p className="text-sm text-orange-800 font-bold">🔥 ¡OFERTA ESPECIAL! {promotionDetails}</p>
-            </div>
-          )}
+
         </div>
       </div>
     </div>
@@ -64,3 +56,4 @@ const ComparisonAnalysis: React.FC<ComparisonAnalysisProps> = ({
 };
 
 export default ComparisonAnalysis;
+

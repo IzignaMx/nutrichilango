@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Star, TrendingUp, TrendingDown } from 'lucide-react';
 import { Store } from '@/data';
+import { documentedPromotions } from '@/data/promotionEvidence';
+import PromotionNotice from './comparison/PromotionNotice';
 
 interface StoreMapProps {
   stores: Store[];
@@ -116,21 +118,15 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
                     </div>
                     
                     <div className="flex flex-wrap gap-2 mb-3">
-                      {store.hasPromotion && (
-                        <Badge variant="outline" className="text-brand-success border-brand-success text-xs">
-                          🎯 Promoción
-                        </Badge>
-                      )}
+
                       <Badge variant="outline" className="text-blue-600 border-blue-600 text-xs">
                         {store.products.length} productos
                       </Badge>
                     </div>
 
-                    {store.hasPromotion && store.promotionDetails && (
-                      <div className="text-xs text-brand-success bg-brand-primary-lighter p-2 rounded border border-brand-primary/20">
-                        {store.promotionDetails}
-                      </div>
-                    )}
+                    {documentedPromotions(store.promotionEvidence, store.products.map(product => product.id)).map(promotion => (
+                      <PromotionNotice key={promotion.id} promotion={promotion} />
+                    ))}
 
                     <div className="mt-3 pt-3 border-t border-border">
                       <div className="grid grid-cols-2 gap-4 text-xs">
@@ -198,3 +194,4 @@ const StoreMap: React.FC<StoreMapProps> = ({ stores }) => {
 };
 
 export default StoreMap;
+

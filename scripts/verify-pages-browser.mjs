@@ -143,6 +143,11 @@ try {
     console.log('Chromium: filtro de ingrediente principal, composición con categoría, estado vacío y restablecimiento verificados.');
 
     await page.goto(origin + '/');
+    await page.getByRole('heading', { name: 'Comparaciones de Productos', exact: true }).waitFor();
+    assert.equal(await page.getByText('🎯 Promoción', { exact: true }).count(), 0);
+    assert.equal(await page.getByText(/¡OFERTA ESPECIAL!/).count(), 0);
+    console.log('Chromium: promociones históricas no se muestran como activas sin evidencia.');
+
     // Tomar los valores de la fuente versionada; no inmovilizar una observación futura válida.
     const stores = JSON.parse(await readFile(new URL('../src/data/stores/conventional.json', import.meta.url), 'utf8'));
     const store = stores.find(({ id }) => id === 'soriana-1');
@@ -382,6 +387,7 @@ try {
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   }
 }
+
 
 
 
