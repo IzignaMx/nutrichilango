@@ -1,0 +1,13 @@
+# NUT-001 — Contrato de integridad, primer incremento
+Estado: implementación inicial de la [especificación de evolución](2026-11-27-nutrichilango-evolucion.md).
+
+## Requisitos y criterios
+Dado el catálogo versionado, antes de cualquier publicación comprobar estructuras reales (no sólo TypeScript), IDs de comercio y par, receta editorial por categoría/ID y receta anidada por ID, porcentajes de presentación y porción, cantidades/porciones positivas, números finitos, coordenadas [longitud, latitud], fechas ISO UTC no futuras, última observación global, precio normalizado y unidad. Una unidad no normalizable sólo puede publicarse sin precio unitario. Los campos nutricionales opcionales no se rellenan con cero. No se certifica su exactitud científica.
+
+Dado un dato inválido, la prueba debe fallar sin modificar el catálogo; dado un dato histórico sin evidencia suficiente, se registra una limitación específica, no se inventa un valor. Resolver una limitación reduce deuda; introducir una nueva falla en CI hasta revisión explícita. No se usa una lista de excepciones genérica por tipo. El contrato no ejecuta consultas ni se integra todavía como importador externo.
+
+## Evidencia inicial
+Datos exactos auditados: 18 comercios, 47 pares, 94 lados de comparación, 54 fechas registradas y 40 ausentes, 18 recetas anidadas y 35 recetas del comparador, 38 productos de despensa. Las 33 diferencias históricas entre subtotal y estimación de platillo, y la diferencia de vinagre blanco en cochinita, quedan individualizadas con sus importes. Los 124 ingredientes de recetas anidadas no tienen denominador explícito en el atributo pricePerUnit: varias cantidades g/ml cuadran con tarifa por kg/L, otras son piezas/porciones o presentan discrepancias. No se supone unidad de compra. La vista conserva el costo registrado de la cantidad indicada, declara estimación y no muestra una tarifa por kg inventada. Los indicadores de campos nutricionales se presentan como completitud, no confianza.
+
+## Pruebas y próxima etapa
+Vitest valida catálogo actual y casos de duplicidad, fecha futura, desalineación de fecha global, precio normalizado errado, unidad inválida y cantidad/porción inválida; verifica entrada inmutable. Los avisos nuevos se cotejan contra registro de deuda exacto. Pruebas de UI para costo y completitud. CI existente ejecuta Vitest en PR y despliegue. Los campos de procedencia exacta (fuente, fecha/canal/sucursal, moneda y evidencia) requieren un contrato separado para observaciones nuevas NUT-020/021; no se puede inferir procedencia de datos antiguos. Pendiente normalización editorial de costos NUT-002, nutrientes NUT-040 y vinculación de despensa NUT-030.

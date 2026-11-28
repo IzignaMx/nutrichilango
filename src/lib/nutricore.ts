@@ -70,7 +70,8 @@ export function calculateDataConfidence(nutrition: NutritionInfo | undefined): n
   let present = 0;
   
   fields.forEach(field => {
-    if (nutrition[field as keyof NutritionInfo] !== undefined) present++;
+    const value = nutrition[field as keyof NutritionInfo];
+    if (typeof value === 'number' && Number.isFinite(value) && value >= 0) present++;
   });
   
   return Math.round((present / fields.length) * 100) / 100;
