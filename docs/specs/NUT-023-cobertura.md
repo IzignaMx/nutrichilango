@@ -1,11 +1,11 @@
 # NUT-023: inventario de cobertura
 
-47 pares del catálogo histórico. No equivale a 47 familias comparables; los precios de recetas no son ofertas comerciales. 4 pares enlazados, 43 pendientes.
+47 pares del catálogo histórico. No equivale a 47 familias comparables; los precios de recetas no son ofertas comerciales. 5 pares enlazados, 42 pendientes.
 
 | ID | Tipo | Tradicional | Vegetal | Familia | Estado |
 |---|---|---|---|---|---|
 | agua-fresca-concentrates-1 | commercial-vs-homemade | Concentrado de Jamaica | Concentrado Hibisco Orgánico | — | Pendiente: cantidades de receta y rendimiento |
-| almond-milk-1 | commercial-vs-commercial | Leche de Almendra Sin Azúcar | Leche de Almendra Orgánica | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
+| almond-milk-1 | commercial-vs-commercial | Leche de Almendra Sin Azúcar | Leche de Almendra Orgánica | almond-milk | Ofertas enlazadas, verificar vigencia y certificación |
 | beef-soup-vs-mushroom-soup | animal-vs-homemade | Sopa de Res con Verduras (1 porción) | Sopa de Hongos y Proteína Vegetal | — | Pendiente: cantidades de receta y rendimiento |
 | beef-vs-homemade-lentil-meat-1 | animal-vs-homemade | Carne Molida de Res | Carne Vegetal Casera de Lentejas | — | Pendiente: cantidades de receta y rendimiento |
 | beef-vs-tofu-1 | animal-vs-commercial | Carne de Res Molida | Carne Plant-Based | ground-meat | Ofertas enlazadas, verificar vigencia |
@@ -20,7 +20,7 @@
 | chicken-vs-tempeh-1 | animal-vs-commercial | Pechuga de Pollo | Tempeh de Soya | chicken-tempeh | Ofertas enlazadas, verificar vigencia |
 | coconut-milk-1 | commercial-vs-commercial | Leche de Coco Natural | Leche de Coco Orgánica | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
 | commercial-vs-homemade-burger-1 | commercial-vs-homemade | Hamburguesa Plant-Based Comercial | Hamburguesa Casera de Frijoles | — | Pendiente: cantidades de receta y rendimiento |
-| commercial-vs-homemade-tofu-1 | commercial-vs-homemade | Tofu Comercial | Tofu Casero | — | Pendiente: cantidades de receta y rendimiento |
+| commercial-vs-homemade-tofu-1 | commercial-vs-homemade | Tofu Comercial | Tofu Casero | — | Ingredientes documentados (NUT-002); pendiente rendimiento y costo comercial equivalente |
 | eggs-vs-homemade-chickpea-flour-1 | animal-vs-homemade | Huevos de Gallina | Sustituto de Huevo de Harina de Garbanzo | — | Pendiente: cantidades de receta y rendimiento |
 | fermented-cashew-cheese-1 | commercial-vs-homemade | Queso de Anacardo Fermentado | Queso Vegano Artesanal Tipo Azul | — | Pendiente: cantidades de receta y rendimiento |
 | fish-vs-homemade-mushroom-tuna-1 | animal-vs-homemade | Atún en Lata | Atún Vegetal Casero | — | Pendiente: cantidades de receta y rendimiento |
@@ -51,3 +51,7 @@
 | vegan-snacks-1 | commercial-vs-commercial | Galletas Veganas Integrales | Cookies Veganas con Chispas | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
 | vegan-tacos-meat-1 | commercial-vs-commercial | Proteína de Soya para Tacos | Tiras de Carne Vegana al Pastor | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
 | vegan-yogurt-1 | commercial-vs-commercial | Yogurt de Soya Natural | Yogurt de Coco Probiótico | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
+
+## Bebidas de almendra (28 de noviembre de 2026)
+
+La comparación entre dos productos vegetales usa lados distintos de animal-vs-plant, misma unidad L, y no afirma equivalencia nutricional ni certificación. Fuentes consultadas: Great Value sin azúcar 1 L $35, Silk sin azúcar 946 ml $48, Güd anunciado orgánico 1 L $55 (Walmart México); Vegan Label Güd 1 L $65 con copia antigua y disponibilidad sin confirmar, fuera de ranking. Enlace directo de cada ficha en datos. Los precios son referencias en línea, no cotizaciones de sucursal ni promociones vigentes.

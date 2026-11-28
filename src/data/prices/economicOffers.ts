@@ -1,4 +1,4 @@
-export type OfferSide = 'animal' | 'plant';
+export type OfferSide = 'animal' | 'plant' | 'plant-standard' | 'plant-organic';
 export type OfferBasis = 'L' | 'kg' | 'pieza';
 export interface EconomicOffer {
   id: string;
@@ -65,9 +65,14 @@ export const economicOffers: readonly EconomicOffer[] = [
   { id: 'greenparadise-tempeh-250', group: 'chicken-tempeh', side: 'plant', name: 'Rusto’s tempeh Bintang', presentation: '250 g', priceMXN: 89, quantity: 0.25, basis: 'kg', preparation: 'ready', source: 'Green Paradise (Santa Cruz Atoyac, CDMX)', url: 'https://greenparadise.com.mx/catalogo/tempeh-bintag-rusto-s-250-g-.html', consultedOn: '2026-11-28', availability: 'listed', note: 'La copia consultada indicaba 19 en existencia; puede haber cambiado.' },
   { id: 'veganlabel-tempeh-500', group: 'chicken-tempeh', side: 'plant', name: 'Bintang tempeh de soya', presentation: '500 g', priceMXN: 145, quantity: 0.5, basis: 'kg', preparation: 'ready', source: 'Vegan Label', url: 'https://www.veganlabel.mx/products/tempeh-bintang-500-g', consultedOn: '2026-11-28', availability: 'listed', note: 'La copia consultada indicaba 12 en existencia; confirma precio y stock.' },
   { id: 'abasto-tempeh-250', group: 'chicken-tempeh', side: 'plant', name: 'Rusto’s tempeh', presentation: '250 g', priceMXN: 91, quantity: 0.25, basis: 'kg', preparation: 'ready', source: 'Abasto Vegano', url: 'https://abastovegano.com/products/tempeh-250-g-rusto-s', consultedOn: '2026-11-28', availability: 'unknown', note: 'La ficha muestra señales contradictorias de existencia.' },
+  { id: 'walmart-gv-almond-1l', group: 'almond-milk', side: 'plant-standard', name: 'Great Value almendra sin azúcar', presentation: '1 L', priceMXN: 35, quantity: 1, basis: 'L', preparation: 'ready', source: 'Walmart en línea', url: 'https://www.walmart.com.mx/ip/alimento-liquido-de-almendra-great-value-sin-azucar-1-l/00750179161417', consultedOn: '2026-11-28', availability: 'listed', note: 'Bebida de almendra sin azúcar según la ficha; no se comprobó certificación vegana.' },
+  { id: 'walmart-silk-almond-946', group: 'almond-milk', side: 'plant-standard', name: 'Silk almendra sin azúcar', presentation: '946 ml', priceMXN: 48, quantity: 0.946, basis: 'L', preparation: 'ready', source: 'Walmart en línea', url: 'https://www.walmart.com.mx/ip/bebida-vegetal-silk-sabor-almendra-sin-azucar-946-ml/00002529300292', consultedOn: '2026-11-28', availability: 'listed' },
+  { id: 'walmart-gud-almond-organic-1l', group: 'almond-milk', side: 'plant-organic', name: 'Güd almendras orgánica', presentation: '1 L', priceMXN: 55, quantity: 1, basis: 'L', preparation: 'ready', source: 'Walmart en línea', url: 'https://www.walmart.com.mx/ip/alimento-liquido-de-almendras-gud-organico-1-l/00750163930841?classType=REGULAR', consultedOn: '2026-11-28', availability: 'listed', note: 'Orgánica según la ficha de la tienda; no se verificó certificado independiente.' },
+  { id: 'veganlabel-gud-almond-1l', group: 'almond-milk', side: 'plant-organic', name: 'Güd almendra sin azúcar', presentation: '1 L', priceMXN: 65, quantity: 1, basis: 'L', preparation: 'ready', source: 'Vegan Label', url: 'https://www.veganlabel.mx/products/leche-de-almendra-sin-azucar-gud-1-l', consultedOn: '2026-11-28', availability: 'unknown', note: 'Ficha antigua con stock sin confirmar; ingredientes indican pasta de almendras orgánica.' },
 ];
 
 export const economicGroups = {
+  'almond-milk': { basis: 'L', unitLabel: 'litro', measure: 'volumen de bebida de almendra' },
   'milk-soy': { basis: 'L', unitLabel: 'litro', measure: 'volumen de bebida', animalLabel: 'leche animal' },
   'ground-meat': { basis: 'kg', unitLabel: 'kilogramo', measure: 'peso del producto en su presentación comercial', animalLabel: 'carne molida animal' },
   'nuggets': { basis: 'kg', unitLabel: 'kilogramo', measure: 'peso de nuggets comerciales antes de cocinar', animalLabel: 'nuggets de pollo' },
@@ -77,6 +82,7 @@ export const economicGroups = {
 export type EconomicGroup = keyof typeof economicGroups;
 
 export function economicGroup(product: { category: string; comparisonType: string; traditional: { name: string }; plantBased: { name: string } }): EconomicGroup | null {
+  if (product.comparisonType === 'commercial-vs-commercial' && product.category === 'dairy' && product.traditional.name === 'Leche de Almendra Sin Azúcar' && product.plantBased.name === 'Leche de Almendra Orgánica') return 'almond-milk';
   if (product.comparisonType !== 'animal-vs-commercial') return null;
   if (product.category === 'dairy' && product.traditional.name === 'Leche Entera' && product.plantBased.name === 'Leche de Soya') return 'milk-soy';
   if (product.category === 'proteins' && product.traditional.name === 'Carne de Res Molida' && product.plantBased.name === 'Carne Plant-Based') return 'ground-meat';

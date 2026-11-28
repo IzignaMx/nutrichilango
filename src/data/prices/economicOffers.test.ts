@@ -32,6 +32,14 @@ describe('Ofertas económicas observadas', () => {
     expect(economicGroup({ ...product, comparisonType: 'animal-vs-homemade' })).toBeNull();
     expect(economicGroup({ ...product, plantBased: { name: 'Carne Plant-Based Casera' } })).toBeNull();
   });
+  it('compara bebidas vegetales sin clasificar ninguna como animal', () => {
+    const pair = { category: 'dairy', comparisonType: 'commercial-vs-commercial', traditional: { name: 'Leche de Almendra Sin Azúcar' }, plantBased: { name: 'Leche de Almendra Orgánica' } };
+    expect(economicGroup(pair)).toBe('almond-milk');
+    expect(economicGroup({ ...pair, comparisonType: 'animal-vs-commercial' })).toBeNull();
+    expect(rankOffers(economicOffers, 'almond-milk', 'animal', 'L', 'unit')).toEqual([]);
+    expect(rankOffers(economicOffers, 'almond-milk', 'plant-standard', 'L', 'unit')[0].id).toBe('walmart-gv-almond-1l');
+    expect(rankOffers(economicOffers, 'almond-milk', 'plant-organic', 'L', 'unit')[0].id).toBe('walmart-gud-almond-organic-1l');
+  });
   it('no confunde una tarifa por kilo con el desembolso por charola', () => {
     expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'unit')[0].id).toBe('walmart-chicken-breast-kg');
     expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'purchase')).toEqual([]);
