@@ -52,6 +52,13 @@ def parse_dictionary(raw):
     return sorted(variables)
 
 
+def dictionary_diagnostics(raw):
+    parse_dictionary(raw)
+    rows = csv.DictReader(io.StringIO(decode_csv(raw)), strict=True)
+    return {row["Variable"]: {"type": row["Tipo de dato"][:200], "description": row["Descripción"][:500]}
+            for row in rows if row["Variable"] in {"precio", "fecha_registro"}}
+
+
 def request(url, method="GET"):
     with urlopen(Request(url, method=method, headers={
         "User-Agent": "NutriChilango-SourceAudit/1.0"
@@ -84,7 +91,7 @@ def collect(today):
             "dictionarySha256": hashlib.sha256(dictionary).hexdigest(),
             "archiveBytesReported": size, "archiveETag": headers.get("etag"),
             "archiveLastModified": headers.get("last-modified"),
-            "variables": variables, **coverage, "pricesValidated": 0,
+            "variables": variables, "dictionaryDiagnostics": dictionary_diagnostics(dictionary), **coverage, "pricesValidated": 0,
             "publicationEligible": False}
 
 

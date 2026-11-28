@@ -86,6 +86,28 @@ class ArchiveTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "row bound"):
                     module.sample_recent_file(output, date(2026, 10, 31))
 
+    def test_diagnostics_separate_rejections_and_safe_format_classes(self):
+        rows = [
+            ROW,
+            ROW.replace("2026-10-30", "30/10/2026"),
+            ROW.replace("25.50", "NaN"),
+            ROW.replace("2026-10-30", "2026-11-01"),
+            ROW.replace("MARCA", ""),
+            ROW.replace("1 L", ""),
+            ROW + ",extra",
+        ]
+        result = module.sample_rows(("\n".join([HEADER] + rows)).encode(), date(2026, 10, 31))
+        self.assertEqual(result["validSyntaxRows"], 1)
+        self.assertEqual(result["rejectedRows"], 6)
+        self.assertEqual(result["rejectionReasons"], {
+            "row-shape": 1, "missing-required-fields": 2,
+            "invalid-price": 1, "invalid-date": 1, "date-outside-coverage": 1,
+        })
+        self.assertEqual(result["missingFieldCounts"], {"marca": 1, "presentacion": 1})
+        self.assertEqual(result["dateFormats"]["day-month-year-slash"], 1)
+        self.assertEqual(result["priceFormats"]["other"], 1)
+        self.assertNotIn("30/10/2026", str(result["dateFormats"]))
+
     def test_bounds_and_official_origin(self):
         with self.assertRaises(ValueError):
             module.download_archive("https://example.com/2026.rar", "/tmp/unused", 100)

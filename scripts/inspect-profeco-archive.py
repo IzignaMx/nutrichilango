@@ -1,5 +1,6 @@
 """Bounded read-only sampling of the official Profeco QQP archive; never publish prices."""
 import csv
+from collections import Counter
 import ctypes as C
 import ctypes.util
 import hashlib
@@ -153,12 +154,45 @@ def sample_rows(raw, coverage_end):
     return scan_rows(io.StringIO(decoded), coverage_end, MAX_ROWS)
 
 
+DATE_SHAPES = (
+    ("iso-date", r"\d{4}-\d{2}-\d{2}"),
+    ("iso-datetime", r"\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?"),
+    ("day-month-year-slash", r"\d{1,2}/\d{1,2}/\d{4}"),
+    ("day-month-year-slash-time", r"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}(?::\d{2})?"),
+    ("year-month-day-slash", r"\d{4}/\d{1,2}/\d{1,2}"),
+    ("two-two-four-hyphen", r"\d{1,2}-\d{1,2}-\d{4}"),
+    ("compact-eight-digits", r"\d{8}"),
+)
+PRICE_SHAPES = (
+    ("decimal-dot", r"[+-]?\d+(?:\.\d+)?"),
+    ("decimal-comma", r"[+-]?\d+,\d+"),
+    ("currency-symbol", r"\$\s*[0-9,.]+"),
+)
+
+
+def format_shape(value, patterns):
+    stripped = value.strip()
+    if not stripped:
+        return "empty"
+    for label, pattern in patterns:
+        if re.fullmatch(pattern, stripped):
+            return label
+    return "other"
+
+
 def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
     rows = csv.DictReader(stream, strict=True)
     if not rows.fieldnames or len(set(rows.fieldnames)) != len(rows.fieldnames) or not set(REQUIRED) <= set(rows.fieldnames):
         raise ValueError("Unexpected observation CSV schema")
     counts = {"rowsExamined": 0, "cdmxRows": 0, "validSyntaxRows": 0, "rejectedRows": 0}
     evidence = []
+    rejection_reasons = Counter()
+    missing_field_counts = Counter()
+    date_formats = Counter()
+    price_formats = Counter()
+    def reject(reason):
+        counts["rejectedRows"] += 1
+        rejection_reasons[reason] += 1
     for number, row in enumerate(rows, start=2):
         if counts["rowsExamined"] >= max_rows:
             if coverage_start is not None:
@@ -166,27 +200,41 @@ def scan_rows(stream, coverage_end, max_rows, coverage_start=None):
             break
         counts["rowsExamined"] += 1
         if None in row or any(row.get(field) is None for field in REQUIRED):
-            counts["rejectedRows"] += 1
+            reject("row-shape")
             continue
         if normalize(row["estado"]) not in {"CIUDAD DE MEXICO", "DISTRITO FEDERAL"}:
             continue
         counts["cdmxRows"] += 1
+        date_formats[format_shape(row["fecha_registro"], DATE_SHAPES)] += 1
+        price_formats[format_shape(row["precio"], PRICE_SHAPES)] += 1
+        missing = [field for field in REQUIRED if not row[field].strip()]
+        if missing:
+            missing_field_counts.update(missing)
+            reject("missing-required-fields")
+            continue
         try:
-            if not all(row[field].strip() for field in REQUIRED):
-                raise ValueError("Missing required value")
             price = Decimal(row["precio"])
-            observed = datetime.fromisoformat(row["fecha_registro"]).date()
-            if not price.is_finite() or price <= 0 or observed > coverage_end or (coverage_start is not None and observed < coverage_start):
-                raise ValueError("Invalid observation")
+            if not price.is_finite() or price <= 0:
+                raise ValueError("Invalid price")
         except (ValueError, InvalidOperation):
-            counts["rejectedRows"] += 1
+            reject("invalid-price")
+            continue
+        try:
+            observed = datetime.fromisoformat(row["fecha_registro"]).date()
+        except ValueError:
+            reject("invalid-date")
+            continue
+        if observed > coverage_end or (coverage_start is not None and observed < coverage_start):
+            reject("date-outside-coverage")
             continue
         counts["validSyntaxRows"] += 1
         if len(evidence) < MAX_EVIDENCE:
             evidence.append({"recordNumber": number, "rawFields": {key: row[key] for key in REQUIRED},
                              "observedDate": observed.isoformat(),
                              "currencyVerified": False, "publicationEligible": False})
-    return {"columns": rows.fieldnames, **counts, "sample": evidence}
+    return {"columns": rows.fieldnames, **counts, "sample": evidence,
+            "rejectionReasons": dict(rejection_reasons), "missingFieldCounts": dict(missing_field_counts),
+            "dateFormats": dict(date_formats), "priceFormats": dict(price_formats)}
 
 
 def sample_recent_file(path, coverage_end):
