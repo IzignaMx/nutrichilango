@@ -27,6 +27,13 @@ class AuditTest(unittest.TestCase):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 audit.parse_metadata(value.encode(), TODAY)
 
+    def test_dictionary_diagnostics_preserve_only_price_and_date_descriptions(self):
+        prefix = "Variable,Tipo de dato,Nombre corto,Descripción\n"
+        rows = "".join(f"{field},texto,corto,desc\n" for field in sorted(audit.REQUIRED))
+        result = audit.dictionary_diagnostics((prefix + rows).encode())
+        self.assertEqual(set(result), {"precio", "fecha_registro"})
+        self.assertEqual(result["precio"], {"type": "texto", "description": "desc"})
+
     def test_dictionary_requires_identity(self):
         prefix = "Variable,Tipo de dato,Nombre corto,Descripción\n"
         rows = "".join(f"{field},texto,corto,desc\n" for field in sorted(audit.REQUIRED))
