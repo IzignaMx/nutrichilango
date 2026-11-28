@@ -19,11 +19,12 @@ function Offer({ offer, label }: { offer: EconomicOffer; label: string }) {
 }
 
 export default function EconomicOptions({ group }: { group: EconomicGroup }) {
-  const { basis, unitLabel, measure } = economicGroups[group];
-  const plantPair = group === 'almond-milk';
-  const firstSide = plantPair ? 'plant-standard' : 'animal';
-  const secondSide = plantPair ? 'plant-organic' : 'plant';
-  const referenceLabel = group === 'almond-milk' ? 'bebida de almendra sin azúcar' : economicGroups[group].animalLabel;
+  const config = economicGroups[group];
+  const { basis, unitLabel, measure } = config;
+  const plantPair = 'plantSides' in config;
+  const firstSide = plantPair ? config.plantSides[0] : 'animal';
+  const secondSide = plantPair ? config.plantSides[1] : 'plant';
+  const referenceLabel = plantPair ? config.firstLabel : config.animalLabel;
   const referencePurchase = rankOffers(economicOffers, group, firstSide, basis, 'purchase')[0];
   const reference = rankOffers(economicOffers, group, firstSide, basis, 'unit')[0];
   const purchase = rankOffers(economicOffers, group, secondSide, basis, 'purchase')[0];
@@ -38,11 +39,11 @@ export default function EconomicOptions({ group }: { group: EconomicGroup }) {
     <p className="text-sm text-muted-foreground">Mínimos entre las ofertas consultadas, no de todo el mercado. Precios en línea, disponibilidad y entrega sujetas a tu código postal. La fecha es de consulta, no de captura de la tienda; las páginas pueden estar almacenadas en caché. No se incluye envío. Comparamos {measure}, no equivalencia nutricional.</p>
     <div className="grid gap-3 md:grid-cols-3">
       <Offer offer={reference} label={`Menor costo por ${unitLabel} de ${referenceLabel}`} />
-      {referencePurchase && referencePurchase.id !== reference.id && <Offer offer={referencePurchase} label={plantPair ? "Menor desembolso de bebida sin azúcar" : "Menor desembolso animal"} />}
-      {purchase.id !== unit.id && <Offer offer={purchase} label={plantPair ? "Menor desembolso de bebida orgánica" : "Menor desembolso vegetal"} />}
-      <Offer offer={unit} label={plantPair ? (purchase.id === unit.id ? `Menor desembolso y costo de bebida orgánica por ${unitLabel}` : `Menor costo de bebida orgánica por ${unitLabel}`) : (purchase.id === unit.id ? `Menor desembolso y costo vegetal por ${unitLabel}` : `Menor costo vegetal por ${unitLabel}`)} />
+      {referencePurchase && referencePurchase.id !== reference.id && <Offer offer={referencePurchase} label={plantPair ? `Menor desembolso de ${config.firstLabel}` : "Menor desembolso animal"} />}
+      {purchase.id !== unit.id && <Offer offer={purchase} label={plantPair ? `Menor desembolso de ${config.secondLabel}` : "Menor desembolso vegetal"} />}
+      <Offer offer={unit} label={plantPair ? (purchase.id === unit.id ? `Menor desembolso y costo de ${config.secondLabel} por ${unitLabel}` : `Menor costo de ${config.secondLabel} por ${unitLabel}`) : (purchase.id === unit.id ? `Menor desembolso y costo vegetal por ${unitLabel}` : `Menor costo vegetal por ${unitLabel}`)} />
     </div>
-    <p className="text-sm">{plantPair ? `En esta muestra, la bebida anunciada como orgánica de menor costo por ${unitLabel} presenta una diferencia de ${difference}% frente a la bebida sin azúcar de menor costo por ${unitLabel}. No se certificó su carácter orgánico o vegano de manera independiente.` : `En esta muestra, la alternativa vegetal de menor costo por ${unitLabel} tiene una diferencia de ${difference}% frente al producto animal de menor costo por ${unitLabel}.`} El costo de preparación y envío puede cambiar el resultado.</p>
+    <p className="text-sm">{plantPair ? `En esta muestra, ${config.secondLabel} de menor costo por ${unitLabel} presenta una diferencia de ${difference}% frente a ${config.firstLabel} de menor costo por ${unitLabel}. ${config.caveat}` : `En esta muestra, la alternativa vegetal de menor costo por ${unitLabel} tiene una diferencia de ${difference}% frente al producto animal de menor costo por ${unitLabel}.`} El costo de preparación y envío puede cambiar el resultado.</p>
     <details>
       <summary className="cursor-pointer text-sm font-medium">Ver otras ofertas consultadas</summary>
       <div className="grid gap-3 sm:grid-cols-2 mt-3">

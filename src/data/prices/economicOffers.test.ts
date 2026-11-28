@@ -40,6 +40,15 @@ describe('Ofertas económicas observadas', () => {
     expect(rankOffers(economicOffers, 'almond-milk', 'plant-standard', 'L', 'unit')[0].id).toBe('walmart-gv-almond-1l');
     expect(rankOffers(economicOffers, 'almond-milk', 'plant-organic', 'L', 'unit')[0].id).toBe('walmart-gud-almond-organic-1l');
   });
+  it('separa tofu natural firme del ahumado y desembolso del precio regular por kg', () => {
+    const pair = { category: 'proteins', comparisonType: 'commercial-vs-commercial', traditional: { name: 'Tofu Natural Firme' }, plantBased: { name: 'Tofu Ahumado' } };
+    expect(economicGroup(pair)).toBe('tofu-varieties');
+    expect(economicGroup({ ...pair, plantBased: { name: 'Seitán Artesanal' } })).toBeNull();
+    expect(rankOffers(economicOffers, 'tofu-varieties', 'plant-natural', 'kg', 'purchase')[0].id).toBe('veganlabel-house-tofu-396');
+    expect(rankOffers(economicOffers, 'tofu-varieties', 'plant-natural', 'kg', 'unit')[0].id).toBe('veganlabel-empatika-natural-1kg');
+    expect(rankOffers(economicOffers, 'tofu-varieties', 'plant-smoked', 'kg', 'purchase')[0].priceMXN).toBe(75);
+    expect(rankOffers(economicOffers, 'tofu-varieties', 'plant-smoked', 'kg', 'unit')[0].priceMXN).toBe(159);
+  });
   it('no confunde una tarifa por kilo con el desembolso por charola', () => {
     expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'unit')[0].id).toBe('walmart-chicken-breast-kg');
     expect(rankOffers(economicOffers, 'chicken-tempeh', 'animal', 'kg', 'purchase')).toEqual([]);

@@ -1,6 +1,6 @@
 # NUT-023: inventario de cobertura
 
-47 pares del catálogo histórico. No equivale a 47 familias comparables; los precios de recetas no son ofertas comerciales. 5 pares enlazados, 42 pendientes.
+47 pares del catálogo histórico. No equivale a 47 familias comparables; los precios de recetas no son ofertas comerciales. 6 pares enlazados, 41 pendientes.
 
 | ID | Tipo | Tradicional | Vegetal | Familia | Estado |
 |---|---|---|---|---|---|
@@ -41,7 +41,7 @@
 | quinoa-vs-legumes-1 | commercial-vs-commercial | Quinoa Orgánica | Mix de Leguminosas Orgánicas | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
 | soy-chorizo-1 | commercial-vs-commercial | Chorizo de Soya | Chorizo Vegetal Especiado | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
 | tempeh-vs-jackfruit-1 | commercial-vs-commercial | Tempeh de Soya | Jackfruit en Salmuera | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
-| tofu-varieties-1 | commercial-vs-commercial | Tofu Natural Firme | Tofu Ahumado | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
+| tofu-varieties-1 | commercial-vs-commercial | Tofu Natural Firme | Tofu Ahumado | tofu-varieties | Ofertas enlazadas, verificar vigencia |
 | tofu-vs-seitan-1 | commercial-vs-commercial | Tofu Firme | Seitán Artesanal | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
 | tuna-vs-homemade-chickpea-tuna-1 | animal-vs-homemade | Atún en Lata | Atún Vegetal de Garbanzos | — | Pendiente: cantidades de receta y rendimiento |
 | vegan-cheese-varieties-1 | commercial-vs-commercial | Queso Vegano Cheddar | Queso Vegano Mozzarella | — | Pendiente: identidad, precio y disponibilidad de ambos lados |
@@ -55,3 +55,7 @@
 ## Bebidas de almendra (28 de noviembre de 2026)
 
 La comparación entre dos productos vegetales usa lados distintos de animal-vs-plant, misma unidad L, y no afirma equivalencia nutricional ni certificación. Fuentes consultadas: Great Value sin azúcar 1 L $35, Silk sin azúcar 946 ml $48, Güd anunciado orgánico 1 L $55 (Walmart México); Vegan Label Güd 1 L $65 con copia antigua y disponibilidad sin confirmar, fuera de ranking. Enlace directo de cada ficha en datos. Los precios son referencias en línea, no cotizaciones de sucursal ni promociones vigentes.
+
+## Tofu natural firme y ahumado (28 de noviembre de 2026)
+
+Se documentaron siete fichas directas de tofu con pesos comerciales. House Foods 396 g $69 Vegan Label y $79 Walmart; Vegami extra firme 500 g $89 Green Paradise; Empátika natural $75/400 g y $159/kg, descrito extra firme por fabricante (https://empatika.shop/). Empátika ahumado $75/400 g y $159/kg regular en Vegan Label. La última ficha mostraba $143.10 sin fecha fin, excluida la rebaja del ranking. Consultas en línea sujetas a disponibilidad; no implica equivalencia nutricional, peso escurrido ni promoción vigente.

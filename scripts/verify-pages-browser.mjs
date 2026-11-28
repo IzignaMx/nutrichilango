@@ -207,6 +207,14 @@ try {
     await almond.getByText('Ver otras ofertas consultadas', { exact: true }).click();
     await almond.getByText('Disponibilidad sin confirmar (fuera del ranking)', { exact: true }).waitFor();
 
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Tofu Natural Firme');
+    const tofuVarieties = page.getByRole('region', { name: 'Opciones económicas observadas' }).filter({ hasText: 'Empátika tofu natural' });
+    await tofuVarieties.getByText('Menor costo por kilogramo de tofu natural firme', { exact: true }).waitFor();
+    await tofuVarieties.getByText('$69.00 MXN por presentación', { exact: true }).waitFor();
+    await tofuVarieties.getByText('Menor costo de tofu ahumado por kilogramo', { exact: true }).waitFor();
+    assert.equal(await tofuVarieties.getByText('$159.00 MXN/kg', { exact: true }).count(), 2);
+    assert.equal(await tofuVarieties.getByText(/producto animal|desembolso animal/i).count(), 0);
+
     await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Tofu Comercial');
     const tofuCard = page.getByRole('heading', { name: 'Tofu Comercial vs Tofu Casero', exact: true }).locator('xpath=../../../..');
     await tofuCard.getByText('Subtotal de ingredientes documentados: $16.64 MXN', { exact: true }).waitFor();
