@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Clock, Users, ChefHat, MapPin, DollarSign } from 'lucide-react';
@@ -43,7 +43,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
           <DialogTitle className="text-2xl font-bold text-brand-primary mb-2">
             {recipe.name}
           </DialogTitle>
-          <p className="text-gray-600">{recipe.description}</p>
+          <DialogDescription className="text-gray-600">{recipe.description} Los costos de ingredientes son estimaciones históricas. La base original del precio por unidad no está documentada.</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
@@ -90,13 +90,13 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-brand-success">${ingredient.totalCost.toFixed(2)}</p>
-                      <p className="text-xs text-gray-500">${ingredient.pricePerUnit.toFixed(2)}/kg</p>
+                      <p className="text-xs text-gray-500">Estimación de la cantidad indicada</p>
                     </div>
                   </div>
                 ))}
                 <div className="border-t pt-3 mt-4">
                   <div className="flex justify-between items-center font-bold text-lg">
-                    <span>Costo Total:</span>
+                    <span>Subtotal de ingredientes:</span>
                     <span className="text-brand-primary">${totalCost.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-center text-sm text-gray-600">
@@ -131,7 +131,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({ recipe, isOpen, onClose }) =>
           {recipe.nutritionInfo && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg text-gray-800">Información Nutricional (por porción)</CardTitle>
+                <CardTitle className="text-lg text-gray-800">Información nutricional orientativa (por porción)</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

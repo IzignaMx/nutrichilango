@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { calculateDataConfidence } from '@/lib/nutricore';
 import { NutritionInfo } from '@/data/types';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { AlertCircle, CheckCircle, HelpCircle } from 'lucide-react';
+import { HelpCircle } from 'lucide-react';
 
 interface DataConfidenceIndicatorProps {
   nutrition: NutritionInfo;
@@ -11,37 +10,21 @@ interface DataConfidenceIndicatorProps {
 }
 
 const DataConfidenceIndicator: React.FC<DataConfidenceIndicatorProps> = ({ nutrition, className = '' }) => {
-  const confidence = calculateDataConfidence(nutrition);
-  
-  let colorClass = 'text-red-500';
-  let Icon = AlertCircle;
-  let label = 'Baja';
-  
-  if (confidence >= 0.8) {
-    colorClass = 'text-green-500';
-    Icon = CheckCircle;
-    label = 'Alta';
-  } else if (confidence >= 0.5) {
-    colorClass = 'text-yellow-500';
-    Icon = HelpCircle;
-    label = 'Media';
-  }
+  const completeness = Math.round(calculateDataConfidence(nutrition) * 100);
 
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className={`flex items-center gap-1 cursor-help ${className}`}>
-            <Icon className={`w-3 h-3 ${colorClass}`} />
-            <span className={`text-[10px] font-medium ${colorClass}`}>
-              {label} ({Math.round(confidence * 100)}%)
-            </span>
-          </div>
+          <button type="button" className={`flex items-center gap-1 cursor-help text-muted-foreground ${className}`}>
+            <HelpCircle className="w-3 h-3" aria-hidden="true" />
+            <span className="text-[10px] font-medium">Campos: {completeness}%</span>
+          </button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Confianza en los datos: {label}</p>
-          <p className="text-xs text-gray-500">
-            Basado en la cantidad de campos nutricionales disponibles.
+          <p>Campos nutricionales disponibles: {completeness}%</p>
+          <p className="text-xs text-muted-foreground">
+            La presencia de campos no acredita exactitud, fecha ni procedencia.
           </p>
         </TooltipContent>
       </Tooltip>

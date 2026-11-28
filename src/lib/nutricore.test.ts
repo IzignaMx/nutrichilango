@@ -70,3 +70,7 @@ describe('NutriCore Engine', () => {
     });
   });
 });
+
+it('no cuenta campos inválidos como información nutricional disponible', () => {
+  expect(calculateDataConfidence({ calories: NaN, protein: -1, carbs: 0, fat: 0, sugar: 0 })).toBe(0.38);
+});
