@@ -198,6 +198,19 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
     console.log('Chromium: selección económica, rendimiento y agotados verificados.');
 
+    await page.getByRole('textbox', { name: 'Buscar productos' }).fill('Tofu Comercial');
+    const tofuCard = page.getByRole('heading', { name: 'Tofu Comercial vs Tofu Casero', exact: true }).locator('xpath=../../../..');
+    await tofuCard.getByRole('button', { name: 'Ver Receta y Preparación' }).click();
+    const tofuRecipe = page.getByRole('dialog');
+    const tofuCosts = tofuRecipe.getByRole('region', { name: 'Costos con referencias consultadas' });
+    await tofuCosts.getByText('Subtotal de los ingredientes indicados: $16.64 MXN', { exact: true }).waitFor();
+    await tofuCosts.getByText('Desembolso si compras todos estos paquetes desde cero: $112.20 MXN', { exact: true }).waitFor();
+    assert.equal(await tofuCosts.getByRole('link', { name: /Click Abasto/ }).getAttribute('href'), 'https://clickabasto.com/products/frijol-soya-por-1-kg');
+    await tofuCosts.getByText(/El rendimiento final no se ha medido/).waitFor();
+    await page.keyboard.press('Escape');
+    await tofuRecipe.waitFor({ state: 'hidden' });
+    console.log('Chromium: costo proporcional, desembolso y referencia directa de tofu casero verificados.');
+
     const pantryContext = await browser.newContext({
       serviceWorkers: 'block',
       viewport: { width: 390, height: 844 },
