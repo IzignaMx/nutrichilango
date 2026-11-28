@@ -1,3 +1,4 @@
+import { documentedPromotions } from '@/data/promotionEvidence';
 import { compareSameBasis } from '@/data/price-normalization.mjs';
 import { useMemo } from 'react';
 import { Store, Product, OptimizedComparison } from '@/data/types';
@@ -139,6 +140,7 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
           storeLocation: bestVariant.store.location,
           hasPromotion: bestVariant.store.hasPromotion,
           promotionDetails: bestVariant.store.promotionDetails,
+          promotionEvidence: documentedPromotions(bestVariant.store.promotionEvidence, [bestVariant.id]),
           bestTraditionalStore: bestVariant.store.name,
           bestPlantBasedStore: bestVariant.store.name
         };
@@ -151,4 +153,5 @@ export const useBestPriceComparisons = (stores: Store[], comparisonFilter: strin
     return optimizedComparisons;
   }, [stores, comparisonFilter]);
 };
+
 

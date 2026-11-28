@@ -1,3 +1,4 @@
+import type { PromotionEvidence } from './promotionEvidence';
 export interface Recipe {
   id: string;
   name: string;
@@ -69,6 +70,7 @@ export interface Store {
   coordinates: [number, number];
   hasPromotion: boolean;
   promotionDetails?: string;
+  promotionEvidence?: readonly PromotionEvidence[];
   storeType: 'conventional' | 'naturist' | 'vegetarian' | 'vegan' | 'organic' | 'market' | 'wholesale';
   products: Product[];
 }
@@ -81,6 +83,8 @@ export interface OptimizedComparison extends Product {
   storeLocation: string;
   hasPromotion: boolean;
   promotionDetails?: string;
+  promotionEvidence?: readonly PromotionEvidence[];
   bestTraditionalStore?: string;
   bestPlantBasedStore?: string;
 }
+

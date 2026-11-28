@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, ChefHat, BarChart3 } from 'lucide-react';
 import ProductSection from './ProductSection';
+import PromotionNotice from './PromotionNotice';
 import EconomicOptions from './EconomicOptions';
 import { economicGroup } from '@/data/prices/economicOffers';
 import ComparisonAnalysis from './ComparisonAnalysis';
@@ -87,8 +88,6 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             priceDifferencePercent={product.priceDifferencePercent}
             traditionalPrice={product.traditional.price}
             plantBasedPrice={product.plantBased.price}
-            hasPromotion={product.hasPromotion}
-            promotionDetails={product.promotionDetails}
           />
         </div>
   );
@@ -106,11 +105,7 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
                 <MapPin className="w-4 h-4 mr-1" aria-hidden="true" />
                 <span className="font-medium">{group ? "Ofertas en línea · consulta de referencia" : product.storeName}</span>
               </div>
-              {!group && product.hasPromotion && (
-                <Badge variant="outline" className="text-brand-success border-brand-success bg-brand-success/10">
-                  🎯 Promoción
-                </Badge>
-              )}
+
               {!product.plantBased.isCommercial && (
                 <Badge variant="outline" className="text-purple-700 border-purple-200 bg-purple-50">
                   <ChefHat className="w-3 h-3 mr-1" aria-hidden="true" />
@@ -137,6 +132,8 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
             {historicalComparison}
           </details>
         ) : historicalComparison}
+
+        {!group && product.promotionEvidence?.map(promotion => <PromotionNotice key={promotion.id} promotion={promotion} />)}
 
         {(product.traditional.nutritionInfo && product.plantBased.nutritionInfo) && (
           <div className="mt-6 border-t pt-6">
@@ -166,4 +163,5 @@ const ComparisonCard: React.FC<ComparisonCardProps> = ({
 };
 
 export default ComparisonCard;
+
 

@@ -25,3 +25,6 @@ Añadir familias priorizadas por utilidad (proteína, lácteos, huevos, básicos
 ## Tercer incremento
 - Pechuga sin hueso vs tempeh: 4 referencias adicionales (22 totales, 4/47 pares). Walmart publica $155/kg, no importe fijo de la charola: queda fuera del ranking por desembolso e importe con presupuesto finito. Tempeh 250 g $89 en Green Paradise y 500 g $145 en Vegan Label, con disponibilidad declarada en las copias consultadas; Abasto Vegano tiene señales contradictorias. Planta Base se descarta por estar en Venezuela. No se asume disponibilidad en tiempo real.
 - La búsqueda filtra cada comparación, no todas las tarjetas de la tienda. Encuentra marcas registradas (incluidas variantes sin acentos) y respeta categoría. Se conserva la búsqueda por tienda.
+
+
+La evidencia de descuentos se gobierna por [NUT-024](NUT-024-promociones-verificables.md). Las cifras rebajadas observadas pueden conservarse como referencias con su fuente, sin presumir promoción vigente.
